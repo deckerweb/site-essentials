@@ -4,6 +4,8 @@
 
 [Deutsch](Home-de)
 
+**Your WordPress. Your settings.**
+
 ## About
 
 Configure WordPress core behavior with focused, optional controls. Review presets and imports before saving; keep settings independent on each site.

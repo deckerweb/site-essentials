@@ -4,6 +4,8 @@
 
 [English](Home)
 
+**Dein WordPress. Deine Einstellungen.**
+
 ## Kurzvorstellung
 
 Konfiguriert WordPress-Core-Verhalten mit gezielten optionalen Einstellungen. Presets und Importe vor dem Speichern prüfen; jede Website behält ihre eigene Konfiguration.
