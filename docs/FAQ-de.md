@@ -162,7 +162,7 @@ Ja. Einzel- und Netzwerkaktivierung, unabhängige Site-Einstellungen und eine Ne
 
 ### Wie funktioniert das Zusammenspiel mit Leitstand?
 
-Site Essentials öffnet keine durch frühere Filter gesperrten Kommentare und erhält strengere eingehende Revisionsgrenzen. Leitstand-Netzwerkregeln werden nicht umgeschrieben. Für lokale Avatare je Website einen Anbieter verwenden; nicht beide Avatar-Module gleichzeitig aktivieren.
+Site Essentials öffnet keine durch frühere Filter gesperrten Kommentare und erhält strengere eingehende Revisionsgrenzen. Leitstand-Netzwerkregeln werden nicht umgeschrieben. Stellt der geladene Leitstand-Avatar-Renderer lokale Avatare auf der aktuellen Website wirksam bereit, pausiert Site Essentials seine eigene Ausgabe, Avatar-HTTP-Eingriffe, Profil-Bedienelemente und Uploads und blendet den Avatar-Einstellungsbereich aus. Gespeicherte Auswahl und Bildzuordnungen bleiben erhalten. Erlaubte Website-Ausnahmen werden beachtet; eine verpflichtende Netzwerkvorgabe hat Vorrang. Stellt Leitstand die Funktion nicht mehr bereit, wird die gespeicherte Site-Essentials-Auswahl wieder verfügbar. Ein veraltetes Avatar-Formular kann während des Leitstand-Vorrangs keine Zuordnungen verändern.
 
 ### Was passiert bei der Deinstallation?
 

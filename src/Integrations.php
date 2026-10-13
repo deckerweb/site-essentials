@@ -32,6 +32,7 @@ final class Integrations {
   foreach ( Schema::fields() as $key => $field ) {
    if ( $local[ $key ] !== $field['default'] ) { $local_count++; }
    if ( $effective[ $key ] !== $field['default'] ) {
+    if ( 'local_avatars' === $key && Avatars::leitstand() ) { continue; }
     if ( 'file_editors' === $key && is_multisite() ) { $inactive[] = $key; continue; }
     $keys[] = $key; $labels[] = $field['label'];
    }
@@ -42,6 +43,7 @@ final class Integrations {
   $info['site-essentials'] = array(
    'label' => 'Site Essentials', 'description' => esc_html__( 'Configuration information only. No runtime tests or security rating. Preset names, notes, footer text and customer data are omitted.', 'site-essentials' ),
    'fields' => array(
+    'avatar_provider' => array( 'label' => __( 'Local avatar provider', 'site-essentials' ), 'value' => Avatars::leitstand() ? 'Leitstand' : ( Settings::get( 'local_avatars' ) ? 'Site Essentials' : 'WordPress' ) ),
     'version' => array( 'label' => __( 'Plugin version', 'site-essentials' ), 'value' => SITE_ESSENTIALS_VERSION ),
     'scope' => array( 'label' => __( 'Activation and scope', 'site-essentials' ), 'value' => is_multisite() ? ( Settings::network_active() ? __( 'Network active; this site has local settings', 'site-essentials' ) : __( 'Site active on multisite', 'site-essentials' ) ) : __( 'Single site', 'site-essentials' ), 'debug' => $scope ),
     'configuration' => array( 'label' => __( 'Stored configuration', 'site-essentials' ), 'value' => false === $raw ? __( 'Not initialized', 'site-essentials' ) : ( $valid ? __( 'Known settings are valid', 'site-essentials' ) : __( 'Invalid values; neutral fallback is used', 'site-essentials' ) ), 'debug' => $status ),

@@ -39,8 +39,24 @@ final class Avatars {
   $remaining = $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM %i WHERE meta_key = %s', $wpdb->usermeta, self::key() ) );
   return null !== $remaining && 0 === (int) $remaining;
  }
- /** Enabled for this site's requests only. @return bool */
- private function enabled(): bool { return (bool) Settings::get( 'local_avatars' ); }
+ /** Check the loaded provider's effective rule in the current website context.
+  * Rendering registration and a valid local rule are both required. No rules
+  * or assignments are rewritten; no cross-site cache or external lookup is used.
+  * @return bool Whether Leitstand currently provides local avatars on this site.
+  */
+ public static function leitstand(): bool {
+  $rules = \Deckerweb\Leitstand\NetworkRules::class;
+  $avatars = \Deckerweb\Leitstand\LocalAvatars::class;
+  if ( ! is_multisite() || ! class_exists( $rules, false ) || ! class_exists( $avatars, false )
+   || ! is_callable( array( $rules, 'effective' ) )
+   || false === has_filter( 'pre_get_avatar_data', array( $avatars, 'data' ) ) ) { return false; }
+  try {
+   $effective = $rules::effective();
+   return is_array( $effective ) && 'local' === ( $effective['avatars'] ?? null );
+  } catch ( \Throwable $error ) { return false; }
+ }
+ /** Enable this site's avatar configuration only while Leitstand is not its provider. @return bool */
+ private function enabled(): bool { return (bool) Settings::get( 'local_avatars' ) && ! self::leitstand(); }
  /** Track network activity occurring inside the avatar filter pipeline.
   * @param mixed $value Incoming value.
   * @return mixed
@@ -204,7 +220,7 @@ final class Avatars {
  }
  /** Emit one own form after the native user form has closed. @return void */
  public function form(): void {
-  if ( ! $this->profile_user ) { return; }
+  if ( ! $this->profile_user || ! $this->enabled() ) { return; }
   echo '<form id="se-avatar-form" method="post" enctype="multipart/form-data" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="site_essentials_avatar_save"><input type="hidden" name="avatar_user" value="' . esc_attr( $this->profile_user ) . '"><input type="hidden" name="avatar_revision" value="' . esc_attr( hash( 'sha256', wp_json_encode( get_user_meta( $this->profile_user, self::key(), true ) ) ) ) . '">';
   wp_nonce_field( 'site_essentials_avatar_' . get_current_blog_id() . '_' . $this->profile_user ); echo '</form>';
  }

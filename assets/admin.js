@@ -48,7 +48,7 @@
   const exists = panels.some(panel => panel.id === 'se-' + id);
   if (!exists) id = 'overview';
   selectedSection = id;
-  Object.keys(fields).forEach(key => form.querySelector('[data-setting="' + key + '"]').hidden = false);
+  Object.keys(fields).forEach(key => { if (key === 'local_avatars' && config.avatarProvider) return; form.querySelector('[data-setting="' + key + '"]').hidden = false; });
   panels.forEach(panel => { panel.hidden = panel.id !== 'se-' + id; });
   nav.forEach(link => { if (link.dataset.section === id) link.setAttribute('aria-current', 'page'); else link.removeAttribute('aria-current'); });
   ruleView();
@@ -70,6 +70,7 @@
  function read() {
   const values = structuredClone(config.defaults);
   Object.entries(fields).forEach(([key, field]) => {
+   if (key === 'local_avatars' && config.avatarProvider) { values[key] = config.local[key]; return; }
    const inputs = controls(key);
    if (field.type === 'bool') {
     const checkbox = inputs.find(input => input.type === 'checkbox');
@@ -185,6 +186,7 @@
   if (!submitting && (dirty() || profileDirty() || editDirty() || recovery)) { event.preventDefault(); event.returnValue = ''; }
  });
  function write(key, value) {
+  if (key === 'local_avatars' && config.avatarProvider) return;
   const field = fields[key]; const inputs = controls(key);
   if (field.type === 'bool') { const input = inputs.find(node => node.type === 'checkbox'); if (!input.disabled) input.checked = value; }
   else if (field.type === 'text' || field.type === 'int') inputs[0].value = String(value);
@@ -231,6 +233,7 @@
  function review(values, button, current = read(), mode = 'apply') {
   document.getElementById('se-preview-apply').hidden = mode === 'draft'; pendingProfile = null; pending = {}; const list = document.getElementById('se-preview-list'); list.replaceChildren();
   Object.entries(values).forEach(([key, value]) => {
+   if (key === 'local_avatars' && config.avatarProvider) return;
    if (mode === 'apply' && key === 'login_language' && controls(key).some(input => input.disabled)) return;
    if (equal(current[key], value)) return;
    pending[key] = value;
@@ -349,6 +352,7 @@
   const rows = document.getElementById('se-compare-rows'); rows.replaceChildren();
   let count = 0; const only = document.getElementById('se-compare-only-differences').checked;
   Object.entries(fields).forEach(([key, field]) => {
+   if (key === 'local_avatars' && config.avatarProvider) return;
    const differs = !equal(config.local[key], baseline[key]); if (differs) count++;
    const locked = config.networkLocked && key === 'login_language';
    if (only && !differs && !locked) return;
@@ -399,10 +403,10 @@
  }
  function ruleView() {
   const values = read(), baseline = {...config.defaults,...(config.presets[ruleReference.value]?.settings || {})}, query = search.value.trim().toLocaleLowerCase(), mode = ruleFilter.value;
-  const all = Object.entries(fields).filter(([key]) => !['widgets_admin','customizer_admin'].includes(key)).map(([key,field]) => ({key,field,...ruleState(key,values)}));
+  const all = Object.entries(fields).filter(([key]) => !['widgets_admin','customizer_admin'].includes(key) && !(key === 'local_avatars' && config.avatarProvider)).map(([key,field]) => ({key,field,...ruleState(key,values)}));
   const matches = all.filter(row => (row.field.label + ' ' + row.field.help).toLocaleLowerCase().includes(query) && (mode === 'all' || mode === 'active' && row.active || mode === 'different' && !equal(row.local,baseline[row.key]) || mode === 'saved-different' && !equal(config.local[row.key],baseline[row.key]) || mode === 'pending' && row.pending || mode === 'dormant' && row.dormant));
   const keys = new Set(matches.map(row => row.key));
-  Object.keys(fields).forEach(key => form.querySelector('[data-setting="'+key+'"]').hidden = !keys.has(key));
+  Object.keys(fields).forEach(key => { if (key === 'local_avatars' && config.avatarProvider) return; form.querySelector('[data-setting="'+key+'"]').hidden = !keys.has(key); });
   form.querySelectorAll('.se-field-group').forEach(group => { group.hidden = !group.querySelector('[data-setting]:not([hidden])'); });
   const focusedCard = document.activeElement?.closest('[data-setting]');
   const rename = document.getElementById('se-field-post_rename'), names = document.getElementById('se-post-names');

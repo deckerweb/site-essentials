@@ -162,7 +162,7 @@ Yes. Local activation, network activation, independent site settings and a netwo
 
 ### How does it work with Leitstand?
 
-Site Essentials never reopens comments blocked by earlier filters and preserves stricter incoming revision limits. Leitstand network policies are not rewritten. For local avatars, use one provider per site; do not enable both avatar modules together.
+Site Essentials never reopens comments blocked by earlier filters and preserves stricter incoming revision limits. Leitstand network policies are not rewritten. When the loaded Leitstand avatar renderer effectively provides local avatars for the current site, Site Essentials pauses its own rendering, avatar HTTP interception, profile controls and uploads and hides its avatar settings section. Its saved choice and image assignments remain stored. Allowed website exceptions are respected; a mandatory network policy takes priority. When Leitstand no longer provides the function, the saved Site Essentials choice becomes available again. A stale avatar submission cannot change assignments while Leitstand is the provider.
 
 ### What happens when I uninstall it?
 

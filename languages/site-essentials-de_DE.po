@@ -940,6 +940,9 @@ msgstr "Bekannte Einstellungen sind gültig"
 msgid "Large menus and forms can exceed max_input_vars or input nesting limits. Suhosin may add separate limits. These figures do not prove that a particular menu can be saved."
 msgstr "Große Menüs und Formulare können max_input_vars oder Verschachtelungsgrenzen überschreiten. Suhosin kann zusätzliche Grenzen setzen. Diese Werte belegen nicht, dass ein bestimmtes Menü gespeichert werden kann."
 
+msgid "Leitstand manages local avatars on this site. Site Essentials avatar controls are paused; its settings and image assignments are retained."
+msgstr "Leitstand verwaltet lokale Avatare auf dieser Website. Die Avatar-Bedienelemente von Site Essentials pausieren; Einstellungen und Bildzuordnungen bleiben erhalten."
+
 msgid "Let each site decide"
 msgstr "Den einzelnen Websites überlassen"
 
@@ -955,11 +958,17 @@ msgstr "Lokale Avatar-Zuordnungen werden ebenfalls entfernt; hochgeladene Medien
 msgid "Local avatar for this site"
 msgstr "Lokaler Avatar für diese Website"
 
+msgid "Local avatar provider"
+msgstr "Anbieter lokaler Avatare"
+
 msgid "Local avatar saved for this site."
 msgstr "Lokaler Avatar für diese Website gespeichert."
 
 msgid "Local avatars"
 msgstr "Lokale Avatare"
+
+msgid "Local avatars defer to an effective Leitstand provider; controls and profile forms are hidden while saved settings and assignments are retained."
+msgstr "Lokale Avatare überlassen einem wirksamen Leitstand-Anbieter den Vorrang; Bedienelemente und Profilformulare werden ausgeblendet, gespeicherte Einstellungen und Zuordnungen bleiben erhalten."
 
 msgid "Local data changed. Reload before clearing it."
 msgstr "Lokale Daten wurden geändert. Vor der Bereinigung neu laden."

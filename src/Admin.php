@@ -71,7 +71,7 @@ final class Admin {
    ) ) );
   }
   wp_localize_script( 'site-essentials-admin', 'siteEssentials', array(
-   'profileStorageKey' => 'site-essentials-profile-' . get_current_blog_id() . '-' . wp_create_nonce( 'site_essentials_profile_draft' ), 'previous' => null === Settings::previous() ? null : Settings::portable( Settings::previous() ), 'reportUrl' => admin_url( 'admin-ajax.php' ), 'reportNonce' => wp_create_nonce( self::nonce_action( 'site_essentials_diagnostic' ) ), 'schema' => Schema::fields(), 'multisite' => is_multisite(), 'availableTypes' => array_values( get_post_types() ), 'groups' => Schema::groups(), 'defaults' => Settings::portable( Schema::defaults() ), 'presets' => Presets::portable(), 'local' => Settings::portable( Settings::local() ), 'effective' => Settings::portable( Settings::effective() ), 'availableTargetTypes' => array_values( array_diff( get_post_types( array( 'public' => true, 'show_ui' => true ) ), array( 'attachment', 'revision', 'nav_menu_item' ) ) ), 'targetProvider' => AlternativeTargets::provider(), 'networkLocked' => Settings::language_locked(),
+   'profileStorageKey' => 'site-essentials-profile-' . get_current_blog_id() . '-' . wp_create_nonce( 'site_essentials_profile_draft' ), 'previous' => null === Settings::previous() ? null : Settings::portable( Settings::previous() ), 'reportUrl' => admin_url( 'admin-ajax.php' ), 'reportNonce' => wp_create_nonce( self::nonce_action( 'site_essentials_diagnostic' ) ), 'schema' => Schema::fields(), 'multisite' => is_multisite(), 'availableTypes' => array_values( get_post_types() ), 'groups' => Schema::groups(), 'defaults' => Settings::portable( Schema::defaults() ), 'presets' => Presets::portable(), 'local' => Settings::portable( Settings::local() ), 'effective' => Settings::portable( Settings::effective() ), 'availableTargetTypes' => array_values( array_diff( get_post_types( array( 'public' => true, 'show_ui' => true ) ), array( 'attachment', 'revision', 'nav_menu_item' ) ) ), 'targetProvider' => AlternativeTargets::provider(), 'avatarProvider' => Avatars::leitstand(), 'networkLocked' => Settings::language_locked(),
    'strings' => array(
     'ruleTargetOff' => __( 'Alternative destination processing is disabled or has no public content types.', 'site-essentials' ), 'ruleTargetProvider' => __( 'Page Links To is active; processing is paused.', 'site-essentials' ), 'ruleActive' => __( 'Active', 'site-essentials' ), 'ruleOff' => __( 'Off or neutral', 'site-essentials' ), 'ruleDormant' => __( 'Stored; not applied in this context', 'site-essentials' ), 'ruleNetwork' => __( 'Network policy', 'site-essentials' ), 'ruleLocal' => __( 'Local setting', 'site-essentials' ), 'ruleSingle' => __( 'Single-site only', 'site-essentials' ), 'ruleComments' => __( 'Overridden by complete comment shutdown', 'site-essentials' ), 'ruleNames' => __( 'Requires enabled renaming and both names', 'site-essentials' ), 'ruleTypes' => __( 'Selected content types are currently unavailable', 'site-essentials' ), 'ruleFooter' => __( 'Custom footer text takes priority', 'site-essentials' ), 'ruleCommentTypes' => __( 'Requires selected comment content types', 'site-essentials' ), 'ruleBlog' => __( 'Native post management is disabled', 'site-essentials' ), 'ruleCounts' => __( '%1$d active · %2$d stored but not applied · %3$d unsaved changes', 'site-essentials' ), 'ruleMatches' => __( '%d matching settings', 'site-essentials' ), 'ruleSaved' => __( 'Saved', 'site-essentials' ), 'ruleDraft' => __( 'Draft', 'site-essentials' ), 'ruleJump' => __( 'Open setting', 'site-essentials' ),
     'accessModes' => array( __( 'Keep WordPress permissions', 'site-essentials' ), __( 'Block everyone', 'site-essentials' ), __( 'Choose allowed roles and users', 'site-essentials' ) ),
@@ -144,6 +144,8 @@ final class Admin {
   if ( is_wp_error( $clean ) ) { wp_die( esc_html( $clean->get_error_message() ), '', array( 'response' => 400 ) ); }
   $values = array_replace( Schema::defaults(), $clean );
   if ( Settings::language_locked() ) { $values['login_language'] = Settings::local()['login_language']; }
+  // Hidden avatar controls must not be reset by unrelated saves or a stale client.
+  if ( Avatars::leitstand() || ! array_key_exists( 'local_avatars', $input ) ) { $values['local_avatars'] = Settings::local()['local_avatars']; }
   $old_settings = get_option( Settings::OPTION, false ); $old_previous = get_option( Settings::PREVIOUS, false );
   if ( ! Settings::save( $values ) ) { wp_die( esc_html__( 'Settings could not be saved. Your previous configuration is retained.', 'site-essentials' ), '', array( 'response' => 500 ) ); }
   if ( null !== $exceptions ) {
@@ -206,7 +208,9 @@ final class Admin {
  public function page(): void {
   if ( ! current_user_can( 'manage_options' ) ) { return; }
   $local = Settings::local(); $groups = Schema::groups();
+  if ( Avatars::leitstand() ) { unset( $groups['avatars'] ); }
   echo '<div class="wrap se-root">'; $this->header();
+  if ( Avatars::leitstand() ) { echo '<p class="se-provider-note">' . esc_html__( 'Leitstand manages local avatars on this site. Site Essentials avatar controls are paused; its settings and image assignments are retained.', 'site-essentials' ) . '</p>'; }
   echo '<form id="se-settings" method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
   wp_nonce_field( self::nonce_action( 'site_essentials_save' ) );
   echo '<input type="hidden" name="exceptions_revision" value="' . esc_attr( Access::revision() ) . '"><input type="hidden" name="action" value="site_essentials_save"><input type="hidden" name="revision" value="' . esc_attr( hash( 'sha256', wp_json_encode( $local ) ) ) . '">';
@@ -553,6 +557,7 @@ final class Admin {
  public function network_page(): void {
   if ( ! current_user_can( 'manage_network_options' ) ) { return; }
   echo '<div class="wrap se-root">'; $this->header();
+  if ( Avatars::leitstand() ) { echo '<p class="se-provider-note">' . esc_html__( 'Leitstand manages local avatars on this site. Site Essentials avatar controls are paused; its settings and image assignments are retained.', 'site-essentials' ) . '</p>'; }
   echo '<div class="se-card"><h2>' . esc_html__( 'Network login policy', 'site-essentials' ) . '</h2><p>' . esc_html__( 'All other settings remain local to each site. Network activation does not apply a shared preset.', 'site-essentials' ) . '</p><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
   wp_nonce_field( self::nonce_action( 'site_essentials_network', true ) );
   echo '<input type="hidden" name="policy_revision" value="' . esc_attr( hash( 'sha256', wp_json_encode( get_site_option( Settings::NETWORK, 'inherit' ) ) ) ) . '">';

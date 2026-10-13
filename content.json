@@ -31,6 +31,9 @@
       ],
       "fixed": [
         "Update packages are checked against the plugin identity, offered version and WordPress/PHP requirements before replacement."
+      ],
+      "improved": [
+        "Local avatars defer to an effective Leitstand provider; controls and profile forms are hidden while saved settings and assignments are retained."
       ]
     },
     {
@@ -138,7 +141,7 @@
       ],
       [
         "How does it work with Leitstand?",
-        "Site Essentials never reopens comments blocked by earlier filters and preserves stricter incoming revision limits. Leitstand network policies are not rewritten. For local avatars, use one provider per site; do not enable both avatar modules together."
+        "Site Essentials never reopens comments blocked by earlier filters and preserves stricter incoming revision limits. Leitstand network policies are not rewritten. When the loaded Leitstand avatar renderer effectively provides local avatars for the current site, Site Essentials pauses its own rendering, avatar HTTP interception, profile controls and uploads and hides its avatar settings section. Its saved choice and image assignments remain stored. Allowed website exceptions are respected; a mandatory network policy takes priority. When Leitstand no longer provides the function, the saved Site Essentials choice becomes available again. A stale avatar submission cannot change assignments while Leitstand is the provider."
       ],
       [
         "What happens when I uninstall it?",
@@ -332,7 +335,7 @@
       ],
       [
         "Wie funktioniert das Zusammenspiel mit Leitstand?",
-        "Site Essentials öffnet keine durch frühere Filter gesperrten Kommentare und erhält strengere eingehende Revisionsgrenzen. Leitstand-Netzwerkregeln werden nicht umgeschrieben. Für lokale Avatare je Website einen Anbieter verwenden; nicht beide Avatar-Module gleichzeitig aktivieren."
+        "Site Essentials öffnet keine durch frühere Filter gesperrten Kommentare und erhält strengere eingehende Revisionsgrenzen. Leitstand-Netzwerkregeln werden nicht umgeschrieben. Stellt der geladene Leitstand-Avatar-Renderer lokale Avatare auf der aktuellen Website wirksam bereit, pausiert Site Essentials seine eigene Ausgabe, Avatar-HTTP-Eingriffe, Profil-Bedienelemente und Uploads und blendet den Avatar-Einstellungsbereich aus. Gespeicherte Auswahl und Bildzuordnungen bleiben erhalten. Erlaubte Website-Ausnahmen werden beachtet; eine verpflichtende Netzwerkvorgabe hat Vorrang. Stellt Leitstand die Funktion nicht mehr bereit, wird die gespeicherte Site-Essentials-Auswahl wieder verfügbar. Ein veraltetes Avatar-Formular kann während des Leitstand-Vorrangs keine Zuordnungen verändern."
       ],
       [
         "Was passiert bei der Deinstallation?",

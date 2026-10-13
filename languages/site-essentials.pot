@@ -937,6 +937,9 @@ msgstr ""
 msgid "Large menus and forms can exceed max_input_vars or input nesting limits. Suhosin may add separate limits. These figures do not prove that a particular menu can be saved."
 msgstr ""
 
+msgid "Leitstand manages local avatars on this site. Site Essentials avatar controls are paused; its settings and image assignments are retained."
+msgstr ""
+
 msgid "Let each site decide"
 msgstr ""
 
@@ -952,10 +955,16 @@ msgstr ""
 msgid "Local avatar for this site"
 msgstr ""
 
+msgid "Local avatar provider"
+msgstr ""
+
 msgid "Local avatar saved for this site."
 msgstr ""
 
 msgid "Local avatars"
+msgstr ""
+
+msgid "Local avatars defer to an effective Leitstand provider; controls and profile forms are hidden while saved settings and assignments are retained."
 msgstr ""
 
 msgid "Local data changed. Reload before clearing it."
