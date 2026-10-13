@@ -1,0 +1,432 @@
+{
+  "version": "0.9.0",
+  "date": "2026-10-13",
+  "requires_wp": "7.1.2",
+  "requires_php": "8.2",
+  "help": [
+    {
+      "title": "Getting started",
+      "text": "Choose a preset or adjust individual settings, then save all settings. Preset and import previews do not change the site."
+    },
+    {
+      "title": "Multisite",
+      "text": "Each site keeps its own configuration. The network can require the login language selector to be hidden. Local values remain stored."
+    },
+    {
+      "title": "Stored data",
+      "text": "Deactivation and uninstall retain local settings, custom presets, one previous configuration and the network policy. No content is deleted."
+    },
+    {
+      "title": "Recovery",
+      "text": "Restore the previous configuration, apply WordPress defaults, or deactivate the plugin to stop its runtime changes."
+    }
+  ],
+  "history": [
+    {
+      "version": "0.9.0",
+      "date": "2026-10-13",
+      "new": [
+        "Focused WordPress core controls with reusable presets, reviewed imports and independent site settings.",
+        "Optional comment shutdown, local avatars, appearance access, media tools and alternative post destinations."
+      ],
+      "fixed": [
+        "Update packages are checked against the plugin identity, offered version and WordPress/PHP requirements before replacement."
+      ]
+    },
+    {
+      "version": "0.1.0–0.8.0",
+      "date": "2026-10-09–2026-10-12",
+      "misc": [
+        "Core controls, administration layout, permissions and Multisite support developed and refined."
+      ]
+    }
+  ],
+  "en": {
+    "about": "Configure WordPress core behavior with focused, optional controls. Review presets and imports before saving; keep settings independent on each site.",
+    "features": [
+      "Login language selector, administrator email confirmation and optional site-specific login logo link/text.",
+      "Classic editor by content type, classic widget interface and a warning for existing block content.",
+      "Separate automatic URL conversion and own oEmbed provider controls, preserving authored embeds and ordinary post links.",
+      "Post editor fullscreen, welcome guide, block directory, bundled core patterns, remote pattern suggestions and template editing.",
+      "Selected core dashboard widgets, toolbar entries and plain-text admin footer.",
+      "Core fallback favicon removal preserves custom site icons.",
+      "Generator, RSD, WLW, shortlinks and feed discovery; feed endpoints can return HTTP 404.",
+      "Complete core comment shutdown with admin, templates, blocks, feeds, REST/XML-RPC and dedicated assets covered; private notes retained.",
+      "Local avatars with site-specific assignments and bounded authorized profile uploads; no Gravatar fallback.",
+      "Portable collections of selected custom presets; protected review, fresh local copies and collision-safe names.",
+      "Comments by content type, optional hiding of existing frontend comments, conditional reply script and self-pingbacks.",
+      "Emoji assets, public-visitor jQuery Migrate removal and XML-RPC HTTP 403.",
+      "Heartbeat intervals by area and content type, revision limits and selective notifications.",
+      "One reports navigation shortcut in the native command palette; a data-minimal Site Health Info section for administrators.",
+      "Separate REST and oEmbed discovery controls; optional single-site file-editor permission protection.",
+      "On-demand data-minimal diagnostics, read-only printable handover and separate local/network clearing.",
+      "Documented presets contain explicitly entered names and notes plus an opaque export identifier. Do not enter private data.",
+      "Five built-in presets, up to 20 named local presets, saved-state comparison, settings search, selective change previews, JSON merge/replace, export and one-step configuration rollback.",
+      "Optional public Dashicons cleanup, PDF preview suppression, original WordPress spelling, simplified toolbar greeting, public search and author archive restrictions, capability-based core update notices, comment URL auto-link control and selected classic core widgets.",
+      "Administrator-only website checks for discouraged indexing, assigned privacy pages and explicit or automatically detected imprint pages. Three reminder switches are enabled by default; they never change visibility or publish pages automatically.",
+      "Separate native post management and public blog shutdown; optional plural/singular post names, with stored content and technical post type retained.",
+      "Read-only administrator PHP information under Tools, expandable cache/extension/Suhosin support and optional PHP/memory footer.",
+      "Optional native media list file-size display and sorting, with bounded site-local indexing; PDF, Word, Excel, PowerPoint, ZIP, OpenDocument, CSV and text filters in list and grid views.",
+      "Optional native Widgets and Customizer admin-screen restrictions, preserving saved theme/sidebar settings and frontend output. Classic Bricks themes automatically hide native Site Editor menu links.",
+      "Role-based native Widgets, Customizer and classic-menu access policies with local personal allow/block exceptions. Classic-menu delegation uses scoped native screen/AJAX permissions without changing stored role capabilities.",
+      "Optionally hide selected core Tools menu links; direct access, Site Health, privacy tools and plugin pages remain available.",
+      "Optional core AI opt-out with Connectors page restriction; credentials retained and independent plugin AI outside scope.",
+      "Hide post-by-email and update-service settings independently, retaining configured values and their runtime behavior.",
+      "Optional alternative post destinations for selected public content types; HTTP(S) and root-relative targets, reversible HTTP 302 redirects and retained editor/preview addresses.",
+      "Administrator-only, paginated Page Links To destination preview and selected copying, preserving source metadata and skipping occupied, stale, unauthorized, unsafe or looping records.",
+      "Optional website-wide native menu-field policies and removal of Bricks templates/taxonomies from navigation offers, retaining underlying user preferences and existing link values."
+    ],
+    "start": "Upload the ZIP through Plugins → Add Plugin → Upload Plugin and activate it. Open Settings → Site Essentials. Choose a preset, review the changes and save all settings. No cleanup is enabled by default; three administrator-only website reminders are enabled.",
+    "behavior": "Presets and imports modify the draft, not the site. Only Save all settings applies the configuration. Export downloads saved local settings, not unsaved changes. WordPress defaults can be reviewed as a preset. System behavior remains unchanged unless explicitly configured. Manual changes have an optional read-only review before saving. Preset names and notes are explicitly entered and included in exports; no site domains or user data are gathered automatically. Diagnostics omit preset notes and custom footer text. Clearing local data removes local avatar assignments, presets and rollback history while keeping neutral defaults to prevent startup presets from returning; network clearing releases only the current network policy.",
+    "limits": "Template editing is blocked, but existing templates still render. jQuery Migrate removal applies only to signed-out frontend visitors. Heartbeat intervals are initial polling settings; WordPress or another script can subsequently adjust them. Revision limits do not run an immediate cleanup; core may prune older revisions on later saves. Existing comment hiding applies to ordinary frontend comment templates, not arbitrary custom database queries. XML-RPC blocking occurs after WordPress loads; it is not a web-server firewall.",
+    "network": "Activate on one site or network-wide. Sites retain independent options, including sites created after activation. Network Admin → Settings → Site Essentials can hide the login language selector on every site or leave it to local settings. No other network policy is imposed.",
+    "startup": "For a deliberately preconfigured deployment, set startup-preset.json to {\"preset\":\"builder\"}, \"comfort\", \"head\", \"classic\" or \"defaults\" before installation. The selected configuration initializes each unconfigured site on first use. Existing configurations are retained. The shipped file uses null.",
+    "data": "Local options: site_essentials_settings, site_essentials_previous and site_essentials_presets. Site-scoped user metadata: `site_essentials_avatar_SITE_ID`, containing local attachment IDs. Avatar media remain normal WordPress uploads. Network option: site_essentials_network. Deactivation and uninstall retain these values. The embedded Library removes its own temporary data only under its final-host cleanup contract; shared settings are retained by default. No content or other plugin data is deleted. Local option site_essentials_checks retains local imprint assignment and content/indexing confirmations. It is not part of configuration exports; explicit local RESET removes it without changing native visibility/privacy assignments. The optional media sorting index stores only derived byte counts (or an unavailable marker) in site-local attachment metadata _site_essentials_file_size. Local plugin-data clearing removes the index without touching attachments or files. Site-local option site_essentials_access_users contains personal appearance exceptions. It is excluded from all exports, preset snapshots and diagnostic output. Content metadata _site_essentials_target stores explicit destination URL and new-tab/nofollow flags. It is retained by configuration clearing and plugin uninstall and excluded from configuration/preset exports.",
+    "components": "Includes deckerweb Library 0.9.0 and deckerweb GitHub Release Updater 2.1.0, GPL-2.0-or-later, by David Decker. Library online catalog access is optional and initially off. The updater checks the configured GitHub repository through normal WordPress update checks; request metadata such as your server IP is sent to GitHub. No analytics or remote fonts are included. This direct-distribution package is not a WordPress.org build.",
+    "faq": [
+      [
+        "Does activation immediately change WordPress?",
+        "The shipped configuration enables three administrator-only website reminders: indexing, privacy page and imprint. Cleanup and behavior-changing modules remain off until selected or a preset is applied. An explicitly configured startup preset is an exception."
+      ],
+      [
+        "Can I keep my own patterns?",
+        "Yes. Bundled patterns marked as core and remote directory suggestions have separate controls. Locally registered user, theme and plugin patterns remain available. Remote theme.json directory suggestions are also affected by the remote-pattern switch."
+      ],
+      [
+        "Does this disable Heartbeat?",
+        "No. Select initial intervals or keep existing behavior, with optional content-type rules in the post editor."
+      ],
+      [
+        "How do presets and imports work?",
+        "Built-in and named local presets use the same review flow. Custom presets snapshot saved local settings only and can be exported individually. Review the differences, select changes and transfer them into the draft. Save to apply. Merge keeps unspecified draft values; replace uses defaults for unspecified settings."
+      ],
+      [
+        "How do preset collections work?",
+        "Export selected custom profiles, then review the collection on a target site. Choose copies and their unique names. The import uses one confirmed preset-store write after full validation; existing presets, active settings and configuration history are retained. Collections allow up to 20 profiles and 256 KiB; each site stores up to 20 custom presets. Avatars and media assignments are not transferred."
+      ],
+      [
+        "Does complete comment shutdown delete existing comments?",
+        "No. The option suppresses core public comment features, management screens, templates, blocks, feeds, ordinary REST/XML-RPC access and dedicated assets. The narrower comment settings remain stored. Private editor notes retain native authorization, and shared WordPress styles remain usable. Direct custom queries and third-party comment interfaces need verification."
+      ],
+      [
+        "What does local avatar mode protect?",
+        "Core avatar HTML and URLs use locally served profile images or a local placeholder. Gravatar HTTP requests and connection hints are blocked; other remote requests during avatar filters are blocked as well. Independent update traffic is unchanged. User assignments are per site and are not exported. Previously cached pages and custom avatar HTML that bypasses core need verification."
+      ],
+      [
+        "Can subscribers upload their avatars?",
+        "Yes, through the separately authorized local-avatar form in their own WordPress profile. This does not grant general media-library upload permissions. Direct uploads accept JPEG, PNG, GIF, WebP and AVIF up to 4 MiB and 4096 by 4096 pixels, subject to stricter native upload limits and permitted file types. Ordinary media capabilities govern existing image selection. Images remain public WordPress media; removing an assignment does not delete the image."
+      ],
+      [
+        "What do the login logo and favicon options change?",
+        "The logo link can point to this site’s home URL, and its link text can use the site name. The logo image and login redirects are unchanged. Favicon normalization removes only exact core blue/gray W fallbacks and preserves configured site icons and other URLs. The core favicon request returns empty HTTP 204 if no icon remains. Physical favicon files, theme markup and browser caches are not removed."
+      ],
+      [
+        "Does the classic editor convert existing blocks?",
+        "No. Selection changes the editor interface only. Existing block markup stays stored, and block content receives a warning on the classic screen. Complex blocks should be reviewed before saving."
+      ],
+      [
+        "Which automatic embeddings are disabled?",
+        "Only automatic URL conversion in content and text widgets without block markup. Any content containing blocks keeps existing embedding behavior; explicit embed shortcodes remain enabled. This is not a general external-request blocker."
+      ],
+      [
+        "What does disabling own embeddings do?",
+        "Core embed pages and public oEmbed responses for this site return HTTP 404, including embeds within the same site. Ordinary post links remain public. Previously cached external embeds may persist; manual iframes and copying are not prevented."
+      ],
+      [
+        "Does it support Multisite?",
+        "Yes. Local activation, network activation, independent site settings and a network login-language policy are supported."
+      ],
+      [
+        "How does it work with Leitstand?",
+        "Site Essentials never reopens comments blocked by earlier filters and preserves stricter incoming revision limits. Leitstand network policies are not rewritten. For local avatars, use one provider per site; do not enable both avatar modules together."
+      ],
+      [
+        "What happens when I uninstall it?",
+        "Own settings, named local presets, previous configuration and network policy remain stored. Runtime changes stop when the plugin is inactive."
+      ],
+      [
+        "Does Dashicons cleanup break stylesheet dependencies?",
+        "Only the direct enqueue for signed-out public visitors is removed. Dashicons remains registered and loads when another stylesheet depends on it. Login, admin, Customizer and signed-in sessions retain it."
+      ],
+      [
+        "What happens to disabled classic widgets?",
+        "Selected native classic widgets are unavailable and do not render. Their saved instances and sidebar assignments are not deleted by Site Essentials. Re-enable them to restore output; check assignments after changing widget layouts. Block equivalents and third-party widgets are outside this option."
+      ],
+      [
+        "What does public search and author archive shutdown cover?",
+        "Native frontend search pages, search feeds, author archives and author feeds return HTTP 404. Core search forms and blocks are hidden. Native REST search returns 404 to visitors; authenticated users with edit_posts retain editor lookup. Admin search and normal posts remain available. Author archive URLs and the native users sitemap are suppressed. Custom forms, other REST listings, hard-coded links and cached pages need separate review."
+      ],
+      [
+        "Are existing PDF thumbnails or content deleted?",
+        "No. PDF preview suppression applies to new fallback preview generation. Text options remove native output filters without rewriting stored content. Comment auto-link suppression leaves explicitly authored links intact."
+      ],
+      [
+        "Why do reminders appear immediately?",
+        "Indexing, privacy and imprint checks are enabled by default. They show local administrator-only reminders, without publishing pages or changing visibility. Each reminder category can be disabled under Website checks. Other core behavior controls retain their existing defaults."
+      ],
+      [
+        "How do indexing decisions work?",
+        "When blog_public discourages indexing, keep and acknowledge that decision or explicitly confirm allowing indexing. Acknowledgements belong to this site and are invalidated when native visibility changes. Reset confirmations to review again. This setting is a request to search engines, not an access block."
+      ],
+      [
+        "How are legal pages checked?",
+        "Use the native WordPress privacy page assignment. An imprint is detected by exact Impressum/Imprint title or slug, unless explicitly assigned. Ambiguous results require assignment. Missing, unpublished, password-protected and empty pages produce reminders. Stored content is inspected without execution or external requests; no legal text quality assessment is performed."
+      ],
+      [
+        "What about builder pages?",
+        "Known stored builder data, shortcodes and unsupported dynamic blocks are marked for manual review rather than declared empty. An authorized editor may confirm content for a published page. The confirmation is bound to the page/content fingerprint and is invalidated when relevant data changes. Template-only content or other builders may require separate checking."
+      ],
+      [
+        "Does disabling post management delete content?",
+        "No. Native post menus, New Post, dashboard offerings, direct screens, object editing/deletion and native REST management are restricted. Pages/media and other content types retain their rights, including shared taxonomy screens. Remote XML-RPC management and custom server-side writers are outside this administrative UI/native REST control; use the separate XML-RPC control if needed."
+      ],
+      [
+        "What does public blog shutdown do?",
+        "Exclude native posts from ordinary frontend queries and public native REST reads/searches, comments, own embeds and the posts sitemap. Blog-only routes and feeds return HTTP404. Shared taxonomy archives can still show other content types. A latest-posts homepage becomes404: select a static page first. Authenticated native previews and permitted editor REST management remain available when management is enabled. Independent feed settings remain unchanged. Hard-coded custom queries/output, foreign APIs and caches need separate review."
+      ],
+      [
+        "How do custom post names work?",
+        "Enable renaming and supply plural and singular text (up to80characters each). Native labels, classic result messages and dashboard counts use these names. Technical post type post, URLs, IDs and taxonomy names remain unchanged. Fixed third-party text is not translated. Stored names remain available after re-enabling post management. The naming checkbox and both fields share one card. Names appear only while renaming is enabled; turning it off retains the stored names without applying them."
+      ],
+      [
+        "What can the PHP page reveal?",
+        "Only selected safe values for the current web request: PHP version, memory targets/current limit, upload/input/time limits, useful extensions, cache support and exposed Suhosin directives. No phpinfo, environment dump, paths, credentials or external connections. Configured targets are not reserved/available RAM. Missing directives are unavailable, not unlimited. Cache extension presence is not proof of connection or working page caching. The optional admin footer links to this page."
+      ],
+      [
+        "What do the rule filters show?",
+        "The overview displays saved local, draft local, effective draft and reference values with state/source. Active includes enabled default reminders; stored but not applied means a known dependency or site-context restriction, not an automatic conflict diagnosis. Compare either saved or draft values with plugin defaults or a selected builtin/custom preset. Search and state filters combine across sections; section navigation or a setting shortcut clears the search/state filter. References and filters never change settings and are not persisted. All settings remain available without JavaScript."
+      ],
+      [
+        "Can the large dashboard welcome panel be disabled?",
+        "Yes. Select Welcome panel under the core dashboard widgets. The native callback is removed without rewriting the user preference. Custom third-party welcome callbacks remain outside this core option."
+      ],
+      [
+        "How does media file-size sorting work?",
+        "Enable the optional controls in Media library. Size display and sorting apply to the native list view; document-type filters extend both list and grid. Sorting implies column visibility. A local numeric index is prepared in batches of at most 50 attachments while an authorized user has the media screen open. Indexing can be paused; reopening resumes it. Reload the list after completion. Missing, external or remote-only files remain in the list and sort last. Only local attached files inside this site’s uploads are measured, without HTTP requests or thumbnail totals. Native metadata/file updates refresh the index while sorting is enabled. Direct filesystem changes without native attachment updates can leave old index values. No upload types are enabled. File replacement is not provided."
+      ],
+      [
+        "What do the Widgets and Customizer restrictions cover?",
+        "Their native admin screens are hidden and direct access returns HTTP 403. The Customizer toolbar shortcut and native Header/Background links are also removed. Saved widgets, sidebar assignments and theme settings remain intact, and frontend output is unchanged unless separate widget controls are enabled. Third-party editors and REST management are outside these screen restrictions. The classic-widget-editor switch changes the interface only; selected Core widgets are a separate behavior control. A classic Bricks parent/child theme automatically loses native Site Editor menu links, including query-string variants. Bricks templates and other plugin menus remain available."
+      ],
+      [
+        "How do appearance access policies and personal exceptions work?",
+        "Choose native permissions, block everyone, or select allowed roles. In selected-role mode an explicit personal block wins, followed by a personal allow, then any matching role. Multisite super administrators remain eligible unless personally blocked. Widgets and Customizer retain native capabilities; the policy only narrows access. Explicit classic-menu delegation permits the native menu screen and its known menu AJAX handlers without granting general Theme, Widgets, Customizer or Site Editor permissions. Native object/nonce checks and protected-content lookup gates still apply. Excluded widget/menu areas are protected in native Customizer settings and editing REST routes; public navigation reads remain unchanged. Third-party editors are outside scope. All rules are site-local. Role policies travel with settings/presets; personal exceptions are stored separately, excluded from every export and retained across preset/import/rollback operations. Save all settings saves both role rules and local exceptions after validation and stale-state checks. Local own-data clearing removes exceptions. Lookup and export notices are administrator-only. For comprehensive capability management, use a dedicated plugin such as Members."
+      ],
+      [
+        "How do alternative post destinations work?",
+        "Enable the module and select public content types under Alternative post destinations. Each supported content editor gains a native meta box (in the block editor, open Meta Boxes). Choose the normal address or an HTTP(S)/root-relative destination. Original public GET/HEAD singular URLs use temporary HTTP 302 redirects without redirecting previews, embeds, feeds, REST or editing. Native public permalinks use the target. Draft/private links stay native. Returning a content item to Normal WordPress address removes its own destination record. Disabling the module/type retains records and restores native behavior. No general redirect manager or URL history is provided. Destination fields appear only after selecting the alternative address. Stale destination forms are rejected; reload to see the current value."
+      ],
+      [
+        "How is Page Links To migration controlled?",
+        "Save selected content types, then open Review Page Links To destinations or Tools → Alternative post destinations. Review pages of at most 25 records; nothing is preselected. Select the records to copy. Sources changed after preview, existing Site Essentials targets, unauthorized objects, unsafe URLs and local loops are skipped. Current underscore metadata and pre-v3 legacy keys are supported. New-tab intent is copied; nofollow is not invented. Original provider metadata is never deleted. While Page Links To is loaded, Site Essentials processing and editing pause. Deactivate Page Links To manually before using the replacement; no plugin is switched automatically. Select all available destinations on this page is optional and starts unchecked. Empty or truncated selections cannot copy data. Untitled content receives an ID label."
+      ],
+      [
+        "What are the link and sitemap limits?",
+        "New-tab/noopener and optional nofollow attributes apply to native navigation-menu and wp_list_pages links. Arbitrary theme, builder and query-loop link renderers need their own attributes; no global frontend script rewrites links. Destination-only items are excluded from the native WordPress posts sitemap while enabled. Third-party sitemap/canonical behavior and cached pages require site-specific verification. The module makes no HTTP requests to check remote destinations."
+      ],
+      [
+        "Are destinations exported or deleted with settings?",
+        "Configuration/preset exports contain only module activation and selected content types, never per-content URLs. The _site_essentials_target post metadata is part of the content itself. Configuration rollback/clearing, deactivation and uninstall retain it; clearing configuration disables processing. Edit the content destination directly to change/remove it. WordPress content export or backups may naturally contain this metadata."
+      ],
+      [
+        "How do fixed menu-field policies work?",
+        "Choose each field independently: show link target, CSS classes or XFN; hide title attribute or description. All policies are off by default. They override native screen-option visibility for all menu editors while retaining their underlying personal choices, including when other screen options are saved. Hidden menu value inputs still submit unchanged values. Turning policies off restores personal choices. Bricks navigation cleanup is separate and optional; templates, template tags and bundles disappear from native menu/Customizer offers while existing links and template administration remain intact."
+      ]
+    ],
+    "security": "Report vulnerabilities privately through [GitHub private vulnerability reporting](https://github.com/deckerweb/site-essentials/security/advisories/new). Include the plugin and component versions, WordPress/PHP versions, reproduction steps and impact. Do not include credentials or publish exploit details in issues. Reports are reviewed privately and fixes and disclosure are coordinated with the reporter."
+  },
+  "de": {
+    "about": "Konfiguriert WordPress-Core-Verhalten mit gezielten optionalen Einstellungen. Presets und Importe vor dem Speichern prüfen; jede Website behält ihre eigene Konfiguration.",
+    "features": [
+      "Sprachauswahl beim Login, Administrator-E-Mail-Abfrage und optionaler eigener Login-Logo-Link/-Text.",
+      "Klassischer Editor nach Inhaltstyp, klassische Widget-Oberfläche und Hinweis bei vorhandenen Block-Inhalten.",
+      "Getrennte Steuerung automatischer URL-Einbettungen und des eigenen oEmbed-Angebots; ausdrückliche Einbettungen und normale Beitragslinks bleiben verfügbar.",
+      "Vollbild, Begrüßung, Block-Verzeichnis, mitgelieferte Core-Patterns, externe Pattern-Vorschläge und Template-Bearbeitung.",
+      "Ausgewählte Core-Dashboard-Widgets, Toolbar-Einträge und Admin-Footer als Text.",
+      "Core-Fallback-Favicon entfernen, eigene Website-Icons erhalten.",
+      "Generator, RSD, WLW, Shortlinks und Feed-Verweise; Feed-Endpunkte können HTTP 404 liefern.",
+      "Vollständige Core-Kommentarabschaltung einschließlich Admin, Templates, Blöcken, Feeds, REST/XML-RPC und eigener Assets; private Notizen erhalten.",
+      "Lokale Avatare mit Zuordnung je Website und begrenzten berechtigten Profil-Uploads; kein Gravatar-Fallback.",
+      "Portable Sammlungen ausgewählter eigener Presets; geschützte Prüfung, neue lokale Kopien und konfliktfreie Namen.",
+      "Kommentare nach Inhaltstyp, optionales Ausblenden vorhandener Frontend-Kommentare, bedarfsgerechtes Antwortscript und Self-Pingbacks.",
+      "Emoji-Assets, jQuery-Migrate-Entfernung für öffentliche Besucher und XML-RPC-Sperre mit HTTP 403.",
+      "Heartbeat-Intervalle nach Bereich und Inhaltstyp, Revisionsgrenzen und ausgewählte Mitteilungen.",
+      "Ein Navigationsbefehl zu Berichten in der nativen Befehlspalette; datensparsame Site-Health-Informationen für Administratoren.",
+      "Getrennte REST- und oEmbed-Verweise; optionaler Berechtigungsschutz der Core-Dateieditoren auf Single-Site.",
+      "Datensparsame Diagnose auf Abruf, druckbare Leseansicht zur Übergabe und getrennte lokale/Netzwerk-Bereinigung.",
+      "Dokumentierte Presets enthalten eingegebene Namen und Notizen sowie eine neutrale Exportkennung. Keine privaten Daten eingeben.",
+      "Fünf mitgelieferte Presets, bis zu 20 benannte lokale Presets, Statusabgleich, Einstellungssuche, selektive Änderungsvorschau, JSON-Import mit Ergänzen/Ersetzen, Export und Rücknahme einer Konfiguration.",
+      "Optionale Dashicons-Bereinigung, Abschaltung neuer PDF-Vorschauen, ursprüngliche WordPress-Schreibweise, vereinfachte Toolbar-Begrüßung, öffentliche Suche und Autorenarchive, berechtigungsabhängiger Core-Update-Hinweis, Kommentar-URL-Verlinkung und ausgewählte klassische Core-Widgets.",
+      "Website-Prüfungen nur für Administratoren: unerwünschte Indexierungs-Abschaltung, zugeordnete Datenschutzseite und ausdrücklich zugeordnetes oder erkanntes Impressum. Drei Hinweisschalter sind standardmäßig aktiv; Sichtbarkeit und Seitenveröffentlichung werden nie automatisch geändert.",
+      "Getrennte Abschaltung nativer Beitragsverwaltung und öffentlicher Blog-Ausgabe; optionale Mehrzahl-/Einzahl-Bezeichnungen bei erhaltenen Inhalten und technischem Inhaltstyp.",
+      "Nur für Administratoren: PHP-Informationen unter Werkzeuge, ausklappbare Cache-/Erweiterungs-/Suhosin-Unterstützung und optionaler PHP-/Speicher-Footer.",
+      "Optionale Dateigrößen-Anzeige und -Sortierung in der nativen Medienliste mit begrenzter lokaler Indexierung; PDF-, Word-, Excel-, PowerPoint-, ZIP-, OpenDocument-, CSV- und Textfilter in Liste und Raster.",
+      "Optionale Sperre der nativen Widgets- und Customizer-Adminseiten bei erhaltenen Theme-/Sidebar-Einstellungen und Frontend-Ausgabe. Klassische Bricks-Themes blenden native Site-Editor-Menülinks automatisch aus.",
+      "Rollenbasierte Zugriffsregeln für native Widgets, Customizer und klassische Menüs mit lokalen persönlichen Freigaben/Sperren. Menüfreigaben nutzen begrenzte native Seiten-/AJAX-Berechtigungen ohne gespeicherte Rollenrechte zu ändern.",
+      "Ausgewählte Core-Werkzeug-Menülinks optional ausblenden; direkte Zugänge, Website-Zustand, Datenschutz-Werkzeuge und Pluginseiten erhalten.",
+      "Optionale Core-KI-Abschaltung mit Konnektoren-Seitensperre; Zugangsdaten erhalten, unabhängige Plugin-KI nicht umfasst.",
+      "E-Mail-Publizierungs- und Update-Dienst-Einstellungen getrennt ausblenden; gespeicherte Werte und Laufzeitverhalten erhalten.",
+      "Optionale alternative Beitragsziele für ausgewählte öffentliche Inhaltstypen; HTTP(S)- und interne Pfad-Ziele, reversible HTTP-302-Weiterleitungen und erhaltene Editor-/Vorschauadressen.",
+      "Paginierte Page-Links-To-Vorschau nur für Administratoren mit ausdrücklicher Auswahl; Originaldaten erhalten, belegte, veraltete, unberechtigte, unsichere oder zyklische Ziele überspringen.",
+      "Optionale feste Website-Vorgaben für native Menüfelder und Bricks-Vorlagen/Taxonomien aus Navigationsangeboten entfernen; persönliche Ansichtsoptionen und vorhandene Linkwerte erhalten."
+    ],
+    "start": "ZIP unter Plugins → Installieren → Plugin hochladen installieren und aktivieren. Einstellungen → Site Essentials öffnen. Preset wählen, Änderungen prüfen und alle Einstellungen speichern. Standardmäßig ist keine Bereinigung aktiviert.",
+    "behavior": "Presets und Importe verändern den Entwurf, nicht die Website. Erst Alle Einstellungen speichern wendet die Konfiguration an. Export lädt gespeicherte lokale Einstellungen herunter, keine ungespeicherten Änderungen. Der WordPress-Standard steht als Preset zur Prüfung bereit. Systemverhalten bleibt ohne ausdrückliche Einstellung unverändert.",
+    "limits": "Template-Bearbeitung wird gesperrt; vorhandene Templates werden weiter ausgegeben. jQuery Migrate wird nur für abgemeldete Frontend-Besucher entfernt. Heartbeat-Intervalle gelten als anfängliche Abrufeinstellung; WordPress oder andere Scripts können sie später verändern. Revisionsgrenzen führen keine sofortige Bereinigung aus; Core kann beim späteren Speichern ältere Revisionen entfernen. Vorhandene Kommentare werden in gewöhnlichen Frontend-Kommentar-Templates ausgeblendet, nicht in beliebigen eigenen Datenbankabfragen. XML-RPC wird nach dem Laden von WordPress gesperrt; das ersetzt keine Webserver-Firewall.",
+    "network": "Auf einer Website oder netzwerkweit aktivierbar. Websites behalten eigene Optionen, auch nach Aktivierung neu angelegte Sites. Netzwerkverwaltung → Einstellungen → Site Essentials kann die Login-Sprachauswahl überall ausblenden oder den Websites überlassen. Weitere Netzwerkvorgaben werden nicht erzwungen.",
+    "startup": "Für eine bewusst vorkonfigurierte Installation startup-preset.json vorab auf {\"preset\":\"builder\"}, \"comfort\", \"head\", \"classic\" oder \"defaults\" setzen. Die gewählte Konfiguration initialisiert jede noch unkonfigurierte Website bei erster Nutzung. Bestehende Einstellungen bleiben erhalten. Die ausgelieferte Datei enthält null.",
+    "data": "Lokale Optionen: site_essentials_settings, site_essentials_previous und site_essentials_presets. Benutzer-Metadaten je Website: `site_essentials_avatar_SITE_ID` mit lokalen Attachment-IDs. Avatar-Medien bleiben normale WordPress-Uploads. Netzwerkoption: site_essentials_network. Deaktivierung und Deinstallation erhalten diese Werte. Die eingebettete Library entfernt eigene temporäre Daten nur gemäß ihrer Letzt-Host-Bereinigung; gemeinsame Einstellungen bleiben standardmäßig erhalten. Inhalte und Daten anderer Plugins werden nicht gelöscht. Die lokale Option site_essentials_checks erhält Impressumszuordnung und Inhalts-/Indexierungsbestätigungen. Sie wird nicht mit Konfigurationen exportiert; lokales RESET entfernt sie ohne Änderung nativer Sichtbarkeit oder Datenschutzzuordnung. Der optionale Mediensortierungs-Index speichert nur abgeleitete Byte-Zahlen (oder eine Nicht-verfügbar-Markierung) in Website-lokalen Medien-Metadaten _site_essentials_file_size. Lokale Plugin-Datenbereinigung entfernt den Index, ohne Medien oder Dateien anzutasten. Website-lokale Option site_essentials_access_users enthält persönliche Design-Ausnahmen. Sie ist aus allen Exporten, Preset-Snapshots und Diagnose-Ausgaben ausgeschlossen. Beitragsmetadaten _site_essentials_target speichern ausdrücklich gewählte Zieladressen und Neuer-Tab-/nofollow-Vorgaben. Konfigurationsbereinigung und Deinstallation erhalten sie; Konfigurations-/Preset-Exporte enthalten sie nicht.",
+    "components": "Enthält deckerweb Library 0.9.0 und deckerweb GitHub Release Updater 2.1.0, GPL-2.0-or-later, von David Decker. Der Online-Katalog der Library ist optional und zunächst ausgeschaltet. Der Updater fragt das konfigurierte GitHub-Repository im normalen WordPress-Updateprozess ab; dabei werden Anfragedaten wie die Server-IP an GitHub übertragen. Keine Analysefunktionen oder externen Schriften. Dieses Direktvertriebspaket ist kein WordPress.org-Build.",
+    "faq": [
+      [
+        "Verändert die Aktivierung sofort WordPress?",
+        "Die ausgelieferte Konfiguration aktiviert drei Website-Hinweise nur für Administratoren: Indexierung, Datenschutzseite und Impressum. Bereinigungen und verhaltensändernde Module bleiben aus, bis sie gewählt oder über ein Preset angewendet werden. Ein ausdrücklich konfiguriertes Startpreset ist die Ausnahme."
+      ],
+      [
+        "Bleiben eigene Patterns erhalten?",
+        "Ja. Mitgelieferte als Core markierte Patterns und externe Verzeichnisvorschläge haben getrennte Schalter. Lokal registrierte Benutzer-, Theme- und Plugin-Patterns bleiben verfügbar. Externe theme.json-Verzeichnisvorschläge werden ebenfalls vom Remote-Schalter erfasst."
+      ],
+      [
+        "Wird Heartbeat abgeschaltet?",
+        "Nein. Anfängliche Intervalle wählen oder bestehendes Verhalten erhalten; optional mit Inhaltstyp-Regeln im Beitragseditor."
+      ],
+      [
+        "Wie funktionieren Presets und Importe?",
+        "Mitgelieferte und eigene lokale Presets nutzen dieselbe Vorschau. Eigene Presets sichern nur gespeicherte lokale Einstellungen und lassen sich einzeln exportieren. Unterschiede prüfen, Änderungen auswählen und in den Entwurf übernehmen. Zum Anwenden speichern. Ergänzen behält nicht gelieferte Entwurfswerte; Ersetzen verwendet dafür Standardwerte."
+      ],
+      [
+        "Wie funktionieren Preset-Sammlungen?",
+        "Ausgewählte eigene Profile exportieren und die Sammlung auf der Zielwebsite prüfen. Kopien und eindeutige Namen wählen. Nach vollständiger Validierung wird der Preset-Speicher einmal geprüft gespeichert; vorhandene Presets, aktive Einstellungen und Konfigurationshistorie bleiben erhalten. Bis zu 20 Profile und 256 KiB pro Sammlung, bis zu 20 eigene Presets je Website. Avatare und Medienzuordnungen werden nicht übertragen."
+      ],
+      [
+        "Löscht die vollständige Kommentarabschaltung vorhandene Kommentare?",
+        "Nein. Die Option unterdrückt öffentliche Core-Kommentarfunktionen, Verwaltungsseiten, Templates, Blöcke, Feeds, gewöhnliche REST-/XML-RPC-Zugänge und eigene Assets. Einzelregeln bleiben gespeichert. Private Redaktionsnotizen behalten ihre native Berechtigungsprüfung; gemeinsam genutzte WordPress-Styles bleiben verwendbar. Eigene Datenbankabfragen und fremde Kommentaroberflächen gesondert prüfen."
+      ],
+      [
+        "Was schützt der lokale Avatar-Modus?",
+        "Core-Avatar-HTML und -Adressen verwenden lokal ausgelieferte Profilbilder oder einen lokalen Ersatz. Gravatar-HTTP-Anfragen und Verbindungshinweise werden gesperrt, ebenso andere externe Anfragen während der Avatar-Filter. Unabhängiger Update-Verkehr bleibt unverändert. Zuordnungen gelten je Website und werden nicht exportiert. Bereits zwischengespeicherte Seiten und eigenes Avatar-HTML ohne Core-API gesondert prüfen."
+      ],
+      [
+        "Können Abonnenten eigene Avatare hochladen?",
+        "Ja, über das getrennt berechtigte lokale Avatar-Formular im eigenen WordPress-Profil. Allgemeine Medien-Upload-Rechte werden nicht erteilt. Direkte Uploads: JPEG, PNG, GIF, WebP und AVIF bis 4 MiB und 4096 mal 4096 Pixel; strengere native Upload-Grenzen und erlaubte Dateitypen gelten zusätzlich. Vorhandene Bilder werden nach normalen Medienberechtigungen gewählt. Bilder bleiben öffentliche WordPress-Medien; das Entfernen einer Zuordnung löscht das Bild nicht."
+      ],
+      [
+        "Was ändern die Login-Logo- und Favicon-Optionen?",
+        "Der Logo-Link kann auf die Startseite dieser Website zeigen, sein Linktext den Websitenamen verwenden. Logo-Bild und Login-Weiterleitungen bleiben unverändert. Favicon-Normalisierung entfernt nur die genauen blauen/grauen Core-Fallbacks mit dem W und erhält konfigurierte Website-Icons und andere Adressen. Die Core-Favicon-Anfrage erhält leeres HTTP 204, wenn kein Icon übrig bleibt. Physische Favicon-Dateien, Theme-Markup und Browser-Caches werden nicht entfernt."
+      ],
+      [
+        "Konvertiert der klassische Editor vorhandene Blöcke?",
+        "Nein. Die Auswahl ändert nur die Editoroberfläche. Gespeichertes Block-Markup bleibt erhalten; Block-Inhalte erhalten auf der klassischen Seite einen Warnhinweis. Komplexe Blöcke vor dem Speichern prüfen."
+      ],
+      [
+        "Welche automatischen Einbettungen werden deaktiviert?",
+        "Nur automatische URL-Umwandlung in Inhalten und Text-Widgets ohne Block-Markup. Alle Inhalte mit Blöcken behalten ihr bisheriges Embed-Verhalten; ausdrückliche Embed-Shortcodes bleiben aktiv. Externe Anfragen werden nicht allgemein gesperrt."
+      ],
+      [
+        "Was bewirkt die Sperre eigener Einbettungen?",
+        "Core-Embed-Seiten und öffentliche oEmbed-Antworten dieser Website erhalten HTTP 404, auch für Einbettungen innerhalb derselben Website. Normale Beitragslinks bleiben öffentlich. Bereits extern zwischengespeicherte Einbettungen können fortbestehen; manuelle Iframes und Kopieren werden nicht verhindert."
+      ],
+      [
+        "Wird Multisite unterstützt?",
+        "Ja. Einzel- und Netzwerkaktivierung, unabhängige Site-Einstellungen und eine Netzwerkvorgabe zur Login-Sprachauswahl werden unterstützt."
+      ],
+      [
+        "Wie funktioniert das Zusammenspiel mit Leitstand?",
+        "Site Essentials öffnet keine durch frühere Filter gesperrten Kommentare und erhält strengere eingehende Revisionsgrenzen. Leitstand-Netzwerkregeln werden nicht umgeschrieben. Für lokale Avatare je Website einen Anbieter verwenden; nicht beide Avatar-Module gleichzeitig aktivieren."
+      ],
+      [
+        "Was passiert bei der Deinstallation?",
+        "Eigene Einstellungen, benannte lokale Presets, vorherige Konfiguration und Netzwerkvorgabe bleiben gespeichert. Laufzeiteingriffe enden bei inaktivem Plugin."
+      ],
+      [
+        "Bleiben Dashicons-Abhängigkeiten erhalten?",
+        "Nur die direkte Einbindung für abgemeldete öffentliche Besucher entfällt. Dashicons bleibt registriert und wird bei benötigten Stylesheet-Abhängigkeiten geladen. Login, Admin, Customizer und angemeldete Sitzungen behalten es."
+      ],
+      [
+        "Was passiert mit deaktivierten klassischen Widgets?",
+        "Ausgewählte klassische Core-Widgets sind nicht verfügbar und werden nicht ausgegeben. Site Essentials löscht ihre gespeicherten Instanzen und Sidebar-Zuordnungen nicht. Erneutes Aktivieren stellt die Ausgabe wieder her; nach Änderungen an Widget-Layouts Zuordnungen prüfen. Block-Entsprechungen und Drittanbieter-Widgets sind nicht betroffen."
+      ],
+      [
+        "Was umfasst die Abschaltung von Suche und Autorenarchiven?",
+        "Native öffentliche Suchseiten, Such-Feeds, Autorenarchive und Autoren-Feeds liefern HTTP 404. Core-Suchformulare und -Blöcke werden verborgen. Native REST-Suche liefert für Besucher 404; angemeldete Benutzer mit edit_posts behalten die Suche im Editor. Admin-Suche und normale Beiträge bleiben verfügbar. Autorenarchiv-Adressen und die native Benutzer-Sitemap entfallen. Eigene Formulare, andere REST-Inhaltslisten, fest gesetzte Links und zwischengespeicherte Seiten gesondert prüfen."
+      ],
+      [
+        "Werden vorhandene PDF-Vorschauen oder Inhalte gelöscht?",
+        "Nein. Nur neue PDF-Fallback-Vorschauen werden unterbunden. Textoptionen entfernen native Ausgabefilter ohne gespeicherte Inhalte umzuschreiben. Die Kommentaroption erhält ausdrücklich gesetzte Links."
+      ],
+      [
+        "Warum erscheinen Hinweise sofort?",
+        "Indexierungs-, Datenschutz- und Impressumsprüfung sind standardmäßig aktiv. Sie zeigen nur lokalen Administratoren Hinweise und veröffentlichen weder Seiten noch ändern sie die Sichtbarkeit. Jede Hinweiskategorie lässt sich unter Website-Prüfungen abschalten. Andere Core-Einstellungen behalten ihre bisherigen Defaults."
+      ],
+      [
+        "Wie funktionieren Indexierungsentscheidungen?",
+        "Bei abgeschalteter Indexierung die Entscheidung bewusst bestätigen und beibehalten oder die Freigabe ausdrücklich bestätigen. Bestätigungen gehören zu dieser Website und verfallen bei Änderung der nativen Sichtbarkeit. Zur erneuten Prüfung Bestätigungen zurücksetzen. Die Einstellung ist eine Aufforderung an Suchmaschinen, keine Zugriffssperre."
+      ],
+      [
+        "Wie werden Datenschutzseite und Impressum geprüft?",
+        "Die Datenschutzseite nutzt die native WordPress-Zuordnung. Das Impressum wird anhand des exakten Titels oder Slugs Impressum/Imprint erkannt, sofern nicht ausdrücklich zugeordnet. Mehrdeutige Treffer erfordern eine Zuordnung. Fehlende, unveröffentlichte, passwortgeschützte und leere Seiten erzeugen Hinweise. Gespeicherte Inhalte werden ohne Ausführung oder externe Anfragen geprüft; keine Bewertung der rechtlichen Textqualität."
+      ],
+      [
+        "Was gilt für Builder-Seiten?",
+        "Bekannte gespeicherte Builder-Daten, Shortcodes und nicht sicher prüfbare dynamische Blöcke werden zur manuellen Prüfung vorgemerkt statt als leer bezeichnet. Berechtigte Bearbeiter können Inhalt veröffentlichter Seiten bestätigen. Die Bestätigung gilt für den Seiten-/Inhaltsfingerabdruck und verfällt bei relevanten Änderungen. Nur über Templates ausgegebene Inhalte oder andere Builder gesondert prüfen."
+      ],
+      [
+        "Löscht die Abschaltung der Beitragsverwaltung Inhalte?",
+        "Nein. Native Beitragsmenüs, Neu hinzufügen, Dashboard-Angebote, direkte Seiten, objektbezogene Bearbeitung/Löschung und native REST-Verwaltung werden eingeschränkt. Seiten/Medien und andere Inhaltstypen behalten ihre Rechte, einschließlich gemeinsam genutzter Taxonomie-Seiten. XML-RPC-Verwaltung und eigene serverseitige Schreibwege gehören nicht zu dieser Admin-/REST-Steuerung; bei Bedarf die separate XML-RPC-Sperre nutzen."
+      ],
+      [
+        "Was bewirkt die Abschaltung der öffentlichen Blog-Ausgabe?",
+        "Native Beiträge aus normalen Frontend-Abfragen, öffentlichen nativen REST-Lese-/Suchzugängen, Kommentaren, eigenen Embeds und Beitrags-Sitemap entfernen. Reine Blog-Zugänge und -Feeds liefern HTTP404. Gemeinsam genutzte Taxonomiearchive können andere Inhaltstypen weiter anzeigen. Eine Startseite mit neuesten Beiträgen wird404: vorher eine statische Seite wählen. Berechtigte native Vorschauen und Editor-REST-Verwaltung bleiben bei aktiver Verwaltung verfügbar. Unabhängige Feed-Einstellungen bleiben unverändert. Eigene feste Abfragen/Ausgaben, fremde APIs und Caches gesondert prüfen."
+      ],
+      [
+        "Wie funktionieren eigene Beitragsnamen?",
+        "Umbenennung einschalten und Mehrzahl/Einzahl angeben (je bis80Zeichen). Native Beschriftungen, klassische Ergebnismeldungen und Dashboard-Zähler nutzen diese Namen. Technischer Inhaltstyp post, URLs, IDs und Taxonomie-Namen bleiben unverändert. Feste Drittanbieter-Texte werden nicht übersetzt. Namen bleiben nach erneuter Freigabe der Verwaltung verfügbar. Der Schalter und beide Eingabefelder stehen gemeinsam in einer Karte. Namen erscheinen nur bei aktiver Umbenennung; beim Abschalten bleiben gespeicherte Namen erhalten, ohne angewendet zu werden."
+      ],
+      [
+        "Welche Daten zeigt die PHP-Seite?",
+        "Nur ausgewählte sichere Werte des aktuellen Web-Aufrufs: PHP-Version, Speicherziele/aktuelles Limit, Upload-/Eingabe-/Zeitlimits, nützliche Erweiterungen, Cache-Unterstützung und verfügbare Suhosin-Werte. Kein phpinfo, Umgebungsdump, Pfade, Zugangsdaten oder externe Verbindungen. Konfigurierte Ziele sind kein reservierter/verfügbarer RAM. Fehlende Werte sind nicht verfügbar, nicht unbegrenzt. Eine Cache-Erweiterung belegt keine Verbindung oder funktionierende Seiten-Caches. Der optionale Admin-Footer verlinkt die Seite."
+      ],
+      [
+        "Was zeigen die Regelfilter?",
+        "Die Übersicht zeigt gespeicherte lokale Werte, lokale Entwürfe, wirksame Entwurfswerte und Referenzwerte mit Status/Quelle. Aktiv umfasst eingeschaltete Standardhinweise; gespeichert, aber nicht angewendet bezeichnet eine bekannte Abhängigkeit oder Site-Einschränkung, keine automatische Konfliktdiagnose. Gespeicherte oder Entwurfswerte mit Plugin-Defaults oder eingebautem/eigenem Preset vergleichen. Suche und Statusfilter wirken gemeinsam über Bereiche; Bereichsnavigation oder Einstellungssprung setzt Suche/Statusfilter zurück. Referenzen und Filter ändern keine Einstellungen und werden nicht gespeichert. Ohne JavaScript bleiben alle Einstellungen verfügbar."
+      ],
+      [
+        "Kann das große Willkommens-Panel im Dashboard abgeschaltet werden?",
+        "Ja. Unter den Core-Dashboard-Widgets das Willkommens-Panel auswählen. Der native Callback entfällt ohne Änderung der persönlichen Einstellung. Eigene Drittanbieter-Willkommens-Callbacks sind nicht betroffen."
+      ],
+      [
+        "Wie funktioniert die Dateigrößen-Sortierung?",
+        "Die optionalen Schalter unter Mediathek aktivieren. Anzeige und Sortierung wirken in der nativen Listenansicht; Dateitypfilter ergänzen Liste und Raster. Sortierung blendet die Spalte ebenfalls ein. Der lokale Zahlenindex entsteht in Schritten mit höchstens 50 Medien, solange ein berechtigter Benutzer die Mediathek geöffnet hat. Indexierung kann pausiert werden; erneutes Öffnen setzt sie fort. Nach Abschluss die Liste neu laden. Fehlende, externe oder nur remote vorhandene Dateien bleiben sichtbar und werden zuletzt sortiert. Gemessen werden lokale Mediendateien im Upload-Verzeichnis dieser Website, ohne HTTP-Zugriffe und ohne Vorschaubilder zu addieren. Native Datei-/Metadatenänderungen aktualisieren den Index bei aktiver Sortierung. Direkte Dateisystemänderungen ohne native Medienaktualisierung können alte Indexwerte hinterlassen. Zusätzliche Upload-Typen werden nicht freigeschaltet. Dateiersetzung ist nicht enthalten."
+      ],
+      [
+        "Was umfassen die Widgets- und Customizer-Sperren?",
+        "Native Adminseiten werden ausgeblendet und direkte Zugriffe liefern HTTP 403. Beim Customizer entfallen auch der Toolbar-Link sowie native Header-/Hintergrund-Links. Gespeicherte Widgets, Sidebar-Zuordnungen und Theme-Einstellungen bleiben erhalten. Frontend-Ausgabe bleibt bestehen, sofern keine separaten Widget-Regeln aktiv sind. Drittanbieter-Editoren und REST-Verwaltung sind nicht umfasst. Der klassische Widget-Editor ändert nur die Oberfläche; ausgewählte Core-Widgets werden separat gesteuert. Bei klassischem Bricks-Parent-/Child-Theme entfallen native Site-Editor-Menülinks automatisch, einschließlich Varianten mit Query-Parametern. Bricks-Templates und andere Pluginmenüs bleiben verfügbar."
+      ],
+      [
+        "Wie funktionieren Zugriffsregeln und persönliche Ausnahmen?",
+        "WordPress-Berechtigungen beibehalten, alle sperren oder erlaubte Rollen auswählen. Bei ausgewählten Rollen gilt: persönliche Sperre vor persönlicher Freigabe vor passender Rolle. Multisite-Super-Administratoren bleiben zulässig, sofern nicht persönlich gesperrt. Widgets und Customizer behalten native Berechtigungen; die Regeln schränken den Zugriff zusätzlich ein. Gezielte klassische Menüfreigabe erlaubt die native Menüseite und bekannte Menü-AJAX-Aktionen, ohne allgemeine Theme-, Widgets-, Customizer- oder Site-Editor-Rechte zu erteilen. Native Objekt-/Nonce-Prüfungen und Schutz bei Inhaltsabfragen bleiben wirksam. Ausgeschlossene Widget-/Menübereiche werden auch in nativen Customizer-Einstellungen und bearbeitenden REST-Routen geschützt; öffentliche Navigationsabfragen bleiben unverändert. Drittanbieter-Editoren sind nicht umfasst. Regeln gelten je Website. Rollenregeln werden mit Einstellungen/Presets übertragen; persönliche Ausnahmen liegen separat, fehlen in allen Exporten und bleiben bei Preset-/Import-/Rollback-Vorgängen erhalten. Alle Einstellungen speichern übernimmt Rollenregeln und lokale Ausnahmen nach Validierung und Zustandsprüfung. Lokale eigene Datenbereinigung entfernt Ausnahmen. Benutzersuche und Exporthinweise erscheinen nur für Administratoren. Für umfassende Rechteverwaltung eignet sich ein eigenes Plugin wie Members."
+      ],
+      [
+        "Wie funktionieren alternative Beitragsziele?",
+        "Unter Alternative Beitragsziele das Modul aktivieren und öffentliche Inhaltstypen auswählen. Der jeweilige Inhaltseditor erhält eine native Meta-Box (im Blockeditor Meta-Boxen öffnen). Normale Adresse oder HTTP(S)-Adresse/internen Pfad auswählen. Ursprüngliche öffentliche GET-/HEAD-Einzeladressen leiten temporär mit HTTP 302 weiter; Vorschau, Embeds, Feeds, REST und Bearbeitung werden nicht weitergeleitet. Native öffentliche Permalinks verwenden das Ziel; Entwurfs-/private Links bleiben nativ. Die Auswahl Normale WordPress-Adresse entfernt den eigenen Ziel-Datensatz dieses Inhalts. Modul/Inhaltstyp abschalten erhält Datensätze und stellt natives Verhalten wieder her. Keine allgemeine Weiterleitungsverwaltung oder URL-Historie. Zielfelder erscheinen erst nach Auswahl der alternativen Adresse. Veraltete Zielformulare werden abgewiesen; neu laden zeigt den aktuellen Wert."
+      ],
+      [
+        "Wie wird die Page-Links-To-Übernahme kontrolliert?",
+        "Inhaltstypen auswählen und speichern, dann Page-Links-To-Ziele prüfen oder Werkzeuge → Alternative Beitragsziele öffnen. Vorschau mit höchstens 25 Einträgen je Seite; nichts ist vorausgewählt. Gewünschte Datensätze auswählen. Seit der Vorschau geänderte Quellen, vorhandene Site-Essentials-Ziele, unberechtigte Objekte, unsichere URLs und lokale Schleifen werden übersprungen. Aktuelle Metaschlüssel mit Unterstrich und alte Schlüssel vor Version 3 werden unterstützt. Die Neuer-Tab-Vorgabe wird übernommen, nofollow nicht hinzugefügt. Originaldaten werden nicht gelöscht. Solange Page Links To geladen ist, pausieren unsere Verarbeitung und Bearbeitung. Page Links To vor dem Wechsel selbst deaktivieren; kein Plugin wird automatisch umgeschaltet. Alle verfügbaren Ziele dieser Seite auswählen ist optional und anfangs aus. Leere oder abgeschnittene Auswahlen übernehmen keine Daten. Inhalte ohne Titel erhalten eine ID-Beschriftung."
+      ],
+      [
+        "Welche Grenzen gelten für Linkattribute und Sitemaps?",
+        "Neuer Tab/noopener und optionales nofollow gelten für native Navigationsmenü- und wp_list_pages-Links. Eigene Theme-, Builder- und Query-Loop-Ausgaben benötigen eigene Attribute; kein globales Frontend-Skript schreibt Links um. Inhalte mit Beitragszielen entfallen bei aktivem Modul aus der nativen WordPress-Beitrags-Sitemap. Drittanbieter-Sitemaps/Canonical-Ausgaben und gecachte Seiten sind je Website zu prüfen. Das Modul prüft externe Zieladressen nicht durch HTTP-Anfragen."
+      ],
+      [
+        "Werden Beitragsziele mit Einstellungen exportiert oder gelöscht?",
+        "Konfigurations-/Preset-Exporte enthalten nur Modulaktivierung und Inhaltstypen, niemals einzelne Zieladressen. Die Beitragsmetadaten _site_essentials_target gehören zum Inhalt. Konfigurations-Rollback/-Bereinigung, Deaktivierung und Deinstallation erhalten sie; eine Konfigurationsbereinigung deaktiviert die Verarbeitung. Ziele direkt im Inhaltseditor ändern/entfernen. WordPress-Inhaltsexporte oder Backups können diese Metadaten selbstverständlich enthalten."
+      ],
+      [
+        "Wie funktionieren feste Menüfeld-Vorgaben?",
+        "Jedes Feld einzeln wählen: Linkziel, CSS-Klassen oder XFN anzeigen; Title-Attribut oder Beschreibung ausblenden. Alle Vorgaben sind anfangs aus. Sie übersteuern die nativen Ansichtsoptionen für alle Menüeditoren, erhalten aber deren persönliche Vorgaben, auch beim Speichern anderer Ansichtsoptionen. Versteckte Menüfelder übermitteln ihre Werte unverändert. Nach Abschalten der Vorgaben gelten wieder die persönlichen Einstellungen. Die Bricks-Bereinigung ist getrennt optional: Vorlagen, Template-Tags und Bundles entfallen aus nativen Menü-/Customizer-Angeboten; vorhandene Links und Vorlagenverwaltung bleiben erhalten."
+      ]
+    ],
+    "security": "Sicherheitslücken vertraulich über [GitHubs private Sicherheitsmeldungen](https://github.com/deckerweb/site-essentials/security/advisories/new) melden. Plugin- und Komponenten-Versionen, WordPress-/PHP-Versionen, Schritte zur Reproduktion und Auswirkungen angeben. Keine Zugangsdaten übermitteln oder Exploit-Details in Issues veröffentlichen. Meldungen werden vertraulich geprüft; Korrektur und Offenlegung werden mit dem Melder abgestimmt."
+  }
+}

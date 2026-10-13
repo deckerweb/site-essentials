@@ -1,0 +1,7 @@
+assets-github/ export-ignore
+.github/ export-ignore
+docs/ export-ignore
+wiki/ export-ignore
+_config.yml export-ignore
+.gitignore export-ignore
+.gitattributes export-ignore

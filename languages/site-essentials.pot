@@ -1,0 +1,2111 @@
+msgid "%1$d active · %2$d stored but not applied · %3$d unsaved changes"
+msgstr ""
+
+msgid "%1$s: %2$d (%3$s)."
+msgstr ""
+
+msgid "%d local settings differ from this preset."
+msgstr ""
+
+msgid "%d matching settings"
+msgstr ""
+
+msgid "%d seconds"
+msgstr ""
+
+msgid "%s archives"
+msgstr ""
+
+msgid "%s attributes"
+msgstr ""
+
+msgid "%s draft updated."
+msgstr ""
+
+msgid "%s link"
+msgstr ""
+
+msgid "%s list"
+msgstr ""
+
+msgid "%s list navigation"
+msgstr ""
+
+msgid "%s moved to Trash."
+msgstr ""
+
+msgid "%s published privately."
+msgstr ""
+
+msgid "%s published."
+msgstr ""
+
+msgid "%s restored to a revision."
+msgstr ""
+
+msgid "%s reverted to draft."
+msgstr ""
+
+msgid "%s saved."
+msgstr ""
+
+msgid "%s scheduled."
+msgstr ""
+
+msgid "%s submitted."
+msgstr ""
+
+msgid "%s updated."
+msgstr ""
+
+msgid "-1 inherits the global revision setting."
+msgstr ""
+
+msgid "-1 keeps WordPress behavior; 0 prevents new revisions. No immediate deletion. WordPress may prune older revisions on subsequent saves."
+msgstr ""
+
+msgid "A custom text below takes priority. This does not change plugin footers."
+msgstr ""
+
+msgid "A link to %s."
+msgstr ""
+
+msgid "A neutral default configuration remains while the plugin is active, preventing a startup preset from returning. Normal uninstall still retains your configuration."
+msgstr ""
+
+msgid "A preset with this name already exists. Choose another name."
+msgstr ""
+
+msgid "A setting contains an invalid value."
+msgstr ""
+
+msgid "A user cannot be both allowed and blocked in the same area."
+msgstr ""
+
+msgid "Access denied."
+msgstr ""
+
+msgid "Activation and scope"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Active settings"
+msgstr ""
+
+msgid "Activity"
+msgstr ""
+
+msgid "Add %s"
+msgstr ""
+
+msgid "Add PDF, Word, Excel, PowerPoint, ZIP, OpenDocument, CSV and text filters to the list and grid views. Filters use stored MIME types and do not permit additional upload types."
+msgstr ""
+
+msgid "Add a file-size column to the native list view. Sizes refer to the attached file, not generated thumbnails. Missing or remote-only files show an unavailable value."
+msgstr ""
+
+msgid "Add nofollow to native menu and page-list links"
+msgstr ""
+
+msgid "Additionally allow"
+msgstr ""
+
+msgid "Admin interface"
+msgstr ""
+
+msgid "Administrator-only current PHP version and memory configuration, linked to the read-only Tools information page. No server settings are changed."
+msgstr ""
+
+msgid "All %s"
+msgstr ""
+
+msgid "All other settings remain local to each site. Network activation does not apply a shared preset."
+msgstr ""
+
+msgid "All settings"
+msgstr ""
+
+msgid "Allow search engine indexing"
+msgstr ""
+
+msgid "Already has a destination"
+msgstr ""
+
+msgid "Alternative destination"
+msgstr ""
+
+msgid "Alternative destination processing is disabled or has no public content types."
+msgstr ""
+
+msgid "Alternative post destinations"
+msgstr ""
+
+msgid "An available client extension does not mean that a cache service is connected. WP_CACHE does not prove that page caching works. No cache connections, resets or configuration changes are performed."
+msgstr ""
+
+msgid "An explicit block takes priority over role permission. Personal exceptions apply only to selected-role mode. Save all settings applies both role rules and these local exceptions."
+msgstr ""
+
+msgid "An explicit interval overrides the general post editor interval. Zero inherits it."
+msgstr ""
+
+msgid "Applies to the content types selected above. Comments remain stored."
+msgstr ""
+
+msgid "Applies to visitors only. Signed-in builder sessions and the admin keep it. Test older themes and scripts."
+msgstr ""
+
+msgid "Applying a preset replaces the draft with that preset. You can select which changes to take over in the preview."
+msgstr ""
+
+msgid "Archives"
+msgstr ""
+
+msgid "Assign an avatar in my profile"
+msgstr ""
+
+msgid "Assign the native WordPress privacy page"
+msgstr ""
+
+msgid "At a glance"
+msgstr ""
+
+msgid "Author archives and feeds return HTTP 404. Native author archive URLs and the users sitemap are removed. Posts and author identities remain available."
+msgstr ""
+
+msgid "Available"
+msgstr ""
+
+msgid "Available tools"
+msgstr ""
+
+msgid "Block everyone"
+msgstr ""
+
+msgid "Builder foundation"
+msgstr ""
+
+msgid "Builder, shortcode or dynamic content needs a manual content check."
+msgstr ""
+
+msgid "Cache support"
+msgstr ""
+
+msgid "Calendar"
+msgstr ""
+
+msgid "Categories"
+msgstr ""
+
+msgid "Changelog"
+msgstr ""
+
+msgid "Changing editors does not convert content. Editing complex blocks in the classic editor may alter their markup. Clear the selected types and save to return to the existing editor decision; stricter rules from other plugins remain effective."
+msgstr ""
+
+msgid "Check the imprint page"
+msgstr ""
+
+msgid "Check the native privacy page"
+msgstr ""
+
+msgid "Choose a local image"
+msgstr ""
+
+msgid "Choose a locally served JPEG, PNG, GIF, WebP or AVIF image up to 4 MiB and 4096 × 4096 pixels."
+msgstr ""
+
+msgid "Choose a locally served image; external avatar images are not used."
+msgstr ""
+
+msgid "Choose a preset or adjust individual settings, then save all settings. Preset and import previews do not change the site."
+msgstr ""
+
+msgid "Choose a starting point"
+msgstr ""
+
+msgid "Choose a valid local page."
+msgstr ""
+
+msgid "Choose allowed roles and users"
+msgstr ""
+
+msgid "Choose each role separately. Any selected role permits access unless this user is explicitly blocked. Unavailable role identifiers remain stored but grant no access."
+msgstr ""
+
+msgid "Choose eligible content types explicitly. Stored block content is not converted; inspect existing block posts before editing them in the classic editor."
+msgstr ""
+
+msgid "Choose existing users of this site."
+msgstr ""
+
+msgid "Choose your own saved presets. Names, notes and saved preset values are included; active settings and network policies are not gathered. Use neutral profile details without credentials or customer secrets."
+msgstr ""
+
+msgid "Classic editing"
+msgstr ""
+
+msgid "Classic menu editing"
+msgstr ""
+
+msgid "Classic menu editing: access policy"
+msgstr ""
+
+msgid "Classic menu editing: allowed roles"
+msgstr ""
+
+msgid "Classic menu editor: interface"
+msgstr ""
+
+msgid "Clear collection draft"
+msgstr ""
+
+msgid "Clear current network policy"
+msgstr ""
+
+msgid "Clear local plugin data"
+msgstr ""
+
+msgid "Clear network policy"
+msgstr ""
+
+msgid "Clear this site’s data"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Close the editor welcome guide"
+msgstr ""
+
+msgid "Collection JSON file"
+msgstr ""
+
+msgid "Collection review and import require JavaScript. Export works through the normal form."
+msgstr ""
+
+msgid "Comments"
+msgstr ""
+
+msgid "Comments and pingbacks"
+msgstr ""
+
+msgid "Comments are disabled on this site."
+msgstr ""
+
+msgid "Compare saved local settings with a preset. Effective values include Site Essentials network policies; other plugins may impose stricter behavior."
+msgstr ""
+
+msgid "Compare with"
+msgstr ""
+
+msgid "Configuration JSON"
+msgstr ""
+
+msgid "Configuration diagnosis"
+msgstr ""
+
+msgid "Configuration information only. No runtime tests or security rating. Preset names, notes, footer text and customer data are omitted."
+msgstr ""
+
+msgid "Configuration note"
+msgstr ""
+
+msgid "Configuration report"
+msgstr ""
+
+msgid "Configure WordPress core behavior with reusable presets."
+msgstr ""
+
+msgid "Configured but not applicable"
+msgstr ""
+
+msgid "Configured value"
+msgstr ""
+
+msgid "Configured; not runtime-tested"
+msgstr ""
+
+msgid "Confirm the indexing change explicitly."
+msgstr ""
+
+msgid "Content"
+msgstr ""
+
+msgid "Content checked: confirm it is present"
+msgstr ""
+
+msgid "Content destinations remain stored when site configuration is cleared; change them in the content editor."
+msgstr ""
+
+msgid "Content types with alternative destinations"
+msgstr ""
+
+msgid "Copied: %1$d. Skipped or changed since preview: %2$d. Review the current list before continuing."
+msgstr ""
+
+msgid "Copy report"
+msgstr ""
+
+msgid "Copy selected Page Links To destinations. Existing Site Essentials destinations are never overwritten; original Page Links To data remain intact. Content destinations are not included in configuration or preset exports."
+msgstr ""
+
+msgid "Copy selected destinations"
+msgstr ""
+
+msgid "Core AI and the Connectors settings page are disabled on this site."
+msgstr ""
+
+msgid "Core avatar HTML and URLs use locally served images only, without a Gravatar fallback. Invalid or external image URLs fall back to the local placeholder. Subscriber uploads are limited to their authorized profile and do not grant general media permissions. Uploaded files remain normal public WordPress media. Custom avatar HTML and previously cached pages need separate verification. Turn this option off and save to return to previous avatar behavior; assignments remain stored."
+msgstr ""
+
+msgid "Core behavior"
+msgstr ""
+
+msgid "Core controls, administration layout, permissions and Multisite support developed and refined."
+msgstr ""
+
+msgid "Core failure notifications remain enabled. Plugin and theme success emails are suppressed."
+msgstr ""
+
+msgid "Core file editors: site-local setting does not apply on multisite"
+msgstr ""
+
+msgid "Could not access the update filesystem."
+msgstr ""
+
+msgid "Could not create the update download file."
+msgstr ""
+
+msgid "Could not prepare the GitHub release package."
+msgstr ""
+
+msgid "Create a named preset from the saved local configuration. Unsaved changes and network policies are not included."
+msgstr ""
+
+msgid "Create a page"
+msgstr ""
+
+msgid "Current"
+msgstr ""
+
+msgid "Current draft values with effective network policy and known dependencies. Active includes default reminders. This is configuration context, not a runtime or compatibility test."
+msgstr ""
+
+msgid "Current request allocated memory"
+msgstr ""
+
+msgid "Current request peak memory"
+msgstr ""
+
+msgid "Current web request values. PHP limits and WordPress memory targets are configuration values, not available or reserved RAM. A PHP memory_limit of -1 means no PHP limit; hosting limits can still apply."
+msgstr ""
+
+msgid "Custom admin footer text"
+msgstr ""
+
+msgid "Custom footer text takes priority"
+msgstr ""
+
+msgid "Custom preset"
+msgstr ""
+
+msgid "Custom preset removed. Site settings are unchanged."
+msgstr ""
+
+msgid "Custom preset saved. Site settings are unchanged."
+msgstr ""
+
+msgid "Custom preset to remove"
+msgstr ""
+
+msgid "Custom presets belong to this site and remain stored when the plugin is deactivated or uninstalled."
+msgstr ""
+
+msgid "Custom presets to export"
+msgstr ""
+
+msgid "Custom text omitted"
+msgstr ""
+
+msgid "Customer handover"
+msgstr ""
+
+msgid "Customizer"
+msgstr ""
+
+msgid "Customizer: access policy"
+msgstr ""
+
+msgid "Customizer: allowed roles"
+msgstr ""
+
+msgid "Deactivation and uninstall retain local settings, custom presets, one previous configuration and the network policy. No content is deleted."
+msgstr ""
+
+msgid "Decision needed"
+msgstr ""
+
+msgid "Destination URL"
+msgstr ""
+
+msgid "Detect Impressum or Imprint automatically"
+msgstr ""
+
+msgid "Detect Impressum or Imprint by exact title or slug, or assign a page explicitly. Warn about missing, unpublished or empty pages; this is not a legal assessment."
+msgstr ""
+
+msgid "Detected"
+msgstr ""
+
+msgid "Disable WordPress AI support through its native filter and hide/block the Connectors screen. Stored credentials and independent non-AI integrations remain intact. Independent plugin AI is outside this setting."
+msgstr ""
+
+msgid "Disable WordPress embedding of this site’s posts"
+msgstr ""
+
+msgid "Disable WordPress.org pattern suggestions"
+msgstr ""
+
+msgid "Disable XML-RPC requests"
+msgstr ""
+
+msgid "Disable administrator password-change notifications"
+msgstr ""
+
+msgid "Disable author archives"
+msgstr ""
+
+msgid "Disable automatic URL embeddings in classic content"
+msgstr ""
+
+msgid "Disable automatic URL links in comments"
+msgstr ""
+
+msgid "Disable automatic WordPress spelling correction"
+msgstr ""
+
+msgid "Disable bundled core patterns"
+msgstr ""
+
+msgid "Disable core AI and the Connectors settings page"
+msgstr ""
+
+msgid "Disable core emoji assets"
+msgstr ""
+
+msgid "Disable core theme and plugin file editors"
+msgstr ""
+
+msgid "Disable feed endpoints"
+msgstr ""
+
+msgid "Disable native post management"
+msgstr ""
+
+msgid "Disable new PDF preview images"
+msgstr ""
+
+msgid "Disable new comments for selected content types"
+msgstr ""
+
+msgid "Disable public WordPress search"
+msgstr ""
+
+msgid "Disable public blog output"
+msgstr ""
+
+msgid "Disable selected classic core widgets"
+msgstr ""
+
+msgid "Disable self-pingbacks"
+msgstr ""
+
+msgid "Disable successful automatic update emails"
+msgstr ""
+
+msgid "Disable template editing"
+msgstr ""
+
+msgid "Disable template editing in the post editor and restrict access to the Site Editor. Existing templates still render."
+msgstr ""
+
+msgid "Disable the Customizer admin screen"
+msgstr ""
+
+msgid "Disable the Widgets admin screen"
+msgstr ""
+
+msgid "Disable the WordPress comment system completely"
+msgstr ""
+
+msgid "Disable the block directory"
+msgstr ""
+
+msgid "Disabled"
+msgstr ""
+
+msgid "Discard avatar selection"
+msgstr ""
+
+msgid "Discard draft"
+msgstr ""
+
+msgid "Discard recovered details"
+msgstr ""
+
+msgid "Discard the recovered preset details?"
+msgstr ""
+
+msgid "Discard unsaved name and note edits for this preset?"
+msgstr ""
+
+msgid "Documentation"
+msgstr ""
+
+msgid "Draft"
+msgstr ""
+
+msgid "Draft differs from reference"
+msgstr ""
+
+msgid "Draft discarded. Saved settings are unchanged."
+msgstr ""
+
+msgid "Draft local value"
+msgstr ""
+
+msgid "Each collection can contain up to 20 profiles and 256 KiB."
+msgstr ""
+
+msgid "Each selected copy needs a unique name. Existing presets are never overwritten."
+msgstr ""
+
+msgid "Each selected profile needs a unique name that is not already used by a local or built-in preset."
+msgstr ""
+
+msgid "Each site keeps its own configuration. The network can require the login language selector to be hidden. Local values remain stored."
+msgstr ""
+
+msgid "Edit %s"
+msgstr ""
+
+msgid "Edit page"
+msgstr ""
+
+msgid "Edit preset name and note"
+msgstr ""
+
+msgid "Editing state"
+msgstr ""
+
+msgid "Editor"
+msgstr ""
+
+msgid "Editorial comfort"
+msgstr ""
+
+msgid "Effective configured rules"
+msgstr ""
+
+msgid "Effective value"
+msgstr ""
+
+msgid "Embeddings"
+msgstr ""
+
+msgid "Enable alternative post destinations"
+msgstr ""
+
+msgid "Enable the sortable file-size column. A site-specific index is built in small batches while the media library is open. Unknown sizes appear last. Files remain unchanged; grid sorting is not affected."
+msgstr ""
+
+msgid "Enabled"
+msgstr ""
+
+msgid "Enter a preset name of up to 80 characters."
+msgstr ""
+
+msgid "Enter at least two characters."
+msgstr ""
+
+msgid "Exclude Bricks templates, template tags and template bundles from native menu and Customizer navigation offers. Template administration and existing menu links remain intact."
+msgstr ""
+
+msgid "Exclude links pointing to the current site from outgoing pingbacks."
+msgstr ""
+
+msgid "Existing block widgets remain stored and can still render. This changes their editing interface only. Turn this option off and save to return to the theme’s normal widget editor."
+msgstr ""
+
+msgid "Existing comments stay visible unless the separate option below is enabled."
+msgstr ""
+
+msgid "Existing embeds of your posts, including within this site, can stop working after their caches expire. Own embed pages return HTTP 404; ordinary pages remain public. This does not prevent manual iframes or copying public content. Turn this option off and save to restore WordPress embed responses."
+msgstr ""
+
+msgid "Explicit imprint page"
+msgstr ""
+
+msgid "Explicitly block"
+msgstr ""
+
+msgid "Export"
+msgstr ""
+
+msgid "Export a preset"
+msgstr ""
+
+msgid "Export a preset collection"
+msgstr ""
+
+msgid "Export saved configuration"
+msgstr ""
+
+msgid "Export selected custom presets"
+msgstr ""
+
+msgid "Export selected preset"
+msgstr ""
+
+msgid "Exported presets use the same format as configuration imports. Import, review and save on another site."
+msgstr ""
+
+msgid "External XML-RPC publishing and pingbacks stop. Blocking happens after WordPress starts. To restore access, turn this option off and save, or deactivate Site Essentials."
+msgstr ""
+
+msgid "External avatar requests are disabled."
+msgstr ""
+
+msgid "Feed readers and external feed consumers receive HTTP 404. No posts are deleted. To restore feeds, turn this option off and save, or deactivate Site Essentials."
+msgstr ""
+
+msgid "Feed requests return HTTP 404. Existing feed content is not deleted."
+msgstr ""
+
+msgid "Feeds are disabled on this site."
+msgstr ""
+
+msgid "File size"
+msgstr ""
+
+msgid "File-size indexing paused. Reopen the media library to retry."
+msgstr ""
+
+msgid "File-size sorting is ready. Reload the list to use the updated index."
+msgstr ""
+
+msgid "Filter %s by date"
+msgstr ""
+
+msgid "Filter %s list"
+msgstr ""
+
+msgid "Filter media by specific document types"
+msgstr ""
+
+msgid "Filters and references only change this view."
+msgstr ""
+
+msgid "Find users"
+msgstr ""
+
+msgid "Finish or clear the collection draft before saving other changes."
+msgstr ""
+
+msgid "Fixed advanced menu fields"
+msgstr ""
+
+msgid "Fixed website setting"
+msgstr ""
+
+msgid "Fixed:"
+msgstr ""
+
+msgid "Focused WordPress core controls with reusable presets, reviewed imports and independent site settings."
+msgstr ""
+
+msgid "For comprehensive role and capability management, use a dedicated plugin such as Members. These controls cover native appearance areas only."
+msgstr ""
+
+msgid "For example: News item or Update. Names remain stored when post management is disabled. Up to 80 characters."
+msgstr ""
+
+msgid "For example: News or Updates. Leave both names empty to keep native labels. Up to 80 characters."
+msgstr ""
+
+msgid "Generate a report only when requested. It contains versions, scope and configured rules; no domains, user accounts, content, preset notes or custom footer text. It performs no runtime tests or external requests."
+msgstr ""
+
+msgid "Generate report"
+msgstr ""
+
+msgid "Getting started"
+msgstr ""
+
+msgid "GitHub release does not contain the plugin main file."
+msgstr ""
+
+msgid "Group"
+msgstr ""
+
+msgid "Head and feeds"
+msgstr ""
+
+msgid "Head cleanup"
+msgstr ""
+
+msgid "Heartbeat API"
+msgstr ""
+
+msgid "Heartbeat intervals by content type"
+msgstr ""
+
+msgid "Heartbeat stays enabled. Presets do not disable updates, REST access or password reset emails."
+msgstr ""
+
+msgid "Heartbeat: Admin screens"
+msgstr ""
+
+msgid "Heartbeat: Frontend"
+msgstr ""
+
+msgid "Heartbeat: Post editor"
+msgstr ""
+
+msgid "Hide Available tools, Import or Export from this site’s menu. Direct access and permissions remain unchanged; Site Health, privacy tools and plugin pages remain available."
+msgstr ""
+
+msgid "Hide block installation suggestions; installed blocks remain available."
+msgstr ""
+
+msgid "Hide core comment administration and output, close public comments and pings, block their REST/XML-RPC access and suppress comment assets. Existing data and internal editor notes are retained. This site only; individual rules below stay stored."
+msgstr ""
+
+msgid "Hide core update notices for users without update permission"
+msgstr ""
+
+msgid "Hide description"
+msgstr ""
+
+msgid "Hide existing comments for selected types"
+msgstr ""
+
+msgid "Hide native Customize, Header and Background menu links and the toolbar shortcut; block the native Customizer screen. Saved theme settings and frontend styling remain unchanged."
+msgstr ""
+
+msgid "Hide on every site"
+msgstr ""
+
+msgid "Hide post-by-email configuration or update-service settings. Existing values are retained when saving other Writing settings. Publication by email and outgoing update pings are not disabled."
+msgstr ""
+
+msgid "Hide selected Writing settings sections"
+msgstr ""
+
+msgid "Hide selected core Tools menu entries"
+msgstr ""
+
+msgid "Hide selected dashboard widgets"
+msgstr ""
+
+msgid "Hide selected toolbar entries"
+msgstr ""
+
+msgid "Hide the Posts menu, New Post toolbar item and dashboard post offerings. Direct native post screens, editing/deletion and REST management are blocked. Stored posts, pages and other content types remain intact."
+msgstr ""
+
+msgid "Hide the WordPress admin footer text"
+msgstr ""
+
+msgid "Hide the login language selector"
+msgstr ""
+
+msgid "Hide the native Widgets menu and block direct access to its admin screen. Registered widgets, saved sidebar assignments and frontend output remain intact. Customizer and third-party widget editors are separate."
+msgstr ""
+
+msgid "Hide title attribute"
+msgstr ""
+
+msgid "I want to change the WordPress visibility setting to allow indexing."
+msgstr ""
+
+msgid "Impact and recovery"
+msgstr ""
+
+msgid "Import"
+msgstr ""
+
+msgid "Import a preset collection"
+msgstr ""
+
+msgid "Import and export"
+msgstr ""
+
+msgid "Import local settings only. Network policies and previous configurations are not transferred."
+msgstr ""
+
+msgid "Import mode"
+msgstr ""
+
+msgid "Import selected preset copies"
+msgstr ""
+
+msgid "Imprint page"
+msgstr ""
+
+msgid "Improved:"
+msgstr ""
+
+msgid "Inactive"
+msgstr ""
+
+msgid "Indexing allowed"
+msgstr ""
+
+msgid "Indexing decision"
+msgstr ""
+
+msgid "Inherit defaults"
+msgstr ""
+
+msgid "Insert into %s"
+msgstr ""
+
+msgid "Intentionally discouraged"
+msgstr ""
+
+msgid "Intentionally discouraged: keep this setting"
+msgstr ""
+
+msgid "Interactive rule filters require JavaScript. All settings remain available without JavaScript."
+msgstr ""
+
+msgid "Invalid GitHub repository URL."
+msgstr ""
+
+msgid "Invalid authentication provider."
+msgstr ""
+
+msgid "Invalid destination or local loop"
+msgstr ""
+
+msgid "Invalid network policy."
+msgstr ""
+
+msgid "Invalid selection."
+msgstr ""
+
+msgid "Invalid snapshot"
+msgstr ""
+
+msgid "Invalid values; neutral fallback is used"
+msgstr ""
+
+msgid "Invalid website check action."
+msgstr ""
+
+msgid "JPEG, PNG, GIF, WebP or AVIF; up to 4 MiB and 4096 × 4096 pixels. Images remain normal public WordPress media. This assignment belongs only to this site and is not included in preset exports."
+msgstr ""
+
+msgid "JSON file"
+msgstr ""
+
+msgid "Keep WordPress defaults or select a polling interval. Heartbeat is never disabled."
+msgstr ""
+
+msgid "Keep WordPress permissions"
+msgstr ""
+
+msgid "Keep it on singular pages with open, threaded comments."
+msgstr ""
+
+msgid "Keep native permissions, block everyone, or select allowed roles. Personal exceptions apply only to selected-role mode. Widgets and Customizer never gain additional native capabilities; explicit classic-menu delegation is limited to its native screen and AJAX handlers."
+msgstr ""
+
+msgid "Keep patterns registered by your theme, plugins and users."
+msgstr ""
+
+msgid "Keep the original spelling in titles, content and comments. Stored content remains unchanged."
+msgstr ""
+
+msgid "Known settings are valid"
+msgstr ""
+
+msgid "Large menus and forms can exceed max_input_vars or input nesting limits. Suhosin may add separate limits. These figures do not prove that a particular menu can be saved."
+msgstr ""
+
+msgid "Let each site decide"
+msgstr ""
+
+msgid "Link the login logo to this site"
+msgstr ""
+
+msgid "Load comment reply only when needed"
+msgstr ""
+
+msgid "Local avatar assignments are also removed; uploaded media files stay in WordPress."
+msgstr ""
+
+msgid "Local avatar for this site"
+msgstr ""
+
+msgid "Local avatar saved for this site."
+msgstr ""
+
+msgid "Local avatars"
+msgstr ""
+
+msgid "Local data changed. Reload before clearing it."
+msgstr ""
+
+msgid "Local data cleared. WordPress defaults are active; network policy is unchanged."
+msgstr ""
+
+msgid "Local deviations from defaults"
+msgstr ""
+
+msgid "Local setting"
+msgstr ""
+
+msgid "Local value"
+msgstr ""
+
+msgid "Login"
+msgstr ""
+
+msgid "Login language selector"
+msgstr ""
+
+msgid "Media library"
+msgstr ""
+
+msgid "Menu editing is not available to your account on this site."
+msgstr ""
+
+msgid "Menus"
+msgstr ""
+
+msgid "Merge supplied settings"
+msgstr ""
+
+msgid "Meta"
+msgstr ""
+
+msgid "Misc:"
+msgstr ""
+
+msgid "Multisite"
+msgstr ""
+
+msgid "Name already used; a distinct copy name is suggested."
+msgstr ""
+
+msgid "Name for the imported copy"
+msgstr ""
+
+msgid "Names and notes are included in preset exports. Use neutral configuration notes; do not enter domains, customer details or credentials."
+msgstr ""
+
+msgid "Native post management is disabled"
+msgstr ""
+
+msgid "Native post management is disabled on this site."
+msgstr ""
+
+msgid "Native posts are excluded from frontend queries, public REST reads, searches, comments, embeds and the posts sitemap. Blog-only routes return HTTP 404. A latest-posts homepage will also return 404: choose a static homepage first. Pages and other content types remain available."
+msgstr ""
+
+msgid "Network activation is required for network policies."
+msgstr ""
+
+msgid "Network active; this site has local settings"
+msgstr ""
+
+msgid "Network login policy"
+msgstr ""
+
+msgid "Network policy"
+msgstr ""
+
+msgid "Network policy changed. Reload before changing it."
+msgstr ""
+
+msgid "Network policy cleared. Each site keeps its local configuration."
+msgstr ""
+
+msgid "Network policy could not be cleared."
+msgstr ""
+
+msgid "Network policy could not be saved."
+msgstr ""
+
+msgid "New content"
+msgstr ""
+
+msgid "New tab"
+msgstr ""
+
+msgid "New:"
+msgstr ""
+
+msgid "New: %s"
+msgstr ""
+
+msgid "No %s found in Trash."
+msgstr ""
+
+msgid "No %s found."
+msgstr ""
+
+msgid "No Page Links To destinations are available for the selected content types on this page."
+msgstr ""
+
+msgid "No active rules beyond WordPress defaults."
+msgstr ""
+
+msgid "No changes to apply."
+msgstr ""
+
+msgid "No matching site users found."
+msgstr ""
+
+msgid "No previous configuration is available."
+msgstr ""
+
+msgid "No settings match this search."
+msgstr ""
+
+msgid "No valid page is assigned or uniquely detected."
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Normal WordPress address"
+msgstr ""
+
+msgid "Not applicable on multisite"
+msgstr ""
+
+msgid "Not applied"
+msgstr ""
+
+msgid "Not available"
+msgstr ""
+
+msgid "Not checked"
+msgstr ""
+
+msgid "Not detected"
+msgstr ""
+
+msgid "Not initialized"
+msgstr ""
+
+msgid "Number of custom presets"
+msgstr ""
+
+msgid "Off or neutral"
+msgstr ""
+
+msgid "Older frontend scripts may rely on jQuery Migrate. Test public pages while signed out. Login, admin and signed-in builder sessions retain it. To restore it, turn this option off and save."
+msgstr ""
+
+msgid "Only core entries are affected; third-party plugin entries remain unchanged."
+msgstr ""
+
+msgid "Only differences from the preset"
+msgstr ""
+
+msgid "Only the native core update notice is hidden from users without the update_core capability. Other notices and update behavior remain unchanged."
+msgstr ""
+
+msgid "Only the recurring confirmation screen is disabled. Email delivery is unchanged."
+msgstr ""
+
+msgid "Only the selected WordPress core widgets are removed."
+msgstr ""
+
+msgid "Only uncertain published page content can be confirmed."
+msgstr ""
+
+msgid "Open Site Essentials settings"
+msgstr ""
+
+msgid "Open WordPress reading settings"
+msgstr ""
+
+msgid "Open native Site Health information"
+msgstr ""
+
+msgid "Open native menu and page-list links in a new tab"
+msgstr ""
+
+msgid "Open setting"
+msgstr ""
+
+msgid "Optional comment shutdown, local avatars, appearance access, media tools and alternative post destinations."
+msgstr ""
+
+msgid "Overridden by complete comment shutdown"
+msgstr ""
+
+msgid "Overview and presets"
+msgstr ""
+
+msgid "Own WordPress embed pages and public oEmbed responses return HTTP 404, including for embeds within this site. Normal post links and other REST routes remain available; previously cached embeds may persist."
+msgstr ""
+
+msgid "Own plugin data"
+msgstr ""
+
+msgid "PHP %1$s · PHP limit %2$s · WP %3$s / admin %4$s"
+msgstr ""
+
+msgid "PHP and WordPress limits"
+msgstr ""
+
+msgid "Page Links To is active. Site Essentials link processing and editing are paused. Copies can be prepared here; deactivate Page Links To yourself when switching providers."
+msgstr ""
+
+msgid "Page Links To is active; processing is paused."
+msgstr ""
+
+msgid "Password reset emails and user password-change notifications remain enabled."
+msgstr ""
+
+msgid "Pause indexing"
+msgstr ""
+
+msgid "Personal access exceptions saved. Portable role settings are unchanged."
+msgstr ""
+
+msgid "Personal access exceptions stay on this site and are excluded from every settings, preset and collection export."
+msgstr ""
+
+msgid "Personal exceptions changed elsewhere. Reload before saving."
+msgstr ""
+
+msgid "Personal exceptions could not be saved. Reload to verify the retained configuration."
+msgstr ""
+
+msgid "Personal exceptions on this site"
+msgstr ""
+
+msgid "Plain text only. Leave empty to retain the default or use the hide setting."
+msgstr ""
+
+msgid "Plain-text URLs remain text. Explicit links and stored comments remain unchanged."
+msgstr ""
+
+msgid "Plugin defaults"
+msgstr ""
+
+msgid "Plugin version"
+msgstr ""
+
+msgid "Plural name for posts"
+msgstr ""
+
+msgid "Post via email"
+msgstr ""
+
+msgid "Posts and blog"
+msgstr ""
+
+msgid "Prepare as a new preset"
+msgstr ""
+
+msgid "Preparing file-size sorting…"
+msgstr ""
+
+msgid "Preset"
+msgstr ""
+
+msgid "Preset collection JSON"
+msgstr ""
+
+msgid "Preset collections"
+msgstr ""
+
+msgid "Preset name"
+msgstr ""
+
+msgid "Preset name and note updated. Site settings are unchanged."
+msgstr ""
+
+msgid "Preset settings, identity and creation date stay unchanged."
+msgstr ""
+
+msgid "Preset to export"
+msgstr ""
+
+msgid "Preset value"
+msgstr ""
+
+msgid "Presets changed after the collection review. Review the collection again before importing."
+msgstr ""
+
+msgid "Presets changed in another session. Reload this page before continuing."
+msgstr ""
+
+msgid "Presets prepare a draft. Review the changes, then save. All controls remain individually adjustable."
+msgstr ""
+
+msgid "Prevent remote patterns from loading and hide the pattern directory in the editor."
+msgstr ""
+
+msgid "Previous configuration"
+msgstr ""
+
+msgid "Previous configuration restored."
+msgstr ""
+
+msgid "Print handover"
+msgstr ""
+
+msgid "Privacy page"
+msgstr ""
+
+msgid "Private mode must be boolean."
+msgstr ""
+
+msgid "Profile details are not saved as a preset yet."
+msgstr ""
+
+msgid "Proposed"
+msgstr ""
+
+msgid "Public WordPress search is disabled."
+msgstr ""
+
+msgid "Public blog output is disabled on this site."
+msgstr ""
+
+msgid "Public search pages and feeds return HTTP 404; native search forms and blocks are hidden. Public REST search is blocked, authenticated editor lookup and admin search remain available."
+msgstr ""
+
+msgid "Published page with recognizable content."
+msgstr ""
+
+msgid "Published page: content manually confirmed."
+msgstr ""
+
+msgid "Quick draft"
+msgstr ""
+
+msgid "RSS"
+msgstr ""
+
+msgid "Ready to copy"
+msgstr ""
+
+msgid "Recent comments"
+msgstr ""
+
+msgid "Recent posts"
+msgstr ""
+
+msgid "Recovered preset details"
+msgstr ""
+
+msgid "Recovery"
+msgstr ""
+
+msgid "Reference profile"
+msgstr ""
+
+msgid "Reference value"
+msgstr ""
+
+msgid "Release the login language policy for this network. Local site settings and other networks stay unchanged."
+msgstr ""
+
+msgid "Remove Bricks templates from navigation offers"
+msgstr ""
+
+msgid "Remove REST discovery from the HTML head and HTTP headers. REST endpoints stay available."
+msgstr ""
+
+msgid "Remove REST discovery references"
+msgstr ""
+
+msgid "Remove WordPress emoji scripts, styles and related resource hints."
+msgstr ""
+
+msgid "Remove custom preset"
+msgstr ""
+
+msgid "Remove directly enqueued Dashicons for public visitors"
+msgstr ""
+
+msgid "Remove feed discovery links; feed endpoints stay available."
+msgstr ""
+
+msgid "Remove feed links"
+msgstr ""
+
+msgid "Remove jQuery Migrate on the public frontend"
+msgstr ""
+
+msgid "Remove oEmbed discovery links"
+msgstr ""
+
+msgid "Remove oEmbed discovery links from the HTML head. Embed endpoints and existing embeds stay available."
+msgstr ""
+
+msgid "Remove only the core blue or gray W fallback. Configured site icons and other favicon URLs stay unchanged. The core favicon request returns an empty HTTP 204 when no icon remains."
+msgstr ""
+
+msgid "Remove shortlink references"
+msgstr ""
+
+msgid "Remove shortlink references from the head and HTTP headers."
+msgstr ""
+
+msgid "Remove the RSD link"
+msgstr ""
+
+msgid "Remove the WLW manifest link"
+msgstr ""
+
+msgid "Remove the Windows Live Writer link."
+msgstr ""
+
+msgid "Remove the WordPress fallback favicon"
+msgstr ""
+
+msgid "Remove the WordPress generator"
+msgstr ""
+
+msgid "Remove the discovery link from the HTML head."
+msgstr ""
+
+msgid "Remove the generator from the HTML head and feeds."
+msgstr ""
+
+msgid "Remove the native greeting while keeping the user name, avatar and account menu."
+msgstr ""
+
+msgid "Remove this preset? Site settings will stay unchanged."
+msgstr ""
+
+msgid "Remove this site’s custom presets and previous configuration, and replace its saved settings with neutral WordPress defaults. This cannot be undone. Export first if needed. Other sites, network policies and WordPress content stay unchanged."
+msgstr ""
+
+msgid "Replace Gravatar with local user avatars"
+msgstr ""
+
+msgid "Replace the block widget interface where the theme provides widget areas. Existing widgets and their content remain stored."
+msgstr ""
+
+msgid "Replace the login logo link text with this site’s name. The logo image stays unchanged; a blank site name keeps the existing text."
+msgstr ""
+
+msgid "Replace the unsaved new-preset name and note with the recovered details?"
+msgstr ""
+
+msgid "Replace with imported settings"
+msgstr ""
+
+msgid "Report copied."
+msgstr ""
+
+msgid "Reported only when the runtime exposes these legacy hardening directives. Missing values mean unavailable, not unlimited. Menu input limits are distinct from recursion or PHP execution limits."
+msgstr ""
+
+msgid "Reports and handover"
+msgstr ""
+
+msgid "Required by the network. Your local choice is preserved."
+msgstr ""
+
+msgid "Requires enabled renaming and both names"
+msgstr ""
+
+msgid "Requires selected comment content types"
+msgstr ""
+
+msgid "Reset website check confirmations"
+msgstr ""
+
+msgid "Responsibility"
+msgstr ""
+
+msgid "Restore previous configuration"
+msgstr ""
+
+msgid "Restore the previous configuration, apply WordPress defaults, or deactivate the plugin to stop its runtime changes."
+msgstr ""
+
+msgid "Return HTTP 403 for XML-RPC requests. External publishing through XML-RPC will stop."
+msgstr ""
+
+msgid "Review Page Links To destinations"
+msgstr ""
+
+msgid "Review and copy existing Page Links To destinations in a separate administrator-only preview. Nothing is selected or copied automatically."
+msgstr ""
+
+msgid "Review changes"
+msgstr ""
+
+msgid "Review collection"
+msgstr ""
+
+msgid "Review editor selection"
+msgstr ""
+
+msgid "Review import"
+msgstr ""
+
+msgid "Review preset"
+msgstr ""
+
+msgid "Review previous configuration"
+msgstr ""
+
+msgid "Review saved preset values"
+msgstr ""
+
+msgid "Review the profiles, select copies and adjust conflicting names. Existing presets are never replaced. Imported copies receive new local identifiers and creation dates. Active settings change only when you later apply a preset."
+msgstr ""
+
+msgid "Review unsaved changes"
+msgstr ""
+
+msgid "Review website checks"
+msgstr ""
+
+msgid "Revision limit"
+msgstr ""
+
+msgid "Revision limits by content type"
+msgstr ""
+
+msgid "Revisions"
+msgstr ""
+
+msgid "Rule details and setting shortcuts"
+msgstr ""
+
+msgid "Rule overview"
+msgstr ""
+
+msgid "Save a custom preset before exporting a collection."
+msgstr ""
+
+msgid "Save all settings"
+msgstr ""
+
+msgid "Save as a custom preset"
+msgstr ""
+
+msgid "Save imprint assignment"
+msgstr ""
+
+msgid "Save local avatar"
+msgstr ""
+
+msgid "Save network policy"
+msgstr ""
+
+msgid "Save or discard other profile changes before saving the avatar."
+msgstr ""
+
+msgid "Save or discard the avatar selection before updating the profile."
+msgstr ""
+
+msgid "Save or discard the settings draft before changing website check decisions."
+msgstr ""
+
+msgid "Save or discard unsaved settings and profile details before this action."
+msgstr ""
+
+msgid "Save preset name and note"
+msgstr ""
+
+msgid "Saved"
+msgstr ""
+
+msgid "Saved active rules and their responsibility. This is a read-only configuration view, not a security or compatibility certificate."
+msgstr ""
+
+msgid "Saved configuration"
+msgstr ""
+
+msgid "Saved configuration status"
+msgstr ""
+
+msgid "Saved local settings match this preset."
+msgstr ""
+
+msgid "Saved local value"
+msgstr ""
+
+msgid "Saved site settings only; save your draft first."
+msgstr ""
+
+msgid "Saved values differ from reference"
+msgstr ""
+
+msgid "Scope"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Search %s"
+msgstr ""
+
+msgid "Search core settings…"
+msgstr ""
+
+msgid "Search settings"
+msgstr ""
+
+msgid "Search site users…"
+msgstr ""
+
+msgid "Searching site users…"
+msgstr ""
+
+msgid "See the release on GitHub."
+msgstr ""
+
+msgid "Select"
+msgstr ""
+
+msgid "Select %s"
+msgstr ""
+
+msgid "Select all available destinations on this page"
+msgstr ""
+
+msgid "Select and copy the report text manually."
+msgstr ""
+
+msgid "Select at least one custom preset to export."
+msgstr ""
+
+msgid "Select at least one destination to copy."
+msgstr ""
+
+msgid "Select content types in Site Essentials and save before reviewing destinations."
+msgstr ""
+
+msgid "Select public content types. Existing destinations remain stored when the module or a content type is disabled."
+msgstr ""
+
+msgid "Selected changes are ready. Save to apply them."
+msgstr ""
+
+msgid "Selected content types are currently unavailable"
+msgstr ""
+
+msgid "Selected fields follow this website policy for every native menu editor. Other screen options remain personal. Stored user preferences, existing menu values and frontend link output remain unchanged."
+msgstr ""
+
+msgid "Selected menu properties are fixed by Site Essentials. Your saved personal preferences and existing menu values are retained."
+msgstr ""
+
+msgid "Selected preset copies imported. Active settings are unchanged."
+msgstr ""
+
+msgid "Selected widgets disappear from the widget offer and frontend output. Saved instances and sidebar assignments remain stored. Re-enable the widgets to restore their output; check sidebar assignments after editing widgets."
+msgstr ""
+
+msgid "Selected: %1$d. Available local slots: %2$d."
+msgstr ""
+
+msgid "Setting"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Settings apply to this site. Activation alone does not enable cleanup. Deactivation preserves your configuration."
+msgstr ""
+
+msgid "Settings changed in another session. Reload this page before saving."
+msgstr ""
+
+msgid "Settings could not be saved. Your previous configuration is retained."
+msgstr ""
+
+msgid "Settings saved."
+msgstr ""
+
+msgid "Settings sections"
+msgstr ""
+
+msgid "Several imprint pages match. Choose the intended page."
+msgstr ""
+
+msgid "Show CSS classes"
+msgstr ""
+
+msgid "Show PHP and memory limits in the admin footer"
+msgstr ""
+
+msgid "Show an administrator-only reminder until indexing is allowed or the current decision is acknowledged."
+msgstr ""
+
+msgid "Show file sizes in the media list"
+msgstr ""
+
+msgid "Show link relationship (XFN)"
+msgstr ""
+
+msgid "Show link target"
+msgstr ""
+
+msgid "Show saved settings and their source"
+msgstr ""
+
+msgid "Show settings"
+msgstr ""
+
+msgid "Simplify the toolbar greeting"
+msgstr ""
+
+msgid "Single item: %s"
+msgstr ""
+
+msgid "Single site"
+msgstr ""
+
+msgid "Single-site file-editor permissions are denied without setting global constants. Existing restrictions remain effective. To restore the previous permission behavior, turn this option off and save, or deactivate Site Essentials."
+msgstr ""
+
+msgid "Single-site only"
+msgstr ""
+
+msgid "Single-site only: deny the built-in file editors. Installation and updates stay available. Multisite network editors are not restricted by a site setting."
+msgstr ""
+
+msgid "Singular name for a post"
+msgstr ""
+
+msgid "Site Essentials updates are paused because another plugin loaded an incompatible deckerweb Updater. Update that plugin before checking again."
+msgstr ""
+
+msgid "Site Essentials: Open reports and handover"
+msgstr ""
+
+msgid "Site Essentials: website checks"
+msgstr ""
+
+msgid "Site active on multisite"
+msgstr ""
+
+msgid "Site and user languages remain unchanged."
+msgstr ""
+
+msgid "Site health"
+msgstr ""
+
+msgid "Skip fallback thumbnails for new PDF uploads. Existing PDFs and preview files remain stored."
+msgstr ""
+
+msgid "Skip the administrator email confirmation"
+msgstr ""
+
+msgid "Some local data could not be cleared. Reload to check the remaining data."
+msgstr ""
+
+msgid "Sort the media list by file size"
+msgstr ""
+
+msgid "Source"
+msgstr ""
+
+msgid "Standalone URLs stay as text or links in content and text widgets without block markup. Content containing blocks, explicit embed shortcodes and custom iframes retain their existing behavior."
+msgstr ""
+
+msgid "Start the post editor without fullscreen"
+msgstr ""
+
+msgid "State and source"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Stored but not applied"
+msgstr ""
+
+msgid "Stored configuration"
+msgstr ""
+
+msgid "Stored data"
+msgstr ""
+
+msgid "Stored; not applied in this context"
+msgstr ""
+
+msgid "Styles that depend on Dashicons can still load them. Login, admin and signed-in sessions retain them."
+msgstr ""
+
+msgid "Suhosin patch"
+msgstr ""
+
+msgid "Supply both plural and singular names below. Core menus, toolbars and editor labels use them; the technical post type remains post. Categories and tags keep their names. Fixed third-party texts are outside this option."
+msgstr ""
+
+msgid "Suppress the welcome guide in the post editor."
+msgstr ""
+
+msgid "Tag cloud"
+msgstr ""
+
+msgid "Take selected changes into the draft"
+msgstr ""
+
+msgid "Template editing and direct Site Editor access are blocked; saved templates still render. To restore editing, turn this option off and save, or deactivate Site Essentials."
+msgstr ""
+
+msgid "Template editing is disabled on this site."
+msgstr ""
+
+msgid "Text files"
+msgstr ""
+
+msgid "The Customizer is disabled on this site."
+msgstr ""
+
+msgid "The Site Essentials update package could not be verified. The installed plugin has not been replaced."
+msgstr ""
+
+msgid "The Site Essentials update requires a newer WordPress or PHP version. The installed plugin has not been replaced."
+msgstr ""
+
+msgid "The Widgets admin screen is disabled on this site."
+msgstr ""
+
+msgid "The collection could not be reviewed. Check the file and try again."
+msgstr ""
+
+msgid "The collection could not be saved. Reload to check the local preset store."
+msgstr ""
+
+msgid "The configuration contains an unknown setting."
+msgstr ""
+
+msgid "The configuration is too large."
+msgstr ""
+
+msgid "The destination changed since this editor was opened. Reload before saving it."
+msgstr ""
+
+msgid "The destination could not be saved. Please reload and check it."
+msgstr ""
+
+msgid "The destination is invalid or creates a local redirect loop. The previous destination remains unchanged."
+msgstr ""
+
+msgid "The local avatar could not be saved."
+msgstr ""
+
+msgid "The local preset store contains invalid entries. Resolve them before importing a collection."
+msgstr ""
+
+msgid "The original preset changed or is no longer available. These temporary details were not applied. Copy them or prepare a new preset; its settings will come from the saved local configuration."
+msgstr ""
+
+msgid "The original public address redirects with HTTP 302. Preview and editing stay local. Builders and custom link renderers may need their own link attributes."
+msgstr ""
+
+msgid "The plugin must be installed in a stable slug directory."
+msgstr ""
+
+msgid "The preset could not be removed."
+msgstr ""
+
+msgid "The preset could not be saved."
+msgstr ""
+
+msgid "The previous configuration changed. Reload before restoring it."
+msgstr ""
+
+msgid "The previous configuration could not be restored. Reload to check the saved state."
+msgstr ""
+
+msgid "The private update could not be authorized. Check the repository credentials and refresh updates."
+msgstr ""
+
+msgid "The private update download failed. Check credentials and try again."
+msgstr ""
+
+msgid "The report could not be loaded. Reload the page and try again."
+msgstr ""
+
+msgid "The request could not be verified. Reload the page and try again."
+msgstr ""
+
+msgid "The selected page has no recognizable content."
+msgstr ""
+
+msgid "The selected page is not publicly published."
+msgstr ""
+
+msgid "The selected profiles exceed the 20-preset limit. Select fewer profiles or remove a local preset first."
+msgstr ""
+
+msgid "The selection form was incomplete. Reload and try again; no destinations were copied."
+msgstr ""
+
+msgid "The settings form was incomplete. Increase the input limit or reduce the selected entries, then retry."
+msgstr ""
+
+msgid "The status reflects saved settings. Save your draft to update it."
+msgstr ""
+
+msgid "The website check decision could not be saved."
+msgstr ""
+
+msgid "These checks verify visibility, publication and recognizable content. They do not assess legal text quality. Page assignments and confirmations stay on this site and are not exported."
+msgstr ""
+
+msgid "This avatar changed elsewhere. Reload before saving."
+msgstr ""
+
+msgid "This custom preset is no longer available."
+msgstr ""
+
+msgid "This editing area is not available to your account."
+msgstr ""
+
+msgid "This overrides the individual comment rules without deleting comments or changing stored discussion options. Core templates, comment blocks, feeds and management screens are suppressed. Internal editor notes and system data remain available through their normal authorization. Shared WordPress styles are retained; custom third-party comment output needs separate verification. Turn this option off and save to restore the individual rules."
+msgstr ""
+
+msgid "This post contains blocks. Site Essentials selected the classic editor for this content type. Check complex block content before saving; editing it here may change its markup."
+msgstr ""
+
+msgid "This preset is no longer available."
+msgstr ""
+
+msgid "This site"
+msgstr ""
+
+msgid "This site already has 20 custom presets. Remove one before adding another."
+msgstr ""
+
+msgid "This stops automatic URL conversion only in content and widgets without block markup. Any content containing blocks keeps the existing automatic embedding behavior to preserve authored embed blocks. Shortcodes can still contact providers; this is not an external-request blocker. Turn this option off and save to restore automatic URL embeddings."
+msgstr ""
+
+msgid "This tab cannot retain profile details. Copy or discard them before saving settings."
+msgstr ""
+
+msgid "Type RESET to confirm"
+msgstr ""
+
+msgid "Type RESET to confirm clearing the selected scope."
+msgstr ""
+
+msgid "Unavailable"
+msgstr ""
+
+msgid "Unsaved changes"
+msgstr ""
+
+msgid "Unsaved profile details can survive saving settings in this tab for up to 30 minutes. This temporary browser storage sends no background requests; preset creation remains explicit."
+msgstr ""
+
+msgid "Unsaved setting changes"
+msgstr ""
+
+msgid "Untitled content #%d"
+msgstr ""
+
+msgid "Up to 20 profiles per collection, 20 custom presets per site and 256 KiB per file. Collection drafts are not stored in the browser or on the server."
+msgstr ""
+
+msgid "Update packages are checked against the plugin identity, offered version and WordPress/PHP requirements before replacement."
+msgstr ""
+
+msgid "Update services"
+msgstr ""
+
+msgid "Updates"
+msgstr ""
+
+msgid "Upload an avatar image"
+msgstr ""
+
+msgid "Uploaded to %s"
+msgstr ""
+
+msgid "Use a Site Essentials configuration with schema version 1."
+msgstr ""
+
+msgid "Use a complete HTTP(S) URL or an internal path starting with one slash."
+msgstr ""
+
+msgid "Use a configuration note of up to 500 characters."
+msgstr ""
+
+msgid "Use a valid Site Essentials JSON configuration."
+msgstr ""
+
+msgid "Use a valid Site Essentials preset collection: up to 20 profiles and 256 KiB."
+msgstr ""
+
+msgid "Use custom names for native posts"
+msgstr ""
+
+msgid "Use explicitly configured content destinations for public links and temporary redirects. Page Links To pauses this module while active. Content destinations stay outside configuration exports."
+msgstr ""
+
+msgid "Use images assigned in each user profile and a local fallback. Avatar images and Gravatar requests stay local or are blocked; independent update traffic is unaffected. Assignments are site-specific and are not exported with presets."
+msgstr ""
+
+msgid "Use the avatar form to perform this action."
+msgstr ""
+
+msgid "Use the classic editor for selected content types"
+msgstr ""
+
+msgid "Use the classic widget editor"
+msgstr ""
+
+msgid "Use the local placeholder"
+msgstr ""
+
+msgid "Use the settings form to perform this action."
+msgstr ""
+
+msgid "Use the site name for the login logo text"
+msgstr ""
+
+msgid "Use the website check form."
+msgstr ""
+
+msgid "Use this image"
+msgstr ""
+
+msgid "Use this site’s home URL as the login logo target, including its own path on Multisite. Login redirects remain unchanged."
+msgstr ""
+
+msgid "Use valid personal access exceptions."
+msgstr ""
+
+msgid "User lookup failed. Try again."
+msgstr ""
+
+msgid "Verification"
+msgstr ""
+
+msgid "View %s"
+msgstr ""
+
+msgid "View page"
+msgstr ""
+
+msgid "Warn administrators if the assigned WordPress privacy page is missing, unpublished or empty. Uncertain builder content can be manually confirmed."
+msgstr ""
+
+msgid "Warn when search engine indexing is discouraged"
+msgstr ""
+
+msgid "Website check assignments and confirmations are also cleared; WordPress visibility and privacy settings stay unchanged."
+msgstr ""
+
+msgid "Website check decision saved."
+msgstr ""
+
+msgid "Website checks"
+msgstr ""
+
+msgid "Website checks changed. Reload before deciding."
+msgstr ""
+
+msgid "Welcome panel"
+msgstr ""
+
+msgid "Widgets"
+msgstr ""
+
+msgid "Widgets: access policy"
+msgstr ""
+
+msgid "Widgets: allowed roles"
+msgstr ""
+
+msgid "WordPress currently asks search engines not to index this site. This does not technically block access."
+msgstr ""
+
+msgid "WordPress defaults"
+msgstr ""
+
+msgid "WordPress events and news"
+msgstr ""
+
+msgid "WordPress external object cache"
+msgstr ""
+
+msgid "WordPress logo"
+msgstr ""
+
+msgid "WordPress post embeddings are disabled on this site."
+msgstr ""
+
+msgid "WordPress upload limit"
+msgstr ""
+
+msgid "WordPress-related PHP extensions"
+msgstr ""
+
+msgid "XML-RPC is disabled on this site."
+msgstr ""
+
+msgid "You can enable fullscreen manually after opening the editor."
+msgstr ""
+
+msgid "You cannot change this user’s local avatar."
+msgstr ""
+
+msgid "You cannot manage website checks."
+msgstr ""
+
+msgid "You cannot select this image."
+msgstr ""
+
+msgid "You cannot use this content in a navigation menu."
+msgstr ""
+
+msgid "You cannot view PHP information."
+msgstr ""
+
+msgid "You do not have permission to change these settings."
+msgstr ""
+
+msgid "Your WordPress. Your settings."
+msgstr ""
+
+msgid "Your presets"
+msgstr ""
+
+msgid "deleted"
+msgstr ""
+
+msgid "extension"
+msgstr ""
+
+msgid "locked"
+msgstr ""
+
+msgid "moved to Trash"
+msgstr ""
+
+msgid "restored"
+msgstr ""
+
+msgid "runtime status"
+msgstr ""
+
+msgid "updated"
+msgstr ""

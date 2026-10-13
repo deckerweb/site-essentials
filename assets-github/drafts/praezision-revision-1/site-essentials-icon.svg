@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"><title>Site Essentials — Präzision, überarbeitet</title><rect x="36" y="36" width="184" height="184" rx="38" fill="#1d4355"/>
+<g transform="rotate(-5 128 128)" stroke-linecap="round">
+<g stroke="#eef6f6" stroke-opacity=".35" stroke-width="10"><path d="M70 81H179"/><path d="M60 129H195"/><path d="M81 174H187"/></g>
+<path d="M70 81H155" stroke="#efbd65" stroke-width="10"/><path d="M60 129H91" stroke="#54d1b5" stroke-width="10"/><path d="M81 174H139" stroke="#eef6f6" stroke-width="10"/>
+<g stroke="#1d4355" stroke-width="7"><circle cx="155" cy="81" r="18" fill="#efbd65"/><circle cx="91" cy="129" r="15" fill="#54d1b5"/><circle cx="139" cy="174" r="16" fill="#efbd65"/></g></g></svg>

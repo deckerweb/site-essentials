@@ -1,0 +1,6 @@
+/* Only the optional destination migration page; native administration remains intact. */
+.se-targets-page{min-width:0}.se-target-table{max-width:100%;overflow-x:auto}.se-target-table th,.se-target-table td{vertical-align:top;overflow-wrap:anywhere}.se-target-table th:first-child{width:90px;white-space:nowrap;overflow-wrap:normal}.se-target-table td:first-child{vertical-align:middle}.se-target-table code{overflow-wrap:anywhere;white-space:normal}.se-targets-page .button{box-sizing:border-box;max-width:100%;white-space:normal}.se-targets-page .notice{margin-inline:0}
+
+#se-target-fields[hidden]{display:none!important}
+.se-target-header{display:flex;align-items:center;gap:14px;margin-block:18px}.se-target-header img{flex:none}.se-target-header>div{min-width:0}.se-target-header h1{margin:0;padding:0;overflow-wrap:anywhere}.se-target-header p{margin:4px 0 0;color:#50575e}
+.se-target-table table{min-width:640px}.se-target-table:focus-visible{outline:2px solid #2271b1;outline-offset:2px}
