@@ -6,12 +6,14 @@
  let opener = null;
  function openDialog(dialog, button) {
   opener = button || document.activeElement;
-  dialog.showModal();
+  dialog.hidden = false;
+  try { HTMLDialogElement.prototype.showModal.call(dialog); } catch (error) { dialog.hidden = true; throw error; }
  }
- document.querySelectorAll('[data-dialog]').forEach(button => button.addEventListener('click', () => openDialog(document.getElementById(button.dataset.dialog), button)));
+ document.querySelectorAll('[data-dialog]').forEach(button => button.addEventListener('click', event => { try { openDialog(document.getElementById(button.dataset.dialog), button); event.preventDefault(); } catch (_) { /* Native links remain usable when opening fails. */ } }));
  document.querySelectorAll('.se-dialog').forEach(dialog => {
-  dialog.querySelector('.se-close').addEventListener('click', () => dialog.close());
-  dialog.addEventListener('close', () => { if (opener && opener.isConnected) opener.focus(); });
+  dialog.querySelector('.se-close').addEventListener('click', () => HTMLDialogElement.prototype.close.call(dialog));
+  dialog.addEventListener('click', event => { if (event.target === dialog && (event.clientX < dialog.getBoundingClientRect().left || event.clientX > dialog.getBoundingClientRect().right || event.clientY < dialog.getBoundingClientRect().top || event.clientY > dialog.getBoundingClientRect().bottom)) HTMLDialogElement.prototype.close.call(dialog); });
+  dialog.addEventListener('close', () => { dialog.hidden = true; if (opener && opener.isConnected) opener.focus(); });
  });
  if (!form) return;
  // Scope the fixed action bar to this page's actual content width, including folded menus.
@@ -48,8 +50,9 @@
   const exists = panels.some(panel => panel.id === 'se-' + id);
   if (!exists) id = 'overview';
   selectedSection = id;
-  Object.keys(fields).forEach(key => { if (key === 'local_avatars' && config.avatarProvider) return; form.querySelector('[data-setting="' + key + '"]').hidden = false; });
+  Object.keys(fields).forEach(key => { if (['local_avatars','avatar_column'].includes(key) && config.avatarProvider) return; form.querySelector('[data-setting="' + key + '"]').hidden = false; });
   panels.forEach(panel => { panel.hidden = panel.id !== 'se-' + id; });
+  syncAvatarColumn();
   nav.forEach(link => { if (link.dataset.section === id) link.setAttribute('aria-current', 'page'); else link.removeAttribute('aria-current'); });
   ruleView();
   if (focus) document.getElementById('se-title-' + id).focus();
@@ -70,7 +73,7 @@
  function read() {
   const values = structuredClone(config.defaults);
   Object.entries(fields).forEach(([key, field]) => {
-   if (key === 'local_avatars' && config.avatarProvider) { values[key] = config.local[key]; return; }
+   if (['local_avatars','avatar_column'].includes(key) && config.avatarProvider) { values[key] = config.local[key]; return; }
    const inputs = controls(key);
    if (field.type === 'bool') {
     const checkbox = inputs.find(input => input.type === 'checkbox');
@@ -169,6 +172,7 @@
  });
  const initial = read();
  window.siteEssentialsDraft = {has: () => dirty() || profileDirty() || editDirty() || Boolean(recovery)};
+ function syncAvatarColumn() { const card = form.querySelector('[data-setting="avatar_column"]'); if (card) card.hidden = card.hidden || !document.getElementById('se-field-local_avatars')?.checked; }
  function dirty() {
   const changed = !equal(initial, read()) || Boolean(window.siteEssentialsAccessDirty?.());
   status.textContent = changed ? config.strings.unsaved : config.strings.saved;
@@ -177,6 +181,7 @@
   if(!changed && !profileDirty() && !editDirty() && !recovery) { document.getElementById('se-restore-draft-note').textContent = ''; document.getElementById('se-clear-draft-note').textContent = ''; }
   document.getElementById('se-preset-draft-note').textContent = changed ? config.strings.presetSaved : '';
   ruleView();
+  syncAvatarColumn();
   return changed;
  }
  form.addEventListener('input', dirty);
@@ -186,7 +191,7 @@
   if (!submitting && (dirty() || profileDirty() || editDirty() || recovery)) { event.preventDefault(); event.returnValue = ''; }
  });
  function write(key, value) {
-  if (key === 'local_avatars' && config.avatarProvider) return;
+  if (['local_avatars','avatar_column'].includes(key) && config.avatarProvider) return;
   const field = fields[key]; const inputs = controls(key);
   if (field.type === 'bool') { const input = inputs.find(node => node.type === 'checkbox'); if (!input.disabled) input.checked = value; }
   else if (field.type === 'text' || field.type === 'int') inputs[0].value = String(value);
@@ -233,7 +238,7 @@
  function review(values, button, current = read(), mode = 'apply') {
   document.getElementById('se-preview-apply').hidden = mode === 'draft'; pendingProfile = null; pending = {}; const list = document.getElementById('se-preview-list'); list.replaceChildren();
   Object.entries(values).forEach(([key, value]) => {
-   if (key === 'local_avatars' && config.avatarProvider) return;
+   if (['local_avatars','avatar_column'].includes(key) && config.avatarProvider) return;
    if (mode === 'apply' && key === 'login_language' && controls(key).some(input => input.disabled)) return;
    if (equal(current[key], value)) return;
    pending[key] = value;
@@ -352,7 +357,7 @@
   const rows = document.getElementById('se-compare-rows'); rows.replaceChildren();
   let count = 0; const only = document.getElementById('se-compare-only-differences').checked;
   Object.entries(fields).forEach(([key, field]) => {
-   if (key === 'local_avatars' && config.avatarProvider) return;
+   if (['local_avatars','avatar_column'].includes(key) && config.avatarProvider) return;
    const differs = !equal(config.local[key], baseline[key]); if (differs) count++;
    const locked = config.networkLocked && key === 'login_language';
    if (only && !differs && !locked) return;
@@ -383,6 +388,7 @@
   const configured = typeof effective === 'boolean' ? effective : (field.type === 'int' ? !equal(effective, field.default) : typeof effective === 'string' ? effective.trim() !== '' : Object.keys(effective).length > 0);
   let reason = '';
   if (configured) {
+   if (key === 'avatar_column' && !values.local_avatars) reason = fields.avatar_column.help;
    if (['targets','target_types'].includes(key)) {
     if (!values.targets || !values.target_types.some(type => config.availableTargetTypes.includes(type))) reason = config.strings.ruleTargetOff;
     if (config.targetProvider) reason = config.strings.ruleTargetProvider;
@@ -403,11 +409,12 @@
  }
  function ruleView() {
   const values = read(), baseline = {...config.defaults,...(config.presets[ruleReference.value]?.settings || {})}, query = search.value.trim().toLocaleLowerCase(), mode = ruleFilter.value;
-  const all = Object.entries(fields).filter(([key]) => !['widgets_admin','customizer_admin'].includes(key) && !(key === 'local_avatars' && config.avatarProvider)).map(([key,field]) => ({key,field,...ruleState(key,values)}));
+  const all = Object.entries(fields).filter(([key]) => !['widgets_admin','customizer_admin'].includes(key) && !(['local_avatars','avatar_column'].includes(key) && config.avatarProvider)).map(([key,field]) => ({key,field,...ruleState(key,values)}));
   const matches = all.filter(row => (row.field.label + ' ' + row.field.help).toLocaleLowerCase().includes(query) && (mode === 'all' || mode === 'active' && row.active || mode === 'different' && !equal(row.local,baseline[row.key]) || mode === 'saved-different' && !equal(config.local[row.key],baseline[row.key]) || mode === 'pending' && row.pending || mode === 'dormant' && row.dormant));
   const keys = new Set(matches.map(row => row.key));
-  Object.keys(fields).forEach(key => { if (key === 'local_avatars' && config.avatarProvider) return; form.querySelector('[data-setting="'+key+'"]').hidden = !keys.has(key); });
+  Object.keys(fields).forEach(key => { if (['local_avatars','avatar_column'].includes(key) && config.avatarProvider) return; form.querySelector('[data-setting="'+key+'"]').hidden = !keys.has(key); });
   form.querySelectorAll('.se-field-group').forEach(group => { group.hidden = !group.querySelector('[data-setting]:not([hidden])'); });
+  syncAvatarColumn();
   const focusedCard = document.activeElement?.closest('[data-setting]');
   const rename = document.getElementById('se-field-post_rename'), names = document.getElementById('se-post-names');
   const renameCard = form.querySelector('[data-setting="post_rename"]'), renameGroup = form.querySelector('.se-rename-group');
@@ -433,7 +440,7 @@
   matches.forEach(row => {
    const tr = document.createElement('tr'); tr.dataset.rule = row.key;
    const td = document.createElement('td'), button = document.createElement('button');button.type = 'button';button.className = 'button-link';button.textContent = row.field.label;button.title = config.strings.ruleJump;
-   button.addEventListener('click',()=>{search.value='';ruleFilter.value='all';selectSection(row.field.group,false);history.replaceState(null,'','#se-'+row.field.group);const card=form.querySelector('[data-setting="'+row.key+'"]');if (['post_plural','post_singular'].includes(row.key) && !document.getElementById('se-field-post_rename').checked) { document.getElementById('se-field-post_rename').focus(); } else { card.tabIndex=-1;card.focus(); }});td.append(button);tr.append(td);
+   button.addEventListener('click',()=>{search.value='';ruleFilter.value='all';selectSection(row.field.group,false);history.replaceState(null,'','#se-'+row.field.group);const card=form.querySelector('[data-setting="'+row.key+'"]');if (['post_plural','post_singular'].includes(row.key) && !document.getElementById('se-field-post_rename').checked) { document.getElementById('se-field-post_rename').focus(); } else if (row.key === 'avatar_column' && !document.getElementById('se-field-local_avatars')?.checked) { document.getElementById('se-field-local_avatars')?.focus(); } else { card.tabIndex=-1;card.focus(); }});td.append(button);tr.append(td);
    [config.groups[row.field.group],ruleDisplay(row.key,config.local[row.key]),ruleDisplay(row.key,row.local),ruleDisplay(row.key,row.effective),ruleDisplay(row.key,baseline[row.key]),(row.active?config.strings.ruleActive:row.dormant?config.strings.ruleDormant:config.strings.ruleOff)+' · '+row.source+(row.reason?' · '+row.reason:''),row.pending?config.strings.ruleDraft:config.strings.ruleSaved].forEach(value=>{const cell=document.createElement('td');cell.textContent=value;tr.append(cell);});body.append(tr);
   });
  }
@@ -442,4 +449,43 @@
  ruleReference.addEventListener('change',ruleView);
  search.addEventListener('keydown',event=>{if(event.key==='Escape'){event.preventDefault();search.value='';ruleFilter.value='all';ruleView();}});
  ruleView();
+ document.querySelectorAll('[data-se-copy-address]').forEach(button => {
+  button.addEventListener('click', async () => {
+   const field = document.getElementById(button.dataset.seCopyAddress);
+   const status = document.getElementById('se-address-copy-status');
+   if (!field || !status) return;
+   try { await navigator.clipboard.writeText(field.value); status.textContent = config.strings.addressCopied; }
+   catch (_) { field.focus(); field.select(); status.textContent = config.strings.addressCopyFallback; }
+  });
+ });
+ document.getElementById('se-public-copy')?.addEventListener('click', async () => {
+  const field = document.getElementById('se-public-summary');
+  const message = document.getElementById('se-public-copy-status');
+  try { await navigator.clipboard.writeText(field.value); message.textContent = config.strings.resultsCopied; }
+  catch (_) { field.focus(); field.select(); message.textContent = config.strings.resultsCopyFallback; }
+ });
+ const maintenancePage = document.getElementById('se-maintenance-page');
+ const maintenanceEnabled = document.querySelector('[form="se-maintenance-form"][name="maintenance_enabled"]');
+ const maintenanceSnapshot = () => JSON.stringify([maintenancePage?.value, maintenanceEnabled?.checked]);
+ const maintenanceInitial = maintenanceSnapshot();
+ let maintenanceSubmitting = false;
+ const maintenanceDirty = () => maintenancePage && maintenanceSnapshot() !== maintenanceInitial;
+ window.addEventListener('beforeunload', event => {
+  if (!maintenanceSubmitting && maintenanceDirty()) { event.preventDefault(); event.returnValue = ''; }
+ });
+ document.addEventListener('submit', event => {
+  const savesMaintenance = event.target.id === 'se-maintenance-form' && event.submitter?.value === 'save';
+  if (maintenanceDirty() && !savesMaintenance) {
+   event.preventDefault(); event.stopImmediatePropagation(); window.alert(config.strings.saveMaintenanceFirst);
+  }
+ }, true);
+ // Detached operations must not silently navigate away from an unsaved configuration.
+ ['se-maintenance-form', 'se-public-check-form'].forEach(id => {
+  document.getElementById(id)?.addEventListener('submit', event => {
+   if (window.siteEssentialsDraft.has()) {
+    event.preventDefault();
+    window.alert(config.strings.saveBeforeOperation);
+   } else if (id === 'se-maintenance-form' && event.submitter?.value === 'save') { maintenanceSubmitting = true; }
+  });
+ });
 })();

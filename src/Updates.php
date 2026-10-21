@@ -14,6 +14,10 @@ final class Updates {
    add_action( 'network_admin_notices', array( self::class, 'notice' ) );
    return;
   }
+  $options = array( 'translate' => require dirname( SITE_ESSENTIALS_FILE ) . '/includes/updater-translations.php' );
+  if ( defined( $class . '::SUPPORTS_CATALOG_PROVIDER' ) && constant( $class . '::SUPPORTS_CATALOG_PROVIDER' ) && function_exists( 'deckerweb_library_updater_options_v1' ) ) {
+   $options = array_merge( $options, deckerweb_library_updater_options_v1( SITE_ESSENTIALS_FILE, 'https://github.com/deckerweb/site-essentials' ) );
+  }
   $locale = str_starts_with( determine_locale(), 'de' ) ? 'de' : 'en';
   $updater = new $class(
    SITE_ESSENTIALS_FILE, 'https://github.com/deckerweb/site-essentials', 'Site Essentials',
@@ -22,7 +26,7 @@ final class Updates {
     'icons' => array( 'svg' => plugins_url( 'assets/images/icon.svg', SITE_ESSENTIALS_FILE ), '1x' => plugins_url( 'assets/images/icon-128.png', SITE_ESSENTIALS_FILE ), '2x' => plugins_url( 'assets/images/icon-256.png', SITE_ESSENTIALS_FILE ) ),
     'banners' => array( 'low' => plugins_url( 'assets/images/banner-' . $locale . '-772x250.png', SITE_ESSENTIALS_FILE ), 'high' => plugins_url( 'assets/images/banner-' . $locale . '-1544x500.png', SITE_ESSENTIALS_FILE ) ),
    ),
-   array( 'translate' => require dirname( SITE_ESSENTIALS_FILE ) . '/includes/updater-translations.php' )
+   $options
   );
   $updater->register();
   add_filter( 'upgrader_source_selection', array( self::class, 'source' ), 30, 4 );

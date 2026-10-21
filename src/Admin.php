@@ -6,6 +6,8 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 final class Admin {
  /** Register site and network screens and protected POST handlers. @return void */
  public function boot(): void {
+  require_once __DIR__ . '/Takeover.php';
+  ( new Takeover() )->boot();
   add_action( 'admin_menu', array( $this, 'menu' ) );
   add_action( 'network_admin_menu', array( $this, 'network_menu' ) );
   add_action( 'admin_enqueue_scripts', array( $this, 'assets' ) );
@@ -63,6 +65,7 @@ final class Admin {
     'limit' => __( 'Each collection can contain up to 20 profiles and 256 KiB.', 'site-essentials' ),
     'draft' => __( 'Finish or clear the collection draft before saving other changes.', 'site-essentials' ),
     'collision' => __( 'Each selected copy needs a unique name. Existing presets are never overwritten.', 'site-essentials' ),
+    /* translators: %1$d: selected profiles; %2$d: available local preset slots. */
     'capacity' => __( 'Selected: %1$d. Available local slots: %2$d.', 'site-essentials' ),
     'renamed' => __( 'Name already used; a distinct copy name is suggested.', 'site-essentials' ),
     'name' => __( 'Name for the imported copy', 'site-essentials' ),
@@ -71,9 +74,10 @@ final class Admin {
    ) ) );
   }
   wp_localize_script( 'site-essentials-admin', 'siteEssentials', array(
-   'profileStorageKey' => 'site-essentials-profile-' . get_current_blog_id() . '-' . wp_create_nonce( 'site_essentials_profile_draft' ), 'previous' => null === Settings::previous() ? null : Settings::portable( Settings::previous() ), 'reportUrl' => admin_url( 'admin-ajax.php' ), 'reportNonce' => wp_create_nonce( self::nonce_action( 'site_essentials_diagnostic' ) ), 'schema' => Schema::fields(), 'multisite' => is_multisite(), 'availableTypes' => array_values( get_post_types() ), 'groups' => Schema::groups(), 'defaults' => Settings::portable( Schema::defaults() ), 'presets' => Presets::portable(), 'local' => Settings::portable( Settings::local() ), 'effective' => Settings::portable( Settings::effective() ), 'availableTargetTypes' => array_values( array_diff( get_post_types( array( 'public' => true, 'show_ui' => true ) ), array( 'attachment', 'revision', 'nav_menu_item' ) ) ), 'targetProvider' => AlternativeTargets::provider(), 'avatarProvider' => Avatars::leitstand(), 'networkLocked' => Settings::language_locked(),
+   'profileStorageKey' => 'site-essentials-profile-' . get_current_blog_id() . '-' . wp_create_nonce( 'site_essentials_profile_draft' ), 'previous' => null === Settings::previous() ? null : Settings::portable( Settings::previous() ), 'reportUrl' => admin_url( 'admin-ajax.php' ), 'reportNonce' => wp_create_nonce( self::nonce_action( 'site_essentials_diagnostic' ) ), 'schema' => Schema::fields(), 'multisite' => is_multisite(), 'availableTypes' => array_values( get_post_types() ), 'groups' => Schema::groups(), 'defaults' => Settings::portable( Schema::defaults() ), 'presets' => Presets::portable(), 'local' => Settings::portable( Settings::local() ), 'effective' => Settings::portable( Settings::effective() ), 'availableTargetTypes' => array_values( array_diff( get_post_types( array( 'public' => true, 'show_ui' => true ) ), array( 'attachment', 'revision', 'nav_menu_item' ) ) ), 'targetProvider' => AlternativeTargets::provider(), 'avatarProvider' => Avatars::external_provider(), 'networkLocked' => Settings::language_locked(),
    'strings' => array(
-    'ruleTargetOff' => __( 'Alternative destination processing is disabled or has no public content types.', 'site-essentials' ), 'ruleTargetProvider' => __( 'Page Links To is active; processing is paused.', 'site-essentials' ), 'ruleActive' => __( 'Active', 'site-essentials' ), 'ruleOff' => __( 'Off or neutral', 'site-essentials' ), 'ruleDormant' => __( 'Stored; not applied in this context', 'site-essentials' ), 'ruleNetwork' => __( 'Network policy', 'site-essentials' ), 'ruleLocal' => __( 'Local setting', 'site-essentials' ), 'ruleSingle' => __( 'Single-site only', 'site-essentials' ), 'ruleComments' => __( 'Overridden by complete comment shutdown', 'site-essentials' ), 'ruleNames' => __( 'Requires enabled renaming and both names', 'site-essentials' ), 'ruleTypes' => __( 'Selected content types are currently unavailable', 'site-essentials' ), 'ruleFooter' => __( 'Custom footer text takes priority', 'site-essentials' ), 'ruleCommentTypes' => __( 'Requires selected comment content types', 'site-essentials' ), 'ruleBlog' => __( 'Native post management is disabled', 'site-essentials' ), 'ruleCounts' => __( '%1$d active · %2$d stored but not applied · %3$d unsaved changes', 'site-essentials' ), 'ruleMatches' => __( '%d matching settings', 'site-essentials' ), 'ruleSaved' => __( 'Saved', 'site-essentials' ), 'ruleDraft' => __( 'Draft', 'site-essentials' ), 'ruleJump' => __( 'Open setting', 'site-essentials' ),
+    /* translators: ruleCounts: %1$d active rules, %2$d stored inactive rules, %3$d unsaved changes. ruleMatches: %d matching settings. */
+    'ruleTargetOff' => __( 'Alternative destination processing is disabled or has no public content types.', 'site-essentials' ), 'ruleTargetProvider' => __( 'Page Links To is active; processing is paused.', 'site-essentials' ), 'ruleActive' => __( 'Active', 'site-essentials' ), 'ruleOff' => __( 'Off or neutral', 'site-essentials' ), 'ruleDormant' => __( 'Saved; currently without effect', 'site-essentials' ), 'ruleNetwork' => __( 'Network policy', 'site-essentials' ), 'ruleLocal' => __( 'Local setting', 'site-essentials' ), 'ruleSingle' => __( 'Single-site only', 'site-essentials' ), 'ruleComments' => __( 'Overridden by complete comment shutdown', 'site-essentials' ), 'ruleNames' => __( 'Requires enabled renaming and both names', 'site-essentials' ), 'ruleTypes' => __( 'Selected content types are currently unavailable', 'site-essentials' ), 'ruleFooter' => __( 'Custom footer text takes priority', 'site-essentials' ), 'ruleCommentTypes' => __( 'Requires selected comment content types', 'site-essentials' ), 'ruleBlog' => __( 'Native post management is disabled', 'site-essentials' ), 'ruleCounts' => __( '%1$d active · %2$d stored but not applied · %3$d unsaved changes', 'site-essentials' ), 'ruleMatches' => __( '%d matching settings', 'site-essentials' ), 'ruleSaved' => __( 'Saved', 'site-essentials' ), 'ruleDraft' => __( 'Draft', 'site-essentials' ), 'ruleJump' => __( 'Open setting', 'site-essentials' ),
     'accessModes' => array( __( 'Keep WordPress permissions', 'site-essentials' ), __( 'Block everyone', 'site-essentials' ), __( 'Choose allowed roles and users', 'site-essentials' ) ),
     'invalid' => __( 'Use a valid Site Essentials JSON configuration.', 'site-essentials' ),
     'large' => __( 'The configuration is too large.', 'site-essentials' ),
@@ -85,12 +89,16 @@ final class Admin {
     'discardEdit' => __( 'Discard unsaved name and note edits for this preset?', 'site-essentials' ),
     'draftDiscarded' => __( 'Draft discarded. Saved settings are unchanged.', 'site-essentials' ), 'profileUnsaved' => __( 'Profile details are not saved as a preset yet.', 'site-essentials' ), 'profileStorageError' => __( 'This tab cannot retain profile details. Copy or discard them before saving settings.', 'site-essentials' ), 'draftFirst' => __( 'Save or discard unsaved settings and profile details before this action.', 'site-essentials' ),
     'profileName' => __( 'Preset name', 'site-essentials' ), 'profileNote' => __( 'Configuration note', 'site-essentials' ),
+    'saveMaintenanceFirst' => __( 'Save or undo your unsaved maintenance changes before using another action.', 'site-essentials' ),
+    'resultsCopied' => __( 'Results copied.', 'site-essentials' ), 'resultsCopyFallback' => __( 'Results selected. Copy them manually.', 'site-essentials' ), 'saveBeforeOperation' => __( 'Save or discard your unsaved configuration changes before using this separate action.', 'site-essentials' ),
+    'addressCopied' => __( 'Address copied.', 'site-essentials' ), 'addressCopyFallback' => __( 'Address selected. Copy it manually.', 'site-essentials' ),
     'copySuccess' => __( 'Report copied.', 'site-essentials' ), 'reportError' => __( 'The report could not be loaded. Reload the page and try again.', 'site-essentials' ), 'copyFallback' => __( 'Select and copy the report text manually.', 'site-essentials' ),
     'searchNone' => __( 'No settings match this search.', 'site-essentials' ),
     'presetSaved' => __( 'Saved site settings only; save your draft first.', 'site-essentials' ),
     'removePreset' => __( 'Remove this preset? Site settings will stay unchanged.', 'site-essentials' ),
     'network' => __( 'Network policy', 'site-essentials' ), 'localSource' => __( 'Local setting', 'site-essentials' ),
     'noDifferences' => __( 'Saved local settings match this preset.', 'site-essentials' ),
+    /* translators: %d: number of local settings that differ from the preset. */
     'differences' => __( '%d local settings differ from this preset.', 'site-essentials' ),
     'true' => __( 'Enabled', 'site-essentials' ), 'false' => __( 'Disabled', 'site-essentials' ),
    ),
@@ -145,7 +153,7 @@ final class Admin {
   $values = array_replace( Schema::defaults(), $clean );
   if ( Settings::language_locked() ) { $values['login_language'] = Settings::local()['login_language']; }
   // Hidden avatar controls must not be reset by unrelated saves or a stale client.
-  if ( Avatars::leitstand() || ! array_key_exists( 'local_avatars', $input ) ) { $values['local_avatars'] = Settings::local()['local_avatars']; }
+  if ( Avatars::external_provider() || ! array_key_exists( 'local_avatars', $input ) ) { $values['local_avatars'] = Settings::local()['local_avatars']; }
   $old_settings = get_option( Settings::OPTION, false ); $old_previous = get_option( Settings::PREVIOUS, false );
   if ( ! Settings::save( $values ) ) { wp_die( esc_html__( 'Settings could not be saved. Your previous configuration is retained.', 'site-essentials' ), '', array( 'response' => 500 ) ); }
   if ( null !== $exceptions ) {
@@ -208,22 +216,24 @@ final class Admin {
  public function page(): void {
   if ( ! current_user_can( 'manage_options' ) ) { return; }
   $local = Settings::local(); $groups = Schema::groups();
-  if ( Avatars::leitstand() ) { unset( $groups['avatars'] ); }
+  if ( Avatars::external_provider() ) { unset( $groups['avatars'] ); }
   echo '<div class="wrap se-root">'; $this->header();
-  if ( Avatars::leitstand() ) { echo '<p class="se-provider-note">' . esc_html__( 'Leitstand manages local avatars on this site. Site Essentials avatar controls are paused; its settings and image assignments are retained.', 'site-essentials' ) . '</p>'; }
+  if ( Avatars::external_provider() ) { echo '<p class="se-provider-note">' . esc_html__( 'Another provider manages local avatars on this site. Site Essentials avatar controls are paused; its settings and image assignments are retained.', 'site-essentials' ) . '</p>'; }
   echo '<form id="se-settings" method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
   wp_nonce_field( self::nonce_action( 'site_essentials_save' ) );
   echo '<input type="hidden" name="exceptions_revision" value="' . esc_attr( Access::revision() ) . '"><input type="hidden" name="action" value="site_essentials_save"><input type="hidden" name="revision" value="' . esc_attr( hash( 'sha256', wp_json_encode( $local ) ) ) . '">';
   echo '<div class="se-layout"><nav class="se-nav" aria-label="' . esc_attr__( 'Settings sections', 'site-essentials' ) . '">';
-  echo '<label for="se-search">' . esc_html__( 'Search settings', 'site-essentials' ) . '</label><input type="search" id="se-search" autocomplete="off" placeholder="' . esc_attr__( 'Search core settings…', 'site-essentials' ) . '"><p id="se-search-status" role="status"></p>';
-  echo '<label for="se-rule-filter">' . esc_html__( 'Show settings', 'site-essentials' ) . '</label><select id="se-rule-filter"><option value="all">' . esc_html__( 'All settings', 'site-essentials' ) . '</option><option value="active">' . esc_html__( 'Active settings', 'site-essentials' ) . '</option><option value="different">' . esc_html__( 'Draft differs from reference', 'site-essentials' ) . '</option><option value="saved-different">' . esc_html__( 'Saved values differ from reference', 'site-essentials' ) . '</option><option value="pending">' . esc_html__( 'Unsaved setting changes', 'site-essentials' ) . '</option><option value="dormant">' . esc_html__( 'Stored but not applied', 'site-essentials' ) . '</option></select><label for="se-rule-reference">' . esc_html__( 'Reference profile', 'site-essentials' ) . '</label><select id="se-rule-reference"><option value="">' . esc_html__( 'Plugin defaults', 'site-essentials' ) . '</option>';
+  echo '<h3 class="se-nav-heading">' . esc_html__( 'View and filters', 'site-essentials' ) . '</h3>';
+  echo '<label for="se-search">' . esc_html__( 'Search settings', 'site-essentials' ) . '</label><input type="search" id="se-search" autocomplete="off" placeholder="' . esc_attr__( 'Search settings…', 'site-essentials' ) . '"><p id="se-search-status" role="status"></p>';
+  echo '<label for="se-rule-filter">' . esc_html__( 'Show settings', 'site-essentials' ) . '</label><select id="se-rule-filter"><option value="all">' . esc_html__( 'All settings', 'site-essentials' ) . '</option><option value="active">' . esc_html__( 'Active settings', 'site-essentials' ) . '</option><option value="different">' . esc_html__( 'Draft differs from reference', 'site-essentials' ) . '</option><option value="saved-different">' . esc_html__( 'Saved values differ from reference', 'site-essentials' ) . '</option><option value="pending">' . esc_html__( 'Unsaved setting changes', 'site-essentials' ) . '</option><option value="dormant">' . esc_html__( 'Saved; currently without effect', 'site-essentials' ) . '</option></select><label for="se-rule-reference">' . esc_html__( 'Compare with', 'site-essentials' ) . '</label><select id="se-rule-reference"><option value="">' . esc_html__( 'Plugin defaults', 'site-essentials' ) . '</option>';
   foreach ( Presets::catalog() as $id => $preset ) { echo '<option value="' . esc_attr( $id ) . '">' . esc_html( $preset['label'] ) . '</option>'; }
   echo '</select><p>' . esc_html__( 'Filters and references only change this view.', 'site-essentials' ) . '</p>';
-  foreach ( $groups as $id => $label ) { echo '<a href="#se-' . esc_attr( $id ) . '" data-section="' . esc_attr( $id ) . '">' . esc_html( $label ) . '</a>'; }
+  foreach ( $groups as $id => $label ) { if ( in_array( $id, array( 'overview', 'login', 'reports' ), true ) ) { $heading = array( 'overview' => __( 'Overview and presets', 'site-essentials' ), 'login' => __( 'Settings', 'site-essentials' ), 'reports' => __( 'Plugin tools', 'site-essentials' ) ); echo '<h3 class="se-nav-heading se-nav-divider">' . esc_html( $heading[ $id ] ) . '</h3>'; } echo '<a href="#se-' . esc_attr( $id ) . '" data-section="' . esc_attr( $id ) . '">' . esc_html( $label ) . '</a>'; }
   echo '</nav><main class="se-main">';
   foreach ( $groups as $group => $title ) {
    echo '<section id="se-' . esc_attr( $group ) . '" class="se-panel" aria-labelledby="se-title-' . esc_attr( $group ) . '"><h2 id="se-title-' . esc_attr( $group ) . '" tabindex="-1">' . esc_html( $title ) . '</h2>';
    if ( 'overview' === $group ) { $this->overview(); }
+   elseif ( 'maintenance' === $group ) { Maintenance::panel(); }
    elseif ( 'reports' === $group ) { $this->reports(); }
    elseif ( 'avatars' === $group ) { foreach ( Schema::fields() as $key => $field ) { if ( 'avatars' === $field['group'] ) { $this->field( $key, $field, $local[ $key ] ); } } echo '<p><a href="' . esc_url( admin_url( 'profile.php' ) ) . '">' . esc_html__( 'Assign an avatar in my profile', 'site-essentials' ) . '</a></p>'; }
    elseif ( 'data' === $group ) { $this->data_controls(); echo '<p>' . esc_html__( 'Content destinations remain stored when site configuration is cleared; change them in the content editor.', 'site-essentials' ) . '</p>'; }
@@ -237,10 +247,10 @@ final class Admin {
      foreach ( array( 'post_plural', 'post_singular' ) as $name_key ) { $this->field( $name_key, Schema::fields()[ $name_key ], $local[ $name_key ], true ); }
      echo '</div></div>';
     } elseif ( 'widgets_admin' === $key ) { $this->grouped_fields( 'widgets', __( 'Widgets', 'site-essentials' ), array( 'widgets_admin', 'access_widgets_mode', 'access_widgets_roles', 'classic_widgets', 'core_widgets' ), $local ); }
-    elseif ( 'access_customizer_mode' === $key ) { $this->grouped_fields( 'customizer', __( 'Customizer', 'site-essentials' ), array( 'access_customizer_mode', 'access_customizer_roles' ), $local ); }
+    elseif ( 'access_customizer_mode' === $key ) { $this->grouped_fields( 'customizer', __( 'Customize (Customizer)', 'site-essentials' ), array( 'access_customizer_mode', 'access_customizer_roles' ), $local ); }
     elseif ( 'access_menus_mode' === $key ) { $this->grouped_fields( 'menus', __( 'Classic menu editing', 'site-essentials' ), array( 'access_menus_mode', 'access_menus_roles' ), $local ); }
     elseif ( 'menu_fields' === $key ) { $this->grouped_fields( 'menu_interface', __( 'Classic menu editor: interface', 'site-essentials' ), array( 'menu_fields', 'menu_bricks' ), $local ); }
-    elseif ( 'heartbeat_front' === $key ) { $this->grouped_fields( 'heartbeat', __( 'Heartbeat API', 'site-essentials' ), array( 'heartbeat_front', 'heartbeat_admin', 'heartbeat_editor', 'heartbeat_types' ), $local ); }
+    elseif ( 'heartbeat_front' === $key ) { $this->grouped_fields( 'heartbeat', __( 'Heartbeat — regular background requests', 'site-essentials' ), array( 'heartbeat_front', 'heartbeat_admin', 'heartbeat_editor', 'heartbeat_types' ), $local ); }
     elseif ( 'revisions' === $key ) { $this->grouped_fields( 'revisions', __( 'Revisions', 'site-essentials' ), array( 'revisions', 'revision_types' ), $local ); }
     else { $this->field( $key, $field, $local[ $key ] ); }
    } }
@@ -248,7 +258,7 @@ final class Admin {
    if ( 'checks' === $group ) { ( new WebsiteChecks() )->panel(); }
    echo '</section>';
   }
-  echo '</main></div><div class="se-save"><button type="button" class="button" id="se-review-draft">' . esc_html__( 'Review unsaved changes', 'site-essentials' ) . '</button><button class="button button-primary" type="submit">' . esc_html__( 'Save all settings', 'site-essentials' ) . '</button><button type="button" class="button" id="se-discard-draft">' . esc_html__( 'Discard draft', 'site-essentials' ) . '</button><span id="se-status" role="status">' . esc_html__( 'Saved configuration', 'site-essentials' ) . '</span></div><input type="hidden" name="se_form_complete" value="1"></form>';
+  echo '</main></div><div class="se-save"><button type="button" class="button" id="se-review-draft">' . esc_html__( 'Review unsaved changes', 'site-essentials' ) . '</button><button class="button button-primary" id="se-save-settings" type="submit"><span class="se-dirty-dot" aria-hidden="true"></span>' . esc_html__( 'Save all settings', 'site-essentials' ) . '</button><button type="button" class="button" id="se-discard-draft">' . esc_html__( 'Discard draft', 'site-essentials' ) . '</button><span id="se-status" role="status">' . esc_html__( 'Saved configuration', 'site-essentials' ) . '</span></div><input type="hidden" name="se_form_complete" value="1"></form>';
   echo '<div class="se-secondary">';
   echo '<button type="button" class="button" id="se-restore-preview"' . ( null === Settings::previous() ? ' disabled' : '' ) . '>' . esc_html__( 'Review previous configuration', 'site-essentials' ) . '</button><p id="se-restore-draft-note" role="status" tabindex="-1"></p>';
   $this->action_form( 'restore', __( 'Restore previous configuration', 'site-essentials' ), true );
@@ -341,7 +351,8 @@ final class Admin {
  }
  /** Render JSON import controls with explicit merge/replace semantics. @return void */
  private function transfer(): void {
-  echo '<div class="se-card"><p>' . esc_html__( 'Import local settings only. Network policies and previous configurations are not transferred.', 'site-essentials' ) . '</p><label for="se-file">' . esc_html__( 'JSON file', 'site-essentials' ) . '</label><input id="se-file" type="file" accept=".json,application/json"><label for="se-import">' . esc_html__( 'Configuration JSON', 'site-essentials' ) . '</label><textarea id="se-import" rows="10" spellcheck="false"></textarea><div class="se-control-row"><label for="se-import-mode">' . esc_html__( 'Import mode', 'site-essentials' ) . '</label><select id="se-import-mode"><option value="merge">' . esc_html__( 'Merge supplied settings', 'site-essentials' ) . '</option><option value="replace">' . esc_html__( 'Replace with imported settings', 'site-essentials' ) . '</option></select> <button type="button" class="button" id="se-import-preview">' . esc_html__( 'Review import', 'site-essentials' ) . '</button></div><p id="se-import-error" role="alert"></p></div>';
+  echo '<div class="se-card"><h3>' . esc_html__( 'Replace Falcon or Unbloater', 'site-essentials' ) . '</h3><p>' . esc_html__( 'Review a one-time takeover of installed Falcon and Unbloater settings. Nothing is selected automatically; the source plugins remain untouched.', 'site-essentials' ) . '</p><a class="button" href="' . esc_url( admin_url( 'admin.php?page=site-essentials-takeover' ) ) . '">' . esc_html__( 'Review Falcon and Unbloater settings', 'site-essentials' ) . '</a></div>';
+  echo '<div class="se-card"><p>' . esc_html__( 'Import local settings only. Network policies and previous configurations are not transferred.', 'site-essentials' ) . '</p><label for="se-file">' . esc_html__( 'JSON file', 'site-essentials' ) . '</label><input id="se-file" type="file" accept=".json,application/json"><label for="se-import">' . esc_html__( 'Configuration JSON', 'site-essentials' ) . '</label><textarea id="se-import" rows="10" spellcheck="false"></textarea><div class="se-control-row"><label for="se-import-mode">' . esc_html__( 'Import mode', 'site-essentials' ) . '</label><select id="se-import-mode"><option value="merge">' . esc_html__( 'Only apply settings from the file', 'site-essentials' ) . '</option><option value="replace">' . esc_html__( 'Replace with imported settings', 'site-essentials' ) . '</option></select> <button type="button" class="button" id="se-import-preview">' . esc_html__( 'Review import', 'site-essentials' ) . '</button></div><p id="se-import-error" role="alert"></p></div>';
   echo '<div class="se-card"><h3>' . esc_html__( 'Export a preset', 'site-essentials' ) . '</h3><div class="se-control-row"><label for="se-preset-export">' . esc_html__( 'Preset to export', 'site-essentials' ) . '</label> <select id="se-preset-export" name="preset_id" form="se-preset-export-form">';
   foreach ( Presets::catalog() as $id => $item ) { echo '<option value="' . esc_attr( $id ) . '">' . esc_html( $item['label'] ) . '</option>'; }
   echo '</select> <button type="submit" form="se-preset-export-form" class="button">' . esc_html__( 'Export selected preset', 'site-essentials' ) . '</button></div><p>' . esc_html__( 'Exported presets use the same format as configuration imports. Import, review and save on another site.', 'site-essentials' ) . '</p></div>';
@@ -427,10 +438,10 @@ final class Admin {
  private function field( string $key, array $field, $value, bool $nested = false, int $level = 3 ): void {
   $name = 'settings[' . $key . ']'; $id = 'se-field-' . $key; $locked = 'login_language' === $key && Settings::language_locked();
   $heading = 4 === $level ? 'h4' : 'h3';
-  echo '<div class="' . ( $nested ? 'se-subfield' : 'se-card' ) . ( in_array( $key, array( 'widgets_admin', 'customizer_admin' ), true ) ? ' se-legacy-setting' : '' ) . '" data-setting="' . esc_attr( $key ) . '"><' . $heading . ' id="' . esc_attr( $id ) . '-title">';
+  echo '<div class="' . ( $nested ? 'se-subfield' : 'se-card' ) . ( in_array( $key, array( 'widgets_admin', 'customizer_admin' ), true ) ? ' se-legacy-setting' : '' ) . '" data-setting="' . esc_attr( $key ) . '"><' . esc_html( $heading ) . ' id="' . esc_attr( $id ) . '-title">';
   if ( in_array( $field['type'], array( 'list', 'map' ), true ) ) { echo esc_html( $field['label'] ); }
   else { echo '<label for="' . esc_attr( $id ) . '">' . esc_html( $field['label'] ) . '</label>'; }
-  echo '</' . $heading . '>';
+  echo '</' . esc_html( $heading ) . '>';
   if ( 'bool' === $field['type'] ) {
    echo '<div class="se-checkbox-row"><input type="hidden" name="' . esc_attr( $name ) . '" value="0"><input type="checkbox" id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '" value="1" ' . checked( $locked || $value, true, false ) . ( $locked ? ' disabled' : '' ) . ' aria-labelledby="' . esc_attr( $id ) . '-title" aria-describedby="' . esc_attr( $id ) . '-help"><label class="description" id="' . esc_attr( $id ) . '-help" for="' . esc_attr( $id ) . '">' . esc_html( $field['help'] ) . '</label></div>';
    if ( $locked ) { echo '<p class="se-policy">' . esc_html__( 'Required by the network. Your local choice is preserved.', 'site-essentials' ) . '</p>'; }
@@ -454,7 +465,7 @@ final class Admin {
      if ( 'target_types' === $field['dynamic'] ? ( $object->public && 'attachment' !== $type ) : post_type_supports( $type, $support ) ) { $choices[] = $type; }
     }
    }
-   $choice_labels = array( 'link-target' => __( 'Show link target', 'site-essentials' ), 'css-classes' => __( 'Show CSS classes', 'site-essentials' ), 'xfn' => __( 'Show link relationship (XFN)', 'site-essentials' ), 'title-attribute' => __( 'Hide title attribute', 'site-essentials' ), 'description' => __( 'Hide description', 'site-essentials' ), 'post_by_email' => __( 'Post via email', 'site-essentials' ), 'update_services' => __( 'Update services', 'site-essentials' ), 'available_tools' => __( 'Available tools', 'site-essentials' ), 'core_import' => __( 'Import', 'site-essentials' ), 'core_export' => __( 'Export', 'site-essentials' ), 'welcome_panel' => __( 'Welcome panel', 'site-essentials' ), 'archives' => __( 'Archives', 'site-essentials' ), 'calendar' => __( 'Calendar', 'site-essentials' ), 'meta' => __( 'Meta', 'site-essentials' ), 'search' => __( 'Search', 'site-essentials' ), 'recent-posts' => __( 'Recent posts', 'site-essentials' ), 'recent-comments' => __( 'Recent comments', 'site-essentials' ), 'categories' => __( 'Categories', 'site-essentials' ), 'tag-cloud' => __( 'Tag cloud', 'site-essentials' ), 'rss' => __( 'RSS', 'site-essentials' ), 'dashboard_activity' => __( 'Activity', 'site-essentials' ), 'dashboard_right_now' => __( 'At a glance', 'site-essentials' ), 'dashboard_quick_press' => __( 'Quick draft', 'site-essentials' ), 'dashboard_primary' => __( 'WordPress events and news', 'site-essentials' ), 'dashboard_site_health' => __( 'Site health', 'site-essentials' ), 'wp-logo' => __( 'WordPress logo', 'site-essentials' ), 'comments' => __( 'Comments', 'site-essentials' ), 'new-content' => __( 'New content', 'site-essentials' ), 'updates' => __( 'Updates', 'site-essentials' ) );
+   $choice_labels = array( 'link-target' => __( 'Show link target', 'site-essentials' ), 'css-classes' => __( 'Show CSS classes', 'site-essentials' ), 'xfn' => __( 'Show link relationship (XFN, e.g. nofollow)', 'site-essentials' ), 'title-attribute' => __( 'Hide additional link title (title attribute)', 'site-essentials' ), 'description' => __( 'Hide description', 'site-essentials' ), 'post_by_email' => __( 'Post via email', 'site-essentials' ), 'update_services' => __( 'Update services', 'site-essentials' ), 'available_tools' => __( 'Available tools', 'site-essentials' ), 'core_import' => __( 'Import', 'site-essentials' ), 'core_export' => __( 'Export', 'site-essentials' ), 'welcome_panel' => __( 'Welcome panel', 'site-essentials' ), 'archives' => __( 'Archives', 'site-essentials' ), 'calendar' => __( 'Calendar', 'site-essentials' ), 'meta' => __( 'Meta', 'site-essentials' ), 'search' => __( 'Search', 'site-essentials' ), 'recent-posts' => __( 'Recent posts', 'site-essentials' ), 'recent-comments' => __( 'Recent comments', 'site-essentials' ), 'categories' => __( 'Categories', 'site-essentials' ), 'tag-cloud' => __( 'Tag cloud', 'site-essentials' ), 'rss' => __( 'RSS', 'site-essentials' ), 'dashboard_activity' => __( 'Activity', 'site-essentials' ), 'dashboard_right_now' => __( 'At a glance', 'site-essentials' ), 'dashboard_quick_press' => __( 'Quick draft', 'site-essentials' ), 'dashboard_primary' => __( 'WordPress events and news', 'site-essentials' ), 'dashboard_site_health' => __( 'Site health', 'site-essentials' ), 'wp-logo' => __( 'WordPress logo', 'site-essentials' ), 'comments' => __( 'Comments', 'site-essentials' ), 'new-content' => __( 'New content', 'site-essentials' ), 'updates' => __( 'Updates', 'site-essentials' ) );
    echo '<fieldset aria-describedby="' . esc_attr( $id ) . '-help" id="' . esc_attr( $id ) . '"><legend class="screen-reader-text">' . esc_html( $field['label'] ) . '</legend>';
    foreach ( $choices as $choice ) {
     $object = get_post_type_object( $choice ); $label = 'roles' === ( $field['dynamic'] ?? '' ) ? translate_user_role( wp_roles()->role_names[ $choice ] ?? $choice ) : ( isset( $field['dynamic'] ) && $object ? $object->labels->name : ( $choice_labels[ $choice ] ?? ( $object ? $object->labels->name : $choice ) ) );
@@ -483,7 +494,7 @@ final class Admin {
  /** Load a data-minimal diagnostic after POST authorization. @return void */
  public function diagnostic(): void { $this->authorize( 'site_essentials_diagnostic' ); nocache_headers(); wp_send_json_success( Reports::diagnostic() ); }
  /** Hash all local data that can be explicitly cleared. @return string */
- private function data_revision(): string { return hash( 'sha256', wp_json_encode( array( Settings::local(), get_option( Settings::PREVIOUS, false ), Presets::custom(), Avatars::revision(), WebsiteChecks::state(), get_option( Access::OPTION, false ) ) ) ); }
+ private function data_revision(): string { return hash( 'sha256', wp_json_encode( array( Settings::local(), get_option( Settings::PREVIOUS, false ), Presets::custom(), Avatars::revision(), WebsiteChecks::state(), get_option( Access::OPTION, false ), Maintenance::state() ) ) ); }
  /** Clear only this site's settings, snapshot and presets after typed confirmation. @return void */
  public function clear_local(): void {
   $this->authorize( 'site_essentials_clear_local' );
@@ -491,8 +502,8 @@ final class Admin {
   if ( ! hash_equals( $this->data_revision(), $revision ) ) { wp_die( esc_html__( 'Local data changed. Reload before clearing it.', 'site-essentials' ), '', array( 'response' => 409 ) ); }
   $this->check_clear_confirmation();
   // Neutral settings prevent an installed startup preset from silently reapplying after clearing.
-  update_option( Settings::OPTION, Schema::defaults(), false ); delete_option( Settings::PREVIOUS ); delete_option( Presets::OPTION ); $avatars_cleared = Avatars::clear(); $media_cleared = Media::clear(); delete_option( WebsiteChecks::OPTION ); delete_option( Access::OPTION );
-  if ( false !== get_option( Access::OPTION, false ) || false !== get_option( WebsiteChecks::OPTION, false ) || ! $avatars_cleared || ! $media_cleared || get_option( Settings::OPTION ) !== Schema::defaults() || false !== get_option( Settings::PREVIOUS, false ) || false !== get_option( Presets::OPTION, false ) ) { wp_die( esc_html__( 'Some local data could not be cleared. Reload to check the remaining data.', 'site-essentials' ), '', array( 'response' => 500 ) ); }
+  update_option( Settings::OPTION, Schema::defaults(), false ); delete_option( Settings::PREVIOUS ); delete_option( Presets::OPTION ); $avatars_cleared = Avatars::clear(); $media_cleared = Media::clear(); delete_option( WebsiteChecks::OPTION ); delete_option( Access::OPTION ); delete_option( Maintenance::OPTION );
+  if ( false !== get_option( Maintenance::OPTION, false ) || false !== get_option( Access::OPTION, false ) || false !== get_option( WebsiteChecks::OPTION, false ) || ! $avatars_cleared || ! $media_cleared || get_option( Settings::OPTION ) !== Schema::defaults() || false !== get_option( Settings::PREVIOUS, false ) || false !== get_option( Presets::OPTION, false ) ) { wp_die( esc_html__( 'Some local data could not be cleared. Reload to check the remaining data.', 'site-essentials' ), '', array( 'response' => 500 ) ); }
   $this->redirect( 'local_cleared' );
  }
  /** Clear only the current network policy, never site data or other networks. @return void */
@@ -518,7 +529,7 @@ final class Admin {
  }
  /** Present local clearing controls without touching other sites or network policy. @return void */
  private function data_controls(): void {
-  echo '<div class="se-card"><h3>' . esc_html__( 'Clear local plugin data', 'site-essentials' ) . '</h3><p>' . esc_html__( 'Remove this site’s custom presets and previous configuration, and replace its saved settings with neutral WordPress defaults. This cannot be undone. Export first if needed. Other sites, network policies and WordPress content stay unchanged.', 'site-essentials' ) . '</p><p>' . esc_html__( 'Local avatar assignments are also removed; uploaded media files stay in WordPress.', 'site-essentials' ) . ' ' . esc_html__( 'Website check assignments and confirmations are also cleared; WordPress visibility and privacy settings stay unchanged.', 'site-essentials' ) . '</p><p>' . esc_html__( 'A neutral default configuration remains while the plugin is active, preventing a startup preset from returning. Normal uninstall still retains your configuration.', 'site-essentials' ) . '</p><div class="se-control-row"><label for="se-confirm-local">' . esc_html__( 'Type RESET to confirm', 'site-essentials' ) . '</label> <input id="se-confirm-local" name="confirm_clear" form="se-clear-local-form" autocomplete="off" required pattern="RESET"> <button type="submit" form="se-clear-local-form" class="button">' . esc_html__( 'Clear this site’s data', 'site-essentials' ) . '</button></div><p id="se-clear-draft-note" role="status" tabindex="-1"></p></div>';
+  echo '<div class="se-card"><h3>' . esc_html__( 'Reset Site Essentials', 'site-essentials' ) . '</h3><p>' . esc_html__( 'Remove this site’s custom presets and previous configuration, and replace its saved settings with neutral WordPress defaults. This cannot be undone. Export first if needed. Other sites, network policies and WordPress content stay unchanged.', 'site-essentials' ) . '</p><p>' . esc_html__( 'Local avatar assignments and maintenance settings are also removed; uploaded media files and the maintenance page stay in WordPress.', 'site-essentials' ) . ' ' . esc_html__( 'Website check assignments and confirmations are also cleared; WordPress visibility and privacy settings stay unchanged.', 'site-essentials' ) . '</p><p>' . esc_html__( 'A neutral default configuration remains while the plugin is active, preventing a startup preset from returning. Normal uninstall still retains your configuration.', 'site-essentials' ) . '</p><div class="se-control-row"><label for="se-confirm-local">' . esc_html__( 'Type RESET to confirm', 'site-essentials' ) . '</label> <input id="se-confirm-local" name="confirm_clear" form="se-clear-local-form" autocomplete="off" required pattern="RESET"> <button type="submit" form="se-clear-local-form" class="button">' . esc_html__( 'Reset Site Essentials', 'site-essentials' ) . '</button></div><p id="se-clear-draft-note" role="status" tabindex="-1"></p></div>';
  }
  /** Present a separate current-network policy clearing action. @return void */
  private function network_data_controls(): void {
@@ -537,6 +548,7 @@ final class Admin {
   */
  private function interval( string $id, string $name, int $value ): void {
   echo '<select id="' . esc_attr( $id ) . '" name="' . esc_attr( $name ) . '">';
+  /* translators: %d: heartbeat interval in seconds. */
   foreach ( array( 0, 15, 30, 60, 120 ) as $interval ) { echo '<option value="' . esc_attr( $interval ) . '" ' . selected( $value, $interval, false ) . '>' . esc_html( $interval ? sprintf( __( '%d seconds', 'site-essentials' ), $interval ) : __( 'Inherit defaults', 'site-essentials' ) ) . '</option>'; }
   echo '</select>';
  }
@@ -557,7 +569,7 @@ final class Admin {
  public function network_page(): void {
   if ( ! current_user_can( 'manage_network_options' ) ) { return; }
   echo '<div class="wrap se-root">'; $this->header();
-  if ( Avatars::leitstand() ) { echo '<p class="se-provider-note">' . esc_html__( 'Leitstand manages local avatars on this site. Site Essentials avatar controls are paused; its settings and image assignments are retained.', 'site-essentials' ) . '</p>'; }
+  if ( Avatars::external_provider() ) { echo '<p class="se-provider-note">' . esc_html__( 'Another provider manages local avatars on this site. Site Essentials avatar controls are paused; its settings and image assignments are retained.', 'site-essentials' ) . '</p>'; }
   echo '<div class="se-card"><h2>' . esc_html__( 'Network login policy', 'site-essentials' ) . '</h2><p>' . esc_html__( 'All other settings remain local to each site. Network activation does not apply a shared preset.', 'site-essentials' ) . '</p><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
   wp_nonce_field( self::nonce_action( 'site_essentials_network', true ) );
   echo '<input type="hidden" name="policy_revision" value="' . esc_attr( hash( 'sha256', wp_json_encode( get_site_option( Settings::NETWORK, 'inherit' ) ) ) ) . '">';
@@ -567,10 +579,10 @@ final class Admin {
   $this->network_data_controls(); $this->clear_form( true ); $this->footer(); echo '</div>';
  }
  /** Render local documentation and a structured keyboard-accessible changelog. @return void */
- private function footer(): void {
-  echo '<footer class="se-footer"><div><strong>Site Essentials</strong> ' . esc_html( SITE_ESSENTIALS_VERSION ) . '<p>' . esc_html__( 'Your WordPress. Your settings.', 'site-essentials' ) . '</p></div><div><button class="button-link" type="button" data-dialog="se-documentation">' . esc_html__( 'Documentation', 'site-essentials' ) . '</button> · <button class="button-link" type="button" data-dialog="se-history">' . esc_html__( 'Changelog', 'site-essentials' ) . '</button><p>© 2026 <a href="https://github.com/deckerweb">David Decker – DECKERWEB</a></p></div></footer>';
+ public function footer(): void {
+  echo '<footer class="se-footer"><div><strong>Site Essentials</strong> ' . esc_html( SITE_ESSENTIALS_VERSION ) . '<p>' . esc_html__( 'Your WordPress. Your settings.', 'site-essentials' ) . '</p></div><div><a class="button-link" href="https://deckerweb.github.io/site-essentials/" data-dialog="se-documentation">' . esc_html__( 'Documentation', 'site-essentials' ) . '</a> · <a class="button-link" href="https://github.com/deckerweb/site-essentials/blob/main/CHANGELOG.md" data-dialog="se-history">' . esc_html__( 'Changelog', 'site-essentials' ) . '</a><p>© 2026 <a href="https://github.com/deckerweb">David Decker – DECKERWEB</a></p></div></footer>';
   foreach ( array( 'se-documentation' => __( 'Documentation', 'site-essentials' ), 'se-history' => __( 'Changelog', 'site-essentials' ), 'se-preview' => __( 'Review changes', 'site-essentials' ) ) as $id => $title ) {
-   echo '<dialog class="se-dialog" id="' . esc_attr( $id ) . '" aria-labelledby="' . esc_attr( $id ) . '-title"><header><h2 id="' . esc_attr( $id ) . '-title">' . esc_html( $title ) . '</h2><button type="button" class="button se-close">' . esc_html__( 'Close', 'site-essentials' ) . '</button></header><div class="se-dialog-body" tabindex="0">';
+   echo '<dialog hidden class="se-dialog" id="' . esc_attr( $id ) . '" aria-labelledby="' . esc_attr( $id ) . '-title"><header><h2 id="' . esc_attr( $id ) . '-title">' . esc_html( $title ) . '</h2><form method="dialog"><button type="submit" class="button se-close">' . esc_html__( 'Close', 'site-essentials' ) . '</button></form></header><div class="se-dialog-body" tabindex="0">';
    $content = json_decode( (string) file_get_contents( dirname( SITE_ESSENTIALS_FILE ) . '/content.json' ), true );
    if ( 'se-history' === $id ) {
     foreach ( $content['history'] as $release ) {
@@ -584,7 +596,18 @@ final class Admin {
      }
     }
    } elseif ( 'se-documentation' === $id ) {
-    foreach ( $content['help'] as $entry ) { echo '<h3>' . esc_html( __( $entry['title'], 'site-essentials' ) ) . '</h3><p>' . esc_html( __( $entry['text'], 'site-essentials' ) ) . '</p>'; }
+    foreach ( $content['help'] as $entry ) {
+     echo '<h3>' . esc_html( __( $entry['title'], 'site-essentials' ) ) . '</h3><p>' . esc_html( __( $entry['text'], 'site-essentials' ) ) . '</p>';
+     if ( isset( $entry['table'] ) ) {
+      echo '<table class="widefat striped"><thead><tr>';
+      foreach ( $entry['table']['headers'] as $heading ) { echo '<th scope="col">' . esc_html( __( $heading, 'site-essentials' ) ) . '</th>'; }
+      echo '</tr></thead><tbody>';
+      foreach ( $entry['table']['rows'] as $row ) {
+       echo '<tr><th scope="row">' . esc_html( __( $row[0], 'site-essentials' ) ) . '</th><td>' . esc_html( __( $row[1], 'site-essentials' ) ) . '</td></tr>';
+      }
+      echo '</tbody></table><p>' . esc_html( __( $entry['footnote'], 'site-essentials' ) ) . '</p>';
+     }
+    }
    } else { echo '<div id="se-preview-list"></div><button type="button" id="se-preview-apply" class="button button-primary">' . esc_html__( 'Take selected changes into the draft', 'site-essentials' ) . '</button>'; }
    echo '</div></dialog>';
   }

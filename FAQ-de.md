@@ -20,7 +20,7 @@ Ausgewählte eigene Profile exportieren und die Sammlung auf der Zielwebsite pr�
 
 Die Übersicht zeigt gespeicherte lokale Werte, lokale Entwürfe, wirksame Entwurfswerte und Referenzwerte mit Status/Quelle. Aktiv umfasst eingeschaltete Standardhinweise; gespeichert, aber nicht angewendet bezeichnet eine bekannte Abhängigkeit oder Site-Einschränkung, keine automatische Konfliktdiagnose. Gespeicherte oder Entwurfswerte mit Plugin-Defaults oder eingebautem/eigenem Preset vergleichen. Suche und Statusfilter wirken gemeinsam über Bereiche; Bereichsnavigation oder Einstellungssprung setzt Suche/Statusfilter zurück. Referenzen und Filter ändern keine Einstellungen und werden nicht gespeichert. Ohne JavaScript bleiben alle Einstellungen verfügbar.
 
-## Login, Editor und Core-Verhalten
+## Login, Editor und WordPress-Funktionen
 
 ### Was ändern die Login-Logo- und Favicon-Optionen?
 
@@ -156,10 +156,39 @@ Nur ausgewählte sichere Werte des aktuellen Web-Aufrufs: PHP-Version, Speicherz
 
 Ja. Einzel- und Netzwerkaktivierung, unabhängige Site-Einstellungen und eine Netzwerkvorgabe zur Login-Sprachauswahl werden unterstützt.
 
-### Wie funktioniert das Zusammenspiel mit Leitstand?
+### Wie werden sich überschneidende Einstellungen behandelt?
 
-Site Essentials öffnet keine durch frühere Filter gesperrten Kommentare und erhält strengere eingehende Revisionsgrenzen. Leitstand-Netzwerkregeln werden nicht umgeschrieben. Stellt der geladene Leitstand-Avatar-Renderer lokale Avatare auf der aktuellen Website wirksam bereit, pausiert Site Essentials seine eigene Ausgabe, Avatar-HTTP-Eingriffe, Profil-Bedienelemente und Uploads und blendet den Avatar-Einstellungsbereich aus. Gespeicherte Auswahl und Bildzuordnungen bleiben erhalten. Erlaubte Website-Ausnahmen werden beachtet; eine verpflichtende Netzwerkvorgabe hat Vorrang. Stellt Leitstand die Funktion nicht mehr bereit, wird die gespeicherte Site-Essentials-Auswahl wieder verfügbar. Ein veraltetes Avatar-Formular kann während des Leitstand-Vorrangs keine Zuordnungen verändern.
+Site Essentials erhält Kommentar-Einschränkungen aus früheren Filtern und strengere eingehende Revisionsgrenzen. Netzwerkregeln anderer Anbieter werden nicht umgeschrieben. Stellt ein unterstützter Anbieter bereits lokale Avatare bereit, pausiert Site Essentials die eigene Avatar-Ausgabe, Profil-Bedienelemente und Uploads. Gespeicherte Einstellungen und Bildzuordnungen bleiben verfügbar, sobald der andere Anbieter die Funktion nicht mehr bereitstellt.
 
 ### Was passiert bei der Deinstallation?
 
 Eigene Einstellungen, benannte lokale Presets, vorherige Konfiguration und Netzwerkvorgabe bleiben gespeichert. Laufzeiteingriffe enden bei inaktivem Plugin.
+
+## Wartung und Editorhilfen
+
+### Wie funktioniert der Wartungsmodus?
+
+Der Wartungsmodus verwendet eine veröffentlichte WordPress-Seite ohne Passwort mit dem eingerichteten Classic- oder Block-Editor. Wartung separat speichern; Aktivierung und Seitenwahl werden nie mit Presets oder der Konfigurationswiederherstellung übertragen. Aktive Bricks-, Elementor- oder Breakdance-Modi pausieren die eigene Ausgabe bis zur ausdrücklichen erneuten Aktivierung. Schnittstellen und Webhooks bleiben erreichbar. Seiten-Caches leeren oder umgehen und abgemeldet prüfen.
+
+Site Essentials ist für kurze Wartungsarbeiten an einer bestehenden Website gedacht. Die Wartungsantwort verwendet HTTP 503 (vorübergehend nicht verfügbar) mit Retry-After. Das ist kein Coming-Soon-Modus für eine Ankündigungsseite, die längerfristig öffentlich erreichbar bleiben soll. Eine öffentliche Ankündigungsseite verwendet in der Regel HTTP 200; Indexierung und Zugriff sind dabei gesondert festzulegen. Site Essentials bietet weder einen Coming-Soon-Modus noch einen Schalter für den Statuscode. Für eine Ankündigungsseite ist ein geeignetes Theme, ein Builder oder ein spezialisiertes Plugin die passende Wahl. Ein solcher Veröffentlichungsablauf gehört nicht zum Umfang dieses gezielten Wartungswerkzeugs.
+
+Der Wartungsmodus zeigt den erfassten Aktivierungszeitpunkt in der Zeitzone der Website. Bestehende Aktivierungen ohne erfassten Zeitpunkt sind ausdrücklich gekennzeichnet. Normales Speichern erhält den Zeitpunkt; Abschalten entfernt ihn, ausdrückliches Fortsetzen nach einer Anbieter-Pause beginnt einen neuen Zeitraum. Öffentliche Prüfungen zeigen ihren Zeitpunkt und unterscheiden fehlgeschlagene Abrufe von fehlenden Angaben oder nicht ausgewertetem HTML. Ihre kompakte kopierbare Zusammenfassung enthält keine fremden Inhalte oder URL-Abfrageparameter. Vor separaten Wartungs- oder öffentlichen Prüfaktionen sind ungespeicherte Konfigurationsänderungen zu speichern oder zu verwerfen.
+
+### Verändern die Editorhilfen CSS oder Formate?
+
+Nein. Formatbeispiele sind reine Erläuterungen. Die Breitensteuerung vergrößert den vorhandenen Customizer-Editor; CSS-Daten, Live-Vorschau, Entwürfe und Veröffentlichen bleiben nativ.
+
+## Falcon und Unbloater ersetzen
+
+### Kann ich Falcon oder Unbloater durch Site Essentials ersetzen?
+
+Unter Einstellungen → Site Essentials → Import und Export → Einstellungen von Falcon und Unbloater prüfen öffnen. Installierte Versionen Falcon 2.12.0 und Unbloater 1.7.0 werden auch im inaktiven Zustand erkannt. Jede Einstellung beginnt mit Aktuellen Wert beibehalten; die gewünschte Quelle ausdrücklich auswählen. Die Vorschau zeigt aktuelle Werte, beide Vorschläge, Konflikte und Wirkungsunterschiede. Aktive Funktionen ohne sichere Entsprechung stehen separat, darunter Falcons Heartbeat-Abschaltung. Andere Quellversionen und abweichende Plugin-Verzeichnisse werden nicht importiert. Kein Quellcode wird geladen und kein Quellplugin geändert oder entfernt.
+
+### Wie mache ich eine Einstellungsübernahme rückgängig?
+
+Die bestätigte Übernahme sichert die vollständige vorherige Site-Essentials-Konfiguration in der vorhandenen einzelnen Vor-Konfiguration. Diese lässt sich auf der Haupteinstellungsseite prüfen und wiederherstellen. Ein späteres Speichern ersetzt die Sicherung; für eine dauerhafte Kopie vorher exportieren. Nicht ausgewählte Einstellungen, Grenzen und Intervalle je Inhaltstyp, persönliche Ausnahmen und Inhalte bleiben erhalten. Änderungen an der Quelle oder lokalen Konfiguration seit der Vorschau erfordern eine neue Prüfung. Es gibt keine Plugin-Synchronisierung; nach Prüfung die Quellplugins selbst deaktivieren und entfernen.
+
+### Ändert eine Übernahme alle Websites in Multisite?
+
+Nein. Falcon-Einstellungen werden von der aktuellen Website eingelesen. Netzwerkweit aktives Unbloater nutzt seine Netzwerkoption; nur ein Netzwerkadministrator darf diese Quelle prüfen. Die ausgewählten Einstellungen werden ausschließlich auf die aktuelle Website angewendet. Netzwerkvorgaben bleiben unverändert. Dateieditor-Sperren werden in Multisite nicht importiert; eine durch das Netzwerk vorgegebene Login-Sprachauswahl wird nicht lokal zur Übernahme angeboten. Aktive Quellplugins können überschneidende Funktionen bis zur Deaktivierung weiterhin steuern.
+

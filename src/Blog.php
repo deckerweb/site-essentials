@@ -33,7 +33,10 @@ final class Blog {
   }
  }
  /** Refresh native post labels for the actual current site without changing other registries. @return void */
- public function sync_labels(): void { $type = get_post_type_object( 'post' ); if ( ! $type || ! $this->native_labels ) { return; } $copy = clone $type; $copy->labels = clone $this->native_labels; $type->labels = get_post_type_labels( $copy ); }
+ public function sync_labels(): void {
+  // Site creation switches context before the new site's option tables exist.
+  if ( doing_action( 'wp_initialize_site' ) ) { return; }
+  $type = get_post_type_object( 'post' ); if ( ! $type || ! $this->native_labels ) { return; } $copy = clone $type; $copy->labels = clone $this->native_labels; $type->labels = get_post_type_labels( $copy ); }
  /** Return both explicit plain-text names or retain the native labels. @return array */
  private function names(): array {
   $plural = trim( (string) Settings::get( 'post_plural' ) ); $single = trim( (string) Settings::get( 'post_singular' ) );
@@ -47,7 +50,9 @@ final class Blog {
   $names = $this->names(); if ( ! $names ) { return $labels; } $labels = clone $labels; list( $plural, $single ) = $names;
   foreach ( array( 'name', 'menu_name' ) as $key ) { $labels->$key = $plural; }
   foreach ( array( 'singular_name', 'name_admin_bar' ) as $key ) { $labels->$key = $single; }
+  /* translators: %s: the configured singular or plural post label. */
   $single_templates = array( 'add_new' => __( 'Add %s', 'site-essentials' ), 'add_new_item' => __( 'Add %s', 'site-essentials' ), 'edit_item' => __( 'Edit %s', 'site-essentials' ), 'new_item' => __( 'New: %s', 'site-essentials' ), 'view_item' => __( 'View %s', 'site-essentials' ), 'attributes' => __( '%s attributes', 'site-essentials' ), 'insert_into_item' => __( 'Insert into %s', 'site-essentials' ), 'uploaded_to_this_item' => __( 'Uploaded to %s', 'site-essentials' ), 'item_published' => __( '%s published.', 'site-essentials' ), 'item_published_privately' => __( '%s published privately.', 'site-essentials' ), 'item_reverted_to_draft' => __( '%s reverted to draft.', 'site-essentials' ), 'item_trashed' => __( '%s moved to Trash.', 'site-essentials' ), 'item_scheduled' => __( '%s scheduled.', 'site-essentials' ), 'item_updated' => __( '%s updated.', 'site-essentials' ), 'item_link' => __( '%s link', 'site-essentials' ), 'item_link_description' => __( 'A link to %s.', 'site-essentials' ), 'template_name' => __( 'Single item: %s', 'site-essentials' ) );
+  /* translators: %s: the configured singular or plural post label. */
   $plural_templates = array( 'view_items' => __( 'View %s', 'site-essentials' ), 'search_items' => __( 'Search %s', 'site-essentials' ), 'not_found' => __( 'No %s found.', 'site-essentials' ), 'not_found_in_trash' => __( 'No %s found in Trash.', 'site-essentials' ), 'all_items' => __( 'All %s', 'site-essentials' ), 'archives' => __( '%s archives', 'site-essentials' ), 'filter_items_list' => __( 'Filter %s list', 'site-essentials' ), 'filter_by_date' => __( 'Filter %s by date', 'site-essentials' ), 'items_list_navigation' => __( '%s list navigation', 'site-essentials' ), 'items_list' => __( '%s list', 'site-essentials' ) );
   foreach ( $single_templates as $key => $template ) { $labels->$key = sprintf( $template, $single ); }
   foreach ( $plural_templates as $key => $template ) { $labels->$key = sprintf( $template, $plural ); }
@@ -180,6 +185,7 @@ final class Blog {
   */
  public function messages( array $messages ): array {
   $names = $this->names(); if ( ! $names || ! isset( $messages['post'] ) ) { return $messages; }
+  /* translators: %s: the configured singular or plural post label. */
   $single = esc_html( $names[1] ); $templates = array( 1 => __( '%s updated.', 'site-essentials' ), 4 => __( '%s updated.', 'site-essentials' ), 5 => __( '%s restored to a revision.', 'site-essentials' ), 6 => __( '%s published.', 'site-essentials' ), 7 => __( '%s saved.', 'site-essentials' ), 8 => __( '%s submitted.', 'site-essentials' ), 9 => __( '%s scheduled.', 'site-essentials' ), 10 => __( '%s draft updated.', 'site-essentials' ) );
   foreach ( $templates as $key => $text ) { $messages['post'][ $key ] = sprintf( $text, $single ); } return $messages;
  }
@@ -190,6 +196,7 @@ final class Blog {
   */
  public function bulk_messages( array $messages, array $counts ): array {
   $names = $this->names(); if ( ! $names || ! isset( $messages['post'] ) ) { return $messages; }
+  /* translators: %1$s: configured plural post label; %2$d: affected post count; %3$s: translated operation result. */
   foreach ( array( 'updated', 'locked', 'deleted', 'trashed', 'untrashed' ) as $key ) { $messages['post'][ $key ] = sprintf( __( '%1$s: %2$d (%3$s).', 'site-essentials' ), esc_html( $names[0] ), (int) ( $counts[ $key ] ?? 0 ), esc_html( array( 'updated' => __( 'updated', 'site-essentials' ), 'locked' => __( 'locked', 'site-essentials' ), 'deleted' => __( 'deleted', 'site-essentials' ), 'trashed' => __( 'moved to Trash', 'site-essentials' ), 'untrashed' => __( 'restored', 'site-essentials' ) )[ $key ] ) ); } return $messages;
  }
  /** Rename the core dashboard post count without translating unrelated plugin text.

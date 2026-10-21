@@ -183,9 +183,9 @@ final class CommentsOff {
  /** Render the core post activity without querying or outputting the recent-comment section. @return void */
  public function activity(): void {
   echo '<div id="activity-widget">';
-  $future = wp_dashboard_recent_posts( array( 'max' => 5, 'status' => 'future', 'order' => 'ASC', 'title' => esc_html__( 'Publishing Soon' ), 'id' => 'future-posts' ) );
-  $recent = wp_dashboard_recent_posts( array( 'max' => 5, 'status' => 'publish', 'order' => 'DESC', 'title' => esc_html__( 'Recently Published' ), 'id' => 'published-posts' ) );
-  if ( ! $future && ! $recent ) { echo '<div class="no-activity"><p>' . esc_html__( 'No activity yet!' ) . '</p></div>'; }
+  $future = wp_dashboard_recent_posts( array( 'max' => 5, 'status' => 'future', 'order' => 'ASC', 'title' => esc_html__( 'Publishing Soon', 'default' ), 'id' => 'future-posts' ) );
+  $recent = wp_dashboard_recent_posts( array( 'max' => 5, 'status' => 'publish', 'order' => 'DESC', 'title' => esc_html__( 'Recently Published', 'default' ), 'id' => 'published-posts' ) );
+  if ( ! $future && ! $recent ) { echo '<div class="no-activity"><p>' . esc_html__( 'No activity yet!', 'default' ) . '</p></div>'; }
   echo '</div>';
  }
  /** Remove current-site toolbar links without hiding other sites' independently available comments.

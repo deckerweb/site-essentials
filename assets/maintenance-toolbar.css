@@ -1,0 +1,21 @@
+/* A site-scoped operational reminder, independent of the admin color scheme. */
+#wpadminbar #wp-admin-bar-se-maintenance > .ab-item {
+ background: #f2c078;
+ color: #4b2b0b;
+}
+#wpadminbar #wp-admin-bar-se-maintenance:hover > .ab-item,
+#wpadminbar #wp-admin-bar-se-maintenance.hover > .ab-item,
+#wpadminbar #wp-admin-bar-se-maintenance > .ab-item:focus {
+ background: #eab064;
+ color: #4b2b0b;
+}
+#wpadminbar #wp-admin-bar-se-maintenance > .ab-item:focus-visible {
+ outline: 2px solid #4b2b0b;
+ outline-offset: -3px;
+ box-shadow: inset 0 0 0 1px #fff;
+}
+@media (forced-colors: active) {
+ #wpadminbar #wp-admin-bar-se-maintenance > .ab-item {
+  border-inline: 1px solid ButtonText;
+ }
+}

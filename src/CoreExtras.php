@@ -50,7 +50,8 @@ final class CoreExtras {
   $node = $bar->get_node( 'my-account' ); if ( ! $node ) { return; }
   $name = wp_get_current_user()->display_name;
   $span = '<span class="display-name">' . $name . '</span>';
-  $native = sprintf( __( 'Howdy, %s' ), $span );
+  /* translators: %s: the current user’s display name. */
+  $native = sprintf( __( 'Howdy, %s', 'default' ), $span );
   if ( ! str_contains( $node->title, $native ) ) { return; }
   $node->title = str_replace( $native, '<span class="display-name">' . esc_html( $name ) . '</span>', $node->title );
   if ( isset( $node->meta['menu_title'] ) && $node->meta['menu_title'] === wp_strip_all_tags( $native ) ) { $node->meta['menu_title'] = wp_strip_all_tags( $name ); }

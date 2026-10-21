@@ -42,12 +42,12 @@ final class Avatars {
  /** Check the loaded provider's effective rule in the current website context.
   * Rendering registration and a valid local rule are both required. No rules
   * or assignments are rewritten; no cross-site cache or external lookup is used.
-  * @return bool Whether Leitstand currently provides local avatars on this site.
+  * @return bool Whether a supported external provider supplies local avatars on this site.
   */
- public static function leitstand(): bool {
+ public static function external_provider(): bool {
   $rules = \Deckerweb\Leitstand\NetworkRules::class;
   $avatars = \Deckerweb\Leitstand\LocalAvatars::class;
-  if ( ! is_multisite() || ! class_exists( $rules, false ) || ! class_exists( $avatars, false )
+  if ( ! is_multisite() || ! class_exists( $rules, false ) || ! class_exists( $avatars )
    || ! is_callable( array( $rules, 'effective' ) )
    || false === has_filter( 'pre_get_avatar_data', array( $avatars, 'data' ) ) ) { return false; }
   try {
@@ -55,8 +55,8 @@ final class Avatars {
    return is_array( $effective ) && 'local' === ( $effective['avatars'] ?? null );
   } catch ( \Throwable $error ) { return false; }
  }
- /** Enable this site's avatar configuration only while Leitstand is not its provider. @return bool */
- private function enabled(): bool { return (bool) Settings::get( 'local_avatars' ) && ! self::leitstand(); }
+ /** Enable this site's avatar configuration only while no supported external provider is active. @return bool */
+ private function enabled(): bool { return (bool) Settings::get( 'local_avatars' ) && ! self::external_provider(); }
  /** Track network activity occurring inside the avatar filter pipeline.
   * @param mixed $value Incoming value.
   * @return mixed

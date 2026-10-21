@@ -1,7 +1,3 @@
----
-layout: default
----
-
 # Security
 
 [Deutsch](SECURITY-de.html)

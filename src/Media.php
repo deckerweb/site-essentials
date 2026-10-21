@@ -141,7 +141,7 @@ final class Media {
  /** Protect each indexing request by native capability and a site-bound nonce. @return void */
  public function ajax_index(): void {
   if ( ! current_user_can( 'upload_files' ) || is_network_admin() || ! Settings::get( 'media_size_sort' ) ) { wp_send_json_error( null, 403 ); }
-  $nonce = $_POST['nonce'] ?? '';
+  $nonce = isset( $_POST['nonce'] ) && is_string( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : null;
   if ( ! is_string( $nonce ) || ! wp_verify_nonce( wp_unslash( $nonce ), 'se_media_index_' . get_current_blog_id() ) ) { wp_send_json_error( null, 403 ); }
   $batch = $this->batch();
   if ( $batch['failed'] ) { wp_send_json_error( null, 500 ); }

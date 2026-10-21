@@ -21,7 +21,9 @@ final class Appearance {
   foreach ( $submenu['themes.php'] ?? array() as $item ) {
    if ( ! isset( $item[2] ) || ! is_string( $item[2] ) ) { continue; }
    $target = strtok( html_entity_decode( $item[2], ENT_QUOTES, 'UTF-8' ), '?' );
-   if ( ( 'site-editor.php' === $target && ( $this->bricks() || Settings::get( 'template_editor' ) ) ) ||
+   if ( ( 'font-library.php' === $target && Settings::get( 'hide_fonts_admin' ) ) ||
+        ( 'site-editor.php' === $target && str_contains( $item[2], '/pattern' ) && Settings::get( 'hide_patterns_admin' ) ) ||
+        ( 'site-editor.php' === $target && ( $this->bricks() || Settings::get( 'template_editor' ) ) ) ||
         ( 'nav-menus.php' === $target && false === Access::decision( 'menus' ) ) ||
         ( 'widgets.php' === $target && false === Access::decision( 'widgets' ) ) ||
         ( 'customize.php' === $target && false === Access::decision( 'customizer' ) ) ) { remove_submenu_page( 'themes.php', $item[2] ); }

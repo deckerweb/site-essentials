@@ -142,6 +142,7 @@ final class WebsiteChecks {
  }
  /** Render a review card inside the main settings layout using detached form controls. @return void */
  public function panel(): void {
+  if ( is_network_admin() || ! current_user_can( 'manage_options' ) ) { return; }
   $status = $this->status();
   echo '<div class="se-card"><h3>' . esc_html__( 'Review website checks', 'site-essentials' ) . '</h3><p>' . esc_html__( 'These checks verify visibility, publication and recognizable content. They do not assess legal text quality. Page assignments and confirmations stay on this site and are not exported.', 'site-essentials' ) . '</p>';
   echo '<p>' . esc_html__( 'Indexing decision', 'site-essentials' ) . ': ' . esc_html( 'confirmed' === $status['indexing'] ? __( 'Intentionally discouraged', 'site-essentials' ) : ( 'allowed' === $status['indexing'] ? __( 'Indexing allowed', 'site-essentials' ) : __( 'Decision needed', 'site-essentials' ) ) ) . '</p>';
@@ -156,6 +157,29 @@ final class WebsiteChecks {
    echo '</p>';
   }
   echo '<p><a href="' . esc_url( admin_url( 'options-reading.php' ) ) . '">' . esc_html__( 'Open WordPress reading settings', 'site-essentials' ) . '</a> · <a href="' . esc_url( admin_url( 'options-privacy.php' ) ) . '">' . esc_html__( 'Assign the native WordPress privacy page', 'site-essentials' ) . '</a> · <a href="' . esc_url( admin_url( 'post-new.php?post_type=page' ) ) . '">' . esc_html__( 'Create a page', 'site-essentials' ) . '</a></p><p><button type="submit" form="se-check-reset-form" class="button">' . esc_html__( 'Reset website check confirmations', 'site-essentials' ) . '</button></p><p id="se-check-draft-message" role="alert" tabindex="-1"></p></div>';
+  PublicChecks::panel();
+  $this->visitor_tests();
+ }
+ /** Offer ordinary public requests without changing frontend routing or stored data.
+  * Random test values make accidental matches unlikely; existing site behavior remains authoritative.
+  * @return void
+  */
+ private function visitor_tests(): void {
+  $token = 'site-essentials-test-' . wp_generate_uuid4();
+  $missing = add_query_arg( 'name', $token, home_url( '/' ) );
+  $search = add_query_arg( 's', $token, home_url( '/' ) );
+  echo '<div class="se-card"><h3>' . esc_html__( 'Test visitor guidance', 'site-essentials' ) . '</h3><p>' . esc_html__( 'Open a deliberately unusual address or search term in a new tab. These are ordinary website requests: no content, settings or templates are changed. A random value makes an existing match unlikely, but results depend on the website.', 'site-essentials' ) . '</p><p class="se-control-row">';
+  echo '<a class="button" target="_blank" rel="noopener noreferrer" href="' . esc_url( $missing ) . '">' . esc_html__( 'Test 404 page (new tab)', 'site-essentials' ) . '</a> ';
+  echo '<a class="button" target="_blank" rel="noopener noreferrer" href="' . esc_url( $search ) . '">' . esc_html__( 'Test search without results (new tab)', 'site-essentials' ) . '</a></p>';
+  echo '<p>' . esc_html__( 'Check the message, navigation and a useful next step. Also test while signed out; maintenance, redirects, disabled search and caches can affect the result. These links do not automatically assess the HTTP status or template quality.', 'site-essentials' ) . '</p>';
+  if ( 'bricks' === strtolower( (string) get_template() ) ) {
+   echo '<p>' . esc_html__( 'With Bricks, review the Error Page and Search Results templates and their conditions in the builder.', 'site-essentials' ) . '</p>';
+  } elseif ( wp_is_block_theme() ) {
+   echo '<p>' . esc_html__( 'With a block theme, review the 404 and Search Results templates in the Site Editor, if your permissions and website settings allow access.', 'site-essentials' ) . '</p>';
+  } else {
+   echo '<p>' . esc_html__( 'With a classic theme, the theme or an active builder controls these views. An individual 404 or search template is not required for a working fallback.', 'site-essentials' ) . '</p>';
+  }
+  echo '</div>';
  }
  /** Output detached review forms only on the authorized local settings page. @return void */
  public function forms(): void {

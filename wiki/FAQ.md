@@ -1,6 +1,6 @@
 # FAQ by topic
 
-[Deutsch](FAQ-de)
+[Deutsch](FAQ-de) · [Home](Home)
 
 ## Getting started and configuration
 
@@ -156,10 +156,38 @@ Only selected safe values for the current web request: PHP version, memory targe
 
 Yes. Local activation, network activation, independent site settings and a network login-language policy are supported.
 
-### How does it work with Leitstand?
+### How are overlapping settings handled?
 
-Site Essentials never reopens comments blocked by earlier filters and preserves stricter incoming revision limits. Leitstand network policies are not rewritten. When the loaded Leitstand avatar renderer effectively provides local avatars for the current site, Site Essentials pauses its own rendering, avatar HTTP interception, profile controls and uploads and hides its avatar settings section. Its saved choice and image assignments remain stored. Allowed website exceptions are respected; a mandatory network policy takes priority. When Leitstand no longer provides the function, the saved Site Essentials choice becomes available again. A stale avatar submission cannot change assignments while Leitstand is the provider.
+Site Essentials preserves comment restrictions from earlier filters and stricter incoming revision limits. It does not rewrite other providers’ network policies. If a supported provider already supplies local avatars, Site Essentials pauses its own avatar output, profile controls and uploads. Saved settings and image assignments remain available when that provider no longer supplies the function.
 
 ### What happens when I uninstall it?
 
 Own settings, named local presets, previous configuration and network policy remain stored. Runtime changes stop when the plugin is inactive.
+
+## Maintenance and editor helpers
+
+### How does maintenance work?
+
+Maintenance uses a published, non-password-protected WordPress page with its configured Classic or Block Editor. Save maintenance separately; activation and page selection never travel with presets or configuration recovery. Active Bricks, Elementor or Breakdance modes pause the own response until explicitly enabled again. APIs and webhooks remain accessible. Clear or bypass full-page caches and verify while signed out.
+
+Site Essentials is designed for brief maintenance on an existing website. Its maintenance response uses HTTP 503 (temporarily unavailable) with Retry-After. This is not a Coming Soon mode for a launch page that should remain publicly available over a longer period. A public launch page normally uses HTTP 200; its indexing and access settings need separate decisions. Site Essentials does not offer a Coming Soon mode or a status-code switch. For a launch page, use a suitable theme, builder or dedicated plugin. A launch-page workflow is outside the scope of this focused maintenance tool.
+
+Maintenance shows its activation time when recorded, using the website time zone. Existing activations without a recorded time are explicitly marked. A normal save retains the time; disabling clears it and explicitly resuming after a provider pause starts a new period. Public checks show when they ran and distinguish failed requests from missing declarations or uninspected HTML. Their compact copyable summary omits remote bodies and URL query strings. Save or discard unsaved configuration changes before separate maintenance or public-check actions.
+
+### Do editor helpers change my CSS or formats?
+
+No. Format examples are read-only explanations. The width control resizes the existing Customizer editor; its CSS data, live preview, drafts and publishing remain native.
+
+## Replacing Falcon and Unbloater
+
+### Can I replace Falcon or Unbloater with Site Essentials?
+
+Open Settings → Site Essentials → Import and export → Review Falcon and Unbloater settings. Installed Falcon 2.12.0 and Unbloater 1.7.0 are detected even when inactive. Every setting starts with Keep current; choose a source explicitly. The preview shows current values, both proposals, conflicts and behavior differences. Active functions without a safe match are listed separately, including Falcon’s Heartbeat shutdown. Other source versions and nonstandard plugin directories are not imported. No source code is loaded and no source plugin is changed or removed.
+
+### How can I undo a settings takeover?
+
+The confirmed takeover retains the full preceding Site Essentials configuration in its existing single previous-configuration snapshot. Review and restore that snapshot on the main settings page. A later settings save replaces the snapshot; export first for a lasting copy. Unselected settings, per-content-type overrides, personal exceptions and content are retained. Source or local changes since the preview require a new review. This does not synchronize plugins; after verification, deactivate and remove the source plugins yourself.
+
+### Does a takeover change every site in Multisite?
+
+No. Falcon settings are read from the current site. Network-active Unbloater uses its network option; only a network administrator can review that source, and selected settings are applied solely to the current website. Network policy is unchanged. File-editor restrictions are not imported into Multisite, and a network-locked login language setting is not offered for local takeover. Existing source plugins can continue controlling overlapping behavior until deactivated.

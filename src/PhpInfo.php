@@ -32,6 +32,7 @@ final class PhpInfo {
  public function footer( string $text ): string {
   if ( is_network_admin() || ! current_user_can( 'manage_options' ) || ! Settings::get( 'php_footer' ) ) { return $text; }
   $s = $this->summary();
+  /* translators: %1$s: PHP version; %2$s: PHP memory limit; %3$s: WordPress memory limit; %4$s: WordPress admin memory limit. */
   return $text . ' · <a href="' . esc_url( admin_url( 'tools.php?page=site-essentials-php' ) ) . '">' . esc_html( sprintf( __( 'PHP %1$s · PHP limit %2$s · WP %3$s / admin %4$s', 'site-essentials' ), $s['PHP'], $s['memory_limit'], $s['WP_MEMORY_LIMIT'], $s['WP_MAX_MEMORY_LIMIT'] ) ) . '</a>';
  }
  /** Collect only safe diagnostic values, with no paths, connection credentials or full environment. @return array */

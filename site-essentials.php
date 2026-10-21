@@ -3,8 +3,8 @@
  * Plugin Name: Site Essentials
  * Plugin URI: https://github.com/deckerweb/site-essentials
  * Description: Configure WordPress core behavior with focused controls, reusable presets and site-specific settings.
- * Version: 0.9.0
- * Requires at least: 7.1.2
+ * Version: 1.0.0
+ * Requires at least: 7.1
  * Requires PHP: 8.2
  * Author: David Decker – DECKERWEB
  * Author URI: https://github.com/deckerweb
@@ -20,9 +20,9 @@
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 define( 'SITE_ESSENTIALS_FILE', __FILE__ );
-define( 'SITE_ESSENTIALS_VERSION', '0.9.0' );
-foreach ( array( 'Schema', 'Settings', 'Presets', 'Collections', 'Runtime', 'Media', 'AlternativeTargets', 'MenuInterface', 'Access', 'Appearance', 'CoreExtras', 'Blog', 'PhpInfo', 'WebsiteChecks', 'EditorEmbeds', 'SiteIdentity', 'CommentsOff', 'Avatars', 'Reports', 'Integrations', 'Updates', 'Admin' ) as $class ) {
- require_once __DIR__ . '/src/' . $class . '.php';
+define( 'SITE_ESSENTIALS_VERSION', '1.0.0' );
+foreach ( array( 'Schema', 'Settings', 'Presets', 'Collections', 'Runtime', 'Media', 'AlternativeTargets', 'MenuInterface', 'Access', 'Appearance', 'CoreExtras', 'Comfort', 'Maintenance', 'Blog', 'PhpInfo', 'WebsiteChecks', 'PublicChecks', 'EditorEmbeds', 'SiteIdentity', 'CommentsOff', 'Avatars', 'Reports', 'Integrations', 'Updates', 'Admin' ) as $site_essentials_class ) {
+ require_once __DIR__ . '/src/' . $site_essentials_class . '.php';
 }
 require_once __DIR__ . '/includes/deckerweb-plugin-library/bootstrap.php';
 deckerweb_library_register_v2( __FILE__, array(), __DIR__ . '/includes/deckerweb-plugin-library' );
@@ -38,9 +38,12 @@ add_action( 'plugins_loaded', static function (): void {
  ( new \Deckerweb\SiteEssentials\Access() )->boot();
  ( new \Deckerweb\SiteEssentials\Appearance() )->boot();
  ( new \Deckerweb\SiteEssentials\CoreExtras() )->boot();
+ ( new \Deckerweb\SiteEssentials\Comfort() )->boot();
+ ( new \Deckerweb\SiteEssentials\Maintenance() )->boot();
  ( new \Deckerweb\SiteEssentials\Blog() )->boot();
  ( new \Deckerweb\SiteEssentials\PhpInfo() )->boot();
  ( new \Deckerweb\SiteEssentials\WebsiteChecks() )->boot();
+ ( new \Deckerweb\SiteEssentials\PublicChecks() )->boot();
  ( new \Deckerweb\SiteEssentials\EditorEmbeds() )->boot();
  ( new \Deckerweb\SiteEssentials\SiteIdentity() )->boot();
  ( new \Deckerweb\SiteEssentials\CommentsOff() )->boot();

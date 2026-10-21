@@ -160,7 +160,7 @@ final class AlternativeTargets {
  }
  /** Validate native meta-box writes, excluding autosaves/revisions and unauthorized requests. @param int $id Content ID. @param \WP_Post $post Content. @return void */
  public function save_box( int $id, \WP_Post $post ): void {
-  $nonce = $_POST['se_target_nonce'] ?? null; $mode = $_POST['se_target_mode'] ?? null;
+  $nonce = isset( $_POST['se_target_nonce'] ) && is_string( $_POST['se_target_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['se_target_nonce'] ) ) : null; $mode = $_POST['se_target_mode'] ?? null;
   if ( ! self::enabled( $post->post_type ) || wp_is_post_revision( $id ) || wp_is_post_autosave( $id ) || ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ! current_user_can( 'edit_post', $id ) || ! is_string( $nonce ) || ! wp_verify_nonce( $nonce, 'se_target_' . get_current_blog_id() . '_' . $id ) || ! in_array( $mode, array( 'normal', 'custom' ), true ) ) { return; }
   $revision = $_POST['se_target_revision'] ?? null;
   if ( ! is_string( $revision ) || ! hash_equals( self::revision( $id ), $revision ) ) { wp_die( esc_html__( 'The destination changed since this editor was opened. Reload before saving it.', 'site-essentials' ), '', array( 'response' => 409, 'back_link' => true ) ); }
@@ -205,6 +205,7 @@ final class AlternativeTargets {
   if ( self::provider() ) { echo '<div class="notice notice-warning inline"><p>' . esc_html__( 'Page Links To is active. Site Essentials link processing and editing are paused. Copies can be prepared here; deactivate Page Links To yourself when switching providers.', 'site-essentials' ) . '</p></div>'; }
   $done = isset( $_GET['copied'] ) && is_scalar( $_GET['copied'] ) ? absint( $_GET['copied'] ) : 0;
   $skipped = isset( $_GET['skipped'] ) && is_scalar( $_GET['skipped'] ) ? absint( $_GET['skipped'] ) : 0;
+  /* translators: %1$d: copied destinations; %2$d: skipped or changed destinations. */
   if ( isset( $_GET['copied'] ) || isset( $_GET['skipped'] ) ) { echo '<div class="notice notice-info inline"><p>' . esc_html( sprintf( __( 'Copied: %1$d. Skipped or changed since preview: %2$d. Review the current list before continuing.', 'site-essentials' ), $done, $skipped ) ) . '</p></div>'; }
   $types = self::types();
   if ( ! $types ) { echo '<p>' . esc_html__( 'Select content types in Site Essentials and save before reviewing destinations.', 'site-essentials' ) . '</p></div>'; return; }
@@ -215,8 +216,10 @@ final class AlternativeTargets {
   $visible = 0;
   foreach ( $q->posts as $post ) {
    if ( ! current_user_can( 'edit_post', $post->ID ) ) { continue; }
+   /* translators: %1$d: copied destinations; %2$d: skipped or changed destinations. */
    $visible++; $label = trim( $post->post_title ) !== '' ? $post->post_title : sprintf( __( 'Untitled content #%d', 'site-essentials' ), $post->ID );
    $r = self::source( $post->ID ); $valid = ! is_wp_error( self::url( $r['url'] ) ) && $this->safe_chain( $post->ID, $r['url'] ); $exists = metadata_exists( 'post', $post->ID, self::META );
+   /* translators: %1$d: copied destinations; %2$d: skipped or changed destinations. */
    echo '<tr><td>'; if ( $valid && ! $exists ) { echo '<input type="checkbox" aria-label="' . esc_attr( sprintf( __( 'Select %s', 'site-essentials' ), $label ) ) . '" name="selected[' . esc_attr( $post->ID ) . ']" value="' . esc_attr( self::fingerprint( $post->ID ) ) . '">'; }
    echo '</td><td>' . esc_html( $label ) . '</td><td><code>' . esc_html( is_string( $r['url'] ) ? $r['url'] : '' ) . '</code>' . ( $r['new_tab'] ? '<br>' . esc_html__( 'New tab', 'site-essentials' ) : '' ) . '</td><td>' . esc_html( $exists ? __( 'Already has a destination', 'site-essentials' ) : ( $valid ? __( 'Ready to copy', 'site-essentials' ) : __( 'Invalid destination or local loop', 'site-essentials' ) ) ) . '</td></tr>';
   }
@@ -237,7 +240,7 @@ final class AlternativeTargets {
  /** Execute only bounded, nonce-bound, site-specific selected copies. @return void */
  public function import(): void {
   if ( 'POST' !== ( $_SERVER['REQUEST_METHOD'] ?? '' ) || ! current_user_can( 'manage_options' ) ) { wp_die( esc_html__( 'Access denied.', 'site-essentials' ), '', array( 'response' => 403 ) ); }
-  $nonce = $_POST['_wpnonce'] ?? null;
+  $nonce = isset( $_POST['_wpnonce'] ) && is_string( $_POST['_wpnonce'] ) ? sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ) : null;
   if ( ! is_string( $nonce ) || ! wp_verify_nonce( $nonce, 'se_targets_import_' . get_current_blog_id() ) ) { wp_die( esc_html__( 'The request could not be verified. Reload the page and try again.', 'site-essentials' ), '', array( 'response' => 403 ) ); }
   $selected = $_POST['selected'] ?? array();
   if ( ! is_array( $selected ) || count( $selected ) > 25 ) { wp_die( esc_html__( 'Invalid selection.', 'site-essentials' ), '', array( 'response' => 400 ) ); }

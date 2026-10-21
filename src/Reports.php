@@ -8,7 +8,7 @@ final class Reports {
  public static function rows(): array {
   $rows = array(); $effective = Settings::effective();
   foreach ( Schema::fields() as $key => $field ) {
-   if ( 'local_avatars' === $key && Avatars::leitstand() ) { continue; }
+   if ( in_array( $key, array( 'local_avatars', 'avatar_column' ), true ) && Avatars::external_provider() ) { continue; }
    $network = 'login_language' === $key && Settings::language_locked();
    if ( $effective[ $key ] === $field['default'] && ! $network ) { continue; }
    $rows[] = array( 'key' => $key, 'label' => $field['label'], 'group' => Schema::groups()[ $field['group'] ], 'value' => in_array( $key, array( 'footer_text', 'post_plural', 'post_singular' ), true ) ? __( 'Custom text omitted', 'site-essentials' ) : $effective[ $key ], 'scope' => $network ? __( 'Network policy', 'site-essentials' ) : __( 'This site', 'site-essentials' ), 'applicable' => ! ( 'file_editors' === $key && is_multisite() ) );
@@ -19,7 +19,7 @@ final class Reports {
  public static function diagnostic(): array {
   $rules = array();
   foreach ( self::rows() as $row ) { $rules[] = array( 'setting' => $row['key'], 'value' => $row['value'], 'scope' => $row['scope'], 'applicable' => $row['applicable'], 'verification' => 'configuration-only' ); }
-  return array( 'avatar_provider' => Avatars::leitstand() ? 'leitstand' : ( Settings::get( 'local_avatars' ) ? 'site-essentials' : 'wordpress' ), 'plugin' => 'site-essentials', 'version' => SITE_ESSENTIALS_VERSION, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'scope' => is_multisite() ? 'multisite-current-site' : 'single-site', 'network_active' => Settings::network_active(), 'verification' => 'No runtime or compatibility tests performed by this report.', 'rules' => $rules );
+  return array( 'avatar_provider' => Avatars::external_provider() ? 'external-provider' : ( Settings::get( 'local_avatars' ) ? 'site-essentials' : 'wordpress' ), 'plugin' => 'site-essentials', 'version' => SITE_ESSENTIALS_VERSION, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'scope' => is_multisite() ? 'multisite-current-site' : 'single-site', 'network_active' => Settings::network_active(), 'verification' => 'No runtime or compatibility tests performed by this report.', 'rules' => $rules );
  }
  /** Render a compact, escaped read-only handover table for existing administrators. @return void */
  public static function handover(): void {

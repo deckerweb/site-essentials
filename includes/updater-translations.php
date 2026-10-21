@@ -1,6 +1,11 @@
 <?php
-/** Translate shared updater messages through the Site Essentials host catalog. */
+/** Copy into the host adapter and replace the site-essentials textdomain with its literal domain. */
 defined( 'ABSPATH' ) || exit;
+/**
+ * Resolve an updater source string in the host textdomain.
+ * @param string $message English updater message.
+ * @return string Translated host message, or original source text.
+ */
 return static function ( string $message ): string {
     // Literal calls let the host's normal translation extractor collect every source string.
     switch ( $message ) {
@@ -26,6 +31,20 @@ return static function ( string $message ): string {
             return __( 'Could not prepare the GitHub release package.', 'site-essentials' );
         case 'See the release on GitHub.':
             return __( 'See the release on GitHub.', 'site-essentials' );
+        case 'Git Updater is active. If a deckerweb installation or update fails, temporarily deactivate Git Updater and retry. Reactivate it afterwards if other plugins or themes need it. Only leave it disabled when those extensions have another reliable update provider.':
+            return __( 'Git Updater is active. If a deckerweb installation or update fails, temporarily deactivate Git Updater and retry. Reactivate it afterwards if other plugins or themes need it. Only leave it disabled when those extensions have another reliable update provider.', 'site-essentials' );
+        case 'Manage installed plugins':
+            return __( 'Manage installed plugins', 'site-essentials' );
+        case 'Dismiss this notice':
+            return __( 'Dismiss this notice', 'site-essentials' );
+        case 'Permission denied.':
+            return __( 'Permission denied.', 'site-essentials' );
+        case 'Public catalog callbacks require both providers and cannot be used in private mode.':
+            return __( 'Public catalog callbacks require both providers and cannot be used in private mode.', 'site-essentials' );
+        case 'The approved release could not be verified.':
+            return __( 'The approved release could not be verified.', 'site-essentials' );
+        case 'The approved release changed. Refresh updates first.':
+            return __( 'The approved release changed. Refresh updates first.', 'site-essentials' );
         default:
             return $message;
     }

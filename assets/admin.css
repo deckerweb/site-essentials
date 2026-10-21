@@ -40,3 +40,31 @@
 .se-control-row{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-block:12px}.se-control-row>*{min-width:0;max-width:100%}.se-control-row>label{line-height:1.5}.se-control-row input,.se-control-row select,.se-control-row button[form]{margin-block:0}.se-control-row input:not([type=checkbox]){max-width:220px}@media(max-width:782px){.se-control-row>label{flex-basis:100%}.se-control-row input:not([type=checkbox]),.se-control-row select{max-width:100%}}
 
 .se-legacy-setting{display:none!important}.se-access-inactive{display:none!important}.se-access-personal{border-top:1px solid #dcdcde;margin-top:18px;padding-top:18px}.se-access-personal[hidden]{display:none}.se-access-picker{margin-top:16px}.se-access-picker>label{display:block;font-weight:600;margin-bottom:8px}.se-access-picker .se-access-search{width:260px}.se-access-status:empty{display:none}.se-access-selected:empty{display:none}
+
+/* On-demand source takeover uses the same cards without a settings draft. */
+.se-takeover { max-width: 1120px; }
+.se-takeover .se-card > label { display: block; margin-bottom: 8px; font-weight: 600; }
+.se-takeover-choice { width: 100%; max-width: 560px; box-sizing: border-box; }
+.se-takeover-conflict { border-left: 3px solid #996800; padding-inline-start: 12px; }
+.se-takeover code, .se-takeover small { overflow-wrap: anywhere; }
+
+/* Navigation groups remain headings, never selectable tabs. */
+.se-nav .se-nav-heading{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#566a74;margin:0 0 12px;padding:0 10px;line-height:1.5}
+.se-nav .se-nav-divider{border-top:1px solid #d6dcdf;margin-top:20px;padding-top:18px}
+.se-dirty-dot{display:none;width:7px;height:7px;border-radius:50%;background:currentColor;margin-inline-end:8px;vertical-align:middle}
+#se-settings[data-dirty="true"] .se-dirty-dot{display:inline-block}
+.se-maintenance-fields{display:grid;gap:14px}.se-maintenance-fields label{display:grid;gap:8px}.se-maintenance-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.se-dialog[hidden],.se-dialog:not([open]){display:none!important}
+
+.se-public-facts { white-space: pre-wrap; overflow-wrap: anywhere; max-height: 24rem; overflow: auto; padding: 12px; background: #f6f7f7; }
+
+.se-public-url { overflow-wrap: anywhere; }
+
+/* Shared spacing for the operational maintenance controls. */
+#se-maintenance .se-card > details { margin-block: 20px; }
+#se-maintenance .se-maintenance-fields { margin-block: 24px; gap: 16px; }
+#se-maintenance .se-maintenance-fields > label { margin: 0; }
+#se-maintenance .se-maintenance-fields > select { margin: 0; width: 100%; max-width: 100%; }
+#se-maintenance .se-maintenance-fields > p { margin: 0; }
+#se-maintenance .se-maintenance-actions { margin-top: 8px; gap: 12px; }
+#se-maintenance .se-maintenance-actions .button { margin: 0; }

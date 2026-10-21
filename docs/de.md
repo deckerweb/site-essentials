@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Site Essentials
 ---
 
 # Site Essentials
@@ -10,9 +11,9 @@ layout: default
 
 ## Kurzvorstellung
 
-Konfiguriert WordPress-Core-Verhalten mit gezielten optionalen Einstellungen. Presets und Importe vor dem Speichern prüfen; jede Website behält ihre eigene Konfiguration.
+Dein WordPress. Deine Einstellungen. Site Essentials bündelt gezielte Einstellungen und praktische Werkzeuge für eine passend eingerichtete WordPress-Website. Vereinfache die Verwaltung, steuere WordPress-Funktionen und übertrage bewährte Konfigurationen auf weitere Websites. Entwickelt für die tägliche Betreuung und die Übergabe an Kunden, mit Unterstützung für Einzelinstallationen und einzelne Websites einer Multisite.
 
-**0.9.0 · WordPress 7.1.2+ · PHP 8.2+**
+**1.0.0 · WordPress 7.1+ · PHP 8.2+**
 
 [Dokumentation](https://deckerweb.github.io/site-essentials/de.html) · [Fragen nach Themen](FAQ-de.html)
 
@@ -20,13 +21,15 @@ Konfiguriert WordPress-Core-Verhalten mit gezielten optionalen Einstellungen. Pr
 
 - [Auf einen Blick](#auf-einen-blick)
 - [Installation](#installation)
-- [Core-Einstellungen](#core-einstellungen)
+- [Feature-Highlights](#feature-highlights)
+- [WordPress-Funktionen](#wordpress-funktionen)
 - [Konfiguration](#konfiguration)
 - [Verhalten und Grenzen](#verhalten-und-grenzen)
 - [Multisite](#multisite)
 - [Vorkonfigurierte Installation](#vorkonfigurierte-installation)
 - [Gespeicherte Daten](#gespeicherte-daten)
 - [Komponenten und Verbindungen](#komponenten-und-verbindungen)
+- [Screenshots](#screenshots)
 - [FAQ](#faq)
 - [Änderungsverlauf](#änderungsverlauf)
 - [Projekt](#projekt)
@@ -49,7 +52,46 @@ Konfiguriert WordPress-Core-Verhalten mit gezielten optionalen Einstellungen. Pr
 
 ZIP unter Plugins → Installieren → Plugin hochladen installieren und aktivieren. Einstellungen → Site Essentials öffnen. Preset wählen, Änderungen prüfen und alle Einstellungen speichern. Standardmäßig ist keine Bereinigung aktiviert.
 
-## Core-Einstellungen
+## Feature-Highlights
+
+### Dein WordPress. Deine Einstellungen.
+
+Richte WordPress so ein, wie du es für deine Website brauchst. Verständliche Optionen und vorbereitete Presets erleichtern dir die Konfiguration. Du entscheidest, welche Einstellungen gelten und welche Funktionen aktiv sind. Prüfe ein Preset vor dem Anwenden, speichere deine Auswahl und verwende bewährte Konfigurationen über Import und Export erneut.
+
+### Bewährte Einstellungen mitnehmen.
+
+Du nutzt bereits Unbloater, Falcon oder beide zusammen? Die einmalige geführte Übernahme zeigt passende Einstellungen und macht Konflikte sichtbar, bevor du Änderungen bestätigst. Die Konfigurationswiederherstellung bleibt verfügbar, bis ein späteres Speichern die vorherige Sicherung ersetzt. Die bisherigen Plugins deaktivierst und entfernst du selbst. Die geführte Einstellungsübernahme gilt ausdrücklich für Falcon und Unbloater.
+
+### Eine Verwaltung, mit der Kunden arbeiten können.
+
+Blende selten benötigte Bereiche aus und mache wichtige Einstellungen verständlicher. Steuere den Zugang zu Menüs, Widgets und Customizer nach Benutzerrolle, mit lokalen Ausnahmen für einzelne Benutzer. Diese persönlichen Ausnahmen bleiben auf der Website und sind von Exporten ausgeschlossen.
+
+### Wartung mit deiner eigenen WordPress-Seite.
+
+Gestalte deine Wartungsseite im eingerichteten Block- oder Classic Editor. Besucher erhalten die Wartungsseite mit HTTP 503, Administratoren behalten Zugriff. Prüfe die Seite vor der Aktivierung in der Vorschau; ein orangefarbener Toolbar-Hinweis erinnert Administratoren an den aktiven Modus. Aktive Wartungsmodi von Bricks, Elementor und Breakdance haben Vorrang. Seiten-Caches müssen gegebenenfalls geleert oder umgangen werden.
+
+### Lokale Avatare statt externer Gravatar-Aufrufe.
+
+Verwende eigene Benutzerbilder aus der Mediathek. Das aktivierte lokale Avatar-Modul unterbindet Gravatar-Aufrufe für die Avatar-Ausgabe. Optional erscheinen die Bilder in der Benutzerübersicht. Stellt ein unterstützter Anbieter bereits lokale Avatare bereit, blendet Site Essentials sein eigenes Avatar-Modul aus und pausiert es.
+
+### Wichtige Website-Einstellungen im Blick behalten.
+
+Erhalte als Administrator einen Hinweis bei gesperrter Suchmaschinenindexierung und bestätige eine bewusste Entscheidung. Prüfe außerdem auf fehlende, unveröffentlichte oder erkennbar leere Datenschutz- und Impressumsseiten. Diese Prüfungen bewerten weder die Rechtskonformität noch die Qualität rechtlicher Texte.
+
+### Mehrere Aufgaben. Ein gemeinsamer Platz.
+
+Site Essentials kann – abhängig von den benötigten Funktionen – zusätzliche Einzelplugins ersetzen:
+
+| Aufgabe | In Site Essentials |
+| --- | --- |
+| Disable Comments oder ähnliche Plugins | Kommentare vollständig deaktivieren oder gezielt einschränken |
+| One User Avatar oder ähnliche Plugins | Lokale Benutzerbilder verwenden und Gravatar-Aufrufe unterbinden |
+| Page Links To | Alternative Beitragsziele festlegen; vorhandene Page-Links-To-Ziele kontrolliert übernehmen |
+| Einfache Maintenance-Mode-Plugins | Eine eigene WordPress-Seite als Wartungsseite verwenden |
+
+Das verspricht keine vollständige Funktionsgleichheit. Die geführte Einstellungsübernahme gilt ausdrücklich für Falcon und Unbloater. Die Übernahme von Page-Links-To-Zielen ist davon getrennt; Daten anderer Plugins werden nicht automatisch migriert.
+
+## WordPress-Funktionen
 
 - Sprachauswahl beim Login, Administrator-E-Mail-Abfrage und optionaler eigener Login-Logo-Link/-Text.
 - Klassischer Editor nach Inhaltstyp, klassische Widget-Oberfläche und Hinweis bei vorhandenen Block-Inhalten.
@@ -64,7 +106,7 @@ ZIP unter Plugins → Installieren → Plugin hochladen installieren und aktivie
 - Kommentare nach Inhaltstyp, optionales Ausblenden vorhandener Frontend-Kommentare, bedarfsgerechtes Antwortscript und Self-Pingbacks.
 - Emoji-Assets, jQuery-Migrate-Entfernung für öffentliche Besucher und XML-RPC-Sperre mit HTTP 403.
 - Heartbeat-Intervalle nach Bereich und Inhaltstyp, Revisionsgrenzen und ausgewählte Mitteilungen.
-- Ein Navigationsbefehl zu Berichten in der nativen Befehlspalette; datensparsame Site-Health-Informationen für Administratoren.
+- Vier Navigationsbefehle für Einstellungen, Berichte, Website-Prüfungen und Wartung in der nativen Befehlspalette; Website-Zustandsinformationen für Administratoren einschließlich Wartungsstatus und bekannter übersteuerter Regeln.
 - Getrennte REST- und oEmbed-Verweise; optionaler Berechtigungsschutz der Core-Dateieditoren auf Single-Site.
 - Datensparsame Diagnose auf Abruf, druckbare Leseansicht zur Übergabe und getrennte lokale/Netzwerk-Bereinigung.
 - Dokumentierte Presets enthalten eingegebene Namen und Notizen sowie eine neutrale Exportkennung. Keine privaten Daten eingeben.
@@ -82,10 +124,16 @@ ZIP unter Plugins → Installieren → Plugin hochladen installieren und aktivie
 - Optionale alternative Beitragsziele für ausgewählte öffentliche Inhaltstypen; HTTP(S)- und interne Pfad-Ziele, reversible HTTP-302-Weiterleitungen und erhaltene Editor-/Vorschauadressen.
 - Paginierte Page-Links-To-Vorschau nur für Administratoren mit ausdrücklicher Auswahl; Originaldaten erhalten, belegte, veraltete, unberechtigte, unsichere oder zyklische Ziele überspringen.
 - Optionale feste Website-Vorgaben für native Menüfelder und Bricks-Vorlagen/Taxonomien aus Navigationsangeboten entfernen; persönliche Ansichtsoptionen und vorhandene Linkwerte erhalten.
+- Einmalige Einstellungsübernahme von Falcon und Unbloater mit ausdrücklicher Quellenauswahl, Konfliktprüfung und Konfigurationswiederherstellung.
+- Optionaler Wartungsmodus je Website mit normaler WordPress-Seite, Administrator-Vorschau, HTTP 503 und Cache-Hinweisen.
+- Optionale Spalten für lokale Avatare und Benutzer-IDs, Datums-/Zeitbeispiele und ein breiterer CSS-Editor im Customizer.
+- Klarere Navigationsgruppen und Optionstexte, Änderungspunkt im Speichern-Button und getrennte Menüoptionen für Blockvorlagen und Schriften.
+- Testlinks für Administratoren zu fehlenden Seiten und Suchen ohne Treffer, mit Hinweisen zum jeweiligen Theme.
+- Öffentliche Links zu robots.txt, Sitemap und Feeds sowie eine ausdrücklich gestartete anonyme Prüfung der Startseitenantwort.
 
 ## Konfiguration
 
-Presets und Importe verändern den Entwurf, nicht die Website. Erst Alle Einstellungen speichern wendet die Konfiguration an. Export lädt gespeicherte lokale Einstellungen herunter, keine ungespeicherten Änderungen. Der WordPress-Standard steht als Preset zur Prüfung bereit. Systemverhalten bleibt ohne ausdrückliche Einstellung unverändert.
+Presets und Konfigurationsdatei-Importe verändern den Entwurf, nicht die Website. Erst Alle Einstellungen speichern wendet die Konfiguration an. Export lädt gespeicherte lokale Einstellungen herunter, keine ungespeicherten Änderungen. Der WordPress-Standard steht als Preset zur Prüfung bereit. Systemverhalten bleibt ohne ausdrückliche Einstellung unverändert. Die gesonderte Falcon-/Unbloater-Übernahme speichert ausdrücklich ausgewählte Einstellungen nach Bestätigung.
 
 ## Verhalten und Grenzen
 
@@ -101,11 +149,31 @@ Für eine bewusst vorkonfigurierte Installation startup-preset.json vorab auf {"
 
 ## Gespeicherte Daten
 
-Lokale Optionen: site_essentials_settings, site_essentials_previous und site_essentials_presets. Benutzer-Metadaten je Website: `site_essentials_avatar_SITE_ID` mit lokalen Attachment-IDs. Avatar-Medien bleiben normale WordPress-Uploads. Netzwerkoption: site_essentials_network. Deaktivierung und Deinstallation erhalten diese Werte. Die eingebettete Library entfernt eigene temporäre Daten nur gemäß ihrer Letzt-Host-Bereinigung; gemeinsame Einstellungen bleiben standardmäßig erhalten. Inhalte und Daten anderer Plugins werden nicht gelöscht. Die lokale Option site_essentials_checks erhält Impressumszuordnung und Inhalts-/Indexierungsbestätigungen. Sie wird nicht mit Konfigurationen exportiert; lokales RESET entfernt sie ohne Änderung nativer Sichtbarkeit oder Datenschutzzuordnung. Der optionale Mediensortierungs-Index speichert nur abgeleitete Byte-Zahlen (oder eine Nicht-verfügbar-Markierung) in Website-lokalen Medien-Metadaten _site_essentials_file_size. Lokale Plugin-Datenbereinigung entfernt den Index, ohne Medien oder Dateien anzutasten. Website-lokale Option site_essentials_access_users enthält persönliche Design-Ausnahmen. Sie ist aus allen Exporten, Preset-Snapshots und Diagnose-Ausgaben ausgeschlossen. Beitragsmetadaten _site_essentials_target speichern ausdrücklich gewählte Zieladressen und Neuer-Tab-/nofollow-Vorgaben. Konfigurationsbereinigung und Deinstallation erhalten sie; Konfigurations-/Preset-Exporte enthalten sie nicht.
+Lokale Optionen: site_essentials_settings, site_essentials_previous und site_essentials_presets. Benutzer-Metadaten je Website: `site_essentials_avatar_SITE_ID` mit lokalen Attachment-IDs. Avatar-Medien bleiben normale WordPress-Uploads. Netzwerkoption: site_essentials_network. Deaktivierung und Deinstallation erhalten diese Werte. Die eingebettete Library entfernt eigene temporäre Daten nur gemäß ihrer Letzt-Host-Bereinigung; gemeinsame Einstellungen bleiben standardmäßig erhalten. Inhalte und Daten anderer Plugins werden nicht gelöscht. Die lokale Option site_essentials_checks erhält Impressumszuordnung und Inhalts-/Indexierungsbestätigungen. Sie wird nicht mit Konfigurationen exportiert; lokales RESET entfernt sie ohne Änderung nativer Sichtbarkeit oder Datenschutzzuordnung. Der optionale Mediensortierungs-Index speichert nur abgeleitete Byte-Zahlen (oder eine Nicht-verfügbar-Markierung) in Website-lokalen Medien-Metadaten _site_essentials_file_size. Lokale Plugin-Datenbereinigung entfernt den Index, ohne Medien oder Dateien anzutasten. Website-lokale Option site_essentials_access_users enthält persönliche Design-Ausnahmen. Sie ist aus allen Exporten, Preset-Snapshots und Diagnose-Ausgaben ausgeschlossen. Beitragsmetadaten _site_essentials_target speichern ausdrücklich gewählte Zieladressen und Neuer-Tab-/nofollow-Vorgaben. Konfigurationsbereinigung und Deinstallation erhalten sie; Konfigurations-/Preset-Exporte enthalten sie nicht. Die lokale Option site_essentials_maintenance speichert Aktivierung, Pause und ausgewählte Seite. Sie ist von allen Konfigurationstransfers und der Wiederherstellung ausgeschlossen, bleibt bei Deinstallation erhalten und wird durch ausdrückliches lokales RESET entfernt. Die Seite selbst bleibt als Inhalt erhalten.
 
 ## Komponenten und Verbindungen
 
-Enthält deckerweb Library 0.9.0 und deckerweb GitHub Release Updater 2.1.0, GPL-2.0-or-later, von David Decker. Der Online-Katalog der Library ist optional und zunächst ausgeschaltet. Der Updater fragt das konfigurierte GitHub-Repository im normalen WordPress-Updateprozess ab; dabei werden Anfragedaten wie die Server-IP an GitHub übertragen. Keine Analysefunktionen oder externen Schriften. Dieses Direktvertriebspaket ist kein WordPress.org-Build.
+Enthält deckerweb Library 1.1.0 und deckerweb GitHub Release Updater 2.2.0, GPL-2.0-or-later, von David Decker. Der Online-Katalog der Library ist optional und zunächst ausgeschaltet. Der Updater fragt das konfigurierte GitHub-Repository im normalen WordPress-Updateprozess ab; dabei werden Anfragedaten wie die Server-IP an GitHub übertragen. Keine Analysefunktionen oder externen Schriften. Dieses Direktvertriebspaket ist kein WordPress.org-Build.
+
+## Screenshots
+
+### Presets und Einstellungen
+
+![Presets und Einstellungen](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/settings-de.png)
+
+Presets prüfen, Einstellungen filtern und die Konfiguration bewusst speichern.
+
+### Wartung mit eigener Seite
+
+![Wartung mit eigener Seite](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/maintenance-de.png)
+
+Eine veröffentlichte WordPress-Seite auswählen. Wartung verwendet HTTP 503 und wird separat gespeichert.
+
+### Website-Hinweise
+
+![Website-Hinweise](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/checks-de.png)
+
+Administrator-Hinweise prüfen Sichtbarkeit und erkennbare Seiteninhalte; sie bewerten keine Rechtskonformität.
 
 ## FAQ
 
@@ -141,11 +209,24 @@ Eigene Einstellungen, benannte lokale Presets, vorherige Konfiguration und Netzw
 
 ## Änderungsverlauf
 
+### 1.0.0 · 2026-10-21
+
+- **Neu:** Optionaler Wartungsmodus je Website mit normaler WordPress-Seite, Administrator-Vorschau, HTTP 503 und Cache-Hinweisen.
+- **Neu:** Optionale Spalten für lokale Avatare und Benutzer-IDs, Datums-/Zeitbeispiele und ein breiterer CSS-Editor im Customizer.
+- **Neu:** Geprüfte einmalige Übernahme unterstützter Falcon- und Unbloater-Einstellungen mit Konfliktauswahl und Wiederherstellung.
+- **Neu:** Website-Adressen rein lesend, öffentliche robots.txt-, Sitemap- und Feed-Links sowie eine manuell gestartete Prüfung der Startseitenantwort.
+- **Neu:** Vier Navigationsbefehle und erweiterte Angaben im Website-Zustand zu Wartung und wirksamen Einstellungen.
+- **Verbessert:** Klarere Navigationsgruppen und Optionstexte, Änderungspunkt im Speichern-Button und getrennte Menüoptionen für Blockvorlagen und Schriften.
+- **Verbessert:** Enthält deckerweb Library 1.1.0 mit aktuellem lokalem Katalog, persönlicher Sortierung und robusten Dialogen.
+- **Behoben:** Debugmeldungen beim Start und vorzeitige Einstellungsabfragen beim Anlegen neuer Multisite-Websites vermeiden.
+- **Behoben:** Der Avatar-Vorrang berücksichtigt auch kompatible lokal geladene Anbieter mit automatischem Laden ihrer Klassen.
+- **Sonstiges:** Erfordert WordPress 7.1 oder höher und PHP 8.2 oder höher.
+
 ### 0.9.0 · 2026-10-13
 
 - **Neu:** Gezielte WordPress-Core-Einstellungen mit wiederverwendbaren Presets, geprüften Importen und unabhängiger Website-Konfiguration.
 - **Neu:** Optionale Kommentarabschaltung, lokale Avatare, Design-Zugriffe, Medienwerkzeuge und alternative Beitragsziele.
-- **Verbessert:** Lokale Avatare überlassen einem wirksamen Leitstand-Anbieter den Vorrang; Bedienelemente und Profilformulare werden ausgeblendet, gespeicherte Einstellungen und Zuordnungen bleiben erhalten.
+- **Verbessert:** Lokale Avatare überlassen einem kompatiblen aktiven Anbieter den Vorrang; Bedienelemente und Profilformulare werden ausgeblendet, gespeicherte Einstellungen und Zuordnungen bleiben erhalten.
 - **Behoben:** Updatepakete werden vor dem Ersetzen auf Plugin-Identität, angebotene Version und WordPress-/PHP-Anforderungen geprüft.
 
 ### 0.1.0–0.8.0 · 2026-10-09–2026-10-12
@@ -160,7 +241,7 @@ Von David Decker – DECKERWEB. Site Essentials konzentriert sich auf WordPress-
 
 ## Fehler und Sicherheit
 
-Normale Fehler in [Issues](https://github.com/deckerweb/site-essentials/issues) melden; Fragen in [Discussions](https://github.com/deckerweb/site-essentials/discussions) stellen.
+Normale Fehler in [Issues](https://github.com/deckerweb/site-essentials/issues) melden; Fragen in [Discussions](https://github.com/deckerweb/site-essentials/discussions) stellen. 
 
 Sicherheitslücken vertraulich über [GitHubs private Sicherheitsmeldungen](https://github.com/deckerweb/site-essentials/security/advisories/new) melden. Plugin- und Komponenten-Versionen, WordPress-/PHP-Versionen, Schritte zur Reproduktion und Auswirkungen angeben. Keine Zugangsdaten übermitteln oder Exploit-Details in Issues veröffentlichen. Meldungen werden vertraulich geprüft; Korrektur und Offenlegung werden mit dem Melder abgestimmt.
 
