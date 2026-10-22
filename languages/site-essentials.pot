@@ -3012,3 +3012,6 @@ msgstr ""
 
 msgid "updated"
 msgstr ""
+
+msgid "Updated plugins use their bundled updater even when another plugin loaded an older copy first."
+msgstr ""

@@ -8,7 +8,7 @@
 
 Your WordPress. Your settings. Site Essentials brings focused settings and practical tools together for a WordPress website that fits your needs. Simplify administration, control WordPress features and reuse proven configurations across websites. Built for everyday site care and client handover, with support for single installations and individual sites in a Multisite network.
 
-**1.0.0 · WordPress 7.1+ · PHP 8.2+**
+**1.0.1 · WordPress 7.1+ · PHP 8.2+**
 
 [Documentation](https://deckerweb.github.io/site-essentials/) · [FAQ by topic](FAQ.md)
 
@@ -148,7 +148,7 @@ Local options: site_essentials_settings, site_essentials_previous and site_essen
 
 ## Components and connections
 
-Includes deckerweb Library 1.1.0 and deckerweb GitHub Release Updater 2.2.0, GPL-2.0-or-later, by David Decker. Library online catalog access is optional and initially off. The updater checks the configured GitHub repository through normal WordPress update checks; request metadata such as your server IP is sent to GitHub. No analytics or remote fonts are included. This direct-distribution package is not a WordPress.org build.
+Includes deckerweb Library 1.1.0 and deckerweb GitHub Release Updater 2.2.1, GPL-2.0-or-later, by David Decker. Library online catalog access is optional and initially off. The updater checks the configured GitHub repository through normal WordPress update checks; request metadata such as your server IP is sent to GitHub. No analytics or remote fonts are included. This direct-distribution package is not a WordPress.org build.
 
 ## Screenshots
 
@@ -203,6 +203,10 @@ Own settings, named local presets, previous configuration and network policy rem
 [FAQ by topic](FAQ.md)
 
 ## Changelog
+
+### 1.0.1 · 2026-10-22
+
+- **Fixed:** Updated plugins use their bundled updater even when another plugin loaded an older copy first.
 
 ### 1.0.0 · 2026-10-21
 

@@ -4,12 +4,12 @@ defined( 'ABSPATH' ) || exit;
 
 /** Register the shared updater and validate packages belonging to this host. */
 final class Updates {
- /** Register after host translations initialize; incompatible shared copies pause updates.
+ /** Register after host translations initialize; use the pinned runtime independently of older shared copies.
   * @return void
   */
  public static function register(): void {
-  $class = '\\Deckerweb\\GitHubReleaseUpdater\\V2\\Updater';
-  if ( ! defined( $class . '::SUPPORTS_HOST_TRANSLATIONS' ) || ! constant( $class . '::SUPPORTS_HOST_TRANSLATIONS' ) ) {
+  $class = require dirname( SITE_ESSENTIALS_FILE ) . '/includes/deckerweb-github-release-updater-v2.php';
+  if ( ! is_string( $class ) || ! class_exists( $class, false ) || ! defined( $class . '::SUPPORTS_HOST_TRANSLATIONS' ) || ! constant( $class . '::SUPPORTS_HOST_TRANSLATIONS' ) ) {
    add_action( 'admin_notices', array( self::class, 'notice' ) );
    add_action( 'network_admin_notices', array( self::class, 'notice' ) );
    return;

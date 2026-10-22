@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
-  "date": "2026-10-21",
+  "version": "1.0.1",
+  "date": "2026-10-22",
   "requires_wp": "7.1",
   "requires_php": "8.2",
   "help": [
@@ -107,6 +107,16 @@
     }
   ],
   "history": [
+    {
+      "version": "1.0.1",
+      "date": "2026-10-22",
+      "new": [],
+      "improved": [],
+      "fixed": [
+        "Updated plugins use their bundled updater even when another plugin loaded an older copy first."
+      ],
+      "misc": []
+    },
     {
       "version": "1.0.0",
       "date": "2026-10-21",

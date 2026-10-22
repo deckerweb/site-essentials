@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Site Essentials 1.0.0\nLanguage: de_DE_formal\nContent-Type: text/plain; charset=UTF-8\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: Site Essentials 1.0.1\nLanguage: de_DE_formal\nContent-Type: text/plain; charset=UTF-8\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "%1$d active · %2$d stored but not applied · %3$d unsaved changes"
 msgstr "%1$d aktiv · %2$d gespeichert, aber nicht angewendet · %3$d ungespeicherte Änderungen"
@@ -3015,3 +3015,6 @@ msgstr "Laufzeitstatus"
 
 msgid "updated"
 msgstr "aktualisiert"
+
+msgid "Updated plugins use their bundled updater even when another plugin loaded an older copy first."
+msgstr "Aktualisierte Plugins verwenden ihren mitgelieferten Updater auch dann, wenn ein anderes Plugin zuvor eine ältere Kopie geladen hat."

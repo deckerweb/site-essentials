@@ -4,7 +4,7 @@ Tags: admin, settings, multisite, cleanup
 Requires at least: 7.1
 Tested up to: 7.1.3
 Requires PHP: 8.2
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,7 +78,7 @@ Depending on the functions you need, Site Essentials can replace individual plug
 * Four navigation groups, clearer labels, a save-button change indicator and separate pattern/font menu hiding.
 * Reviewed one-time Falcon and Unbloater takeover with explicit conflict choices and previous-configuration recovery.
 
-Includes deckerweb Library 1.1.0 and deckerweb GitHub Release Updater 2.2.0, GPL-2.0-or-later, by David Decker. Library online catalog access is optional and initially off. The updater checks the configured GitHub repository through normal WordPress update checks; request metadata such as your server IP is sent to GitHub. No analytics or remote fonts are included. This direct-distribution package is not a WordPress.org build.
+Includes deckerweb Library 1.1.0 and deckerweb GitHub Release Updater 2.2.1, GPL-2.0-or-later, by David Decker. Library online catalog access is optional and initially off. The updater checks the configured GitHub repository through normal WordPress update checks; request metadata such as your server IP is sent to GitHub. No analytics or remote fonts are included. This direct-distribution package is not a WordPress.org build.
 
 == Installation ==
 Upload the ZIP through Plugins → Add Plugin → Upload Plugin and activate it. Open Settings → Site Essentials. Choose a preset, review the changes and save all settings. No cleanup is enabled by default; three administrator-only website reminders are enabled.
@@ -109,6 +109,9 @@ Own settings, named local presets, previous configuration and network policy rem
 Full FAQ: https://github.com/deckerweb/site-essentials/blob/main/FAQ.md
 
 == Changelog ==
+
+= 1.0.1 =
+* Fixed: Updated plugins use their bundled updater even when another plugin loaded an older copy first.
 
 = 1.0.0 =
 * New: Optional per-site maintenance with a native WordPress page, administrator preview, HTTP 503 and cache guidance.

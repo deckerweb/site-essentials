@@ -2,6 +2,10 @@
 
 [English](CHANGELOG.md)
 
+### 1.0.1 · 2026-10-22
+
+- **Behoben:** Aktualisierte Plugins verwenden ihren mitgelieferten Updater auch dann, wenn ein anderes Plugin zuvor eine ältere Kopie geladen hat.
+
 ### 1.0.0 · 2026-10-21
 
 - **Neu:** Optionaler Wartungsmodus je Website mit normaler WordPress-Seite, Administrator-Vorschau, HTTP 503 und Cache-Hinweisen.

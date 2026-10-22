@@ -8,7 +8,7 @@
 
 Dein WordPress. Deine Einstellungen. Site Essentials bündelt gezielte Einstellungen und praktische Werkzeuge für eine passend eingerichtete WordPress-Website. Vereinfache die Verwaltung, steuere WordPress-Funktionen und übertrage bewährte Konfigurationen auf weitere Websites. Entwickelt für die tägliche Betreuung und die Übergabe an Kunden, mit Unterstützung für Einzelinstallationen und einzelne Websites einer Multisite.
 
-**1.0.0 · WordPress 7.1+ · PHP 8.2+**
+**1.0.1 · WordPress 7.1+ · PHP 8.2+**
 
 [Dokumentation](https://deckerweb.github.io/site-essentials/de.html) · [Fragen nach Themen](FAQ-de.md)
 
@@ -148,7 +148,7 @@ Lokale Optionen: site_essentials_settings, site_essentials_previous und site_ess
 
 ## Komponenten und Verbindungen
 
-Enthält deckerweb Library 1.1.0 und deckerweb GitHub Release Updater 2.2.0, GPL-2.0-or-later, von David Decker. Der Online-Katalog der Library ist optional und zunächst ausgeschaltet. Der Updater fragt das konfigurierte GitHub-Repository im normalen WordPress-Updateprozess ab; dabei werden Anfragedaten wie die Server-IP an GitHub übertragen. Keine Analysefunktionen oder externen Schriften. Dieses Direktvertriebspaket ist kein WordPress.org-Build.
+Enthält deckerweb Library 1.1.0 und deckerweb GitHub Release Updater 2.2.1, GPL-2.0-or-later, von David Decker. Der Online-Katalog der Library ist optional und zunächst ausgeschaltet. Der Updater fragt das konfigurierte GitHub-Repository im normalen WordPress-Updateprozess ab; dabei werden Anfragedaten wie die Server-IP an GitHub übertragen. Keine Analysefunktionen oder externen Schriften. Dieses Direktvertriebspaket ist kein WordPress.org-Build.
 
 ## Screenshots
 
@@ -203,6 +203,10 @@ Eigene Einstellungen, benannte lokale Presets, vorherige Konfiguration und Netzw
 [Fragen nach Themen](FAQ-de.md)
 
 ## Änderungsverlauf
+
+### 1.0.1 · 2026-10-22
+
+- **Behoben:** Aktualisierte Plugins verwenden ihren mitgelieferten Updater auch dann, wenn ein anderes Plugin zuvor eine ältere Kopie geladen hat.
 
 ### 1.0.0 · 2026-10-21
 

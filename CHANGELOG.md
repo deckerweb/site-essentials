@@ -2,6 +2,10 @@
 
 [Deutsch](CHANGELOG-de.md)
 
+### 1.0.1 · 2026-10-22
+
+- **Fixed:** Updated plugins use their bundled updater even when another plugin loaded an older copy first.
+
 ### 1.0.0 · 2026-10-21
 
 - **New:** Optional per-site maintenance with a native WordPress page, administrator preview, HTTP 503 and cache guidance.

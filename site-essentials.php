@@ -3,7 +3,7 @@
  * Plugin Name: Site Essentials
  * Plugin URI: https://github.com/deckerweb/site-essentials
  * Description: Configure WordPress core behavior with focused controls, reusable presets and site-specific settings.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Requires at least: 7.1
  * Requires PHP: 8.2
  * Author: David Decker – DECKERWEB
@@ -20,15 +20,12 @@
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 define( 'SITE_ESSENTIALS_FILE', __FILE__ );
-define( 'SITE_ESSENTIALS_VERSION', '1.0.0' );
+define( 'SITE_ESSENTIALS_VERSION', '1.0.1' );
 foreach ( array( 'Schema', 'Settings', 'Presets', 'Collections', 'Runtime', 'Media', 'AlternativeTargets', 'MenuInterface', 'Access', 'Appearance', 'CoreExtras', 'Comfort', 'Maintenance', 'Blog', 'PhpInfo', 'WebsiteChecks', 'PublicChecks', 'EditorEmbeds', 'SiteIdentity', 'CommentsOff', 'Avatars', 'Reports', 'Integrations', 'Updates', 'Admin' ) as $site_essentials_class ) {
  require_once __DIR__ . '/src/' . $site_essentials_class . '.php';
 }
 require_once __DIR__ . '/includes/deckerweb-plugin-library/bootstrap.php';
 deckerweb_library_register_v2( __FILE__, array(), __DIR__ . '/includes/deckerweb-plugin-library' );
-if ( ! class_exists( '\Deckerweb\GitHubReleaseUpdater\V2\Updater' ) ) {
- require_once __DIR__ . '/includes/deckerweb-github-release-updater-v2.php';
-}
 register_activation_hook( __FILE__, array( '\Deckerweb\SiteEssentials\Settings', 'activate' ) );
 add_action( 'plugins_loaded', static function (): void {
  ( new \Deckerweb\SiteEssentials\Runtime() )->boot();
