@@ -2,6 +2,10 @@
 
 [English](User-guide) · [Startseite](Home-de)
 
+## Vollständiger Funktionsüberblick
+
+Die [vollständige Feature-Liste](Funktionen) bündelt alle 68 Featurepunkte von Site Essentials 1.1.0 in zwölf Aufgabengruppen. Sie enthält die Vorgaben zur ersten Aktivierung und die wichtigsten Funktionsgrenzen. Die folgenden Abschnitte und die bebilderten Spezialanleitungen erklären die Bedienung.
+
 ## Die passende Einstellung finden
 
 Die linke Navigation trennt Ansichten und Presets, WordPress-Einstellungen und Plugin-Werkzeuge. Suche und Zustandsfilter verändern nur die Ansicht. Das Referenzprofil dient dem Vergleich und wendet keine Einstellungen an. Die Regelübersicht unterscheidet aktive Einstellungen von gespeicherten Werten, die derzeit keine Wirkung haben.

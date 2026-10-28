@@ -2,6 +2,10 @@
 
 [Deutsch](Anleitung) · [Home](Home)
 
+## Complete feature overview
+
+The [complete feature list](Features) groups all 68 feature points in Site Essentials 1.1.0 into twelve task areas. It includes activation defaults and the main limitations. The following sections and illustrated topic guides explain how to use them.
+
 ## Find the right setting
 
 The left navigation separates views and presets, WordPress settings, and plugin tools. Search and state filters affect only what you see. The reference profile is a comparison aid; it does not apply settings. The rule overview distinguishes active settings from saved choices that currently have no effect.

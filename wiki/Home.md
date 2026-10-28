@@ -14,6 +14,7 @@ Your WordPress. Your settings. Site Essentials brings focused settings and pract
 
 - [Getting started](Getting-started)
 - [User guide](User-guide)
+- [All features at a glance](Features)
 - [Maintenance mode](Maintenance)
 - [Website checks](Website-checks)
 - [Replace Falcon and Unbloater](Takeover)

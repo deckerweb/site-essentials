@@ -44,6 +44,8 @@ Dein WordPress. Deine Einstellungen. Site Essentials bündelt gezielte Einstellu
 - Website-Hinweise für Administratoren, PHP-Informationen und Site-Health-Angaben.
 - Single-Site und Multisite; Englisch und beide deutschen Sprachfassungen.
 
+[Alle 68 Featurepunkte nach Aufgaben ansehen](https://github.com/deckerweb/site-essentials/wiki/Funktionen) – mit Voraussetzungen und Funktionsgrenzen.
+
 ## Installation
 
 ZIP unter Plugins → Installieren → Plugin hochladen installieren und aktivieren. Einstellungen → Site Essentials öffnen. Preset wählen, Änderungen prüfen und alle Einstellungen speichern. Standardmäßig ist keine Bereinigung aktiviert.

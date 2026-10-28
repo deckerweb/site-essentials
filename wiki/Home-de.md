@@ -14,6 +14,7 @@ Dein WordPress. Deine Einstellungen. Site Essentials bündelt gezielte Einstellu
 
 - [Erste Schritte](Erste-Schritte)
 - [Anleitung](Anleitung)
+- [Alle Funktionen im Überblick](Funktionen)
 - [Wartungsmodus](Wartungsmodus)
 - [Website-Prüfungen](Website-Pruefungen)
 - [Falcon und Unbloater ersetzen](Uebernahmehilfe)

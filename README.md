@@ -44,6 +44,8 @@ Your WordPress. Your settings. Site Essentials brings focused settings and pract
 - Administrator website reminders, PHP information and Site Health details.
 - Single-site and Multisite; English and both German locales.
 
+[Browse all 68 feature points by task](https://github.com/deckerweb/site-essentials/wiki/Features), including requirements and limitations.
+
 ## Installation
 
 Upload the ZIP through Plugins → Add Plugin → Upload Plugin and activate it. Open Settings → Site Essentials. Choose a preset, review the changes and save all settings. No cleanup is enabled by default; three administrator-only website reminders are enabled.
