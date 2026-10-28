@@ -8,9 +8,9 @@
 
 Your WordPress. Your settings. Site Essentials brings focused settings and practical tools together for a WordPress website that fits your needs. Simplify administration, control WordPress features and reuse proven configurations across websites. Built for everyday site care and client handover, with support for single installations and individual sites in a Multisite network.
 
-**1.0.1 · WordPress 7.1+ · PHP 8.2+**
+**1.1.0 · WordPress 7.1+ · PHP 8.2+**
 
-[Documentation](https://deckerweb.github.io/site-essentials/) · [FAQ by topic](FAQ.md)
+[Plugin website](https://deckerwebplugins.com/en/plugins/site-essentials/) · [Documentation](https://deckerweb.github.io/site-essentials/) · [FAQ by topic](FAQ.md)
 
 ## Contents
 
@@ -24,6 +24,7 @@ Your WordPress. Your settings. Site Essentials brings focused settings and pract
 - [Preconfigured installation](#preconfigured-installation)
 - [Stored data](#stored-data)
 - [Components and connections](#components-and-connections)
+- [Administration conveniences](#administration-conveniences)
 - [Screenshots](#screenshots)
 - [FAQ](#faq)
 - [Changelog](#changelog)
@@ -150,6 +151,50 @@ Local options: site_essentials_settings, site_essentials_previous and site_essen
 
 Includes deckerweb Library 1.1.0 and deckerweb GitHub Release Updater 2.2.1, GPL-2.0-or-later, by David Decker. Library online catalog access is optional and initially off. The updater checks the configured GitHub repository through normal WordPress update checks; request metadata such as your server IP is sent to GitHub. No analytics or remote fonts are included. This direct-distribution package is not a WordPress.org build.
 
+## Administration conveniences
+
+### One dashboard information widget.
+
+Under Dashboard, configure one optional dashboard widget with a title, simple formatted text and an audience of roles plus additional site users. A matching role OR a selected user grants visibility; an empty audience grants nobody access. Users can hide it in Screen Options. Save this widget separately. Generic configuration and preset exports never include its text or personal grants. A separate, explicitly confirmed text export/import transfers only the saved title and text; it never transfers activation or audience. Disabling or uninstalling preserves the local configuration; resetting Site Essentials clears it.
+
+### A local default avatar.
+
+Enable local avatars first. The optional user-list column and a separate default-image card then appear below the master setting. The card previews the current default and offers local media selection, raster upload or return to the shipped SE image. Save the image separately. A missing, deleted, private or externally served selection falls back to the shipped image. No media files are copied, locked or deleted when resetting the selection. Personal profile images still take priority. Image IDs are local to each website and are excluded from configuration, preset and support exports.
+
+
+
+### Media and list conveniences.
+
+Optionally inspect generated image sizes in the attachment editor without changing files. New upload filenames can be converted to lowercase; existing files stay unchanged. Native content lists can offer a visible title-only search choice, with full search as the default. Featured-image, modified-date and administrator-only user-registration columns can be enabled separately. All four helpers start off.
+
+### Clear status, minimal diagnostics.
+
+Known reasons for paused settings are shared across the rule overview, handover and Site Health. Support diagnostics use a reviewed allowlist: custom text, personal assignments and custom role or content-type names are omitted; lists disclose counts only. Storage diagnosis distinguishes no measurement, an incomplete measurement and an unavailable result.
+
+
+
+### Menus, without rebuilding them.
+
+Enable menu duplication under Admin interface. The copy keeps native link properties, hierarchy and Site Essentials visibility, but receives no menu location. Third-party metadata is not copied. Visibility choices apply only to classic menus and do not protect target pages. Hidden parents also hide their descendants; page caches must distinguish login status.
+
+### User information, kept small.
+
+User and content IDs offer a copy button with selectable-text fallback. Optional last-login collection stores only one successful interactive-login timestamp per user and website. Existing sessions do not update it. No IP address or history is stored. Only administrators with user-list permission see timestamps. WordPress personal-data tools can export and erase them; disabling collection retains existing timestamps, uninstall removes them.
+
+### Media trash: inspect before changing configuration.
+
+The optional status card reads MEDIA_TRASH and EMPTY_TRASH_DAYS without editing wp-config.php. Enable native media trash only through server configuration before WordPress loads, respecting existing definitions and retention. A zero retention disables trash. Files in trash remain stored and may remain directly accessible; this is not a backup or privacy barrier. Explicit permanent deletion can bypass trash. On Multisite, constants normally apply across the installation.
+
+### Storage diagnosis without a live scan.
+
+Enable daily local upload-storage diagnosis under Media library and view the cached result in Tools → Site Essentials: PHP. Requests never scan directories while displaying the result. Measurements stop at 10,000 entries, 512 directories or two seconds. An incomplete or unavailable result is labeled without a partial total. Manual refresh queues a task, limited to fifteen-minute intervals. Traffic-dependent WordPress cron may run late. Remote media, the database and hosting quota are not measured.
+
+### One environment indicator.
+
+Site Essentials shows the WordPress environment on the right of the toolbar for administrators only, without changing it. When an active Brand Admin Schemes implementation provides its environment callback, BAS owns presentation and Site Essentials pauses, even if BAS hides its own badge. Site Essentials keeps its choice and resumes after BAS deactivation. The settings status explains which provider is responsible. No BAS files or settings are changed.
+
+[New administration conveniences with examples](wiki/Administration-conveniences.md)
+
 ## Screenshots
 
 ### Presets and settings
@@ -169,6 +214,8 @@ Select a published WordPress page. Maintenance uses HTTP 503 and has its own sav
 ![Website reminders](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/checks-en.png)
 
 Administrator reminders check visibility and recognizable page content; they do not assess legal compliance.
+
+Illustrated guides: [Dashboard](https://github.com/deckerweb/site-essentials/wiki/Dashboard), [Site icon and date formats](https://github.com/deckerweb/site-essentials/wiki/General-settings), [List columns](https://github.com/deckerweb/site-essentials/wiki/Administration-conveniences) and [Diagnostics](https://github.com/deckerweb/site-essentials/wiki/Diagnostics).
 
 ## FAQ
 
@@ -203,6 +250,19 @@ Own settings, named local presets, previous configuration and network policy rem
 [FAQ by topic](FAQ.md)
 
 ## Changelog
+
+### 1.1.0 · 2026-10-28
+
+- **New:** Optional video upload restrictions, native media trash guidance and cached daily upload-storage diagnosis.
+- **New:** Classic menu duplication and menu visibility for logged-in or logged-out visitors.
+- **New:** Copyable content and user IDs, selected profile simplification and site-specific last-login timestamps.
+- **New:** Optional WordPress environment indicator with priority for Brand Admin Schemes.
+- **New:** Optional image-size overview, lowercase new upload filenames, visible title-only admin search and selected list columns.
+- **New:** Optional dashboard information widget with site-local audience and explicit text transfer; configurable local default avatar with a documented developer filter.
+- **Improved:** Separate feed discovery controls and WordPress/plugin/theme success-email choices, preserving existing behavior; clearer grouped settings and a direct shortcut to unapplied rules.
+- **Improved:** Grouped media controls and guidance, administrator-only environment indicator on the right, clearer local-avatar help and consistent privacy-conscious diagnostics.
+- **Improved:** Narrow two-line, sortable ID columns; sortable modified dates in the native WordPress date format; clearer avatar dependencies, update-email spacing and pending-change marker. Site Health and command-palette navigation cover the new modules.
+- **Improved:** Dedicated Dashboard section, clearer editor lists and date-format examples, Favicon guidance and prioritized Site Health information.
 
 ### 1.0.1 · 2026-10-22
 

@@ -73,6 +73,15 @@ final class Settings {
   * @return array<string,mixed>|\WP_Error
   */
  public static function validate( array $input, bool $strict = true ) {
+  // Expand legacy switches on every read/import, without writing during normalization.
+  if ( in_array( $input['feed_links'] ?? false, array( true, 1, '1' ), true ) ) {
+   foreach ( array( 'feed_blog', 'feed_comments', 'feed_terms', 'feed_authors', 'feed_search' ) as $key ) { $input[ $key ] = true; }
+   $input['feed_types'] = array( '_all' ); $input['feed_taxonomies'] = array( '_all' ); $input['feed_links'] = false;
+  }
+  if ( in_array( $input['update_emails'] ?? false, array( true, 1, '1' ), true ) ) {
+   foreach ( array( 'core', 'plugins', 'themes' ) as $kind ) { $input[ 'update_email_' . $kind ] = true; }
+   $input['update_emails'] = false;
+  }
   foreach ( array( 'widgets', 'customizer' ) as $area ) {
    if ( in_array( $input[ $area . '_admin' ] ?? false, array( true, 1, '1' ), true ) && ( ! isset( $input[ 'access_' . $area . '_mode' ] ) || in_array( $input[ 'access_' . $area . '_mode' ], array( 0, '0' ), true ) ) ) { $input[ 'access_' . $area . '_mode' ] = 1; }
   }

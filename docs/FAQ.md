@@ -192,3 +192,8 @@ The confirmed takeover retains the full preceding Site Essentials configuration 
 
 No. Falcon settings are read from the current site. Network-active Unbloater uses its network option; only a network administrator can review that source, and selected settings are applied solely to the current website. Network policy is unchanged. File-editor restrictions are not imported into Multisite, and a network-locked login language setting is not offered for local takeover. Existing source plugins can continue controlling overlapping behavior until deactivated.
 
+
+
+## What do the optional 1.1.0 conveniences change?
+
+They remain off by default. See the administration conveniences guide for classic menus, last-login privacy, profile fields, environment ownership, video restrictions, media trash setup and bounded storage measurement.

@@ -18,5 +18,18 @@ if ( is_multisite() ) {
   delete_network_option( $site_essentials_network_id, '_site_transient_timeout_' . $site_essentials_update_key );
  }
 }
+require_once __DIR__ . '/src/Storage110.php';
+$site_essentials_cleanup_sites = is_multisite() ? get_sites( array( 'fields' => 'ids', 'number' => 100, 'offset' => 0 ) ) : array( get_current_blog_id() );
+$site_essentials_cleanup_offset = 0;
+do {
+ foreach ( $site_essentials_cleanup_sites as $site_essentials_site_id ) {
+  if ( is_multisite() ) { switch_to_blog( (int) $site_essentials_site_id ); }
+  \Deckerweb\SiteEssentials\Storage110::clear();
+  delete_metadata( 'user', 0, '_site_essentials_last_login_' . get_current_blog_id(), '', true );
+  if ( is_multisite() ) { restore_current_blog(); }
+ }
+ $site_essentials_cleanup_offset += 100;
+ $site_essentials_cleanup_sites = is_multisite() && count( $site_essentials_cleanup_sites ) === 100 ? get_sites( array( 'fields' => 'ids', 'number' => 100, 'offset' => $site_essentials_cleanup_offset ) ) : array();
+} while ( $site_essentials_cleanup_sites );
 require_once __DIR__ . '/includes/deckerweb-plugin-library/lifecycle.php';
 deckerweb_library_uninstall_v3( __DIR__ . '/site-essentials.php' );

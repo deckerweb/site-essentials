@@ -24,3 +24,14 @@ Ein Punkt im Speichern-Button und die bestehende Statusanzeige kennzeichnen unge
 Auf einer Website oder netzwerkweit aktivierbar. Jede Website behält ihre Konfiguration. Die begrenzte Netzwerkeinstellung betrifft den Sprachwähler beim Login; andere Websites werden nicht stillschweigend umkonfiguriert. Persönliche Ausnahmen und Medienzuordnungen bleiben websitebezogen.
 
 Weiter zu [Wartung](Wartungsmodus), [Website-Prüfungen](Website-Pruefungen), [Einstellungsübernahme](Uebernahmehilfe) oder [den vollständigen Fragen](FAQ-de).
+
+
+[Verwaltungshilfen](Verwaltungshilfen)
+
+
+## Bebilderte Alltagsanleitungen
+
+- [Dashboard einrichten](Dashboard-de)
+- [Website-Icon, Datum und Uhrzeit verstehen](Allgemeine-Einstellungen)
+- [Konfiguration und Befehlspalette prüfen](Diagnose)
+- [Inhaltslisten und Titelsuche](Verwaltungshilfen)

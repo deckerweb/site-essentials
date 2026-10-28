@@ -8,9 +8,9 @@
 
 Dein WordPress. Deine Einstellungen. Site Essentials bündelt gezielte Einstellungen und praktische Werkzeuge für eine passend eingerichtete WordPress-Website. Vereinfache die Verwaltung, steuere WordPress-Funktionen und übertrage bewährte Konfigurationen auf weitere Websites. Entwickelt für die tägliche Betreuung und die Übergabe an Kunden, mit Unterstützung für Einzelinstallationen und einzelne Websites einer Multisite.
 
-**1.0.1 · WordPress 7.1+ · PHP 8.2+**
+**1.1.0 · WordPress 7.1+ · PHP 8.2+**
 
-[Dokumentation](https://deckerweb.github.io/site-essentials/de.html) · [Fragen nach Themen](FAQ-de.md)
+[Plugin-Website](https://deckerwebplugins.com/de/plugins/site-essentials/) · [Dokumentation](https://deckerweb.github.io/site-essentials/de.html) · [Fragen nach Themen](FAQ-de.md)
 
 ## Inhalt
 
@@ -24,6 +24,7 @@ Dein WordPress. Deine Einstellungen. Site Essentials bündelt gezielte Einstellu
 - [Vorkonfigurierte Installation](#vorkonfigurierte-installation)
 - [Gespeicherte Daten](#gespeicherte-daten)
 - [Komponenten und Verbindungen](#komponenten-und-verbindungen)
+- [Verwaltungshilfen](#verwaltungshilfen)
 - [Screenshots](#screenshots)
 - [FAQ](#faq)
 - [Änderungsverlauf](#änderungsverlauf)
@@ -150,6 +151,50 @@ Lokale Optionen: site_essentials_settings, site_essentials_previous und site_ess
 
 Enthält deckerweb Library 1.1.0 und deckerweb GitHub Release Updater 2.2.1, GPL-2.0-or-later, von David Decker. Der Online-Katalog der Library ist optional und zunächst ausgeschaltet. Der Updater fragt das konfigurierte GitHub-Repository im normalen WordPress-Updateprozess ab; dabei werden Anfragedaten wie die Server-IP an GitHub übertragen. Keine Analysefunktionen oder externen Schriften. Dieses Direktvertriebspaket ist kein WordPress.org-Build.
 
+## Verwaltungshilfen
+
+### Ein Dashboard-Informationswidget.
+
+Unter Dashboard lässt sich ein optionales Dashboard-Widget mit Titel, einfach formatiertem Text und einer Zielgruppe aus Rollen plus einzelnen Benutzern dieser Website einrichten. Eine passende Rolle ODER eine Benutzerfreigabe genügt; ohne Zielgruppe sieht es niemand. Benutzer können es über Ansicht anpassen ausblenden. Das Widget separat speichern. Allgemeine Einstellungs- und Preset-Exporte enthalten weder seinen Text noch persönliche Freigaben. Ein gesonderter, ausdrücklich bestätigter Textexport/-import überträgt nur gespeicherten Titel und Text, nie Aktivierung oder Zielgruppe. Abschalten und Deinstallation erhalten die lokale Konfiguration; das Zurücksetzen von Site Essentials entfernt sie.
+
+### Ein lokaler Standard-Avatar.
+
+Zuerst lokale Avatare aktivieren. Darunter erscheinen dann die optionale Benutzerlisten-Spalte und ein eigener Container für das Standardbild. Er zeigt das aktuelle Standardbild und bietet lokale Medienauswahl, Bild-Upload oder die Rückkehr zum mitgelieferten SE-Bild. Das Bild separat speichern. Bei fehlender, gelöschter, privater oder extern bereitgestellter Auswahl erscheint das SE-Bild. Beim Zurücksetzen der Auswahl werden keine Mediendateien kopiert, gesperrt oder gelöscht. Persönliche Profilbilder haben weiterhin Vorrang. Bild-IDs gelten je Website und fehlen in Einstellungs-, Preset- und Supportexporten.
+
+
+
+### Medien- und Listenhilfen.
+
+Erzeugte Bildgrößen optional im Medieneditor ansehen, ohne Dateien zu verändern. Neue Upload-Dateinamen lassen sich in Kleinbuchstaben umwandeln; bestehende Dateien bleiben unverändert. Inhaltslisten können eine sichtbare Auswahl für die Suche nur im Titel anbieten; Standard bleibt die vollständige Suche. Spalten für Beitragsbild, Änderungsdatum und das nur für Administratoren sichtbare Registrierungsdatum lassen sich einzeln aktivieren. Alle vier Hilfen sind zunächst ausgeschaltet.
+
+### Klarer Status, datensparsame Diagnose.
+
+Bekannte Gründe für pausierte Einstellungen werden in Regelübersicht, Übergabe und Website-Zustand einheitlich erklärt. Support-Diagnosen verwenden eine geprüfte Positivliste: Freitext, persönliche Zuordnungen sowie eigene Rollen- und Inhaltstypnamen fehlen; Listen zeigen nur Anzahlen. Die Speicherdiagnose unterscheidet noch nicht gemessen, unvollständig gemessen und nicht verfügbar.
+
+
+
+### Menüs weiterverwenden statt neu aufbauen.
+
+Das Duplizieren unter Admin-Oberfläche aktivieren. Die Kopie behält native Linkeigenschaften, Hierarchie und SE-Sichtbarkeit, erhält aber keine Menüposition. Metadaten anderer Plugins werden nicht kopiert. Die Sichtbarkeit gilt nur für klassische Menüs und schützt keine Zielseiten. Ausgeblendete Elterneinträge verbergen auch ihre Untereinträge; Seiten-Caches müssen den Anmeldestatus unterscheiden.
+
+### Benutzerinformationen mit klaren Grenzen.
+
+Benutzer- und Inhalts-IDs bieten eine Kopiertaste; ersatzweise lässt sich der Text markieren. Die optionale Erfassung der letzten Anmeldung speichert je Benutzer und Website nur einen Zeitstempel einer erfolgreichen interaktiven Anmeldung. Bestehende Sitzungen aktualisieren ihn nicht. IP-Adressen und Historie werden nicht gespeichert. Nur Administratoren mit Berechtigung für die Benutzerliste sehen die Zeitstempel. WordPress-Datenschutzwerkzeuge können sie exportieren und löschen; Abschalten erhält vorhandene Werte, Deinstallation entfernt sie.
+
+### Medien-Papierkorb: erst prüfen, dann konfigurieren.
+
+Die optionale Statuskarte liest MEDIA_TRASH und EMPTY_TRASH_DAYS, ohne wp-config.php zu bearbeiten. Den nativen Medien-Papierkorb über die Serverkonfiguration vor dem WordPress-Start aktivieren; vorhandene Definitionen und Aufbewahrung beachten. Null Tage deaktivieren den Papierkorb. Dateien darin bleiben gespeichert und können direkt erreichbar bleiben; dies ist weder Backup noch Zugriffsschutz. Ausdrücklich endgültiges Löschen kann den Papierkorb umgehen. In Multisite gelten Konstanten normalerweise für die gesamte Installation.
+
+### Speicherdiagnose ohne Live-Suche.
+
+Die tägliche Diagnose des lokalen Upload-Speichers unter Mediathek aktivieren. Das gespeicherte Ergebnis steht unter Werkzeuge → Site Essentials: PHP. Die Anzeige durchsucht keine Verzeichnisse. Messungen enden spätestens an den Grenzen von 10.000 Einträgen, 512 Verzeichnissen oder zwei Sekunden. Unvollständige oder nicht verfügbare Ergebnisse zeigen keine Teilsumme. Eine manuell angeforderte Aktualisierung plant eine Aufgabe, höchstens alle 15 Minuten. WordPress-Cron kann abhängig vom Website-Traffic später laufen. Externe Medien, Datenbank und Hosting-Kontingent werden nicht gemessen.
+
+### Eine Umgebungsanzeige.
+
+Site Essentials zeigt die WordPress-Umgebung rechts in der Toolbar ausschließlich für Administratoren, ohne sie zu ändern. Stellt eine aktive Brand-Admin-Schemes-Implementierung ihren Umgebungs-Callback bereit, übernimmt BAS die Darstellung und SE pausiert, auch bei ausgeblendeter BAS-Anzeige. SE behält seine Auswahl und setzt die Anzeige nach BAS-Deaktivierung fort. Der Einstellungsstatus erklärt den zuständigen Anbieter. BAS-Dateien und -Einstellungen bleiben unverändert.
+
+[Neue Verwaltungshilfen mit Beispielen](wiki/Verwaltungshilfen.md)
+
 ## Screenshots
 
 ### Presets und Einstellungen
@@ -169,6 +214,8 @@ Eine veröffentlichte WordPress-Seite auswählen. Wartung verwendet HTTP 503 und
 ![Website-Hinweise](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/checks-de.png)
 
 Administrator-Hinweise prüfen Sichtbarkeit und erkennbare Seiteninhalte; sie bewerten keine Rechtskonformität.
+
+Bebilderte Anleitungen: [Dashboard](https://github.com/deckerweb/site-essentials/wiki/Dashboard-de), [Website-Icon und Datumsformate](https://github.com/deckerweb/site-essentials/wiki/Allgemeine-Einstellungen), [Listenspalten](https://github.com/deckerweb/site-essentials/wiki/Verwaltungshilfen) und [Diagnose](https://github.com/deckerweb/site-essentials/wiki/Diagnose).
 
 ## FAQ
 
@@ -203,6 +250,19 @@ Eigene Einstellungen, benannte lokale Presets, vorherige Konfiguration und Netzw
 [Fragen nach Themen](FAQ-de.md)
 
 ## Änderungsverlauf
+
+### 1.1.0 · 2026-10-28
+
+- **Neu:** Optionale Video-Upload-Sperre, Anleitung zum nativen Medien-Papierkorb und gespeicherte tägliche Upload-Speicherdiagnose.
+- **Neu:** Klassische Menüs duplizieren und Menüeinträge für angemeldete oder abgemeldete Besucher steuern.
+- **Neu:** Kopierbare Inhalts- und Benutzer-IDs, gezielte Profilvereinfachung und letzte Anmeldung je Website.
+- **Neu:** Optionale Anzeige der WordPress-Umgebung mit Vorrang für Brand Admin Schemes.
+- **Neu:** Optionale Bildgrößenübersicht, neue Upload-Dateinamen in Kleinbuchstaben, sichtbare Titelsuche im Admin und gezielte Listenspalten.
+- **Neu:** Optionales Dashboard-Informationswidget mit websitebezogener Zielgruppe und ausdrücklicher Textübertragung; eigenes lokales Standard-Avatarbild mit dokumentiertem Entwickler-Filter.
+- **Verbessert:** Getrennte Feed-Verweise und Erfolgsmails für WordPress, Plugins und Themes bei erhaltenem Verhalten; verständlichere Gruppen und direkter Zugriff auf derzeit unwirksame Regeln.
+- **Verbessert:** Gebündelte Medienoptionen und Anleitungen, Umgebungsanzeige rechts nur für Administratoren, verständlichere Avatar-Hilfe und einheitliche datensparsame Diagnosen.
+- **Verbessert:** Schmale zweizeilige und sortierbare ID-Spalten; sortierbares Änderungsdatum im nativen WordPress-Format; klarere Avatar-Abhängigkeiten, Abstände bei Update-E-Mails und Änderungspunkt. Website-Zustand und Befehlspalette berücksichtigen die neuen Module.
+- **Verbessert:** Eigene Dashboard-Rubrik, übersichtlichere Editor-Listen und Datumsbeispiele, Favicon-Erklärung und nach Wichtigkeit geordnete Angaben im Website-Zustand.
 
 ### 1.0.1 · 2026-10-22
 

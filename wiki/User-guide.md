@@ -24,3 +24,14 @@ A dot in the save button and the existing status identify unsaved changes. Revie
 Activate on one site or network-wide. Each site keeps its own configuration. The limited network setting governs the login language selector; other sites are not silently reconfigured. Personal exceptions and media assignments remain website-local.
 
 Continue with [maintenance](Maintenance), [website checks](Website-checks), [settings takeover](Takeover), or [the complete FAQ](FAQ).
+
+
+[Administration conveniences](Administration-conveniences)
+
+
+## Illustrated everyday guides
+
+- [Set up the Dashboard](Dashboard)
+- [Understand the site icon, dates and times](General-settings)
+- [Inspect configuration and command-palette shortcuts](Diagnostics)
+- [Content lists and title search](Administration-conveniences)

@@ -192,3 +192,8 @@ Die bestätigte Übernahme sichert die vollständige vorherige Site-Essentials-K
 
 Nein. Falcon-Einstellungen werden von der aktuellen Website eingelesen. Netzwerkweit aktives Unbloater nutzt seine Netzwerkoption; nur ein Netzwerkadministrator darf diese Quelle prüfen. Die ausgewählten Einstellungen werden ausschließlich auf die aktuelle Website angewendet. Netzwerkvorgaben bleiben unverändert. Dateieditor-Sperren werden in Multisite nicht importiert; eine durch das Netzwerk vorgegebene Login-Sprachauswahl wird nicht lokal zur Übernahme angeboten. Aktive Quellplugins können überschneidende Funktionen bis zur Deaktivierung weiterhin steuern.
 
+
+
+## Was ändern die optionalen Komfortfunktionen von 1.1.0?
+
+Sie bleiben standardmäßig ausgeschaltet. Die Anleitung zu den Verwaltungshilfen erklärt klassische Menüs, Datenschutz bei der letzten Anmeldung, Profilfelder, Vorrang bei Umgebungsanzeigen, Video-Sperre, Medien-Papierkorb und begrenzte Speichermessung.

@@ -1,6 +1,6 @@
 {
-  "version": "1.0.1",
-  "date": "2026-10-22",
+  "version": "1.1.0",
+  "date": "2026-10-28",
   "requires_wp": "7.1",
   "requires_php": "8.2",
   "help": [
@@ -104,9 +104,89 @@
     {
       "title": "Command palette and Site Health",
       "text": "Where WordPress already loads its command palette, administrators can open Site Essentials settings, reports and handover, website checks and maintenance mode. These commands only navigate; they do not apply presets, switch maintenance or run public requests. Site Health Info reports local maintenance state, a recorded activation time, page availability, detected maintenance providers and known overridden rules. No page titles, personal exceptions or public response contents are included. Public checks remain manual and their results are not retained."
+    },
+    {
+      "title": "Menus, without rebuilding them.",
+      "text": "Enable menu duplication under Admin interface. The copy keeps native link properties, hierarchy and Site Essentials visibility, but receives no menu location. Third-party metadata is not copied. Visibility choices apply only to classic menus and do not protect target pages. Hidden parents also hide their descendants; page caches must distinguish login status."
+    },
+    {
+      "title": "User information, kept small.",
+      "text": "User and content IDs offer a copy button with selectable-text fallback. Optional last-login collection stores only one successful interactive-login timestamp per user and website. Existing sessions do not update it. No IP address or history is stored. Only administrators with user-list permission see timestamps. WordPress personal-data tools can export and erase them; disabling collection retains existing timestamps, uninstall removes them."
+    },
+    {
+      "title": "Media trash: inspect before changing configuration.",
+      "text": "The optional status card reads MEDIA_TRASH and EMPTY_TRASH_DAYS without editing wp-config.php. Enable native media trash only through server configuration before WordPress loads, respecting existing definitions and retention. A zero retention disables trash. Files in trash remain stored and may remain directly accessible; this is not a backup or privacy barrier. Explicit permanent deletion can bypass trash. On Multisite, constants normally apply across the installation."
+    },
+    {
+      "title": "Storage diagnosis without a live scan.",
+      "text": "Enable daily local upload-storage diagnosis under Media library and view the cached result in Tools → Site Essentials: PHP. Requests never scan directories while displaying the result. Measurements stop at 10,000 entries, 512 directories or two seconds. An incomplete or unavailable result is labeled without a partial total. Manual refresh queues a task, limited to fifteen-minute intervals. Traffic-dependent WordPress cron may run late. Remote media, the database and hosting quota are not measured."
+    },
+    {
+      "title": "One environment indicator.",
+      "text": "Site Essentials uses the WordPress environment without changing it. When an active Brand Admin Schemes implementation provides its environment callback, BAS owns presentation and Site Essentials pauses, even if BAS hides its own badge. Site Essentials keeps its choice and resumes after BAS deactivation. The settings status explains which provider is responsible. No BAS files or settings are changed."
+    },
+    {
+      "title": "Feed references and readable feeds.",
+      "text": "Choose which automatic feed discovery links are hidden in the page source. Blog, comment, category/tag, author and search references can be selected separately, plus registered content-type and taxonomy archives. Actual RSS/Atom feed access is unchanged; disabling feeds is a separate option. Existing broad suppression is retained, including future archives."
+    },
+    {
+      "title": "Successful update emails.",
+      "text": "Suppress success notifications separately for WordPress, plugins and themes. Failure notifications are not suppressed by these controls. Existing broad suppression is retained for all three choices until you change them."
+    },
+    {
+      "title": "Find settings that are not applied.",
+      "text": "Click the unapplied-rule count in the overview to see the affected settings, their known reasons and direct setting shortcuts. The shortcut clears any search so matching rules are not hidden. This changes the view only."
+    },
+    {
+      "title": "Media and list conveniences.",
+      "text": "Optionally inspect generated image sizes in the attachment editor without changing files. New upload filenames can be converted to lowercase; existing files stay unchanged. Native content lists can offer a visible title-only search choice, with full search as the default. Featured-image, modified-date and administrator-only user-registration columns can be enabled separately. All four helpers start off."
+    },
+    {
+      "title": "Clear status, minimal diagnostics.",
+      "text": "Known reasons for paused settings are shared across the rule overview, handover and Site Health. Support diagnostics use a reviewed allowlist: custom text, personal assignments and custom role or content-type names are omitted; lists disclose counts only. Storage diagnosis distinguishes no measurement, an incomplete measurement and an unavailable result."
+    },
+    {
+      "title": "One dashboard information widget.",
+      "text": "Under Dashboard, configure one optional dashboard widget with a title, simple formatted text and an audience of roles plus additional site users. A matching role OR a selected user grants visibility; an empty audience grants nobody access. Users can hide it in Screen Options. Save this widget separately. Generic configuration and preset exports never include its text or personal grants. A separate, explicitly confirmed text export/import transfers only the saved title and text; it never transfers activation or audience. Disabling or uninstalling preserves the local configuration; resetting Site Essentials clears it."
+    },
+    {
+      "title": "A local default avatar.",
+      "text": "Enable local avatars first. The optional user-list column and a separate default-image card then appear below the master setting. The card previews the current default and offers local media selection, raster upload or return to the shipped SE image. Save the image separately. A missing, deleted, private or externally served selection falls back to the shipped image. No media files are copied, locked or deleted when resetting the selection. Personal profile images still take priority. Image IDs are local to each website and are excluded from configuration, preset and support exports."
+    },
+    {
+      "title": "States and shortcuts without customer data.",
+      "text": "Site Health Info reports whether the dashboard widget is enabled and whether a default avatar is supplied by SE, a local selection or a developer filter. It never includes widget text, contact details, selected users or image IDs/URLs. Administrator command-palette entries open dashboard information and, while SE local avatars are enabled, the default-avatar settings. These commands navigate only; they do not save or activate anything."
+    },
+    {
+      "title": "Default-avatar developer filter.",
+      "text": "Developer filter: site_essentials_local_avatar_default_id returns a positive integer attachment ID from the current site, or 0 for no override. Only an available, public, locally served raster image is accepted. A valid override takes priority over the saved selection; otherwise the saved image and shipped SE image are used in that order. The UI explains a valid override and pauses selection without removing the saved value. Personal images remain first; force-default requests use the effective default."
+    },
+    {
+      "title": "Date and time, with clear examples.",
+      "text": "Enable date and time explanations under Admin interface, then open WordPress General settings. Fixed examples explain leading zeros without changing formats, previews or saving. A Favicon and Home Screen explanation accompanies the native Site Icon controls."
     }
   ],
   "history": [
+    {
+      "version": "1.1.0",
+      "date": "2026-10-28",
+      "new": [
+        "Optional video upload restrictions, native media trash guidance and cached daily upload-storage diagnosis.",
+        "Classic menu duplication and menu visibility for logged-in or logged-out visitors.",
+        "Copyable content and user IDs, selected profile simplification and site-specific last-login timestamps.",
+        "Optional WordPress environment indicator with priority for Brand Admin Schemes.",
+        "Optional image-size overview, lowercase new upload filenames, visible title-only admin search and selected list columns.",
+        "Optional dashboard information widget with site-local audience and explicit text transfer; configurable local default avatar with a documented developer filter."
+      ],
+      "improved": [
+        "Separate feed discovery controls and WordPress/plugin/theme success-email choices, preserving existing behavior; clearer grouped settings and a direct shortcut to unapplied rules.",
+        "Grouped media controls and guidance, administrator-only environment indicator on the right, clearer local-avatar help and consistent privacy-conscious diagnostics.",
+        "Narrow two-line, sortable ID columns; sortable modified dates in the native WordPress date format; clearer avatar dependencies, update-email spacing and pending-change marker. Site Health and command-palette navigation cover the new modules.",
+        "Dedicated Dashboard section, clearer editor lists and date-format examples, Favicon guidance and prioritized Site Health information."
+      ],
+      "fixed": [],
+      "misc": []
+    },
     {
       "version": "1.0.1",
       "date": "2026-10-22",
@@ -200,14 +280,18 @@
       "Optional local-avatar and user-ID columns, date/time examples and a wider Customizer CSS editor.",
       "Clearer navigation groups, option descriptions, save-button change indicator and separate pattern/font menu controls.",
       "Administrator test links for missing pages and searches without results, with theme-specific guidance.",
-      "Read-only public robots.txt, sitemap and feed links, plus an explicit anonymous homepage-response check."
+      "Read-only public robots.txt, sitemap and feed links, plus an explicit anonymous homepage-response check.",
+      "Optional video upload restrictions, native media trash guidance and cached daily upload-storage diagnosis.",
+      "Classic menu duplication and menu visibility for logged-in or logged-out visitors.",
+      "Copyable content and user IDs, selected profile simplification and site-specific last-login timestamps.",
+      "Optional WordPress environment indicator with priority for Brand Admin Schemes."
     ],
     "start": "Upload the ZIP through Plugins → Add Plugin → Upload Plugin and activate it. Open Settings → Site Essentials. Choose a preset, review the changes and save all settings. No cleanup is enabled by default; three administrator-only website reminders are enabled.",
     "behavior": "Presets and configuration-file imports modify the draft, not the site. Save all settings applies that draft. The separate Falcon/Unbloater takeover saves explicitly selected settings after confirmation. Export downloads saved local settings, not unsaved changes. WordPress defaults can be reviewed as a preset. System behavior remains unchanged unless explicitly configured. Manual changes have an optional read-only review before saving. Preset names and notes are explicitly entered and included in exports; no site domains or user data are gathered automatically. Diagnostics omit preset notes and custom footer text. Clearing local data removes local avatar assignments, presets and rollback history while keeping neutral defaults to prevent startup presets from returning; network clearing releases only the current network policy.",
     "limits": "Template editing is blocked, but existing templates still render. jQuery Migrate removal applies only to signed-out frontend visitors. Heartbeat intervals are initial polling settings; WordPress or another script can subsequently adjust them. Revision limits do not run an immediate cleanup; core may prune older revisions on later saves. Existing comment hiding applies to ordinary frontend comment templates, not arbitrary custom database queries. XML-RPC blocking occurs after WordPress loads; it is not a web-server firewall.",
     "network": "Activate on one site or network-wide. Sites retain independent options, including sites created after activation. Network Admin → Settings → Site Essentials can hide the login language selector on every site or leave it to local settings. No other network policy is imposed.",
     "startup": "For a deliberately preconfigured deployment, set startup-preset.json to {\"preset\":\"builder\"}, \"comfort\", \"head\", \"classic\" or \"defaults\" before installation. The selected configuration initializes each unconfigured site on first use. Existing configurations are retained. The shipped file uses null.",
-    "data": "Local options: site_essentials_settings, site_essentials_previous and site_essentials_presets. Site-scoped user metadata: `site_essentials_avatar_SITE_ID`, containing local attachment IDs. Avatar media remain normal WordPress uploads. Network option: site_essentials_network. Deactivation and uninstall retain these values. The embedded Library removes its own temporary data only under its final-host cleanup contract; shared settings are retained by default. No content or other plugin data is deleted. Local option site_essentials_checks retains local imprint assignment and content/indexing confirmations. It is not part of configuration exports; explicit local RESET removes it without changing native visibility/privacy assignments. The optional media sorting index stores only derived byte counts (or an unavailable marker) in site-local attachment metadata _site_essentials_file_size. Local plugin-data clearing removes the index without touching attachments or files. Site-local option site_essentials_access_users contains personal appearance exceptions. It is excluded from all exports, preset snapshots and diagnostic output. Content metadata _site_essentials_target stores explicit destination URL and new-tab/nofollow flags. It is retained by configuration clearing and plugin uninstall and excluded from configuration/preset exports. Local option site_essentials_maintenance stores activation, pause state and the selected page. It is excluded from all configuration transfers and recovery, preserved at uninstall, and removed by explicit local RESET. The page itself remains content.",
+    "data": "Local options: site_essentials_settings, site_essentials_previous and site_essentials_presets. Site-scoped user metadata: `site_essentials_avatar_SITE_ID`, containing local attachment IDs. Avatar media remain normal WordPress uploads. Network option: site_essentials_network. Deactivation and uninstall retain these values. The embedded Library removes its own temporary data only under its final-host cleanup contract; shared settings are retained by default. No content or other plugin data is deleted. Local option site_essentials_checks retains local imprint assignment and content/indexing confirmations. It is not part of configuration exports; explicit local RESET removes it without changing native visibility/privacy assignments. The optional media sorting index stores only derived byte counts (or an unavailable marker) in site-local attachment metadata _site_essentials_file_size. Local plugin-data clearing removes the index without touching attachments or files. Site-local option site_essentials_access_users contains personal appearance exceptions. It is excluded from all exports, preset snapshots and diagnostic output. Content metadata _site_essentials_target stores explicit destination URL and new-tab/nofollow flags. It is retained by configuration clearing and plugin uninstall and excluded from configuration/preset exports. Local option site_essentials_maintenance stores activation, pause state and the selected page. It is excluded from all configuration transfers and recovery, preserved at uninstall, and removed by explicit local RESET. The page itself remains content. Last-login timestamps are site-specific, excluded from settings exports and removable through WordPress personal-data tools. Menu visibility metadata remains with menu items. Storage measurements are temporary and removed on uninstall.",
     "components": "Includes deckerweb Library 1.1.0 and deckerweb GitHub Release Updater 2.2.0, GPL-2.0-or-later, by David Decker. Library online catalog access is optional and initially off. The updater checks the configured GitHub repository through normal WordPress update checks; request metadata such as your server IP is sent to GitHub. No analytics or remote fonts are included. This direct-distribution package is not a WordPress.org build.",
     "faq": [
       [
@@ -377,6 +461,10 @@
       [
         "Do editor helpers change my CSS or formats?",
         "No. Format examples are read-only explanations. The width control resizes the existing Customizer editor; its CSS data, live preview, drafts and publishing remain native."
+      ],
+      [
+        "What do the optional 1.1.0 conveniences change?",
+        "They remain off by default. See the administration conveniences guide for classic menus, last-login privacy, profile fields, environment ownership, video restrictions, media trash setup and bounded storage measurement."
       ]
     ],
     "security": "Report vulnerabilities privately through [GitHub private vulnerability reporting](https://github.com/deckerweb/site-essentials/security/advisories/new). Include the plugin and component versions, WordPress/PHP versions, reproduction steps and impact. Do not include credentials or publish exploit details in issues. Reports are reviewed privately and fixes and disclosure are coordinated with the reporter."
@@ -420,14 +508,18 @@
       "Optionale Spalten für lokale Avatare und Benutzer-IDs, Datums-/Zeitbeispiele und ein breiterer CSS-Editor im Customizer.",
       "Klarere Navigationsgruppen und Optionstexte, Änderungspunkt im Speichern-Button und getrennte Menüoptionen für Blockvorlagen und Schriften.",
       "Testlinks für Administratoren zu fehlenden Seiten und Suchen ohne Treffer, mit Hinweisen zum jeweiligen Theme.",
-      "Öffentliche Links zu robots.txt, Sitemap und Feeds sowie eine ausdrücklich gestartete anonyme Prüfung der Startseitenantwort."
+      "Öffentliche Links zu robots.txt, Sitemap und Feeds sowie eine ausdrücklich gestartete anonyme Prüfung der Startseitenantwort.",
+      "Optionale Video-Upload-Sperre, Anleitung zum nativen Medien-Papierkorb und gespeicherte tägliche Upload-Speicherdiagnose.",
+      "Klassische Menüs duplizieren und Menüeinträge für angemeldete oder abgemeldete Besucher steuern.",
+      "Kopierbare Inhalts- und Benutzer-IDs, gezielte Profilvereinfachung und letzte Anmeldung je Website.",
+      "Optionale Anzeige der WordPress-Umgebung mit Vorrang für Brand Admin Schemes."
     ],
     "start": "ZIP unter Plugins → Installieren → Plugin hochladen installieren und aktivieren. Einstellungen → Site Essentials öffnen. Preset wählen, Änderungen prüfen und alle Einstellungen speichern. Standardmäßig ist keine Bereinigung aktiviert.",
     "behavior": "Presets und Konfigurationsdatei-Importe verändern den Entwurf, nicht die Website. Erst Alle Einstellungen speichern wendet die Konfiguration an. Export lädt gespeicherte lokale Einstellungen herunter, keine ungespeicherten Änderungen. Der WordPress-Standard steht als Preset zur Prüfung bereit. Systemverhalten bleibt ohne ausdrückliche Einstellung unverändert. Die gesonderte Falcon-/Unbloater-Übernahme speichert ausdrücklich ausgewählte Einstellungen nach Bestätigung.",
     "limits": "Template-Bearbeitung wird gesperrt; vorhandene Templates werden weiter ausgegeben. jQuery Migrate wird nur für abgemeldete Frontend-Besucher entfernt. Heartbeat-Intervalle gelten als anfängliche Abrufeinstellung; WordPress oder andere Scripts können sie später verändern. Revisionsgrenzen führen keine sofortige Bereinigung aus; Core kann beim späteren Speichern ältere Revisionen entfernen. Vorhandene Kommentare werden in gewöhnlichen Frontend-Kommentar-Templates ausgeblendet, nicht in beliebigen eigenen Datenbankabfragen. XML-RPC wird nach dem Laden von WordPress gesperrt; das ersetzt keine Webserver-Firewall.",
     "network": "Auf einer Website oder netzwerkweit aktivierbar. Websites behalten eigene Optionen, auch nach Aktivierung neu angelegte Sites. Netzwerkverwaltung → Einstellungen → Site Essentials kann die Login-Sprachauswahl überall ausblenden oder den Websites überlassen. Weitere Netzwerkvorgaben werden nicht erzwungen.",
     "startup": "Für eine bewusst vorkonfigurierte Installation startup-preset.json vorab auf {\"preset\":\"builder\"}, \"comfort\", \"head\", \"classic\" oder \"defaults\" setzen. Die gewählte Konfiguration initialisiert jede noch unkonfigurierte Website bei erster Nutzung. Bestehende Einstellungen bleiben erhalten. Die ausgelieferte Datei enthält null.",
-    "data": "Lokale Optionen: site_essentials_settings, site_essentials_previous und site_essentials_presets. Benutzer-Metadaten je Website: `site_essentials_avatar_SITE_ID` mit lokalen Attachment-IDs. Avatar-Medien bleiben normale WordPress-Uploads. Netzwerkoption: site_essentials_network. Deaktivierung und Deinstallation erhalten diese Werte. Die eingebettete Library entfernt eigene temporäre Daten nur gemäß ihrer Letzt-Host-Bereinigung; gemeinsame Einstellungen bleiben standardmäßig erhalten. Inhalte und Daten anderer Plugins werden nicht gelöscht. Die lokale Option site_essentials_checks erhält Impressumszuordnung und Inhalts-/Indexierungsbestätigungen. Sie wird nicht mit Konfigurationen exportiert; lokales RESET entfernt sie ohne Änderung nativer Sichtbarkeit oder Datenschutzzuordnung. Der optionale Mediensortierungs-Index speichert nur abgeleitete Byte-Zahlen (oder eine Nicht-verfügbar-Markierung) in Website-lokalen Medien-Metadaten _site_essentials_file_size. Lokale Plugin-Datenbereinigung entfernt den Index, ohne Medien oder Dateien anzutasten. Website-lokale Option site_essentials_access_users enthält persönliche Design-Ausnahmen. Sie ist aus allen Exporten, Preset-Snapshots und Diagnose-Ausgaben ausgeschlossen. Beitragsmetadaten _site_essentials_target speichern ausdrücklich gewählte Zieladressen und Neuer-Tab-/nofollow-Vorgaben. Konfigurationsbereinigung und Deinstallation erhalten sie; Konfigurations-/Preset-Exporte enthalten sie nicht. Die lokale Option site_essentials_maintenance speichert Aktivierung, Pause und ausgewählte Seite. Sie ist von allen Konfigurationstransfers und der Wiederherstellung ausgeschlossen, bleibt bei Deinstallation erhalten und wird durch ausdrückliches lokales RESET entfernt. Die Seite selbst bleibt als Inhalt erhalten.",
+    "data": "Lokale Optionen: site_essentials_settings, site_essentials_previous und site_essentials_presets. Benutzer-Metadaten je Website: `site_essentials_avatar_SITE_ID` mit lokalen Attachment-IDs. Avatar-Medien bleiben normale WordPress-Uploads. Netzwerkoption: site_essentials_network. Deaktivierung und Deinstallation erhalten diese Werte. Die eingebettete Library entfernt eigene temporäre Daten nur gemäß ihrer Letzt-Host-Bereinigung; gemeinsame Einstellungen bleiben standardmäßig erhalten. Inhalte und Daten anderer Plugins werden nicht gelöscht. Die lokale Option site_essentials_checks erhält Impressumszuordnung und Inhalts-/Indexierungsbestätigungen. Sie wird nicht mit Konfigurationen exportiert; lokales RESET entfernt sie ohne Änderung nativer Sichtbarkeit oder Datenschutzzuordnung. Der optionale Mediensortierungs-Index speichert nur abgeleitete Byte-Zahlen (oder eine Nicht-verfügbar-Markierung) in Website-lokalen Medien-Metadaten _site_essentials_file_size. Lokale Plugin-Datenbereinigung entfernt den Index, ohne Medien oder Dateien anzutasten. Website-lokale Option site_essentials_access_users enthält persönliche Design-Ausnahmen. Sie ist aus allen Exporten, Preset-Snapshots und Diagnose-Ausgaben ausgeschlossen. Beitragsmetadaten _site_essentials_target speichern ausdrücklich gewählte Zieladressen und Neuer-Tab-/nofollow-Vorgaben. Konfigurationsbereinigung und Deinstallation erhalten sie; Konfigurations-/Preset-Exporte enthalten sie nicht. Die lokale Option site_essentials_maintenance speichert Aktivierung, Pause und ausgewählte Seite. Sie ist von allen Konfigurationstransfers und der Wiederherstellung ausgeschlossen, bleibt bei Deinstallation erhalten und wird durch ausdrückliches lokales RESET entfernt. Die Seite selbst bleibt als Inhalt erhalten.Anmeldezeitstempel sind websitebezogen, von Einstellungsexporten ausgeschlossen und über die WordPress-Datenschutzwerkzeuge löschbar. Menü-Sichtbarkeit bleibt an den Menüeinträgen gespeichert. Speichermessungen sind temporär und werden bei Deinstallation entfernt.",
     "components": "Enthält deckerweb Library 1.1.0 und deckerweb GitHub Release Updater 2.2.0, GPL-2.0-or-later, von David Decker. Der Online-Katalog der Library ist optional und zunächst ausgeschaltet. Der Updater fragt das konfigurierte GitHub-Repository im normalen WordPress-Updateprozess ab; dabei werden Anfragedaten wie die Server-IP an GitHub übertragen. Keine Analysefunktionen oder externen Schriften. Dieses Direktvertriebspaket ist kein WordPress.org-Build.",
     "faq": [
       [
@@ -597,6 +689,10 @@
       [
         "Verändern die Editorhilfen CSS oder Formate?",
         "Nein. Formatbeispiele sind reine Erläuterungen. Die Breitensteuerung vergrößert den vorhandenen Customizer-Editor; CSS-Daten, Live-Vorschau, Entwürfe und Veröffentlichen bleiben nativ."
+      ],
+      [
+        "Was ändern die optionalen Komfortfunktionen von 1.1.0?",
+        "Sie bleiben standardmäßig ausgeschaltet. Die Anleitung zu den Verwaltungshilfen erklärt klassische Menüs, Datenschutz bei der letzten Anmeldung, Profilfelder, Vorrang bei Umgebungsanzeigen, Video-Sperre, Medien-Papierkorb und begrenzte Speichermessung."
       ]
     ],
     "security": "Sicherheitslücken vertraulich über [GitHubs private Sicherheitsmeldungen](https://github.com/deckerweb/site-essentials/security/advisories/new) melden. Plugin- und Komponenten-Versionen, WordPress-/PHP-Versionen, Schritte zur Reproduktion und Auswirkungen angeben. Keine Zugangsdaten übermitteln oder Exploit-Details in Issues veröffentlichen. Meldungen werden vertraulich geprüft; Korrektur und Offenlegung werden mit dem Melder abgestimmt."

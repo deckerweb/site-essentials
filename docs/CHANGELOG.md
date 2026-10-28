@@ -2,6 +2,19 @@
 
 [Deutsch](CHANGELOG-de.html)
 
+### 1.1.0 · 2026-10-28
+
+- **New:** Optional video upload restrictions, native media trash guidance and cached daily upload-storage diagnosis.
+- **New:** Classic menu duplication and menu visibility for logged-in or logged-out visitors.
+- **New:** Copyable content and user IDs, selected profile simplification and site-specific last-login timestamps.
+- **New:** Optional WordPress environment indicator with priority for Brand Admin Schemes.
+- **New:** Optional image-size overview, lowercase new upload filenames, visible title-only admin search and selected list columns.
+- **New:** Optional dashboard information widget with site-local audience and explicit text transfer; configurable local default avatar with a documented developer filter.
+- **Improved:** Separate feed discovery controls and WordPress/plugin/theme success-email choices, preserving existing behavior; clearer grouped settings and a direct shortcut to unapplied rules.
+- **Improved:** Grouped media controls and guidance, administrator-only environment indicator on the right, clearer local-avatar help and consistent privacy-conscious diagnostics.
+- **Improved:** Narrow two-line, sortable ID columns; sortable modified dates in the native WordPress date format; clearer avatar dependencies, update-email spacing and pending-change marker. Site Health and command-palette navigation cover the new modules.
+- **Improved:** Dedicated Dashboard section, clearer editor lists and date-format examples, Favicon guidance and prioritized Site Health information.
+
 ### 1.0.1 · 2026-10-22
 
 - **Fixed:** Updated plugins use their bundled updater even when another plugin loaded an older copy first.

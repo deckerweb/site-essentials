@@ -172,7 +172,7 @@
  });
  const initial = read();
  window.siteEssentialsDraft = {has: () => dirty() || profileDirty() || editDirty() || Boolean(recovery)};
- function syncAvatarColumn() { const card = form.querySelector('[data-setting="avatar_column"]'); if (card) card.hidden = card.hidden || !document.getElementById('se-field-local_avatars')?.checked; }
+ function syncAvatarColumn() { const active = document.getElementById('se-field-local_avatars')?.checked; const card = form.querySelector('[data-setting="avatar_column"]'); if (card) card.hidden = card.hidden || !active; const standard = document.getElementById('se-default-avatar-panel'); if (standard) standard.hidden = !active || Boolean(config.avatarProvider); }
  function dirty() {
   const changed = !equal(initial, read()) || Boolean(window.siteEssentialsAccessDirty?.());
   status.textContent = changed ? config.strings.unsaved : config.strings.saved;
@@ -386,34 +386,36 @@
   const field = fields[key], local = values[key];
   const effective = key === 'login_language' && config.networkLocked ? true : local;
   const configured = typeof effective === 'boolean' ? effective : (field.type === 'int' ? !equal(effective, field.default) : typeof effective === 'string' ? effective.trim() !== '' : Object.keys(effective).length > 0);
-  let reason = '';
+  let code = '';
   if (configured) {
-   if (key === 'avatar_column' && !values.local_avatars) reason = fields.avatar_column.help;
+   if (key === 'avatar_column' && !values.local_avatars) code='avatar_off';
+   if (key === 'environment_badge' && config.basProvider) code='bas';
    if (['targets','target_types'].includes(key)) {
-    if (!values.targets || !values.target_types.some(type => config.availableTargetTypes.includes(type))) reason = config.strings.ruleTargetOff;
-    if (config.targetProvider) reason = config.strings.ruleTargetProvider;
+    if (!values.targets || !values.target_types.some(type=>config.availableTargetTypes.includes(type))) code='target_off';
+    if (config.targetProvider) code='target_provider';
    }
-   if (/^access_(widgets|customizer|menus)_roles$/.test(key) && values[key.replace('_roles','_mode')] !== 2) reason = config.strings.accessModes[values[key.replace('_roles','_mode')]];
-   if (key === 'file_editors' && config.multisite) reason = config.strings.ruleSingle;
-   if (values.comments_disabled && ['comment_types','hide_comments','comment_reply','self_pingbacks'].includes(key)) reason = config.strings.ruleComments;
-   if (key === 'hide_comments' && !values.comment_types.length) reason = config.strings.ruleCommentTypes;
-   if (key === 'footer' && values.footer_text.trim()) reason = config.strings.ruleFooter;
-   if (['post_rename','post_plural','post_singular'].includes(key) && (!values.post_rename || !values.post_plural.trim() || !values.post_singular.trim())) reason = config.strings.ruleNames;
-   if (field.dynamic && field.dynamic !== 'roles' && ['list','map'].includes(field.type)) {
-    const types = field.type === 'list' ? local : Object.keys(local);
-    if (types.length && !types.some(type => config.availableTypes.includes(type))) reason = config.strings.ruleTypes;
-    if (key === 'classic_editor_types' && values.blog_admin && types.length && types.every(type => type === 'post')) reason = config.strings.ruleBlog;
+   if (/^access_(widgets|customizer|menus)_roles$/.test(key) && values[key.replace('_roles','_mode')]!==2) code='roles';
+   if (key==='file_editors' && config.multisite) code='single';
+   if (values.comments_disabled && ['comment_types','hide_comments','comment_reply','self_pingbacks'].includes(key)) code='comments';
+   if (key==='hide_comments' && !values.comment_types.length && !values.comments_disabled) code='comment_types';
+   if (key==='footer' && values.footer_text.trim()) code='footer';
+   if (['post_rename','post_plural','post_singular'].includes(key) && (!values.post_rename || !values.post_plural.trim() || !values.post_singular.trim())) code='names';
+   if (field.dynamic && !['roles','feed_types','feed_taxonomies'].includes(field.dynamic) && ['list','map'].includes(field.type)) {
+    const types=field.type==='list'?local:Object.keys(local);
+    if(types.length && !types.some(type=>config.availableTypes.includes(type))) code='types';
+    if(key==='classic_editor_types' && values.blog_admin && types.length && types.every(type=>type==='post')) code='blog';
    }
   }
+  const reason=config.statusReasons[code] || '';
   return {local,effective,active:Boolean(configured && !reason),dormant:Boolean(configured && reason),reason,source:key === 'login_language' && config.networkLocked ? config.strings.ruleNetwork : config.strings.ruleLocal,pending:!equal(local,config.local[key])};
  }
  function ruleView() {
   const values = read(), baseline = {...config.defaults,...(config.presets[ruleReference.value]?.settings || {})}, query = search.value.trim().toLocaleLowerCase(), mode = ruleFilter.value;
-  const all = Object.entries(fields).filter(([key]) => !['widgets_admin','customizer_admin'].includes(key) && !(['local_avatars','avatar_column'].includes(key) && config.avatarProvider)).map(([key,field]) => ({key,field,...ruleState(key,values)}));
+  const all = Object.entries(fields).filter(([key]) => !['widgets_admin','customizer_admin','feed_links','update_emails'].includes(key) && !( !config.classicMenusAvailable && ['access_menus_mode','access_menus_roles','menu_fields','menu_bricks','menu_duplicate','menu_visibility'].includes(key) ) && !(['local_avatars','avatar_column'].includes(key) && config.avatarProvider)).map(([key,field]) => ({key,field,...ruleState(key,values)}));
   const matches = all.filter(row => (row.field.label + ' ' + row.field.help).toLocaleLowerCase().includes(query) && (mode === 'all' || mode === 'active' && row.active || mode === 'different' && !equal(row.local,baseline[row.key]) || mode === 'saved-different' && !equal(config.local[row.key],baseline[row.key]) || mode === 'pending' && row.pending || mode === 'dormant' && row.dormant));
   const keys = new Set(matches.map(row => row.key));
   Object.keys(fields).forEach(key => { if (['local_avatars','avatar_column'].includes(key) && config.avatarProvider) return; form.querySelector('[data-setting="'+key+'"]').hidden = !keys.has(key); });
-  form.querySelectorAll('.se-field-group').forEach(group => { group.hidden = !group.querySelector('[data-setting]:not([hidden])'); });
+  form.querySelectorAll('.se-field-group').forEach(group => { group.hidden = group.dataset.unavailable === '1' || !group.querySelector('[data-setting]:not([hidden])'); });
   syncAvatarColumn();
   const focusedCard = document.activeElement?.closest('[data-setting]');
   const rename = document.getElementById('se-field-post_rename'), names = document.getElementById('se-post-names');
@@ -434,11 +436,17 @@
    nav.forEach(link => { if(link.dataset.section === selectedSection) link.setAttribute('aria-current','page'); else link.removeAttribute('aria-current'); });
   }
   document.getElementById('se-search-status').textContent = query || mode !== 'all' ? (matches.length ? config.strings.ruleMatches.replace('%d',matches.length) : config.strings.searchNone) : '';
-  document.getElementById('se-rule-summary').textContent = config.strings.ruleCounts.replace('%1$d',all.filter(row=>row.active).length).replace('%2$d',all.filter(row=>row.dormant).length).replace('%3$d',all.filter(row=>row.pending).length);
+  const summary = document.getElementById('se-rule-summary'), dormant = all.filter(row=>row.dormant).length;
+  const parts = config.strings.ruleCounts.split(' · ');
+  const counter = document.createElement(dormant ? 'button' : 'span');
+  counter.textContent = parts[1].replace('%2$d',dormant);
+  if (dormant) { counter.type='button'; counter.className='button-link se-dormant-counter'; counter.addEventListener('click',()=>{search.value='';ruleFilter.value='dormant';ruleView();const details=document.getElementById('se-rule-details');details.open=true;details.querySelector('summary').focus();}); }
+  summary.replaceChildren(document.createTextNode(parts[0].replace('%1$d',all.filter(row=>row.active).length)+' · '),counter,document.createTextNode(' · '+parts[2].replace('%3$d',all.filter(row=>row.pending).length)));
+
   if (query || mode !== 'all') document.getElementById('se-rule-details').open = true;
   const body = document.getElementById('se-rule-rows'); body.replaceChildren();
   matches.forEach(row => {
-   const tr = document.createElement('tr'); tr.dataset.rule = row.key;
+   const tr = document.createElement('tr'); tr.dataset.rule = row.key; if(row.dormant) tr.classList.add('se-rule-dormant');
    const td = document.createElement('td'), button = document.createElement('button');button.type = 'button';button.className = 'button-link';button.textContent = row.field.label;button.title = config.strings.ruleJump;
    button.addEventListener('click',()=>{search.value='';ruleFilter.value='all';selectSection(row.field.group,false);history.replaceState(null,'','#se-'+row.field.group);const card=form.querySelector('[data-setting="'+row.key+'"]');if (['post_plural','post_singular'].includes(row.key) && !document.getElementById('se-field-post_rename').checked) { document.getElementById('se-field-post_rename').focus(); } else if (row.key === 'avatar_column' && !document.getElementById('se-field-local_avatars')?.checked) { document.getElementById('se-field-local_avatars')?.focus(); } else { card.tabIndex=-1;card.focus(); }});td.append(button);tr.append(td);
    [config.groups[row.field.group],ruleDisplay(row.key,config.local[row.key]),ruleDisplay(row.key,row.local),ruleDisplay(row.key,row.effective),ruleDisplay(row.key,baseline[row.key]),(row.active?config.strings.ruleActive:row.dormant?config.strings.ruleDormant:config.strings.ruleOff)+' · '+row.source+(row.reason?' · '+row.reason:''),row.pending?config.strings.ruleDraft:config.strings.ruleSaved].forEach(value=>{const cell=document.createElement('td');cell.textContent=value;tr.append(cell);});body.append(tr);

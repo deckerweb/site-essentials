@@ -152,7 +152,7 @@ final class WebsiteChecks {
   echo '</p><p><button type="submit" form="se-check-assignment-form" class="button">' . esc_html__( 'Save imprint assignment', 'site-essentials' ) . '</button></p>';
   foreach ( array( 'privacy', 'imprint' ) as $kind ) {
    echo '<p>' . esc_html( $this->message( $kind, $status ) ) . ' ';
-   $id = $status[ $kind ]['id']; if ( $id && current_user_can( 'edit_post', $id ) ) { echo '<a href="' . esc_url( get_edit_post_link( $id, 'raw' ) ) . '">' . esc_html__( 'Edit page', 'site-essentials' ) . '</a> '; if ( 'publish' === get_post_status( $id ) ) { echo '<a href="' . esc_url( get_permalink( $id ) ) . '">' . esc_html__( 'View page', 'site-essentials' ) . '</a> '; } }
+   $id = $status[ $kind ]['id']; if ( $id && current_user_can( 'edit_post', $id ) ) { echo '<a href="' . esc_url( get_edit_post_link( $id, 'raw' ) ) . '">' . esc_html__( 'Edit page', 'site-essentials' ) . '</a> '; if ( 'publish' === get_post_status( $id ) ) { echo '· <a href="' . esc_url( get_permalink( $id ) ) . '">' . esc_html__( 'View page', 'site-essentials' ) . '</a> '; } }
    if ( 'review' === $status[ $kind ]['status'] ) { echo '<button type="submit" form="se-check-confirm-' . esc_attr( $kind ) . '-form" class="button">' . esc_html__( 'Content checked: confirm it is present', 'site-essentials' ) . '</button>'; }
    echo '</p>';
   }

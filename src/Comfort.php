@@ -43,11 +43,20 @@ final class Comfort {
   * @return void
   */
  public function assets( string $hook ): void {
-  if ( 'options-general.php' !== $hook || ! current_user_can( 'manage_options' ) || ! Settings::get( 'format_help' ) ) { return; }
-  wp_enqueue_script( 'se-format-help', plugins_url( 'assets/format-help.js', SITE_ESSENTIALS_FILE ), array(), SITE_ESSENTIALS_VERSION, true );
+  if ( 'options-general.php' !== $hook || ! current_user_can( 'manage_options' ) ) { return; }
+  wp_enqueue_script( 'se-format-help', plugins_url( 'assets/format-help.js', SITE_ESSENTIALS_FILE ), array(), SITE_ESSENTIALS_ASSET_VERSION, true );
+  wp_enqueue_style( 'se-format-help', plugins_url( 'assets/format-help.css', SITE_ESSENTIALS_FILE ), array(), SITE_ESSENTIALS_ASSET_VERSION );
   wp_localize_script( 'se-format-help', 'seFormatHelp', array(
    'time' => array( 'g:i a' => __( '12 hours: 9:05 am / 9:05 pm', 'site-essentials' ), 'G:i' => __( '24 hours without a leading zero: 9:05 / 21:05', 'site-essentials' ), 'H:i' => __( '24 hours with a leading zero: 09:05 / 21:05', 'site-essentials' ), 'g:i A' => __( '12 hours: 9:05 AM / 9:05 PM', 'site-essentials' ) ),
-   'date' => __( 'Day without a leading zero (j): 4. Day with a leading zero (d): 04. Month as a number without a leading zero (n): 2; with a leading zero (m): 02. Full year (Y): 2026.', 'site-essentials' ),
+   'enabled' => (bool) Settings::get( 'format_help' ),
+   'icon' => __( 'The site icon (also known as a favicon) appears in browser tabs and can be used as an icon on smartphones and tablets when the website is added to the Home Screen.', 'site-essentials' ),
+   'date' => array(
+    array( 'label' => __( 'Day without a leading zero', 'site-essentials' ), 'code' => 'j', 'example' => '4' ),
+    array( 'label' => __( 'Day with a leading zero', 'site-essentials' ), 'code' => 'd', 'example' => '04' ),
+    array( 'label' => __( 'Month without a leading zero', 'site-essentials' ), 'code' => 'n', 'example' => '2' ),
+    array( 'label' => __( 'Month with a leading zero', 'site-essentials' ), 'code' => 'm', 'example' => '02' ),
+    array( 'label' => __( 'Full year', 'site-essentials' ), 'code' => 'Y', 'example' => '2026' ),
+   ),
   ) );
  }
  /** Enhance the existing CSS section only when editing remains authorized.

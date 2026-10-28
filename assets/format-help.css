@@ -1,0 +1,7 @@
+/* Scoped, read-only explanations on General settings. */
+.form-table td label span.se-time-help{display:block;margin-inline-start:25px}
+.se-date-help{display:grid;grid-template-columns:repeat(2,minmax(0,max-content));gap:.55em 2em;margin-block:1em}
+.se-date-help>div{display:flex;align-items:baseline;gap:.75em;flex-wrap:wrap}
+.se-date-help dt,.se-date-help dd{margin:0}
+.se-date-help dd{white-space:nowrap}
+@media(max-width:782px){.se-date-help{grid-template-columns:minmax(0,1fr)}.se-date-help>div{justify-content:space-between;max-width:30em}}

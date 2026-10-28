@@ -40,9 +40,9 @@ final class Runtime {
   add_action( 'wp_default_scripts', array( $this, 'jquery' ), 100 );
   add_filter( 'heartbeat_settings', array( $this, 'heartbeat' ), 100 );
   add_filter( 'wp_revisions_to_keep', array( $this, 'revisions' ), 100, 2 );
-  add_filter( 'auto_core_update_send_email', fn( $send, $type ) => Settings::get( 'update_emails' ) && 'success' === $type ? false : $send, 100, 2 );
-  add_filter( 'auto_plugin_update_send_email', array( $this, 'update_email' ), 100, 2 );
-  add_filter( 'auto_theme_update_send_email', array( $this, 'update_email' ), 100, 2 );
+  add_filter( 'auto_core_update_send_email', fn( $send, $type ) => Settings::get( 'update_email_core' ) && 'success' === $type ? false : $send, 100, 2 );
+  add_filter( 'auto_plugin_update_send_email', fn( $send, $results ) => $this->update_email( $send, $results, 'plugins' ), 100, 2 );
+  add_filter( 'auto_theme_update_send_email', fn( $send, $results ) => $this->update_email( $send, $results, 'themes' ), 100, 2 );
   add_filter( 'wp_password_change_notification_email', array( $this, 'password_email' ), 100 );
  }
  /** Hide native email configuration without re-enabling earlier restrictions.
@@ -107,6 +107,29 @@ final class Runtime {
    wp_die( esc_html__( 'XML-RPC is disabled on this site.', 'site-essentials' ), '', array( 'response' => 403 ) );
   }
  }
+ /** Filter only native feed discovery markup; never change feed requests. @return void */
+ private function feed_references(): void {
+  $filters = array( 'feed_links_show_posts_feed' => 'feed_blog', 'feed_links_show_comments_feed' => 'feed_comments', 'feed_links_extra_show_post_comments_feed' => 'feed_comments', 'feed_links_extra_show_category_feed' => 'feed_terms', 'feed_links_extra_show_tag_feed' => 'feed_terms', 'feed_links_extra_show_author_feed' => 'feed_authors', 'feed_links_extra_show_search_feed' => 'feed_search' );
+  foreach ( $filters as $hook => $key ) { if ( Settings::get( $key ) ) { add_filter( $hook, '__return_false', 100 ); } }
+  add_filter( 'feed_links_extra_show_post_type_archive_feed', array( $this, 'type_feed_reference' ), 100 );
+  add_filter( 'feed_links_extra_show_tax_feed', array( $this, 'taxonomy_feed_reference' ), 100 );
+ }
+ /** Respect other providers and suppress only selected archive references.
+  * @param bool $show Previous discovery visibility.
+  * @return bool Filtered visibility.
+  */
+ public function type_feed_reference( bool $show ): bool {
+  $types = Settings::get( 'feed_types' ); $current = (array) get_query_var( 'post_type' );
+  return $show && ! in_array( '_all', $types, true ) && ! array_intersect( $current, $types );
+ }
+ /** Suppress selected custom-taxonomy archive discovery without changing feeds.
+  * @param bool $show Previous discovery visibility.
+  * @return bool Filtered visibility.
+  */
+ public function taxonomy_feed_reference( bool $show ): bool {
+  $types = Settings::get( 'feed_taxonomies' ); $object = get_queried_object();
+  return $show && ! in_array( '_all', $types, true ) && ! ( $object instanceof \WP_Term && in_array( $object->taxonomy, $types, true ) );
+ }
  /** Remove explicitly selected core markup and emoji callbacks. @return void */
  public function cleanup(): void {
   $settings = Settings::effective();
@@ -115,7 +138,7 @@ final class Runtime {
   if ( $settings['rest_discovery'] ) { remove_action( 'wp_head', 'rest_output_link_wp_head', 10 ); remove_action( 'template_redirect', 'rest_output_link_header', 11 ); }
   if ( $settings['oembed_discovery'] ) { remove_action( 'wp_head', 'wp_oembed_add_discovery_links', 4 ); remove_action( 'wp_head', 'wp_oembed_add_discovery_links', 10 ); }
   if ( $settings['shortlink'] ) { remove_action( 'template_redirect', 'wp_shortlink_header', 11 ); }
-  if ( $settings['feed_links'] ) { remove_action( 'wp_head', 'feed_links', 2 ); remove_action( 'wp_head', 'feed_links_extra', 3 ); }
+  $this->feed_references();
   if ( $settings['emoji'] ) {
    remove_action( 'wp_head', 'print_emoji_detection_script', 7 ); remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
    remove_action( 'wp_print_styles', 'print_emoji_styles' ); remove_action( 'admin_print_styles', 'print_emoji_styles' );
@@ -267,10 +290,11 @@ final class Runtime {
  /** Suppress only successful automatic plugin/theme update summaries.
   * @param bool $send Existing decision.
   * @param array $results Update results.
+  * @param string $kind Plugin or theme result group.
   * @return bool
   */
- public function update_email( bool $send, array $results ): bool {
-  if ( ! Settings::get( 'update_emails' ) ) { return $send; }
+ public function update_email( bool $send, array $results, string $kind = 'plugins' ): bool {
+  if ( ! Settings::get( 'update_email_' . $kind ) ) { return $send; }
   foreach ( $results as $result ) { if ( empty( $result->result ) || is_wp_error( $result->result ) ) { return $send; } }
   return false;
  }

@@ -1,0 +1,4 @@
+/* Keep the native responsive table behavior below its mobile breakpoint. */
+@media(min-width:783px){.wp-list-table .column-se_content_id,.wp-list-table .column-se_user_id{width:5.5em}}
+.wp-list-table .column-se_content_id .se-id-value,.wp-list-table .column-se_user_id .se-id-value{display:block;overflow-wrap:anywhere}
+.wp-list-table .se-copy-id{display:block;font-size:inherit}

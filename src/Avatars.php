@@ -114,10 +114,12 @@ final class Avatars {
   $url = wp_get_attachment_image_url( $id, array( $size, $size ) ); return is_string( $url ) && $this->local( $url ) ? $url : '';
  }
  /** Keep the shipped placeholder local, with a trusted inline fallback when asset URLs are rewritten remotely. @return string */
- private function fallback(): string {
+ public function shipped_default(): string {
   $url = plugins_url( 'assets/images/avatar-default.svg', SITE_ESSENTIALS_FILE );
   return $this->local( $url ) ? $url : 'data:image/svg+xml;base64,' . base64_encode( '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><rect width="128" height="128" fill="#eef1f3"/><circle cx="64" cy="45" r="22" fill="#86949c"/><path d="M22 113c0-26 18-43 42-43s42 17 42 43" fill="#86949c"/></svg>' );
  }
+ /** Resolve the configured local default, falling back to the shipped placeholder. @return string */
+ private function fallback(): string { return DefaultAvatar::current()['url']; }
  /** Return a local URL and found-state.
   * @param mixed $identity Core identity.
   * @param array $args Display arguments.
@@ -216,7 +218,7 @@ final class Avatars {
   $this->profile_user = $user->ID; $id = (int) get_user_meta( $user->ID, self::key(), true ); $url = $this->image( $id ) ?: $this->fallback();
   echo '<h2>' . esc_html__( 'Local avatar for this site', 'site-essentials' ) . '</h2><div id="se-avatar-profile"><p><img id="se-avatar-preview" src="' . ( str_starts_with( $url, 'data:image/svg+xml;base64,' ) ? esc_attr( $url ) : esc_url( $url ) ) . '" width="96" height="96" alt=""></p><input type="hidden" id="se-avatar-id" name="avatar_attachment" value="' . esc_attr( $id ) . '" form="se-avatar-form"><input type="hidden" id="se-avatar-mode" name="avatar_mode" value="select" form="se-avatar-form">';
   if ( current_user_can( 'upload_files' ) ) { echo '<p><button type="button" class="button" id="se-avatar-select">' . esc_html__( 'Choose a local image', 'site-essentials' ) . '</button></p>'; }
-  echo '<p><label for="se-avatar-file">' . esc_html__( 'Upload an avatar image', 'site-essentials' ) . '</label> <input id="se-avatar-file" type="file" name="se_avatar_file" accept="image/jpeg,image/png,image/gif,image/webp,image/avif" form="se-avatar-form"></p><p>' . esc_html__( 'JPEG, PNG, GIF, WebP or AVIF; up to 4 MiB and 4096 × 4096 pixels. Images remain normal public WordPress media. This assignment belongs only to this site and is not included in preset exports.', 'site-essentials' ) . '</p><p><button type="button" class="button" id="se-avatar-remove">' . esc_html__( 'Use the local placeholder', 'site-essentials' ) . '</button> <button type="button" class="button" id="se-avatar-discard">' . esc_html__( 'Discard avatar selection', 'site-essentials' ) . '</button> <button type="submit" class="button button-primary" form="se-avatar-form">' . esc_html__( 'Save local avatar', 'site-essentials' ) . '</button></p><p id="se-avatar-message" role="alert" tabindex="-1"></p></div>';
+  echo '<p><label for="se-avatar-file">' . esc_html__( 'Upload an avatar image', 'site-essentials' ) . '</label> <input id="se-avatar-file" type="file" name="se_avatar_file" accept="image/jpeg,image/png,image/gif,image/webp,image/avif" form="se-avatar-form"></p><p>' . esc_html__( 'JPEG, PNG, GIF, WebP or AVIF; up to 4 MiB and 4096 × 4096 pixels. Images remain normal public WordPress media. This assignment belongs only to this site and is not included in preset exports.', 'site-essentials' ) . '</p><p><button type="button" class="button" id="se-avatar-remove">' . esc_html__( 'Use the site default image', 'site-essentials' ) . '</button> <button type="button" class="button" id="se-avatar-discard">' . esc_html__( 'Discard avatar selection', 'site-essentials' ) . '</button> <button type="submit" class="button button-primary" form="se-avatar-form">' . esc_html__( 'Save local avatar', 'site-essentials' ) . '</button></p><p id="se-avatar-message" role="alert" tabindex="-1"></p></div>';
  }
  /** Emit one own form after the native user form has closed. @return void */
  public function form(): void {

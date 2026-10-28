@@ -22,3 +22,11 @@ Dein WordPress. Deine Einstellungen. Site Essentials bündelt gezielte Einstellu
 - [Hilfe und Sicherheit](Hilfe-und-Sicherheit)
 
 Ein Preset wählen, Änderungen prüfen und bewusst speichern. Wartung besitzt eine eigene Speicheraktion. Persönliche Benutzer-Ausnahmen und Seitenzuordnungen bleiben lokal.
+
+
+## Bebilderte Alltagsanleitungen
+
+- [Dashboard einrichten](Dashboard-de)
+- [Website-Icon, Datum und Uhrzeit verstehen](Allgemeine-Einstellungen)
+- [Konfiguration und Befehlspalette prüfen](Diagnose)
+- [Inhaltslisten und Titelsuche](Verwaltungshilfen)

@@ -2,6 +2,19 @@
 
 [English](CHANGELOG.md)
 
+### 1.1.0 · 2026-10-28
+
+- **Neu:** Optionale Video-Upload-Sperre, Anleitung zum nativen Medien-Papierkorb und gespeicherte tägliche Upload-Speicherdiagnose.
+- **Neu:** Klassische Menüs duplizieren und Menüeinträge für angemeldete oder abgemeldete Besucher steuern.
+- **Neu:** Kopierbare Inhalts- und Benutzer-IDs, gezielte Profilvereinfachung und letzte Anmeldung je Website.
+- **Neu:** Optionale Anzeige der WordPress-Umgebung mit Vorrang für Brand Admin Schemes.
+- **Neu:** Optionale Bildgrößenübersicht, neue Upload-Dateinamen in Kleinbuchstaben, sichtbare Titelsuche im Admin und gezielte Listenspalten.
+- **Neu:** Optionales Dashboard-Informationswidget mit websitebezogener Zielgruppe und ausdrücklicher Textübertragung; eigenes lokales Standard-Avatarbild mit dokumentiertem Entwickler-Filter.
+- **Verbessert:** Getrennte Feed-Verweise und Erfolgsmails für WordPress, Plugins und Themes bei erhaltenem Verhalten; verständlichere Gruppen und direkter Zugriff auf derzeit unwirksame Regeln.
+- **Verbessert:** Gebündelte Medienoptionen und Anleitungen, Umgebungsanzeige rechts nur für Administratoren, verständlichere Avatar-Hilfe und einheitliche datensparsame Diagnosen.
+- **Verbessert:** Schmale zweizeilige und sortierbare ID-Spalten; sortierbares Änderungsdatum im nativen WordPress-Format; klarere Avatar-Abhängigkeiten, Abstände bei Update-E-Mails und Änderungspunkt. Website-Zustand und Befehlspalette berücksichtigen die neuen Module.
+- **Verbessert:** Eigene Dashboard-Rubrik, übersichtlichere Editor-Listen und Datumsbeispiele, Favicon-Erklärung und nach Wichtigkeit geordnete Angaben im Website-Zustand.
+
 ### 1.0.1 · 2026-10-22
 
 - **Behoben:** Aktualisierte Plugins verwenden ihren mitgelieferten Updater auch dann, wenn ein anderes Plugin zuvor eine ältere Kopie geladen hat.

@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name: Site Essentials
- * Plugin URI: https://github.com/deckerweb/site-essentials
+ * Plugin URI: https://deckerwebplugins.com/en/plugins/site-essentials/
  * Description: Configure WordPress core behavior with focused controls, reusable presets and site-specific settings.
- * Version: 1.0.1
+ * Version: 1.1.0
  * Requires at least: 7.1
  * Requires PHP: 8.2
  * Author: David Decker – DECKERWEB
- * Author URI: https://github.com/deckerweb
+ * Author URI: https://deckerwebplugins.com/
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: site-essentials
@@ -20,8 +20,9 @@
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 define( 'SITE_ESSENTIALS_FILE', __FILE__ );
-define( 'SITE_ESSENTIALS_VERSION', '1.0.1' );
-foreach ( array( 'Schema', 'Settings', 'Presets', 'Collections', 'Runtime', 'Media', 'AlternativeTargets', 'MenuInterface', 'Access', 'Appearance', 'CoreExtras', 'Comfort', 'Maintenance', 'Blog', 'PhpInfo', 'WebsiteChecks', 'PublicChecks', 'EditorEmbeds', 'SiteIdentity', 'CommentsOff', 'Avatars', 'Reports', 'Integrations', 'Updates', 'Admin' ) as $site_essentials_class ) {
+define( 'SITE_ESSENTIALS_VERSION', '1.1.0' );
+define( 'SITE_ESSENTIALS_ASSET_VERSION', '1.1.0' );
+foreach ( array( 'Schema', 'Settings', 'Presets', 'Collections', 'Runtime', 'Media', 'AlternativeTargets', 'MenuInterface', 'Access', 'Appearance', 'CoreExtras', 'Comfort', 'RuleStatus', 'SitePanels', 'DashboardInfo', 'DefaultAvatar', 'MediaComfort', 'Essentials110', 'Menus110', 'Storage110', 'Maintenance', 'Blog', 'PhpInfo', 'WebsiteChecks', 'PublicChecks', 'EditorEmbeds', 'SiteIdentity', 'CommentsOff', 'Avatars', 'Reports', 'Integrations', 'Updates', 'Admin' ) as $site_essentials_class ) {
  require_once __DIR__ . '/src/' . $site_essentials_class . '.php';
 }
 require_once __DIR__ . '/includes/deckerweb-plugin-library/bootstrap.php';
@@ -36,6 +37,13 @@ add_action( 'plugins_loaded', static function (): void {
  ( new \Deckerweb\SiteEssentials\Appearance() )->boot();
  ( new \Deckerweb\SiteEssentials\CoreExtras() )->boot();
  ( new \Deckerweb\SiteEssentials\Comfort() )->boot();
+ ( new \Deckerweb\SiteEssentials\SitePanels() )->boot();
+ ( new \Deckerweb\SiteEssentials\DashboardInfo() )->boot();
+ ( new \Deckerweb\SiteEssentials\DefaultAvatar() )->boot();
+ ( new \Deckerweb\SiteEssentials\MediaComfort() )->boot();
+ ( new \Deckerweb\SiteEssentials\Essentials110() )->boot();
+ ( new \Deckerweb\SiteEssentials\Menus110() )->boot();
+ ( new \Deckerweb\SiteEssentials\Storage110() )->boot();
  ( new \Deckerweb\SiteEssentials\Maintenance() )->boot();
  ( new \Deckerweb\SiteEssentials\Blog() )->boot();
  ( new \Deckerweb\SiteEssentials\PhpInfo() )->boot();
@@ -54,3 +62,5 @@ add_action( 'init', static function (): void {
 } );
 
 add_action( 'init', array( '\Deckerweb\SiteEssentials\Updates', 'register' ), 20 );
+
+register_deactivation_hook( __FILE__, array( \Deckerweb\SiteEssentials\Storage110::class, 'deactivate' ) );

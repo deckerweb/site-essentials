@@ -148,9 +148,14 @@ final class Takeover {
   }
   foreach ( $rows as $key => &$row ) {
    $row['current'] = $local[ $key ];
+   if ( in_array( $key, array( 'feed_links', 'update_emails' ), true ) ) {
+    $expanded = Settings::validate( array( $key => true ) ); unset( $expanded[ $key ] ); $all = true; $any = false;
+    foreach ( $expanded as $mapped => $expected ) { $actual = $local[ $mapped ]; $all = $all && ( is_array( $actual ) ? in_array( '_all', $actual, true ) : $actual === $expected ); $any = $any || (bool) $actual; }
+    $row['current'] = $all ? true : ( $any ? __( 'Partially selected', 'site-essentials' ) : false );
+   }
    $values = array_column( $row['proposals'], 'value' );
    $row['source_conflict'] = count( array_unique( array_map( 'wp_json_encode', $values ) ) ) > 1;
-   $row['existing_conflict'] = count( array_filter( $values, static fn( $value ): bool => $value !== $local[ $key ] ) ) > 0;
+   $current = $row['current']; $row['existing_conflict'] = count( array_filter( $values, static fn( $value ): bool => $value !== $current ) ) > 0;
   }
   unset( $row );
   $state = array( get_current_blog_id(), get_current_network_id(), get_current_user_id(), $sources, $local, get_option( Settings::PREVIOUS, null ), Settings::language_locked(), is_multisite(), get_post_types( array( 'show_ui' => true ) ) );
@@ -173,6 +178,11 @@ final class Takeover {
    if ( ! is_string( $id ) || ! isset( $review['rows'][ $key ] ) || ( '' !== $id && ! isset( $review['rows'][ $key ]['proposals'][ $id ] ) ) ) { return new \WP_Error( 'choices', __( 'Use only the choices offered in the takeover preview.', 'site-essentials' ) ); }
    if ( '' === $id ) { continue; }
    $value = $review['rows'][ $key ]['proposals'][ $id ]['value'];
+   if ( in_array( $key, array( 'feed_links', 'update_emails' ), true ) ) {
+    $expanded = Settings::validate( array( $key => true ) );
+    foreach ( $expanded as $mapped => $enabled ) { $next = $value ? $enabled : ( is_array( $enabled ) ? array() : false ); if ( $values[ $mapped ] !== $next ) { $values[ $mapped ] = $next; ++$changed; } }
+    continue;
+   }
    if ( $values[ $key ] !== $value ) { $values[ $key ] = $value; ++$changed; }
   }
   $validated = Settings::validate( $values );

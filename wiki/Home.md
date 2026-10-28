@@ -22,3 +22,11 @@ Your WordPress. Your settings. Site Essentials brings focused settings and pract
 - [Help and security](Help-and-security)
 
 Choose a preset, review its changes and save deliberately. Maintenance has its own save action. Personal user exceptions and page assignments remain local.
+
+
+## Illustrated everyday guides
+
+- [Set up the Dashboard](Dashboard)
+- [Understand the site icon, dates and times](General-settings)
+- [Inspect configuration and command-palette shortcuts](Diagnostics)
+- [Content lists and title search](Administration-conveniences)
