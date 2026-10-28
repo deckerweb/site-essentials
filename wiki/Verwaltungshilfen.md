@@ -83,24 +83,15 @@ Zuerst lokale Avatare aktivieren. Darunter erscheinen dann die optionale Benutze
 
 Standardbild mit lokaler Auswahl, Upload und Rücksetzen.
 
+[Standard-Avatar per Code vorgeben: Single-Site und Multisite](Standard-Avatar-Snippets)
+
 ### Zustände und Sprünge ohne Kundendaten.
 
 Der Bericht im Website-Zustand nennt den Aktivierungszustand des Dashboard-Widgets und ob das Standard-Avatarbild von SE, einer lokalen Auswahl oder einem Entwickler-Filter kommt. Widget-Texte, Kontaktdaten, ausgewählte Benutzer und Bild-IDs/URLs fehlen. Administratoren können über die Befehlspalette die Dashboard-Informationen und bei aktiven lokalen SE-Avataren das Standardbild öffnen. Die Befehle navigieren nur; sie speichern oder aktivieren nichts.
 
 ### Standardbild per Site-Functionality-Plugin vorgeben
 
-Entwickler-Filter: site_essentials_local_avatar_default_id liefert eine positive ganzzahlige Attachment-ID der aktuellen Website oder 0 für keine Vorgabe. Nur ein verfügbares, öffentliches, lokal bereitgestelltes Rasterbild wird akzeptiert. Eine gültige Vorgabe hat Vorrang vor der gespeicherten Auswahl; andernfalls folgen gespeichertes Bild und SE-Standardbild. Die Oberfläche erklärt eine gültige Vorgabe und pausiert die Auswahl, ohne sie zu löschen. Persönliche Bilder haben Vorrang; Force-default-Aufrufe verwenden das wirksame Standardbild.
-
-```php
-add_filter( 'site_essentials_local_avatar_default_id', function ( int $id ): int {
-    if ( get_current_blog_id() !== 1 ) {
-        return $id;
-    }
-    return 123;
-} );
-```
-
-`1` durch die passende Website-ID und `123` durch die lokale Bild-ID ersetzen. IDs sind nicht zwischen Websites portabel. Kein wp-config-Eintrag erforderlich. Der Filter umgeht keine Bildprüfung und aktiviert das Modul nicht.
+Die eigene Anleitung **[Standard-Avatar per Code vorgeben](Standard-Avatar-Snippets)** enthält kopierfertige Snippets für Single-Site, einzelne Multisite-Websites und mehrere Website-Zuordnungen. Sie erklärt Bild-IDs, Vorrang und Rückfall bei fehlenden Bildern.
 
 
 ## Inhalts-IDs, Titelsuche und Listenspalten

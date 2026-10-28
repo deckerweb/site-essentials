@@ -83,24 +83,15 @@ Enable local avatars first. The optional user-list column and a separate default
 
 Default image with local selection, upload and reset.
 
+[Set the default avatar with code: single site and multisite](Default-avatar-snippets)
+
 ### States and shortcuts without customer data.
 
 Site Health Info reports whether the dashboard widget is enabled and whether a default avatar is supplied by SE, a local selection or a developer filter. It never includes widget text, contact details, selected users or image IDs/URLs. Administrator command-palette entries open dashboard information and, while SE local avatars are enabled, the default-avatar settings. These commands navigate only; they do not save or activate anything.
 
 ### Supply the default through a site-functionality plugin
 
-Developer filter: site_essentials_local_avatar_default_id returns a positive integer attachment ID from the current site, or 0 for no override. Only an available, public, locally served raster image is accepted. A valid override takes priority over the saved selection; otherwise the saved image and shipped SE image are used in that order. The UI explains a valid override and pauses selection without removing the saved value. Personal images remain first; force-default requests use the effective default.
-
-```php
-add_filter( 'site_essentials_local_avatar_default_id', function ( int $id ): int {
-    if ( get_current_blog_id() !== 1 ) {
-        return $id;
-    }
-    return 123;
-} );
-```
-
-Replace `1` with the intended site ID and `123` with its local image ID. IDs are not portable between sites. No wp-config entry is needed. The filter does not bypass image validation or enable the module.
+The dedicated **[Set the default avatar with code](Default-avatar-snippets)** guide contains ready-to-copy snippets for a single site, one multisite website, and multiple site mappings. It explains image IDs, priority, and fallback when images are unavailable.
 
 
 ## Content IDs, title search and list columns
