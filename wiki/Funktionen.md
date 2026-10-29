@@ -2,7 +2,7 @@
 
 [English](Features) · [Anleitung](Anleitung) · [Startseite](Home-de)
 
-Stand: **Site Essentials 1.1.0**. 68 Featurepunkte in zwölf Gruppen.
+Stand: **Site Essentials 1.1.1**. 68 Featurepunkte in zwölf Gruppen.
 
 Alle Funktionen im Überblick – nach Aufgaben sortiert. Du entscheidest, was für deine Website aktiv wird. Die drei Administrator-Prüfhinweise sind ab Werk eingeschaltet; andere optionale Module aktivierst du bewusst. Einzelne Funktionen haben die unten genannten Grenzen.
 

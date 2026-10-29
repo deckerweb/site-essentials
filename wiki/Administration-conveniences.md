@@ -16,7 +16,7 @@ The optional status card reads MEDIA_TRASH and EMPTY_TRASH_DAYS without editing 
 
 ### Storage diagnosis without a live scan.
 
-Enable daily local upload-storage diagnosis under Media library and view the cached result in Tools → Site Essentials: PHP. Requests never scan directories while displaying the result. Measurements stop at 10,000 entries, 512 directories or two seconds. An incomplete or unavailable result is labeled without a partial total. Manual refresh queues a task, limited to fifteen-minute intervals. Traffic-dependent WordPress cron may run late. Remote media, the database and hosting quota are not measured.
+Enable daily local upload-storage diagnosis under Media library and view the cached result in Tools → System information and storage. Requests never scan directories while displaying the result. Measurements stop at 10,000 entries, 512 directories or two seconds. An incomplete or unavailable result is labeled without a partial total. Manual refresh queues a task, limited to fifteen-minute intervals. Traffic-dependent WordPress cron may run late. Remote media, the database and hosting quota are not measured.
 
 ### One environment indicator.
 

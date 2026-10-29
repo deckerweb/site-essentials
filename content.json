@@ -1,6 +1,6 @@
 {
-  "version": "1.1.0",
-  "date": "2026-10-28",
+  "version": "1.1.1",
+  "date": "2026-10-29",
   "requires_wp": "7.1",
   "requires_php": "8.2",
   "help": [
@@ -119,7 +119,7 @@
     },
     {
       "title": "Storage diagnosis without a live scan.",
-      "text": "Enable daily local upload-storage diagnosis under Media library and view the cached result in Tools → Site Essentials: PHP. Requests never scan directories while displaying the result. Measurements stop at 10,000 entries, 512 directories or two seconds. An incomplete or unavailable result is labeled without a partial total. Manual refresh queues a task, limited to fifteen-minute intervals. Traffic-dependent WordPress cron may run late. Remote media, the database and hosting quota are not measured."
+      "text": "Enable daily local upload-storage diagnosis under Media library and view the cached result in Tools → System information and storage. Requests never scan directories while displaying the result. Measurements stop at 10,000 entries, 512 directories or two seconds. An incomplete or unavailable result is labeled without a partial total. Manual refresh queues a task, limited to fifteen-minute intervals. Traffic-dependent WordPress cron may run late. Remote media, the database and hosting quota are not measured."
     },
     {
       "title": "One environment indicator.",
@@ -167,6 +167,19 @@
     }
   ],
   "history": [
+    {
+      "version": "1.1.1",
+      "date": "2026-10-29",
+      "new": [],
+      "improved": [
+        "Grouped system information and storage overview with section shortcuts, clear labels and upload diagnosis guidance when disabled."
+      ],
+      "fixed": [
+        "Comment editing no longer fails when WordPress passes a comment object to the alternative-destination meta-box hook.",
+        "Simplified toolbar greeting also handles escaped display names on WordPress 7.1.4."
+      ],
+      "misc": []
+    },
     {
       "version": "1.1.0",
       "date": "2026-10-28",
@@ -292,7 +305,7 @@
     "network": "Activate on one site or network-wide. Sites retain independent options, including sites created after activation. Network Admin → Settings → Site Essentials can hide the login language selector on every site or leave it to local settings. No other network policy is imposed.",
     "startup": "For a deliberately preconfigured deployment, set startup-preset.json to {\"preset\":\"builder\"}, \"comfort\", \"head\", \"classic\" or \"defaults\" before installation. The selected configuration initializes each unconfigured site on first use. Existing configurations are retained. The shipped file uses null.",
     "data": "Local options: site_essentials_settings, site_essentials_previous and site_essentials_presets. Site-scoped user metadata: `site_essentials_avatar_SITE_ID`, containing local attachment IDs. Avatar media remain normal WordPress uploads. Network option: site_essentials_network. Deactivation and uninstall retain these values. The embedded Library removes its own temporary data only under its final-host cleanup contract; shared settings are retained by default. No content or other plugin data is deleted. Local option site_essentials_checks retains local imprint assignment and content/indexing confirmations. It is not part of configuration exports; explicit local RESET removes it without changing native visibility/privacy assignments. The optional media sorting index stores only derived byte counts (or an unavailable marker) in site-local attachment metadata _site_essentials_file_size. Local plugin-data clearing removes the index without touching attachments or files. Site-local option site_essentials_access_users contains personal appearance exceptions. It is excluded from all exports, preset snapshots and diagnostic output. Content metadata _site_essentials_target stores explicit destination URL and new-tab/nofollow flags. It is retained by configuration clearing and plugin uninstall and excluded from configuration/preset exports. Local option site_essentials_maintenance stores activation, pause state and the selected page. It is excluded from all configuration transfers and recovery, preserved at uninstall, and removed by explicit local RESET. The page itself remains content. Last-login timestamps are site-specific, excluded from settings exports and removable through WordPress personal-data tools. Menu visibility metadata remains with menu items. Storage measurements are temporary and removed on uninstall.",
-    "components": "Includes deckerweb Library 1.1.0 and deckerweb GitHub Release Updater 2.2.0, GPL-2.0-or-later, by David Decker. Library online catalog access is optional and initially off. The updater checks the configured GitHub repository through normal WordPress update checks; request metadata such as your server IP is sent to GitHub. No analytics or remote fonts are included. This direct-distribution package is not a WordPress.org build.",
+    "components": "Includes deckerweb Library 1.1.0 and deckerweb GitHub Release Updater 2.2.1, GPL-2.0-or-later, by David Decker. Library online catalog access is optional and initially off. The updater checks the configured GitHub repository through normal WordPress update checks; request metadata such as your server IP is sent to GitHub. No analytics or remote fonts are included. This direct-distribution package is not a WordPress.org build.",
     "faq": [
       [
         "Does activation immediately change WordPress?",
@@ -520,7 +533,7 @@
     "network": "Auf einer Website oder netzwerkweit aktivierbar. Websites behalten eigene Optionen, auch nach Aktivierung neu angelegte Sites. Netzwerkverwaltung → Einstellungen → Site Essentials kann die Login-Sprachauswahl überall ausblenden oder den Websites überlassen. Weitere Netzwerkvorgaben werden nicht erzwungen.",
     "startup": "Für eine bewusst vorkonfigurierte Installation startup-preset.json vorab auf {\"preset\":\"builder\"}, \"comfort\", \"head\", \"classic\" oder \"defaults\" setzen. Die gewählte Konfiguration initialisiert jede noch unkonfigurierte Website bei erster Nutzung. Bestehende Einstellungen bleiben erhalten. Die ausgelieferte Datei enthält null.",
     "data": "Lokale Optionen: site_essentials_settings, site_essentials_previous und site_essentials_presets. Benutzer-Metadaten je Website: `site_essentials_avatar_SITE_ID` mit lokalen Attachment-IDs. Avatar-Medien bleiben normale WordPress-Uploads. Netzwerkoption: site_essentials_network. Deaktivierung und Deinstallation erhalten diese Werte. Die eingebettete Library entfernt eigene temporäre Daten nur gemäß ihrer Letzt-Host-Bereinigung; gemeinsame Einstellungen bleiben standardmäßig erhalten. Inhalte und Daten anderer Plugins werden nicht gelöscht. Die lokale Option site_essentials_checks erhält Impressumszuordnung und Inhalts-/Indexierungsbestätigungen. Sie wird nicht mit Konfigurationen exportiert; lokales RESET entfernt sie ohne Änderung nativer Sichtbarkeit oder Datenschutzzuordnung. Der optionale Mediensortierungs-Index speichert nur abgeleitete Byte-Zahlen (oder eine Nicht-verfügbar-Markierung) in Website-lokalen Medien-Metadaten _site_essentials_file_size. Lokale Plugin-Datenbereinigung entfernt den Index, ohne Medien oder Dateien anzutasten. Website-lokale Option site_essentials_access_users enthält persönliche Design-Ausnahmen. Sie ist aus allen Exporten, Preset-Snapshots und Diagnose-Ausgaben ausgeschlossen. Beitragsmetadaten _site_essentials_target speichern ausdrücklich gewählte Zieladressen und Neuer-Tab-/nofollow-Vorgaben. Konfigurationsbereinigung und Deinstallation erhalten sie; Konfigurations-/Preset-Exporte enthalten sie nicht. Die lokale Option site_essentials_maintenance speichert Aktivierung, Pause und ausgewählte Seite. Sie ist von allen Konfigurationstransfers und der Wiederherstellung ausgeschlossen, bleibt bei Deinstallation erhalten und wird durch ausdrückliches lokales RESET entfernt. Die Seite selbst bleibt als Inhalt erhalten.Anmeldezeitstempel sind websitebezogen, von Einstellungsexporten ausgeschlossen und über die WordPress-Datenschutzwerkzeuge löschbar. Menü-Sichtbarkeit bleibt an den Menüeinträgen gespeichert. Speichermessungen sind temporär und werden bei Deinstallation entfernt.",
-    "components": "Enthält deckerweb Library 1.1.0 und deckerweb GitHub Release Updater 2.2.0, GPL-2.0-or-later, von David Decker. Der Online-Katalog der Library ist optional und zunächst ausgeschaltet. Der Updater fragt das konfigurierte GitHub-Repository im normalen WordPress-Updateprozess ab; dabei werden Anfragedaten wie die Server-IP an GitHub übertragen. Keine Analysefunktionen oder externen Schriften. Dieses Direktvertriebspaket ist kein WordPress.org-Build.",
+    "components": "Enthält deckerweb Library 1.1.0 und deckerweb GitHub Release Updater 2.2.1, GPL-2.0-or-later, von David Decker. Der Online-Katalog der Library ist optional und zunächst ausgeschaltet. Der Updater fragt das konfigurierte GitHub-Repository im normalen WordPress-Updateprozess ab; dabei werden Anfragedaten wie die Server-IP an GitHub übertragen. Keine Analysefunktionen oder externen Schriften. Dieses Direktvertriebspaket ist kein WordPress.org-Build.",
     "faq": [
       [
         "Verändert die Aktivierung sofort WordPress?",

@@ -22,6 +22,7 @@ final class Integrations {
    array( 'name' => 'site-essentials/checks', 'label' => __( 'Site Essentials: Open website checks', 'site-essentials' ), 'url' => admin_url( 'options-general.php?page=site-essentials#se-checks' ) ),
    array( 'name' => 'site-essentials/maintenance', 'label' => __( 'Site Essentials: Open maintenance mode', 'site-essentials' ), 'url' => admin_url( 'options-general.php?page=site-essentials#se-maintenance' ) ),
   );
+  $commands[] = array( 'name' => 'site-essentials/system-information', 'label' => __( 'Site Essentials: Open system information and storage', 'site-essentials' ), 'url' => admin_url( 'tools.php?page=site-essentials-php' ) );
   $commands[] = array( 'name' => 'site-essentials/dashboard-info', 'label' => __( 'Site Essentials: Edit dashboard information', 'site-essentials' ), 'url' => admin_url( 'options-general.php?page=site-essentials&se_panel=dashboard#se-dashboard' ) );
   if ( ! Avatars::external_provider() && Settings::get( 'local_avatars' ) ) { $commands[] = array( 'name' => 'site-essentials/default-avatar', 'label' => __( 'Site Essentials: Open default avatar', 'site-essentials' ), 'url' => admin_url( 'options-general.php?page=site-essentials&se_panel=avatar#se-avatars' ) ); }
   wp_localize_script( 'site-essentials-commands', 'siteEssentialsCommands', array( 'label' => $commands[0]['label'], 'url' => $commands[0]['url'], 'commands' => $commands ) );

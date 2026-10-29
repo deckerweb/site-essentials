@@ -16,7 +16,7 @@ Die optionale Statuskarte liest MEDIA_TRASH und EMPTY_TRASH_DAYS, ohne wp-config
 
 ### Speicherdiagnose ohne Live-Suche.
 
-Die tägliche Diagnose des lokalen Upload-Speichers unter Mediathek aktivieren. Das gespeicherte Ergebnis steht unter Werkzeuge → Site Essentials: PHP. Die Anzeige durchsucht keine Verzeichnisse. Messungen enden spätestens an den Grenzen von 10.000 Einträgen, 512 Verzeichnissen oder zwei Sekunden. Unvollständige oder nicht verfügbare Ergebnisse zeigen keine Teilsumme. Eine manuell angeforderte Aktualisierung plant eine Aufgabe, höchstens alle 15 Minuten. WordPress-Cron kann abhängig vom Website-Traffic später laufen. Externe Medien, Datenbank und Hosting-Kontingent werden nicht gemessen.
+Die tägliche Diagnose des lokalen Upload-Speichers unter Mediathek aktivieren. Das gespeicherte Ergebnis steht unter Werkzeuge → Systeminformationen und Speicher. Die Anzeige durchsucht keine Verzeichnisse. Messungen enden spätestens an den Grenzen von 10.000 Einträgen, 512 Verzeichnissen oder zwei Sekunden. Unvollständige oder nicht verfügbare Ergebnisse zeigen keine Teilsumme. Eine manuell angeforderte Aktualisierung plant eine Aufgabe, höchstens alle 15 Minuten. WordPress-Cron kann abhängig vom Website-Traffic später laufen. Externe Medien, Datenbank und Hosting-Kontingent werden nicht gemessen.
 
 ### Eine Umgebungsanzeige.
 

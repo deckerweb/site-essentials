@@ -8,7 +8,7 @@
 
 Your WordPress. Your settings. Site Essentials brings focused settings and practical tools together for a WordPress website that fits your needs. Simplify administration, control WordPress features and reuse proven configurations across websites. Built for everyday site care and client handover, with support for single installations and individual sites in a Multisite network.
 
-**1.1.0 · WordPress 7.1+ · PHP 8.2+**
+**1.1.1 · WordPress 7.1+ · PHP 8.2+**
 
 [Plugin website](https://deckerwebplugins.com/en/plugins/site-essentials/) · [Documentation](https://deckerweb.github.io/site-essentials/) · [FAQ by topic](FAQ.md)
 
@@ -189,7 +189,7 @@ The optional status card reads MEDIA_TRASH and EMPTY_TRASH_DAYS without editing 
 
 ### Storage diagnosis without a live scan.
 
-Enable daily local upload-storage diagnosis under Media library and view the cached result in Tools → Site Essentials: PHP. Requests never scan directories while displaying the result. Measurements stop at 10,000 entries, 512 directories or two seconds. An incomplete or unavailable result is labeled without a partial total. Manual refresh queues a task, limited to fifteen-minute intervals. Traffic-dependent WordPress cron may run late. Remote media, the database and hosting quota are not measured.
+Enable daily local upload-storage diagnosis under Media library and view the cached result in Tools → System information and storage. Requests never scan directories while displaying the result. Measurements stop at 10,000 entries, 512 directories or two seconds. An incomplete or unavailable result is labeled without a partial total. Manual refresh queues a task, limited to fifteen-minute intervals. Traffic-dependent WordPress cron may run late. Remote media, the database and hosting quota are not measured.
 
 ### One environment indicator.
 
@@ -252,6 +252,12 @@ Own settings, named local presets, previous configuration and network policy rem
 [FAQ by topic](FAQ.md)
 
 ## Changelog
+
+### 1.1.1 · 2026-10-29
+
+- **Improved:** Grouped system information and storage overview with section shortcuts, clear labels and upload diagnosis guidance when disabled.
+- **Fixed:** Comment editing no longer fails when WordPress passes a comment object to the alternative-destination meta-box hook.
+- **Fixed:** Simplified toolbar greeting also handles escaped display names on WordPress 7.1.4.
 
 ### 1.1.0 · 2026-10-28
 

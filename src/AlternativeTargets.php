@@ -145,8 +145,9 @@ final class AlternativeTargets {
   if ( self::enabled( $type ) ) { $args['meta_query'] = array( 'relation' => 'AND', $args['meta_query'] ?? array(), array( 'key' => self::META, 'compare' => 'NOT EXISTS' ) ); }
   return $args;
  }
- /** Register the same native meta box in classic and block editors. @param string $type Screen content type. @param \WP_Post $post Content object. @return void */
- public function boxes( string $type, \WP_Post $post ): void {
+ /** Register the native post meta box, ignoring comment and other non-post screens. @param string $type Screen content type. @param mixed $post Hook object; WordPress also passes comments on comment screens. @return void */
+ public function boxes( string $type, mixed $post ): void {
+  if ( ! $post instanceof \WP_Post ) { return; }
   if ( self::enabled( $type ) && current_user_can( 'edit_post', $post->ID ) ) { add_meta_box( 'se-alternative-target', __( 'Alternative post destinations', 'site-essentials' ), array( $this, 'box' ), $type, 'normal', 'default', array( '__block_editor_compatible_meta_box' => true ) ); }
  }
  /** Render a nonce-bound content form without enabling additional editor capabilities. @param \WP_Post $post Content. @return void */

@@ -2,6 +2,12 @@
 
 [Deutsch](CHANGELOG-de.html)
 
+### 1.1.1 · 2026-10-29
+
+- **Improved:** Grouped system information and storage overview with section shortcuts, clear labels and upload diagnosis guidance when disabled.
+- **Fixed:** Comment editing no longer fails when WordPress passes a comment object to the alternative-destination meta-box hook.
+- **Fixed:** Simplified toolbar greeting also handles escaped display names on WordPress 7.1.4.
+
 ### 1.1.0 · 2026-10-28
 
 - **New:** Optional video upload restrictions, native media trash guidance and cached daily upload-storage diagnosis.

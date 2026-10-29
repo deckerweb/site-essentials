@@ -60,19 +60,22 @@ final class Storage110 {
   if ( time() - (int) ( $result['time'] ?? 0 ) >= 15 * MINUTE_IN_SECONDS ) {
    wp_clear_scheduled_hook( self::EVENT ); wp_schedule_event( time() + 10, 'daily', self::EVENT );
   }
-  wp_safe_redirect( admin_url( 'tools.php?page=site-essentials-php' ) ); exit;
+  wp_safe_redirect( admin_url( 'tools.php?page=site-essentials-php#se-upload-storage' ) ); exit;
  }
  /** Render cached figures without reading directories or performing a measurement. @return void */
  public static function panel(): void {
-  if ( ! current_user_can( 'manage_options' ) || is_network_admin() || ! Settings::get( 'storage_diagnosis' ) ) { return; }
+  if ( ! current_user_can( 'manage_options' ) || is_network_admin() ) { return; }
+  if ( ! Settings::get( 'storage_diagnosis' ) ) {
+   echo '<section class="se-card" id="se-upload-storage" aria-labelledby="se-upload-storage-title"><h2 id="se-upload-storage-title">' . esc_html__( 'Upload file storage', 'site-essentials' ) . '</h2><p>' . esc_html__( 'Upload storage diagnosis is currently disabled. A result will appear here after you enable it and a measurement has completed. Opening this page does not start a measurement.', 'site-essentials' ) . '</p><p><a href="' . esc_url( admin_url( 'options-general.php?page=site-essentials&se_panel=media#se-media' ) ) . '">' . esc_html__( 'Open media settings', 'site-essentials' ) . '</a></p></section>'; return;
+  }
   $result = get_option( self::OPTION, array() );
-  echo '<div class="se-card"><h3>' . esc_html__( 'Local upload storage', 'site-essentials' ) . '</h3><p>' . esc_html__( 'Cached diagnosis, refreshed daily through WordPress scheduled tasks. Only this website local uploads are measured; symlinks and other Multisite upload directories are skipped. This is not the hosting quota, database size or remote media storage.', 'site-essentials' ) . '</p>';
+  echo '<section class="se-card" id="se-upload-storage" aria-labelledby="se-upload-storage-title"><h2 id="se-upload-storage-title">' . esc_html__( 'Upload file storage', 'site-essentials' ) . '</h2><p>' . esc_html__( 'Cached diagnosis, refreshed daily through WordPress scheduled tasks. Only this website local uploads are measured; symlinks and other Multisite upload directories are skipped. This is not the hosting quota, database size or remote media storage.', 'site-essentials' ) . '</p>';
   if ( ! empty( $result['time'] ) ) {
-   echo '<p>' . esc_html__( 'Last measurement:', 'site-essentials' ) . ' ' . esc_html( wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), (int) $result['time'] ) ) . '</p><p>' . esc_html( 'complete' === ( $result['status'] ?? '' ) ? size_format( (int) $result['bytes'] ) : ( 'limit' === ( $result['status'] ?? '' ) ? __( 'Incomplete measurement: a safety limit was reached. No partial total is displayed.', 'site-essentials' ) : __( 'Not available: the upload directory could not be measured.', 'site-essentials' ) ) ) . '</p>';
+   echo '<p>' . esc_html__( 'Last measurement:', 'site-essentials' ) . ' ' . esc_html( wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), (int) $result['time'] ) ) . '</p><p class="se-storage-value">' . esc_html( 'complete' === ( $result['status'] ?? '' ) ? size_format( (int) $result['bytes'] ) : ( 'limit' === ( $result['status'] ?? '' ) ? __( 'Incomplete measurement: a safety limit was reached. No partial total is displayed.', 'site-essentials' ) : __( 'Not available: the upload directory could not be measured.', 'site-essentials' ) ) ) . '</p>';
   } else { echo '<p>' . esc_html__( 'No measurement yet. The first scheduled task will create a result.', 'site-essentials' ) . '</p>'; }
-  echo '<p>' . esc_html__( 'At most 10,000 directory entries, 512 directories and two seconds per measurement. Refresh requests are limited to once per fifteen minutes. WordPress cron can run later than scheduled when traffic or hosting scheduling is limited.', 'site-essentials' ) . '</p><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
+  echo '<details><summary>' . esc_html__( 'What is measured?', 'site-essentials' ) . '</summary><p>' . esc_html__( 'At most 10,000 directory entries, 512 directories and two seconds per measurement. Refresh requests are limited to once per fifteen minutes. WordPress cron can run later than scheduled when traffic or hosting scheduling is limited.', 'site-essentials' ) . '</p></details><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
   wp_nonce_field( 'site_essentials_storage_refresh' );
-  echo '<input type="hidden" name="action" value="site_essentials_storage_refresh"><button class="button" type="submit">' . esc_html__( 'Request updated measurement', 'site-essentials' ) . '</button></form></div>';
+  echo '<input type="hidden" name="action" value="site_essentials_storage_refresh"><button class="button" type="submit">' . esc_html__( 'Request updated measurement', 'site-essentials' ) . '</button></form></section>';
  }
  /** Remove only this site's diagnostic cache and scheduled task. @return void */
  public static function clear(): void { wp_clear_scheduled_hook( self::EVENT ); delete_option( self::OPTION ); delete_option( self::OPTION . '_lock' ); }

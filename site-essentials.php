@@ -3,7 +3,7 @@
  * Plugin Name: Site Essentials
  * Plugin URI: https://deckerwebplugins.com/en/plugins/site-essentials/
  * Description: Configure WordPress core behavior with focused controls, reusable presets and site-specific settings.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Requires at least: 7.1
  * Requires PHP: 8.2
  * Author: David Decker – DECKERWEB
@@ -20,8 +20,8 @@
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 define( 'SITE_ESSENTIALS_FILE', __FILE__ );
-define( 'SITE_ESSENTIALS_VERSION', '1.1.0' );
-define( 'SITE_ESSENTIALS_ASSET_VERSION', '1.1.0' );
+define( 'SITE_ESSENTIALS_VERSION', '1.1.1' );
+define( 'SITE_ESSENTIALS_ASSET_VERSION', '1.1.1' );
 foreach ( array( 'Schema', 'Settings', 'Presets', 'Collections', 'Runtime', 'Media', 'AlternativeTargets', 'MenuInterface', 'Access', 'Appearance', 'CoreExtras', 'Comfort', 'RuleStatus', 'SitePanels', 'DashboardInfo', 'DefaultAvatar', 'MediaComfort', 'Essentials110', 'Menus110', 'Storage110', 'Maintenance', 'Blog', 'PhpInfo', 'WebsiteChecks', 'PublicChecks', 'EditorEmbeds', 'SiteIdentity', 'CommentsOff', 'Avatars', 'Reports', 'Integrations', 'Updates', 'Admin' ) as $site_essentials_class ) {
  require_once __DIR__ . '/src/' . $site_essentials_class . '.php';
 }

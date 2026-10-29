@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Site Essentials 1.1.0\nLanguage: de_DE\nContent-Type: text/plain; charset=UTF-8\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: Site Essentials 1.1.1\nLanguage: de_DE\nContent-Type: text/plain; charset=UTF-8\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "%1$d active · %2$d stored but not applied · %3$d unsaved changes"
 msgstr "%1$d aktiv · %2$d gespeichert, aber nicht angewendet · %3$d ungespeicherte Änderungen"
@@ -57,6 +57,9 @@ msgstr "Gespeichert: %s"
 
 msgid "%s scheduled."
 msgstr "Geplant: %s"
+
+msgid "%s seconds"
+msgstr "%s Sekunden"
 
 msgid "%s submitted."
 msgstr "Eingereicht: %s"
@@ -228,6 +231,9 @@ msgstr "Alle, einschließlich späterer Ergänzungen"
 
 msgid "Allow search engine indexing"
 msgstr "Suchmaschinenindexierung freigeben"
+
+msgid "Allowed"
+msgstr "Erlaubt"
 
 msgid "Allowed roles"
 msgstr "Erlaubte Rollen"
@@ -532,6 +538,9 @@ msgstr "Prüfung und Import von Sammlungen benötigen JavaScript. Export funktio
 msgid "Command palette and Site Health"
 msgstr "Befehlspalette und Website-Zustand"
 
+msgid "Comment editing no longer fails when WordPress passes a comment object to the alternative-destination meta-box hook."
+msgstr "Die Kommentarbearbeitung bricht nicht mehr ab, wenn WordPress dem Metabox-Hook für alternative Beitragsziele ein Kommentarobjekt übergibt."
+
 msgid "Comment feed references"
 msgstr "Kommentar-Feed-Verweise"
 
@@ -808,6 +817,9 @@ msgstr "Eigene Dashboard-Rubrik, übersichtlichere Editor-Listen und Datumsbeisp
 msgid "Default avatar saved for this site."
 msgstr "Standard-Avatar für diese Website gespeichert."
 
+msgid "Default connection timeout"
+msgstr "Standard-Zeitlimit für Verbindungen"
+
 msgid "Default image for local avatars"
 msgstr "Standardbild für lokale Avatare"
 
@@ -1048,6 +1060,9 @@ msgstr "Editorbreite"
 msgid "Editorial comfort"
 msgstr "Redaktionskomfort"
 
+msgid "Effective WordPress upload limit"
+msgstr "Wirksames WordPress-Upload-Limit"
+
 msgid "Effective configured rules"
 msgstr "Wirksame konfigurierte Regeln"
 
@@ -1065,6 +1080,9 @@ msgstr "Alternative Beitragsziele aktivieren"
 
 msgid "Enable daily local upload-storage diagnosis under Media library and view the cached result in Tools → Site Essentials: PHP. Requests never scan directories while displaying the result. Measurements stop at 10,000 entries, 512 directories or two seconds. An incomplete or unavailable result is labeled without a partial total. Manual refresh queues a task, limited to fifteen-minute intervals. Traffic-dependent WordPress cron may run late. Remote media, the database and hosting quota are not measured."
 msgstr "Die tägliche Diagnose des lokalen Upload-Speichers unter Mediathek aktivieren. Das gespeicherte Ergebnis steht unter Werkzeuge → Site Essentials: PHP. Die Anzeige durchsucht keine Verzeichnisse. Messungen enden spätestens an den Grenzen von 10.000 Einträgen, 512 Verzeichnissen oder zwei Sekunden. Unvollständige oder nicht verfügbare Ergebnisse zeigen keine Teilsumme. Eine manuell angeforderte Aktualisierung plant eine Aufgabe, höchstens alle 15 Minuten. WordPress-Cron kann abhängig vom Website-Traffic später laufen. Externe Medien, Datenbank und Hosting-Kontingent werden nicht gemessen."
+
+msgid "Enable daily local upload-storage diagnosis under Media library and view the cached result in Tools → System information and storage. Requests never scan directories while displaying the result. Measurements stop at 10,000 entries, 512 directories or two seconds. An incomplete or unavailable result is labeled without a partial total. Manual refresh queues a task, limited to fifteen-minute intervals. Traffic-dependent WordPress cron may run late. Remote media, the database and hosting quota are not measured."
+msgstr "Die tägliche Diagnose des lokalen Upload-Speichers unter Mediathek aktivieren. Das gespeicherte Ergebnis steht unter Werkzeuge → Systeminformationen und Speicher. Die Anzeige durchsucht keine Verzeichnisse. Messungen enden spätestens an den Grenzen von 10.000 Einträgen, 512 Verzeichnissen oder zwei Sekunden. Unvollständige oder nicht verfügbare Ergebnisse zeigen keine Teilsumme. Eine manuell angeforderte Aktualisierung plant eine Aufgabe, höchstens alle 15 Minuten. WordPress-Cron kann abhängig vom Website-Traffic später laufen. Externe Medien, Datenbank und Hosting-Kontingent werden nicht gemessen."
 
 msgid "Enable date and time explanations under Admin interface, then open WordPress General settings. Fixed examples explain leading zeros without changing formats, previews or saving. A Favicon and Home Screen explanation accompanies the native Site Icon controls."
 msgstr "Datums- und Zeitformat-Erklärungen unter Admin-Oberfläche aktivieren und anschließend die allgemeinen WordPress-Einstellungen öffnen. Feste Beispiele erklären führende Nullen, ohne Formate, Vorschauen oder das Speichern zu verändern. Bei der nativen Website-Icon-Auswahl wird die Verwendung als Favicon und auf dem Home-Bildschirm erklärt."
@@ -1195,6 +1213,9 @@ msgstr "Feeds sind auf dieser Website deaktiviert."
 msgid "File size"
 msgstr "Dateigröße"
 
+msgid "File uploads"
+msgstr "Datei-Uploads"
+
 msgid "File-size indexing paused. Reopen the media library to retry."
 msgstr "Dateigrößen-Indexierung pausiert. Die Mediathek erneut öffnen, um fortzufahren."
 
@@ -1264,6 +1285,9 @@ msgstr "Toolbar-Vorgabe für das Frontend"
 msgid "Full year"
 msgstr "Vollständiges Jahr"
 
+msgid "Further technical details"
+msgstr "Weitere technische Details"
+
 msgid "Generate a report only when requested. It contains versions, scope and configured rules; no domains, user accounts, content, preset notes or custom footer text. It performs no runtime tests or external requests."
 msgstr "Der Bericht wird nur auf Anforderung erzeugt. Er enthält Versionen, Geltungsbereich und konfigurierte Regeln; keine Domains, Benutzerkonten, Inhalte, Preset-Notizen oder eigenen Footertext. Er führt keine Laufzeittests oder externen Anfragen aus."
 
@@ -1287,6 +1311,9 @@ msgstr "Bereich"
 
 msgid "Grouped media controls and guidance, administrator-only environment indicator on the right, clearer local-avatar help and consistent privacy-conscious diagnostics."
 msgstr "Gebündelte Medienoptionen und Anleitungen, Umgebungsanzeige rechts nur für Administratoren, verständlichere Avatar-Hilfe und einheitliche datensparsame Diagnosen."
+
+msgid "Grouped system information and storage overview with section shortcuts, clear labels and upload diagnosis guidance when disabled."
+msgstr "Gegliederte Übersicht zu Systeminformationen und Speicher mit Sprungnavigation, verständlichen Beschriftungen und Hinweis bei deaktivierter Upload-Diagnose."
 
 msgid "HTML and feed generator choices differ; no combined takeover is offered."
 msgstr "HTML- und Feed-Generator-Einstellungen unterscheiden sich; keine gemeinsame Übernahme angeboten."
@@ -1501,6 +1528,9 @@ msgstr "In Site Essentials"
 msgid "Inactive"
 msgstr "Inaktiv"
 
+msgid "Includes deckerweb Library 1.1.0 and deckerweb GitHub Release Updater 2.2.1, GPL-2.0-or-later, by David Decker. Library online catalog access is optional and initially off. The updater checks the configured GitHub repository through normal WordPress update checks; request metadata such as your server IP is sent to GitHub. No analytics or remote fonts are included. This direct-distribution package is not a WordPress.org build."
+msgstr "Enthält deckerweb Library 1.1.0 und deckerweb GitHub Release Updater 2.2.1, GPL-2.0-or-later, von David Decker. Der Online-Katalog der Library ist optional und zunächst ausgeschaltet. Der Updater fragt das konfigurierte GitHub-Repository im normalen WordPress-Updateprozess ab; dabei werden Anfragedaten wie die Server-IP an GitHub übertragen. Keine Analysefunktionen oder externen Schriften. Dieses Direktvertriebspaket ist kein WordPress.org-Build."
+
 msgid "Includes deckerweb Library 1.1.0 with the current local catalog, personal sorting and robust dialogs."
 msgstr "Enthält deckerweb Library 1.1.0 mit aktuellem lokalem Katalog, persönlicher Sortierung und robusten Dialogen."
 
@@ -1512,6 +1542,9 @@ msgstr "Indexierung freigegeben"
 
 msgid "Indexing decision"
 msgstr "Indexierungsentscheidung"
+
+msgid "Information about WordPress, PHP, upload limits and the storage used by uploaded files. This overview does not change server settings."
+msgstr "Informationen zu WordPress, PHP, Upload-Grenzen und dem Speicherplatz der hochgeladenen Dateien. Diese Übersicht ändert keine Servereinstellungen."
 
 msgid "Inherit defaults"
 msgstr "Standard übernehmen"
@@ -1759,6 +1792,27 @@ msgstr "Nur manuell; Ergebnisse werden nicht dauerhaft gespeichert"
 msgid "Manual setup and limitations"
 msgstr "Manuelle Einrichtung und Grenzen"
 
+msgid "Maximum execution time"
+msgstr "Maximale Ausführungszeit"
+
+msgid "Maximum files per request"
+msgstr "Maximale Dateien pro Anfrage"
+
+msgid "Maximum form fields"
+msgstr "Maximale Anzahl Formularfelder"
+
+msgid "Maximum input nesting depth"
+msgstr "Maximale Verschachtelung der Eingaben"
+
+msgid "Maximum input processing time"
+msgstr "Maximale Verarbeitungszeit für Eingaben"
+
+msgid "Maximum request size"
+msgstr "Maximale Größe einer Anfrage"
+
+msgid "Maximum size per uploaded file"
+msgstr "Maximale Dateigröße pro Upload"
+
 msgid "Measure local upload storage daily"
 msgstr "Lokalen Upload-Speicher täglich messen"
 
@@ -1776,6 +1830,12 @@ msgstr "Medien-Papierkorb ist mit der aktuellen Konfiguration nicht verfügbar."
 
 msgid "Media trash: inspect before changing configuration."
 msgstr "Medien-Papierkorb: erst prüfen, dann konfigurieren."
+
+msgid "Memory allocated for this request"
+msgstr "Zugewiesener Arbeitsspeicher dieses Aufrufs"
+
+msgid "Memory and execution time"
+msgstr "Arbeitsspeicher und Laufzeit"
 
 msgid "Menu editing is not available to your account on this site."
 msgstr "Die Menübearbeitung ist für dieses Benutzerkonto auf dieser Website nicht verfügbar."
@@ -1887,6 +1947,9 @@ msgstr "Keine Einträge unter %s im Papierkorb gefunden."
 
 msgid "No %s found."
 msgstr "Keine Einträge unter %s gefunden."
+
+msgid "No PHP execution time limit (0)"
+msgstr "Keine PHP-Laufzeitbegrenzung (0)"
 
 msgid "No Page Links To destinations are available for the selected content types on this page."
 msgstr "Auf dieser Seite sind keine Page-Links-To-Ziele für die ausgewählten Inhaltstypen vorhanden."
@@ -2005,6 +2068,9 @@ msgstr "Titelsuche in Inhaltslisten anbieten"
 msgid "Older frontend scripts may rely on jQuery Migrate. Test public pages while signed out. Login, admin and signed-in builder sessions retain it. To restore it, turn this option off and save."
 msgstr "Ältere Frontend-Skripte können jQuery Migrate benötigen. Öffentliche Seiten im abgemeldeten Zustand prüfen. Login, Admin und angemeldete Builder-Sitzungen behalten es. Zum Wiederherstellen diese Option ausschalten und speichern."
 
+msgid "On this page"
+msgstr "Auf dieser Seite"
+
 msgid "One User Avatar or similar plugins"
 msgstr "One User Avatar oder ähnliche Plugins"
 
@@ -2083,6 +2149,9 @@ msgstr "Eine bewusst ungewöhnliche Adresse oder einen Suchbegriff in einem neue
 msgid "Open links in a new tab; select their addresses to copy them. No files or settings are changed."
 msgstr "Links in einem neuen Tab öffnen; die angezeigten Adressen lassen sich zum Kopieren markieren. Dateien und Einstellungen bleiben unverändert."
 
+msgid "Open media settings"
+msgstr "Mediathek-Einstellungen öffnen"
+
 msgid "Open native Site Health information"
 msgstr "Native Website-Zustandsinformationen öffnen"
 
@@ -2155,6 +2224,15 @@ msgstr "PHP %1$s · PHP-Limit %2$s · WP %3$s / Admin %4$s"
 msgid "PHP and WordPress limits"
 msgstr "PHP- und WordPress-Limits"
 
+msgid "PHP execution interface"
+msgstr "Technische PHP-Ausführungsart"
+
+msgid "PHP memory limit"
+msgstr "PHP-Arbeitsspeicherlimit"
+
+msgid "PHP version"
+msgstr "PHP-Version"
+
 msgid "Page Links To"
 msgstr "Page Links To"
 
@@ -2193,6 +2271,9 @@ msgstr "Pausiert; ein anderer Avatar-Anbieter hat Vorrang"
 
 msgid "Paused; local avatars are off"
 msgstr "Pausiert; lokale Avatare sind ausgeschaltet"
+
+msgid "Peak memory for this request"
+msgstr "Spitzenverbrauch dieses Aufrufs"
 
 msgid "Permission denied."
 msgstr "Zugriff verweigert."
@@ -2941,6 +3022,9 @@ msgstr "Einfacher Text, fett, kursiv, Listen und Links. Berechtigte Benutzer kö
 msgid "Simple text, bold, italic, lists and links. Visitors in the selected audience may hide the widget in Screen Options. An empty audience shows it to nobody."
 msgstr "Einfacher Text, fett, kursiv, Listen und Links. Berechtigte Benutzer können das Widget über „Ansicht anpassen“ ausblenden. Ohne ausgewählte Zielgruppe sieht es niemand."
 
+msgid "Simplified toolbar greeting also handles escaped display names on WordPress 7.1.4."
+msgstr "Die vereinfachte Toolbar-Begrüßung berücksichtigt auch maskierte Anzeigenamen unter WordPress 7.1.4."
+
 msgid "Simplify the toolbar greeting"
 msgstr "Toolbar-Begrüßung vereinfachen"
 
@@ -3015,6 +3099,9 @@ msgstr "Site Essentials: Berichte und Übergabe öffnen"
 
 msgid "Site Essentials: Open settings"
 msgstr "Site Essentials: Einstellungen öffnen"
+
+msgid "Site Essentials: Open system information and storage"
+msgstr "Site Essentials: Systeminformationen und Speicher öffnen"
 
 msgid "Site Essentials: Open website checks"
 msgstr "Site Essentials: Website-Prüfungen öffnen"
@@ -3145,6 +3232,9 @@ msgstr "Unterdrücken aller Update-E-Mails: keine Übernahme; Site Essentials er
 msgid "Syntax highlighting preference"
 msgstr "Vorgabe für Syntaxhervorhebung"
 
+msgid "System information and storage"
+msgstr "Systeminformationen und Speicher"
+
 msgid "Tag cloud"
 msgstr "Schlagwortwolke"
 
@@ -3156,6 +3246,9 @@ msgstr "Ausgewählte Änderungen in den Entwurf übernehmen"
 
 msgid "Task"
 msgstr "Aufgabe"
+
+msgid "Technical runtime information for troubleshooting. Available extensions do not guarantee that an external service is connected."
+msgstr "Technische Laufzeitinformationen zur Fehlersuche. Verfügbare Erweiterungen belegen nicht, dass ein externer Dienst verbunden ist."
 
 msgid "Template editing and direct Site Editor access are blocked; saved templates still render. To restore editing, turn this option off and save, or deactivate Site Essentials."
 msgstr "Template-Bearbeitung und direkter Zugriff auf den Website-Editor werden gesperrt; gespeicherte Templates werden weiter ausgegeben. Zum Wiederherstellen diese Option ausschalten und speichern oder Site Essentials deaktivieren."
@@ -3448,8 +3541,17 @@ msgstr "Updates"
 msgid "Upload an avatar image"
 msgstr "Avatar-Bild hochladen"
 
+msgid "Upload file storage"
+msgstr "Speicherplatz der Upload-Dateien"
+
+msgid "Upload storage diagnosis is currently disabled. A result will appear here after you enable it and a measurement has completed. Opening this page does not start a measurement."
+msgstr "Die Upload-Speicherdiagnose ist derzeit nicht aktiviert. Nach der Aktivierung und einer abgeschlossenen Messung erscheint hier das Ergebnis. Das Öffnen dieser Seite startet keine Messung."
+
 msgid "Uploaded to %s"
 msgstr "Hochgeladen zu %s"
+
+msgid "Uploads and forms"
+msgstr "Uploads und Formulare"
 
 msgid "Use a Site Essentials configuration with schema version 1."
 msgstr "Verwende eine Site-Essentials-Konfiguration mit Schemaversion 1."
@@ -3550,6 +3652,9 @@ msgstr "Benutzerinformationen mit klaren Grenzen."
 msgid "User lookup failed. Try again."
 msgstr "Benutzersuche fehlgeschlagen. Erneut versuchen."
 
+msgid "Uses maximum execution time (-1)"
+msgstr "Übernimmt die maximale Ausführungszeit (-1)"
+
 msgid "Value to take over"
 msgstr "Zu übernehmender Wert"
 
@@ -3616,6 +3721,9 @@ msgstr "Die Website-Prüfungen haben sich geändert. Vor der Entscheidung neu la
 msgid "Welcome panel"
 msgstr "Willkommens-Panel"
 
+msgid "What is measured?"
+msgstr "Was wird gemessen?"
+
 msgid "Where WordPress already loads its command palette, administrators can open Site Essentials settings, reports and handover, website checks and maintenance mode. These commands only navigate; they do not apply presets, switch maintenance or run public requests. Site Health Info reports local maintenance state, a recorded activation time, page availability, detected maintenance providers and known overridden rules. No page titles, personal exceptions or public response contents are included. Public checks remain manual and their results are not retained."
 msgstr "Wo WordPress seine Befehlspalette bereits lädt, können Administratoren die Einstellungen, Berichte und Übergabe, Website-Prüfungen und den Wartungsmodus von Site Essentials öffnen. Die Befehle navigieren nur; sie wenden keine Presets an, schalten keine Wartung um und starten keine öffentlichen Abrufe. Der Bericht im Website-Zustand nennt den lokalen Wartungsstatus, einen erfassten Aktivierungszeitpunkt, die Verfügbarkeit der Wartungsseite, erkannte Wartungsanbieter und bekannte übersteuerte Regeln. Seitentitel, persönliche Ausnahmen und öffentliche Antwortinhalte sind nicht enthalten. Öffentliche Prüfungen bleiben manuell; ihre Ergebnisse werden nicht aufbewahrt."
 
@@ -3658,6 +3766,12 @@ msgstr "WordPress-Adresse (URL)"
 msgid "WordPress XML sitemap"
 msgstr "WordPress-XML-Sitemap"
 
+msgid "WordPress administration memory target"
+msgstr "WordPress-Speicherziel für die Verwaltung"
+
+msgid "WordPress and PHP"
+msgstr "WordPress und PHP"
+
 msgid "WordPress currently asks search engines not to index this site. This does not technically block access."
 msgstr "WordPress fordert Suchmaschinen derzeit auf, diese Website nicht zu indexieren. Das sperrt den Zugriff nicht technisch."
 
@@ -3676,11 +3790,17 @@ msgstr "WordPress-Funktionen"
 msgid "WordPress logo"
 msgstr "WordPress-Logo"
 
+msgid "WordPress memory target"
+msgstr "WordPress-Arbeitsspeicherziel"
+
 msgid "WordPress post embeddings are disabled on this site."
 msgstr "WordPress-Beitrags-Einbettungen sind auf dieser Website deaktiviert."
 
 msgid "WordPress upload limit"
 msgstr "WordPress-Upload-Limit"
+
+msgid "WordPress version"
+msgstr "WordPress-Version"
 
 msgid "WordPress-related PHP extensions"
 msgstr "PHP-Erweiterungen für WordPress"

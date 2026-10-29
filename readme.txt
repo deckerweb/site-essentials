@@ -2,9 +2,9 @@
 Contributors: daveshine
 Tags: admin, settings, multisite, cleanup
 Requires at least: 7.1
-Tested up to: 7.1.3
+Tested up to: 7.1.4
 Requires PHP: 8.2
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -92,7 +92,7 @@ Media trash: inspect before changing configuration.
 The optional status card reads MEDIA_TRASH and EMPTY_TRASH_DAYS without editing wp-config.php. Enable native media trash only through server configuration before WordPress loads, respecting existing definitions and retention. A zero retention disables trash. Files in trash remain stored and may remain directly accessible; this is not a backup or privacy barrier. Explicit permanent deletion can bypass trash. On Multisite, constants normally apply across the installation.
 
 Storage diagnosis without a live scan.
-Enable daily local upload-storage diagnosis under Media library and view the cached result in Tools → Site Essentials: PHP. Requests never scan directories while displaying the result. Measurements stop at 10,000 entries, 512 directories or two seconds. An incomplete or unavailable result is labeled without a partial total. Manual refresh queues a task, limited to fifteen-minute intervals. Traffic-dependent WordPress cron may run late. Remote media, the database and hosting quota are not measured.
+Enable daily local upload-storage diagnosis under Media library and view the cached result in Tools → System information and storage. Requests never scan directories while displaying the result. Measurements stop at 10,000 entries, 512 directories or two seconds. An incomplete or unavailable result is labeled without a partial total. Manual refresh queues a task, limited to fifteen-minute intervals. Traffic-dependent WordPress cron may run late. Remote media, the database and hosting quota are not measured.
 
 One environment indicator.
 Site Essentials uses the WordPress environment without changing it. When an active Brand Admin Schemes implementation provides its environment callback, BAS owns presentation and Site Essentials pauses, even if BAS hides its own badge. Site Essentials keeps its choice and resumes after BAS deactivation. The settings status explains which provider is responsible. No BAS files or settings are changed.
@@ -126,6 +126,11 @@ Own settings, named local presets, previous configuration and network policy rem
 Full FAQ: https://github.com/deckerweb/site-essentials/blob/main/FAQ.md
 
 == Changelog ==
+
+= 1.1.1 =
+* Improved: Grouped system information and storage with section links, readable labels and clear disabled upload-diagnosis guidance.
+* Fixed: Comment editing no longer fails when the meta-box hook receives a comment object.
+* Fixed: Simplified toolbar greeting handles escaped display names on WordPress 7.1.4.
 
 = 1.1.0 =
 * New: Optional video upload restrictions, native media trash guidance and cached daily upload-storage diagnosis.

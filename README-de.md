@@ -8,7 +8,7 @@
 
 Dein WordPress. Deine Einstellungen. Site Essentials bündelt gezielte Einstellungen und praktische Werkzeuge für eine passend eingerichtete WordPress-Website. Vereinfache die Verwaltung, steuere WordPress-Funktionen und übertrage bewährte Konfigurationen auf weitere Websites. Entwickelt für die tägliche Betreuung und die Übergabe an Kunden, mit Unterstützung für Einzelinstallationen und einzelne Websites einer Multisite.
 
-**1.1.0 · WordPress 7.1+ · PHP 8.2+**
+**1.1.1 · WordPress 7.1+ · PHP 8.2+**
 
 [Plugin-Website](https://deckerwebplugins.com/de/plugins/site-essentials/) · [Dokumentation](https://deckerweb.github.io/site-essentials/de.html) · [Fragen nach Themen](FAQ-de.md)
 
@@ -189,7 +189,7 @@ Die optionale Statuskarte liest MEDIA_TRASH und EMPTY_TRASH_DAYS, ohne wp-config
 
 ### Speicherdiagnose ohne Live-Suche.
 
-Die tägliche Diagnose des lokalen Upload-Speichers unter Mediathek aktivieren. Das gespeicherte Ergebnis steht unter Werkzeuge → Site Essentials: PHP. Die Anzeige durchsucht keine Verzeichnisse. Messungen enden spätestens an den Grenzen von 10.000 Einträgen, 512 Verzeichnissen oder zwei Sekunden. Unvollständige oder nicht verfügbare Ergebnisse zeigen keine Teilsumme. Eine manuell angeforderte Aktualisierung plant eine Aufgabe, höchstens alle 15 Minuten. WordPress-Cron kann abhängig vom Website-Traffic später laufen. Externe Medien, Datenbank und Hosting-Kontingent werden nicht gemessen.
+Die tägliche Diagnose des lokalen Upload-Speichers unter Mediathek aktivieren. Das gespeicherte Ergebnis steht unter Werkzeuge → Systeminformationen und Speicher. Die Anzeige durchsucht keine Verzeichnisse. Messungen enden spätestens an den Grenzen von 10.000 Einträgen, 512 Verzeichnissen oder zwei Sekunden. Unvollständige oder nicht verfügbare Ergebnisse zeigen keine Teilsumme. Eine manuell angeforderte Aktualisierung plant eine Aufgabe, höchstens alle 15 Minuten. WordPress-Cron kann abhängig vom Website-Traffic später laufen. Externe Medien, Datenbank und Hosting-Kontingent werden nicht gemessen.
 
 ### Eine Umgebungsanzeige.
 
@@ -252,6 +252,12 @@ Eigene Einstellungen, benannte lokale Presets, vorherige Konfiguration und Netzw
 [Fragen nach Themen](FAQ-de.md)
 
 ## Änderungsverlauf
+
+### 1.1.1 · 2026-10-29
+
+- **Verbessert:** Gegliederte Übersicht zu Systeminformationen und Speicher mit Sprungnavigation, verständlichen Beschriftungen und Hinweis bei deaktivierter Upload-Diagnose.
+- **Behoben:** Die Kommentarbearbeitung bricht nicht mehr ab, wenn WordPress dem Metabox-Hook für alternative Beitragsziele ein Kommentarobjekt übergibt.
+- **Behoben:** Die vereinfachte Toolbar-Begrüßung berücksichtigt auch maskierte Anzeigenamen unter WordPress 7.1.4.
 
 ### 1.1.0 · 2026-10-28
 

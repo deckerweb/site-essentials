@@ -2,7 +2,7 @@
 
 [Deutsch](Funktionen) · [User guide](User-guide) · [Home](Home)
 
-For **Site Essentials 1.1.0**. 68 feature points in twelve groups.
+For **Site Essentials 1.1.1**. 68 feature points in twelve groups.
 
 All features at a glance, grouped by task. You decide what to enable for your website. Three administrator checks are enabled by default; other optional modules are activated deliberately. Individual features have the limitations explained below.
 

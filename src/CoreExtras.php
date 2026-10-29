@@ -49,10 +49,13 @@ final class CoreExtras {
   if ( ! Settings::get( 'toolbar_greeting' ) || ! is_user_logged_in() ) { return; }
   $node = $bar->get_node( 'my-account' ); if ( ! $node ) { return; }
   $name = wp_get_current_user()->display_name;
-  $span = '<span class="display-name">' . $name . '</span>';
-  /* translators: %s: the current user’s display name. */
-  $native = sprintf( __( 'Howdy, %s', 'default' ), $span );
-  if ( ! str_contains( $node->title, $native ) ) { return; }
+  $native = '';
+  foreach ( array_unique( array( esc_html( $name ), $name ) ) as $display_name ) {
+   /* translators: %s: the current user’s display name. */
+   $candidate = sprintf( __( 'Howdy, %s', 'default' ), '<span class="display-name">' . $display_name . '</span>' );
+   if ( str_contains( $node->title, $candidate ) ) { $native = $candidate; break; }
+  }
+  if ( '' === $native ) { return; }
   $node->title = str_replace( $native, '<span class="display-name">' . esc_html( $name ) . '</span>', $node->title );
   if ( isset( $node->meta['menu_title'] ) && $node->meta['menu_title'] === wp_strip_all_tags( $native ) ) { $node->meta['menu_title'] = wp_strip_all_tags( $name ); }
   $bar->add_node( (array) $node );

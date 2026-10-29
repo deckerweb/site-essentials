@@ -2,6 +2,12 @@
 
 [English](CHANGELOG) · [Startseite](Home-de)
 
+### 1.1.1 · 2026-10-29
+
+- **Verbessert:** Gegliederte Übersicht zu Systeminformationen und Speicher mit Sprungnavigation, verständlichen Beschriftungen und Hinweis bei deaktivierter Upload-Diagnose.
+- **Behoben:** Die Kommentarbearbeitung bricht nicht mehr ab, wenn WordPress dem Metabox-Hook für alternative Beitragsziele ein Kommentarobjekt übergibt.
+- **Behoben:** Die vereinfachte Toolbar-Begrüßung berücksichtigt auch maskierte Anzeigenamen unter WordPress 7.1.4.
+
 ### 1.1.0 · 2026-10-28
 
 - **Neu:** Optionale Video-Upload-Sperre, Anleitung zum nativen Medien-Papierkorb und gespeicherte tägliche Upload-Speicherdiagnose.

@@ -500,7 +500,7 @@ final class Admin {
    echo '</fieldset>';
   }
   if ( 'media_trash_help' === $key ) { Essentials110::trash_panel( true ); }
-  if ( 'storage_diagnosis' === $key && Settings::get( 'storage_diagnosis' ) ) { echo '<p><a href="' . esc_url( admin_url( 'tools.php?page=site-essentials-php' ) ) . '">' . esc_html__( 'Local upload storage', 'site-essentials' ) . '</a></p>'; }
+  if ( 'storage_diagnosis' === $key && Settings::get( 'storage_diagnosis' ) ) { echo '<p><a href="' . esc_url( admin_url( 'tools.php?page=site-essentials-php#se-upload-storage' ) ) . '">' . esc_html__( 'Local upload storage', 'site-essentials' ) . '</a></p>'; }
   if ( 'environment_badge' === $key ) { Essentials110::environment_panel(); }
   if ( 'local_avatars' === $key ) { echo '<p class="description">' . esc_html__( 'Image assignments apply to this website and are not included in preset exports.', 'site-essentials' ) . '</p>'; }
   if ( isset( Schema::impacts()[ $key ] ) ) { echo '<details class="se-impact"><summary>' . esc_html__( 'Impact and recovery', 'site-essentials' ) . '</summary><p>' . esc_html( Schema::impacts()[ $key ] ) . '</p></details>'; }
