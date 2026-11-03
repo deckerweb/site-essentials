@@ -20,7 +20,7 @@ Ein Punkt im Speichern-Button und die bestehende Statusanzeige kennzeichnen unge
 - **Lokale Avatare:** Eigene Bilder aus der Mediathek verwenden; das Modul fällt nicht auf Gravatar zurück. Unterstützte externe Avatar-Anbieter erhalten Vorrang. [Standardbild per Code vorgeben](Standard-Avatar-Snippets).
 - **Mediathek:** Optional Dateigrößen anzeigen, danach sortieren und Dokumenttypen filtern. Die Indexierung erfolgt in begrenzten Schritten; vorhandene Dateien werden nicht ersetzt. SVG-Bereinigung gehört nicht zum Plugin.
 - **Design-Zugriffe:** Erlaubte Rollen für klassische Menüs, Widgets und Customizer wählen; lokale Benutzer-Ausnahmen können Zugriff erlauben oder sperren. Nur Administratoren verwalten diese Ausnahmen; sie sind nicht in Exporten enthalten. Dies ersetzt keine vollständige Rollenverwaltung.
-- **Alternative Beitragsziele:** Ausgewählte Inhaltstypen aktivieren und das Ziel anschließend im Beitragseditor eintragen. HTTP-302-Weiterleitungen erhalten die normale Bearbeitungsadresse. Page-Links-To-Ziele werden separat geprüft übernommen; Quelldaten werden nicht automatisch gelöscht.
+- **Alternative Beitragsziele:** Ausgewählte Inhaltstypen aktivieren und das Ziel anschließend im Beitragseditor eintragen. HTTP-302-Weiterleitungen erhalten die normale Bearbeitungsadresse. Page-Links-To-Ziele werden separat geprüft übernommen; Quelldaten werden nicht automatisch gelöscht. [Eingabebox nur Administratoren anzeigen](Beitragsziel-Snippet).
 - **Editorhilfen:** Optionale Datums-/Zeitbeispiele erklären vorhandene Formate; der Customizer-CSS-Editor lässt sich verbreitern. Gespeicherte Formate, CSS und das native Veröffentlichen bleiben unverändert.
 
 ## Multisite

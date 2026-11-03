@@ -20,7 +20,7 @@ A dot in the save button and the existing status identify unsaved changes. Revie
 - **Local avatars:** use local Media Library images, with no Gravatar fallback from the module. Supported external avatar providers take precedence. [Set the default image with code](Default-avatar-snippets).
 - **Media:** optionally display file sizes, sort by size and filter document types. Indexing uses bounded batches; existing files are not replaced. SVG sanitization is not provided.
 - **Appearance access:** choose allowed roles for classic menus, widgets or the Customizer; local user allow/block exceptions are available. Administrators alone can manage these exceptions; they are excluded from exports. This is not a full role-management system.
-- **Alternative post destinations:** enable selected content types, then edit the destination in the post editor. HTTP 302 redirects preserve the normal editing address. Page Links To copying is a separate reviewed operation; no automatic deletion of source data.
+- **Alternative post destinations:** enable selected content types, then edit the destination in the post editor. HTTP 302 redirects preserve the normal editing address. Page Links To copying is a separate reviewed operation; no automatic deletion of source data. [Show the input box only to administrators](Alternative-destination-snippet).
 - **Editor helpers:** optional date/time examples explain existing formats; the Customizer CSS editor can be widened. Stored formats, CSS and native publishing behavior remain unchanged.
 
 ## Multisite
