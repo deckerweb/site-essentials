@@ -116,7 +116,7 @@ Enable the optional controls in Media library. Size display and sorting apply to
 
 Enable the module and select public content types under Alternative post destinations. Each supported content editor gains a native meta box (in the block editor, open Meta Boxes). Choose the normal address or an HTTP(S)/root-relative destination. Original public GET/HEAD singular URLs use temporary HTTP 302 redirects without redirecting previews, embeds, feeds, REST or editing. Native public permalinks use the target. Draft/private links stay native. Returning a content item to Normal WordPress address removes its own destination record. Disabling the module/type retains records and restores native behavior. No general redirect manager or URL history is provided. Destination fields appear only after selecting the alternative address. Stale destination forms are rejected; reload to see the current value.
 
-[Show the input box only to administrators: Advanced Scripts snippet and instructions](Alternative-destination-snippet). Existing destinations remain effective.
+[Show the input box only to administrators: PHP snippet and instructions](Alternative-destination-snippet). Existing destinations remain effective.
 
 ### How is Page Links To migration controlled?
 

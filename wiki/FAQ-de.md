@@ -116,7 +116,7 @@ Die optionalen Schalter unter Mediathek aktivieren. Anzeige und Sortierung wirke
 
 Unter Alternative Beitragsziele das Modul aktivieren und öffentliche Inhaltstypen auswählen. Der jeweilige Inhaltseditor erhält eine native Meta-Box (im Blockeditor Meta-Boxen öffnen). Normale Adresse oder HTTP(S)-Adresse/internen Pfad auswählen. Ursprüngliche öffentliche GET-/HEAD-Einzeladressen leiten temporär mit HTTP 302 weiter; Vorschau, Embeds, Feeds, REST und Bearbeitung werden nicht weitergeleitet. Native öffentliche Permalinks verwenden das Ziel; Entwurfs-/private Links bleiben nativ. Die Auswahl Normale WordPress-Adresse entfernt den eigenen Ziel-Datensatz dieses Inhalts. Modul/Inhaltstyp abschalten erhält Datensätze und stellt natives Verhalten wieder her. Keine allgemeine Weiterleitungsverwaltung oder URL-Historie. Zielfelder erscheinen erst nach Auswahl der alternativen Adresse. Veraltete Zielformulare werden abgewiesen; neu laden zeigt den aktuellen Wert.
 
-[Eingabebox nur Administratoren anzeigen: Advanced-Scripts-Snippet mit Anleitung](Beitragsziel-Snippet). Vorhandene Ziele bleiben wirksam.
+[Eingabebox nur Administratoren anzeigen: PHP-Snippet mit Anleitung](Beitragsziel-Snippet). Vorhandene Ziele bleiben wirksam.
 
 ### Wie wird die Page-Links-To-Übernahme kontrolliert?
 

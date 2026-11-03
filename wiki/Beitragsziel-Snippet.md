@@ -4,11 +4,11 @@
 
 Dieses optionale Snippet vereinfacht den Inhaltseditor für Redakteure und andere Benutzer ohne Administratorrolle. Es entfernt nur die Eingabebox **Alternative Beitragsziele** bei den gewählten Inhaltstypen. Vorhandene Ziele und Weiterleitungen bleiben wirksam; beim normalen Speichern ohne diese Box bleiben die gespeicherten Ziele erhalten. Dies ist eine Anzeigeanpassung, keine Berechtigungssperre.
 
-## In Advanced Scripts einrichten
+## Im Snippet-Manager einrichten
 
 1. Ein neues **PHP-Snippet** anlegen, beispielsweise „SE: Beitragsziele nur für Admins“.
 2. Automatisch im **Adminbereich** ausführen lassen, nicht erst innerhalb eines späteren Hooks. Das Snippet registriert den passenden Hook selbst.
-3. Den folgenden Code **ohne `<?php`** einfügen.
+3. Den folgenden Code einfügen. Viele PHP-Snippet-Manager benötigen die öffnende Zeile `<?php` nicht oder ergänzen sie selbst. Deshalb fehlt sie im Beispiel. Falls dein Werkzeug sie verlangt, füge `<?php` als erste Zeile hinzu; beachte dessen Anleitung.
 4. Die Liste `$post_types` anpassen, speichern und das Snippet aktivieren.
 
 ```php

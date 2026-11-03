@@ -4,11 +4,11 @@
 
 This optional snippet simplifies the content editor for editors and other users without the administrator role. It removes only the **Alternative post destinations** input box for selected post types. Existing destinations and redirects continue to work; saving content normally without the box retains its saved destination. This is a display adjustment, not an authorization restriction.
 
-## Set up in Advanced Scripts
+## Set up in your snippet manager
 
 1. Create a new **PHP snippet**, for example “SE: Destinations for admins only”.
 2. Configure it to run automatically in the **admin area**, rather than inside a later hook. The snippet registers its own hook.
-3. Paste the following code **without `<?php`**.
+3. Paste the following code. Many PHP snippet managers do not require the opening `<?php` line or add it automatically, so the example omits it. If your tool requires it, add `<?php` as the first line; follow its documentation.
 4. Adjust `$post_types`, save and activate the snippet.
 
 ```php
