@@ -122,6 +122,7 @@ final class Admin {
   if ( 'POST' !== ( $_SERVER['REQUEST_METHOD'] ?? '' ) ) { wp_die( esc_html__( 'Use the settings form to perform this action.', 'site-essentials' ), '', array( 'response' => 405 ) ); }
   if ( ! is_string( $_REQUEST['_wpnonce'] ?? null ) ) { wp_die( esc_html__( 'The request could not be verified. Reload the page and try again.', 'site-essentials' ), '', array( 'response' => 403 ) ); }
   check_admin_referer( self::nonce_action( $action, $network ) );
+  WriteLock::require_lock();
  }
  /** Reject stale browser forms before replacing settings changed elsewhere. @return void */
  private function check_revision(): void {
@@ -262,6 +263,7 @@ final class Admin {
    } }
    if ( 'targets' === $group ) { if ( AlternativeTargets::provider() ) { echo '<p role="status">' . esc_html__( 'Page Links To manages destinations. Your choice is retained.', 'site-essentials' ) . '</p>'; } echo '<div class="se-card"><p>' . esc_html__( 'Review and copy existing Page Links To destinations in a separate administrator-only preview. Nothing is selected or copied automatically.', 'site-essentials' ) . '</p><a class="button" href="' . esc_url( admin_url( 'tools.php?page=site-essentials-targets' ) ) . '">' . esc_html__( 'Review Page Links To destinations', 'site-essentials' ) . '</a></div>'; }
    if ( 'dashboard' === $group ) { DashboardInfo::panel(); }
+   if ( 'health' === $group ) { Health120::panel(); }
    if ( 'checks' === $group ) { ( new WebsiteChecks() )->panel(); }
    echo '</section>';
   }
@@ -511,7 +513,7 @@ final class Admin {
  /** Load a data-minimal diagnostic after POST authorization. @return void */
  public function diagnostic(): void { $this->authorize( 'site_essentials_diagnostic' ); nocache_headers(); wp_send_json_success( Reports::diagnostic() ); }
  /** Hash all local data that can be explicitly cleared. @return string */
- private function data_revision(): string { return hash( 'sha256', wp_json_encode( array( Settings::local(), get_option( Settings::PREVIOUS, false ), Presets::custom(), Avatars::revision(), WebsiteChecks::state(), get_option( Access::OPTION, false ), get_option( DashboardInfo::OPTION, false ), get_option( DefaultAvatar::OPTION, false ), Maintenance::state() ) ) ); }
+ private function data_revision(): string { return hash( 'sha256', wp_json_encode( array( Settings::local(), get_option( Settings::PREVIOUS, false ), Presets::custom(), Avatars::revision(), WebsiteChecks::state(), get_option( Access::OPTION, false ), get_option( DashboardInfo::OPTION, false ), get_option( DefaultAvatar::OPTION, false ), Maintenance::state(), MaintenanceAccess::state(), Health120::state() ) ) ); }
  /** Clear only this site's settings, snapshot and presets after typed confirmation. @return void */
  public function clear_local(): void {
   $this->authorize( 'site_essentials_clear_local' );
@@ -519,10 +521,42 @@ final class Admin {
   if ( ! hash_equals( $this->data_revision(), $revision ) ) { wp_die( esc_html__( 'Local data changed. Reload before clearing it.', 'site-essentials' ), '', array( 'response' => 409 ) ); }
   $this->check_clear_confirmation();
   // Neutral settings prevent an installed startup preset from silently reapplying after clearing.
-  delete_option( DashboardInfo::OPTION ); delete_option( DefaultAvatar::OPTION );
-  Storage110::clear(); delete_metadata( 'user', 0, Essentials110::login_key(), '', true );
-  update_option( Settings::OPTION, Schema::defaults(), false ); delete_option( Settings::PREVIOUS ); delete_option( Presets::OPTION ); $avatars_cleared = Avatars::clear(); $media_cleared = Media::clear(); delete_option( WebsiteChecks::OPTION ); delete_option( Access::OPTION ); delete_option( Maintenance::OPTION );
-  if ( false !== get_option( DashboardInfo::OPTION, false ) || false !== get_option( DefaultAvatar::OPTION, false ) || false !== get_option( Maintenance::OPTION, false ) || false !== get_option( Access::OPTION, false ) || false !== get_option( WebsiteChecks::OPTION, false ) || ! $avatars_cleared || ! $media_cleared || get_option( Settings::OPTION ) !== Schema::defaults() || false !== get_option( Settings::PREVIOUS, false ) || false !== get_option( Presets::OPTION, false ) ) { wp_die( esc_html__( 'Some local data could not be cleared. Reload to check the remaining data.', 'site-essentials' ), '', array( 'response' => 500 ) ); }
+  $options = array(
+   DashboardInfo::OPTION, DefaultAvatar::OPTION, Settings::PREVIOUS, Presets::OPTION,
+   WebsiteChecks::OPTION, Access::OPTION, Maintenance::OPTION, MaintenanceAccess::OPTION,
+   Health120::OPTION, Health120::RESULTS, Health120::RESULTS . '_tasks', Health120::RESULTS . '_pages',
+   Storage110::OPTION, Storage110::OPTION . '_lock',
+  );
+  update_option( Settings::OPTION, Schema::defaults(), false );
+  foreach ( $options as $option ) { delete_option( $option ); }
+  Storage110::clear();
+  $meta_keys = array( Essentials110::login_key(), '_site_essentials_avatar_uploads_' . get_current_blog_id() );
+  foreach ( $meta_keys as $meta_key ) { delete_metadata( 'user', 0, $meta_key, '', true ); }
+  $avatars_cleared = Avatars::clear(); $media_cleared = Media::clear();
+  // Clear stale option caches before verifying storage, including already absent/false values.
+  wp_cache_delete( 'alloptions', 'options' ); wp_cache_delete( 'notoptions', 'options' );
+  global $wpdb;
+  $remaining = array(); $missing = new \stdClass();
+  foreach ( $options as $option ) {
+   wp_cache_delete( $option, 'options' );
+   $value = get_option( $option, $missing );
+   if ( $value !== $missing || $wpdb->last_error ) {
+    $remaining[] = MaintenanceAccess::OPTION === $option ? __( 'Maintenance access', 'site-essentials' )
+     : ( str_starts_with( $option, Health120::OPTION ) || str_starts_with( $option, Health120::RESULTS ) ? __( 'Website health data', 'site-essentials' )
+      : ( str_starts_with( $option, Storage110::OPTION ) ? __( 'Storage diagnosis', 'site-essentials' ) : __( 'Local settings and presets', 'site-essentials' ) ) );
+   }
+  }
+  global $wpdb;
+  $meta_count = $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM %i WHERE meta_key IN (%s, %s)', $wpdb->usermeta, $meta_keys[0], $meta_keys[1] ) );
+  if ( null === $meta_count || 0 !== (int) $meta_count || ! $avatars_cleared ) { $remaining[] = __( 'User data', 'site-essentials' ); }
+  if ( ! $media_cleared ) { $remaining[] = __( 'Media data', 'site-essentials' ); }
+  if ( wp_next_scheduled( Storage110::EVENT ) ) { $remaining[] = __( 'Scheduled storage measurement', 'site-essentials' ); }
+  wp_cache_delete( Settings::OPTION, 'options' );
+  if ( get_option( Settings::OPTION, $missing ) !== Schema::defaults() ) { $remaining[] = __( 'Settings', 'site-essentials' ); }
+  if ( $remaining ) {
+   /* translators: %s: Comma-separated reset areas whose data could not be cleared. */
+   wp_die( esc_html( sprintf( __( 'The reset was only partially completed. Remaining areas: %s. Reload and check them before trying again.', 'site-essentials' ), implode( ', ', array_unique( $remaining ) ) ) ), '', array( 'response' => 500 ) );
+  }
   $this->redirect( 'local_cleared' );
  }
  /** Clear only the current network policy, never site data or other networks. @return void */
@@ -548,7 +582,7 @@ final class Admin {
  }
  /** Present local clearing controls without touching other sites or network policy. @return void */
  private function data_controls(): void {
-  echo '<div class="se-card"><h3>' . esc_html__( 'Reset Site Essentials', 'site-essentials' ) . '</h3><p>' . esc_html__( 'Remove this site’s custom presets and previous configuration, and replace its saved settings with neutral WordPress defaults. This cannot be undone. Export first if needed. Other sites, network policies and WordPress content stay unchanged.', 'site-essentials' ) . '</p><p>' . esc_html__( 'Local avatar assignments and maintenance settings are also removed; uploaded media files and the maintenance page stay in WordPress.', 'site-essentials' ) . ' ' . esc_html__( 'Website check assignments and confirmations are also cleared; WordPress visibility and privacy settings stay unchanged.', 'site-essentials' ) . ' ' . esc_html__( 'Recorded last-login timestamps and the cached storage diagnosis are also removed.', 'site-essentials' ) . ' ' . esc_html__( 'Reset also removes the dashboard widget content/audience and the default-avatar selection. Media files remain in WordPress.', 'site-essentials' ) . '</p><p>' . esc_html__( 'A neutral default configuration remains while the plugin is active, preventing a startup preset from returning. Normal uninstall still retains your configuration.', 'site-essentials' ) . '</p><div class="se-control-row"><label for="se-confirm-local">' . esc_html__( 'Type RESET to confirm', 'site-essentials' ) . '</label> <input id="se-confirm-local" name="confirm_clear" form="se-clear-local-form" autocomplete="off" required pattern="RESET"> <button type="submit" form="se-clear-local-form" class="button">' . esc_html__( 'Reset Site Essentials', 'site-essentials' ) . '</button></div><p id="se-clear-draft-note" role="status" tabindex="-1"></p></div>';
+  echo '<div class="se-card"><h3>' . esc_html__( 'Reset Site Essentials', 'site-essentials' ) . '</h3><p>' . esc_html__( 'Remove this site’s custom presets and previous configuration, and replace its saved settings with neutral WordPress defaults. This cannot be undone. Export first if needed. Other sites, network policies and WordPress content stay unchanged.', 'site-essentials' ) . '</p><p>' . esc_html__( 'Local avatar assignments and maintenance settings are also removed; uploaded media files and the maintenance page stay in WordPress.', 'site-essentials' ) . ' ' . esc_html__( 'Website check assignments and confirmations are also cleared; WordPress visibility and privacy settings stay unchanged.', 'site-essentials' ) . ' ' . esc_html__( 'Recorded last-login timestamps and the cached storage diagnosis are also removed.', 'site-essentials' ) . ' ' . esc_html__( 'Reset also removes the dashboard widget content/audience, default-avatar selection, maintenance access links and Site Health choices. Media files remain in WordPress.', 'site-essentials' ) . '</p><p>' . esc_html__( 'A neutral default configuration remains while the plugin is active, preventing a startup preset from returning. Normal uninstall still retains your configuration.', 'site-essentials' ) . '</p><div class="se-control-row"><label for="se-confirm-local">' . esc_html__( 'Type RESET to confirm', 'site-essentials' ) . '</label> <input id="se-confirm-local" name="confirm_clear" form="se-clear-local-form" autocomplete="off" required pattern="RESET"> <button type="submit" form="se-clear-local-form" class="button">' . esc_html__( 'Reset Site Essentials', 'site-essentials' ) . '</button></div><p id="se-clear-draft-note" role="status" tabindex="-1"></p></div>';
  }
  /** Present a separate current-network policy clearing action. @return void */
  private function network_data_controls(): void {

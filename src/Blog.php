@@ -8,7 +8,6 @@ final class Blog {
  private $native_labels;
  /** Register native hooks without rewriting content, capabilities or permalinks. @return void */
  public function boot(): void {
-  $this->native_labels = clone get_post_type_object( 'post' )->labels;
   add_action( 'init', array( $this, 'sync_labels' ), 20 );
   add_action( 'switch_blog', array( $this, 'sync_labels' ) );
   add_filter( 'post_type_labels_post', array( $this, 'labels' ), 100 );
@@ -47,11 +46,14 @@ final class Blog {
   * @return object
   */
  public function labels( $labels ) {
+  // Core registers post types again after loading the current locale. Keep that
+  // unrenamed baseline instead of freezing the early, potentially English labels.
+  $this->native_labels = clone $labels;
   $names = $this->names(); if ( ! $names ) { return $labels; } $labels = clone $labels; list( $plural, $single ) = $names;
   foreach ( array( 'name', 'menu_name' ) as $key ) { $labels->$key = $plural; }
   foreach ( array( 'singular_name', 'name_admin_bar' ) as $key ) { $labels->$key = $single; }
   /* translators: %s: the configured singular or plural post label. */
-  $single_templates = array( 'add_new' => __( 'Add %s', 'site-essentials' ), 'add_new_item' => __( 'Add %s', 'site-essentials' ), 'edit_item' => __( 'Edit %s', 'site-essentials' ), 'new_item' => __( 'New: %s', 'site-essentials' ), 'view_item' => __( 'View %s', 'site-essentials' ), 'attributes' => __( '%s attributes', 'site-essentials' ), 'insert_into_item' => __( 'Insert into %s', 'site-essentials' ), 'uploaded_to_this_item' => __( 'Uploaded to %s', 'site-essentials' ), 'item_published' => __( '%s published.', 'site-essentials' ), 'item_published_privately' => __( '%s published privately.', 'site-essentials' ), 'item_reverted_to_draft' => __( '%s reverted to draft.', 'site-essentials' ), 'item_trashed' => __( '%s moved to Trash.', 'site-essentials' ), 'item_scheduled' => __( '%s scheduled.', 'site-essentials' ), 'item_updated' => __( '%s updated.', 'site-essentials' ), 'item_link' => __( '%s link', 'site-essentials' ), 'item_link_description' => __( 'A link to %s.', 'site-essentials' ), 'template_name' => __( 'Single item: %s', 'site-essentials' ) );
+  $single_templates = array( 'add_new' => __( 'Add %s', 'site-essentials' ), 'add_new_item' => __( 'Add %s', 'site-essentials' ), 'edit_item' => __( 'Edit %s', 'site-essentials' ), 'new_item' => __( 'New: %s', 'site-essentials' ), 'view_item' => __( 'View %s', 'site-essentials' ), 'attributes' => __( '%s attributes', 'site-essentials' ), 'featured_image' => __( 'Image for %s', 'site-essentials' ), 'set_featured_image' => __( 'Set image for %s', 'site-essentials' ), 'remove_featured_image' => __( 'Remove image for %s', 'site-essentials' ), 'use_featured_image' => __( 'Use as image for %s', 'site-essentials' ), 'insert_into_item' => __( 'Insert into %s', 'site-essentials' ), 'uploaded_to_this_item' => __( 'Uploaded to %s', 'site-essentials' ), 'item_published' => __( '%s published.', 'site-essentials' ), 'item_published_privately' => __( '%s published privately.', 'site-essentials' ), 'item_reverted_to_draft' => __( '%s reverted to draft.', 'site-essentials' ), 'item_trashed' => __( '%s moved to Trash.', 'site-essentials' ), 'item_scheduled' => __( '%s scheduled.', 'site-essentials' ), 'item_updated' => __( '%s updated.', 'site-essentials' ), 'item_link' => __( '%s link', 'site-essentials' ), 'item_link_description' => __( 'A link to %s.', 'site-essentials' ), 'template_name' => __( 'Single item: %s', 'site-essentials' ) );
   /* translators: %s: the configured singular or plural post label. */
   $plural_templates = array( 'view_items' => __( 'View %s', 'site-essentials' ), 'search_items' => __( 'Search %s', 'site-essentials' ), 'not_found' => __( 'No %s found.', 'site-essentials' ), 'not_found_in_trash' => __( 'No %s found in Trash.', 'site-essentials' ), 'all_items' => __( 'All %s', 'site-essentials' ), 'archives' => __( '%s archives', 'site-essentials' ), 'filter_items_list' => __( 'Filter %s list', 'site-essentials' ), 'filter_by_date' => __( 'Filter %s by date', 'site-essentials' ), 'items_list_navigation' => __( '%s list navigation', 'site-essentials' ), 'items_list' => __( '%s list', 'site-essentials' ) );
   foreach ( $single_templates as $key => $template ) { $labels->$key = sprintf( $template, $single ); }

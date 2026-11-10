@@ -168,9 +168,7 @@ Own settings, named local presets, previous configuration and network policy rem
 
 ### How does maintenance work?
 
-Maintenance uses a published, non-password-protected WordPress page with its configured Classic or Block Editor. Save maintenance separately; activation and page selection never travel with presets or configuration recovery. Active Bricks, Elementor or Breakdance modes pause the own response until explicitly enabled again. APIs and webhooks remain accessible. Clear or bypass full-page caches and verify while signed out.
-
-Site Essentials is designed for brief maintenance on an existing website. Its maintenance response uses HTTP 503 (temporarily unavailable) with Retry-After. This is not a Coming Soon mode for a launch page that should remain publicly available over a longer period. A public launch page normally uses HTTP 200; its indexing and access settings need separate decisions. Site Essentials does not offer a Coming Soon mode or a status-code switch. For a launch page, use a suitable theme, builder or dedicated plugin. A launch-page workflow is outside the scope of this focused maintenance tool.
+Choose the built-in notice or a published WordPress page without a password. Save maintenance separately and preview the saved selection before enabling it. Visitors receive HTTP 503 with Retry-After; administrators retain access. Optionally allow selected logged-in staff roles. A private visitor link can last 1, 24 or 72 hours; its browser grant lasts no longer than 24 hours or the link expiry. Replacing or revoking the link invalidates existing grants. A link is not a login. It may appear in server logs or browser history; share over HTTPS with trusted reviewers only. The link is shown briefly only to the creating administrator. Access choices and links stay local and are not exported. Active Bricks, Elementor or Breakdance maintenance takes precedence. Clear or bypass page caches, including hosting/CDN caches, and check signed-out visitors and granted visitors separately. Anonymous REST restrictions are a separate option, off by default; they can interrupt forms, shops, webhooks and headless clients. Authenticated REST requests and valid private-link visitors retain native API access. AJAX and XML-RPC remain unchanged. This is not a complete privacy barrier and not a Coming Soon mode.
 
 Maintenance shows its activation time when recorded, using the website time zone. Existing activations without a recorded time are explicitly marked. A normal save retains the time; disabling clears it and explicitly resuming after a provider pause starts a new period. Public checks show when they ran and distinguish failed requests from missing declarations or uninspected HTML. Their compact copyable summary omits remote bodies and URL query strings. Save or discard unsaved configuration changes before separate maintenance or public-check actions.
 
@@ -197,3 +195,43 @@ No. Falcon settings are read from the current site. Network-active Unbloater use
 ## What do the optional 1.1.0 conveniences change?
 
 They remain off by default. See the administration conveniences guide for classic menus, last-login privacy, profile fields, environment ownership, video restrictions, media trash setup and bounded storage measurement.
+
+## Site Health and updates
+
+### What do source labels mean?
+
+They identify who supplies the check or information, not its subject. A native section about plugins still comes from WordPress Core. Unambiguously matching additional plugin sections receive a Plugin label. Uncertain sources remain unlabeled; this is not a security rating.
+
+### Why are Dashboard results missing?
+
+After enabling the widget, open Tools → Site Health and let all native checks finish. The widget uses saved counts with a timestamp; it runs no checks itself. Missing, stale or invalidated results after check-selection changes are identified. A zero count is not a substitute for a completed check.
+
+### Is a disabled check resolved?
+
+No. It no longer runs or contributes to the assessment. Its underlying cause remains. Clear the selection, save Site Health choices and run the checks again to reactivate it.
+
+### Do report omissions hide information in the admin?
+
+No. They affect only copying the diagnostic report. All information remains visible. The text discloses omissions; review it before sharing. This is not complete anonymization.
+
+### When does the translation preview appear?
+
+When enabled under Admin interface, WordPress reports pending language packs and the account can perform updates. Under Dashboard → Updates, expand the list in Translations. No list appears without pending packs; automatic updates may already have installed them. Native combined updating remains unchanged, with no individual selection.
+
+## Maintenance access and abilities
+
+### What do allowed roles and private links permit?
+
+Selected logged-in roles and temporary private visitor links can view the website during maintenance. They gain no editing permissions. Links last 1, 24 or 72 hours; browser grants at most 24 hours and never beyond link expiry. Replacement or revocation also invalidates existing browser grants. Share only over HTTPS with trusted reviewers; URLs can appear in logs.
+
+### Does maintenance also block REST?
+
+Not by default. The separate anonymous REST option can interrupt forms, shops, webhooks and headless clients. Authenticated requests and valid private-link visitors retain native permissions. AJAX and XML-RPC remain unchanged. Maintenance is neither complete access protection nor Coming Soon.
+
+### Can abilities change settings?
+
+No. Version 1.2.0 only explains settings, compares configurations and previews presets. An authenticated user needs manage_options for the current site. Free text, personal access exceptions, maintenance links and secrets are excluded. No MCP adapter or external AI service is installed.
+
+### What happens when resetting does not fully succeed?
+
+Site Essentials reports an error rather than complete success and identifies remaining data areas. Already removed areas are not automatically restored. Investigate the error and retry if appropriate; export first. Media and WordPress content remain intact.

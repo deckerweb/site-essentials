@@ -10,6 +10,12 @@ Your WordPress. Your settings. Site Essentials brings focused settings and pract
 
 **WordPress 7.1+ · PHP 8.2+**
 
+![Site Health at a glance](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/release120-health-widget-en.jpg)
+
+## New in 1.2.0
+
+[Making Site Health useful](Site-Health) · [Dashboard overview](Dashboard) · [Maintenance access](Maintenance) · [Translation preview](Translation-updates) · [Abilities](Abilities)
+
 ## Start here
 
 - [Getting started](Getting-started)

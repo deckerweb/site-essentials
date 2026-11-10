@@ -8,7 +8,7 @@
 
 Your WordPress. Your settings. Site Essentials brings focused settings and practical tools together for a WordPress website that fits your needs. Simplify administration, control WordPress features and reuse proven configurations across websites. Built for everyday site care and client handover, with support for single installations and individual sites in a Multisite network.
 
-**1.1.1 · WordPress 7.1+ · PHP 8.2+**
+**1.2.0 · WordPress 7.1+ · PHP 8.2+**
 
 [Plugin website](https://deckerwebplugins.com/en/plugins/site-essentials/) · [Documentation](https://deckerweb.github.io/site-essentials/) · [FAQ by topic](FAQ.md)
 
@@ -24,6 +24,7 @@ Your WordPress. Your settings. Site Essentials brings focused settings and pract
 - [Preconfigured installation](#preconfigured-installation)
 - [Stored data](#stored-data)
 - [Components and connections](#components-and-connections)
+- [Site Health and maintenance](#site-health-and-maintenance)
 - [Administration conveniences](#administration-conveniences)
 - [Screenshots](#screenshots)
 - [FAQ](#faq)
@@ -41,10 +42,14 @@ Your WordPress. Your settings. Site Essentials brings focused settings and pract
 - Focused appearance access by role with local personal exceptions.
 - Alternative post destinations and selected Page Links To migration.
 - Presets, draft review, import/export and configuration recovery.
-- Administrator website reminders, PHP information and Site Health details.
+- Website checks, system information and an optional Dashboard overview.
+- Site Health sources, check selection and transparent copied-report omissions.
+- Pending translation previews and three read-only WordPress abilities.
 - Single-site and Multisite; English and both German locales.
 
-[Browse all 68 feature points by task](https://github.com/deckerweb/site-essentials/wiki/Features), including requirements and limitations.
+[Browse features by task](https://github.com/deckerweb/site-essentials/wiki/Features), including requirements and limitations.
+
+![Review presets and choose your settings](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/release120-overview-en.jpg)
 
 ## Installation
 
@@ -64,9 +69,15 @@ Already using Unbloater, Falcon or both? The guided one-time takeover previews m
 
 Hide rarely needed areas and make important settings easier to understand. Control access to menus, widgets and the Customizer by role, with local exceptions for individual users. These personal exceptions stay on the website and are excluded from exports.
 
-### Maintenance with your own WordPress page.
+### Maintenance with a notice or your own page.
 
 Design your maintenance page in the configured Block or Classic Editor. Visitors receive the maintenance page with HTTP 503 while administrators retain access. Preview the page before enabling maintenance; an orange toolbar indicator reminds administrators when it is active. Active Bricks, Elementor and Breakdance maintenance modes take precedence. Full-page caches may need to be cleared or bypassed.
+
+### Site Health with understandable results.
+
+Identify reliable sources, choose individual checks and limit copied diagnostic reports. The optional Dashboard widget shows saved results with a timestamp and links to both health views. Disabling a check does not fix its cause.
+
+![Site Health at a glance](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/release120-health-widget-en.jpg)
 
 ### Local avatars instead of external Gravatar requests.
 
@@ -135,6 +146,8 @@ Presets and configuration-file imports modify the draft, not the site. Save all 
 
 ## Behavior and limits
 
+[Deliberate choices and a focused scope](https://github.com/deckerweb/site-essentials/wiki/Deliberate-choices)
+
 Template editing is blocked, but existing templates still render. jQuery Migrate removal applies only to signed-out frontend visitors. Heartbeat intervals are initial polling settings; WordPress or another script can subsequently adjust them. Revision limits do not run an immediate cleanup; core may prune older revisions on later saves. Existing comment hiding applies to ordinary frontend comment templates, not arbitrary custom database queries. XML-RPC blocking occurs after WordPress loads; it is not a web-server firewall.
 
 ## Multisite
@@ -149,9 +162,23 @@ For a deliberately preconfigured deployment, set startup-preset.json to {"preset
 
 Local options: site_essentials_settings, site_essentials_previous and site_essentials_presets. Site-scoped user metadata: `site_essentials_avatar_SITE_ID`, containing local attachment IDs. Avatar media remain normal WordPress uploads. Network option: site_essentials_network. Deactivation and uninstall retain these values. The embedded Library removes its own temporary data only under its final-host cleanup contract; shared settings are retained by default. No content or other plugin data is deleted. Local option site_essentials_checks retains local imprint assignment and content/indexing confirmations. It is not part of configuration exports; explicit local RESET removes it without changing native visibility/privacy assignments. The optional media sorting index stores only derived byte counts (or an unavailable marker) in site-local attachment metadata _site_essentials_file_size. Local plugin-data clearing removes the index without touching attachments or files. Site-local option site_essentials_access_users contains personal appearance exceptions. It is excluded from all exports, preset snapshots and diagnostic output. Content metadata _site_essentials_target stores explicit destination URL and new-tab/nofollow flags. It is retained by configuration clearing and plugin uninstall and excluded from configuration/preset exports. Local option site_essentials_maintenance stores activation, pause state and the selected page. It is excluded from all configuration transfers and recovery, preserved at uninstall, and removed by explicit local RESET. The page itself remains content.
 
+Site Health choices, the optional reason, cached results and maintenance access remain in separate local options. Personal widget extra rows are user-specific. These values and visitor links are not preset contents. A local reset verifies removal of its own data; partial failures identify remaining areas instead of reporting success.
+
 ## Components and connections
 
-Includes deckerweb Library 1.1.0 and deckerweb GitHub Release Updater 2.2.1, GPL-2.0-or-later, by David Decker. Library online catalog access is optional and initially off. The updater checks the configured GitHub repository through normal WordPress update checks; request metadata such as your server IP is sent to GitHub. No analytics or remote fonts are included. This direct-distribution package is not a WordPress.org build.
+Includes deckerweb Library 1.3.0 and deckerweb GitHub Release Updater 2.4.0, GPL-2.0-or-later, by David Decker. Library online catalog access is optional and initially off. The updater checks the configured GitHub repository through normal WordPress update checks; request metadata such as your server IP is sent to GitHub. No analytics or remote fonts are included. This direct-distribution package is not a WordPress.org build.
+
+## Site Health and maintenance
+
+![Source labels on native WordPress checks](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/release120-health-status-en.jpg)
+
+- **Site Health:** Identify reliable origins, disable selected checks and omit selected information only from copied reports. Optional and transparent.
+- **Dashboard website overview:** Stored WordPress results, update notices, maintenance and indexing preferences, with timestamps and no live monitoring.
+- **Maintenance:** Use the built-in notice or your own page. Optionally allow staff roles and expiring private links; restrict anonymous REST requests only by explicit choice. HTTP 503 is preserved.
+- **Translation updates:** See which translations WordPress wants to update, without individual selection.
+- **WordPress abilities:** Explain settings, compare configurations and preview preset changes. Read-only, for authenticated administrators only.
+
+[Site Health guide](https://github.com/deckerweb/site-essentials/wiki/Site-Health) · [Maintenance mode](https://github.com/deckerweb/site-essentials/wiki/Maintenance)
 
 ## Administration conveniences
 
@@ -163,8 +190,6 @@ Under Dashboard, configure one optional dashboard widget with a title, simple fo
 
 Enable local avatars first. The optional user-list column and a separate default-image card then appear below the master setting. The card previews the current default and offers local media selection, raster upload or return to the shipped SE image. Save the image separately. A missing, deleted, private or externally served selection falls back to the shipped image. No media files are copied, locked or deleted when resetting the selection. Personal profile images still take priority. Image IDs are local to each website and are excluded from configuration, preset and support exports.
 
-
-
 ### Media and list conveniences.
 
 Optionally inspect generated image sizes in the attachment editor without changing files. New upload filenames can be converted to lowercase; existing files stay unchanged. Native content lists can offer a visible title-only search choice, with full search as the default. Featured-image, modified-date and administrator-only user-registration columns can be enabled separately. All four helpers start off.
@@ -172,8 +197,6 @@ Optionally inspect generated image sizes in the attachment editor without changi
 ### Clear status, minimal diagnostics.
 
 Known reasons for paused settings are shared across the rule overview, handover and Site Health. Support diagnostics use a reviewed allowlist: custom text, personal assignments and custom role or content-type names are omitted; lists disclose counts only. Storage diagnosis distinguishes no measurement, an incomplete measurement and an unavailable result.
-
-
 
 ### Menus, without rebuilding them.
 
@@ -199,25 +222,7 @@ Site Essentials shows the WordPress environment on the right of the toolbar for 
 
 ## Screenshots
 
-### Presets and settings
-
-![Presets and settings](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/settings-en.png)
-
-Review presets, filter settings and save the configuration deliberately.
-
-### Maintenance with your own page
-
-![Maintenance with your own page](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/maintenance-en.png)
-
-Select a published WordPress page. Maintenance uses HTTP 503 and has its own save action.
-
-### Website reminders
-
-![Website reminders](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/checks-en.png)
-
-Administrator reminders check visibility and recognizable page content; they do not assess legal compliance.
-
-Illustrated guides: [Dashboard](https://github.com/deckerweb/site-essentials/wiki/Dashboard), [Site icon and date formats](https://github.com/deckerweb/site-essentials/wiki/General-settings), [List columns](https://github.com/deckerweb/site-essentials/wiki/Administration-conveniences) and [Diagnostics](https://github.com/deckerweb/site-essentials/wiki/Diagnostics).
+The key views already appear above alongside their features. More illustrated guides: [Site Health](https://github.com/deckerweb/site-essentials/wiki/Site-Health), [Dashboard](https://github.com/deckerweb/site-essentials/wiki/Dashboard), [maintenance](https://github.com/deckerweb/site-essentials/wiki/Maintenance), [translation updates](https://github.com/deckerweb/site-essentials/wiki/Translation-updates), [site icons and date formats](https://github.com/deckerweb/site-essentials/wiki/General-settings) and [list columns](https://github.com/deckerweb/site-essentials/wiki/Administration-conveniences).
 
 ## FAQ
 
@@ -252,6 +257,17 @@ Own settings, named local presets, previous configuration and network policy rem
 [FAQ by topic](FAQ.md)
 
 ## Changelog
+
+### 1.2.0 · 2026-11-10
+
+- **New:** Optional Site Health source labels, selected test exclusions and transparent omissions from copied diagnostic reports.
+- **New:** Optional administrator dashboard overview using saved Site Health results and pending translation update preview.
+- **New:** Built-in maintenance notice, selected staff access, expiring revocable private links and a separate optional anonymous REST restriction.
+- **New:** Three read-only WordPress abilities explain settings, compare configurations and preview preset changes without applying them.
+- **Fixed:** Renamed post types now include all featured-image actions and retain the current admin-language baseline.
+- **Fixed:** Local reset now reports incomplete removal of maintenance access, Site Health choices and other local data.
+- **Fixed:** Protected configuration writes stop after a lost MySQL session lock instead of continuing under stale state.
+- **Misc:** Includes deckerweb Updater 2.4.0 and Library 1.3.0; minimum WordPress and PHP versions remain unchanged.
 
 ### 1.1.1 · 2026-10-29
 
@@ -299,8 +315,6 @@ Own settings, named local presets, previous configuration and network policy rem
 ### 0.1.0–0.8.0 · 2026-10-09–2026-10-12
 
 - **Misc:** Core controls, administration layout, permissions and Multisite support developed and refined.
-
-
 
 ## Project
 

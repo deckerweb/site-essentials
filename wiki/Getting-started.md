@@ -2,6 +2,8 @@
 
 [Deutsch](Erste-Schritte) · [Home](Home)
 
+![Presets and settings](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/settings-en.png)
+
 Requires WordPress **7.1 or later** and PHP **8.2 or later**. Upload the release ZIP through **Plugins → Add Plugin → Upload Plugin**, then activate it. Use the installable ZIP attached to the release.
 
 1. Open **Settings → Site Essentials**.
@@ -12,7 +14,7 @@ Requires WordPress **7.1 or later** and PHP **8.2 or later**. Upload the release
 
 Activation enables three administrator-only website reminders. Cleanup and behavior-changing options remain off unless chosen or applied through a deliberately prepared startup preset. Settings do not apply merely because a preset was selected.
 
-![Presets and settings](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/settings-en.png)
+
 
 Review presets, filter settings and save the configuration deliberately.
 

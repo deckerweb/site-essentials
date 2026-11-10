@@ -5,3 +5,5 @@ wiki/ export-ignore
 _config.yml export-ignore
 .gitignore export-ignore
 .gitattributes export-ignore
+
+/tests export-ignore

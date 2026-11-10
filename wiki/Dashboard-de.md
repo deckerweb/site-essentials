@@ -1,8 +1,22 @@
-# Dashboard-Informationswidget
+# Dashboard: Überblick und eigene Informationen
 
 [English](Dashboard) · [Startseite](Home-de)
 
-Unter **Einstellungen → Site Essentials → Dashboard** öffnen. Diese Rubrik betrifft nur die Dashboard-Startseite im WordPress-Admin. Dashboard-Widgets sind von den Widgets für Theme-Seitenleisten unter Design zu unterscheiden.
+Diese Rubrik betrifft nur die Dashboard-Startseite im WordPress-Admin, nicht die Widgets für Theme-Seitenleisten.
+
+![Website-Zustand auf einen Blick mit Zeitstempel und Sprunglinks](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/release120-health-widget-de.jpg)
+
+## Website-Zustand auf einen Blick
+
+Unter **Einstellungen → Site Essentials → Dashboard** das Site-Essentials-Widget zum Website-Zustand aktivieren und **Alle Einstellungen speichern**. Es ersetzt optional das native Zustandswidget. Die übrigen Website-Zustandsoptionen bleiben in ihrer eigenen Rubrik.
+
+Danach **Werkzeuge → Website-Zustand** öffnen und warten, bis alle Prüfungen abgeschlossen sind. Erst dann stehen verlässliche gespeicherte Ergebniszahlen bereit. Das Widget zeigt kritische Probleme, Empfehlungen und den Zeitpunkt des letzten nativen Ergebnisses. Dazu kommen vorhandene Updatezahlen, Wartungszustand, Indexierungseinstellung und deaktivierte Prüfungen. Die beiden Links öffnen **Zustand** und **Bericht**.
+
+**Keine Live-Überwachung:** Im Dashboard werden weder Prüfungen noch externe Updateabrufe gestartet. Fehlende oder veraltete Ergebnisse sowie nach einer Prüfauswahl ungültige Ergebnisse werden entsprechend benannt. Eine erlaubte Indexierung bedeutet nicht, dass Suchmaschinen die Website bereits aufgenommen haben.
+
+Über **Konfigurieren** im Widget lassen sich persönliche Zusatzzeilen wählen. Über **Ansicht anpassen** kann jeder berechtigte Benutzer das Widget für sich ausblenden. [Herkunft, Prüfauswahl und Berichtsauslassungen](Website-Zustand) werden separat verwaltet.
+
+## Weitere Dashboard-Hilfen
 
 ## 1. Das native Dashboard aufräumen
 

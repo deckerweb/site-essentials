@@ -2,9 +2,11 @@
 
 [Deutsch](Anleitung) · [Home](Home)
 
+![Settings and presets](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/release120-overview-en.jpg)
+
 ## Complete feature overview
 
-The [complete feature list](Features) groups all 68 feature points in Site Essentials 1.1.0 into twelve task areas. It includes activation defaults and the main limitations. The following sections and illustrated topic guides explain how to use them.
+The [complete feature list](Features) groups Site Essentials features by task. It includes activation defaults and the main limitations. The following sections and illustrated topic guides explain how to use them.
 
 ## Find the right setting
 
@@ -39,3 +41,16 @@ Continue with [maintenance](Maintenance), [website checks](Website-checks), [set
 - [Understand the site icon, dates and times](General-settings)
 - [Inspect configuration and command-palette shortcuts](Diagnostics)
 - [Content lists and title search](Administration-conveniences)
+
+
+[Site Health and administration tools](Site-Health)
+
+
+## New in 1.2.0
+
+- [Site Health: sources, checks and copied reports](Site-Health)
+- [Dashboard overview with timestamp](Dashboard)
+- [Maintenance display and access choices](Maintenance)
+- [Pending translation update preview](Translation-updates)
+- [Read-only WordPress abilities](Abilities)
+- [Deliberate choices and boundaries](Deliberate-choices)

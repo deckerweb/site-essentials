@@ -38,6 +38,7 @@ final class Presets {
   * @return string|\WP_Error Created ID or an actionable error.
   */
  public static function create( string $name, string $description = '' ) {
+  if ( ! WriteLock::acquire() ) { return new \WP_Error( 'se_busy', __( 'This change could not be reserved safely. Another Site Essentials request may be saving. Reload and try again.', 'site-essentials' ) ); }
   $items = self::custom();
   if ( count( $items ) >= self::LIMIT ) { return new \WP_Error( 'preset_limit', __( 'This site already has 20 custom presets. Remove one before adding another.', 'site-essentials' ) ); }
   $metadata = self::metadata( $name, $description ); if ( is_wp_error( $metadata ) ) { return $metadata; }
@@ -68,6 +69,7 @@ final class Presets {
   * @return true|\WP_Error
   */
  public static function update_metadata( string $id, string $name, string $description ) {
+  if ( ! WriteLock::acquire() ) { return new \WP_Error( 'se_busy', __( 'This change could not be reserved safely. Another Site Essentials request may be saving. Reload and try again.', 'site-essentials' ) ); }
   $items = self::custom();
   if ( ! isset( $items[ $id ] ) ) { return new \WP_Error( 'preset_missing', __( 'This custom preset is no longer available.', 'site-essentials' ) ); }
   $metadata = self::metadata( $name, $description, $id ); if ( is_wp_error( $metadata ) ) { return $metadata; }
@@ -79,6 +81,7 @@ final class Presets {
   * @return true|\WP_Error
   */
  public static function remove( string $id ) {
+  if ( ! WriteLock::acquire() ) { return new \WP_Error( 'se_busy', __( 'This change could not be reserved safely. Another Site Essentials request may be saving. Reload and try again.', 'site-essentials' ) ); }
   $items = self::custom();
   if ( ! isset( $items[ $id ] ) ) { return new \WP_Error( 'preset_missing', __( 'This custom preset is no longer available.', 'site-essentials' ) ); }
   unset( $items[ $id ] ); update_option( self::OPTION, $items, false );

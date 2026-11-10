@@ -4,7 +4,7 @@ Tags: admin, settings, multisite, cleanup
 Requires at least: 7.1
 Tested up to: 7.1.4
 Requires PHP: 8.2
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,8 +25,8 @@ Already using Unbloater, Falcon or both? The guided one-time takeover previews m
 = Administration your clients can work with. =
 Hide rarely needed areas and make important settings easier to understand. Control access to menus, widgets and the Customizer by role, with local exceptions for individual users. These personal exceptions stay on the website and are excluded from exports.
 
-= Maintenance with your own WordPress page. =
-Design your maintenance page in the configured Block or Classic Editor. Visitors receive the maintenance page with HTTP 503 while administrators retain access. Preview the page before enabling maintenance; an orange toolbar indicator reminds administrators when it is active. Active Bricks, Elementor and Breakdance maintenance modes take precedence. Full-page caches may need to be cleared or bypassed.
+= Maintenance with a notice or your own page. =
+Choose the built-in notice or a published WordPress page without a password. Save maintenance separately and preview the saved selection before enabling it. Visitors receive HTTP 503 with Retry-After; administrators retain access. Optionally allow selected logged-in staff roles. A private visitor link can last 1, 24 or 72 hours; its browser grant lasts no longer than 24 hours or the link expiry. Replacing or revoking the link invalidates existing grants. A link is not a login. It may appear in server logs or browser history; share over HTTPS with trusted reviewers only. The link is shown briefly only to the creating administrator. Access choices and links stay local and are not exported. Active Bricks, Elementor or Breakdance maintenance takes precedence. Clear or bypass page caches, including hosting/CDN caches, and check signed-out visitors and granted visitors separately. Anonymous REST restrictions are a separate option, off by default; they can interrupt forms, shops, webhooks and headless clients. Authenticated REST requests and valid private-link visitors retain native API access. AJAX and XML-RPC remain unchanged. This is not a complete privacy barrier and not a Coming Soon mode.
 
 = Local avatars instead of external Gravatar requests. =
 Use your own user images from the Media Library. When enabled, the local avatar module prevents Gravatar requests for avatar output. Optionally show the images in the user table. If a supported provider already supplies local avatars, Site Essentials hides and pauses its own avatar module.
@@ -36,6 +36,12 @@ Get administrator reminders when search indexing is discouraged, and confirm an 
 
 = Several tasks. One shared place. =
 Depending on the functions you need, Site Essentials can replace individual plugins: disable comments completely or selectively (Disable Comments and similar); use local avatars (One User Avatar and similar); set alternative post destinations and selectively copy existing Page Links To targets; or display a native WordPress maintenance page. This does not promise full feature parity. Page Links To target copying is separate from the Falcon/Unbloater settings takeover; other plugins' data is not automatically migrated.
+
+= Site Health you can understand =
+Identify reliable sources, choose individual checks and omit selected information only from copied reports. The optional Dashboard overview shows cached results with a timestamp. Disabling a check does not fix its cause.
+
+= Translation updates and read-only abilities =
+Preview pending translation packages on the native Updates page without individual selection. Three native WordPress abilities explain settings, compare configurations and preview presets; they never apply changes.
 
 = Further controls =
 
@@ -78,7 +84,7 @@ Depending on the functions you need, Site Essentials can replace individual plug
 * Four navigation groups, clearer labels, a save-button change indicator and separate pattern/font menu hiding.
 * Reviewed one-time Falcon and Unbloater takeover with explicit conflict choices and previous-configuration recovery.
 
-Includes deckerweb Library 1.1.0 and deckerweb GitHub Release Updater 2.2.1, GPL-2.0-or-later, by David Decker. Library online catalog access is optional and initially off. The updater checks the configured GitHub repository through normal WordPress update checks; request metadata such as your server IP is sent to GitHub. No analytics or remote fonts are included. This direct-distribution package is not a WordPress.org build.
+Includes deckerweb Library 1.3.0 and deckerweb GitHub Release Updater 2.4.0, GPL-2.0-or-later, by David Decker. Library online catalog access is optional and initially off. The updater checks the configured GitHub repository through normal WordPress update checks; request metadata such as your server IP is sent to GitHub. No analytics or remote fonts are included. This direct-distribution package is not a WordPress.org build.
 
 == Administration conveniences ==
 
@@ -126,6 +132,17 @@ Own settings, named local presets, previous configuration and network policy rem
 Full FAQ: https://github.com/deckerweb/site-essentials/blob/main/FAQ.md
 
 == Changelog ==
+
+= 1.2.0 =
+
+* New: Optional Site Health source labels, selected test exclusions and transparent omissions from copied diagnostic reports.
+* New: Optional administrator dashboard overview using saved Site Health results and pending translation update preview.
+* New: Built-in maintenance notice, selected staff access, expiring revocable private links and a separate optional anonymous REST restriction.
+* New: Three read-only WordPress abilities explain settings, compare configurations and preview preset changes without applying them.
+* Fixed: Renamed post types now include all featured-image actions and retain the current admin-language baseline.
+* Fixed: Local reset now reports incomplete removal of maintenance access, Site Health choices and other local data.
+* Fixed: Protected configuration writes stop after a lost MySQL session lock instead of continuing under stale state.
+* Misc: Includes deckerweb Updater 2.4.0 and Library 1.3.0; minimum WordPress and PHP versions remain unchanged.
 
 = 1.1.1 =
 * Improved: Grouped system information and storage with section links, readable labels and clear disabled upload-diagnosis guidance.

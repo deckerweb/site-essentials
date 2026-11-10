@@ -132,6 +132,7 @@ final class Settings {
   * @return bool Whether the saved values and rollback snapshot are confirmed.
   */
  public static function save( array $values ): bool {
+  if ( ! WriteLock::acquire() ) { return false; }
   $old = self::local();
   if ( $old === $values ) { return true; }
   update_option( self::PREVIOUS, $old, false );
@@ -150,6 +151,7 @@ final class Settings {
   * @return bool Whether both writes were confirmed; not a database transaction.
   */
  public static function restore(): bool {
+  if ( ! WriteLock::acquire() ) { return false; }
   $previous = self::previous(); if ( null === $previous ) { return false; }
   $current = self::local();
   update_option( self::OPTION, $previous, false );

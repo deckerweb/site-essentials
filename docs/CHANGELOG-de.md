@@ -2,6 +2,17 @@
 
 [English](CHANGELOG.html)
 
+### 1.2.0 · 2026-11-10
+
+- **Neu:** Optionale Herkunftskennzeichnung im Website-Zustand, gezieltes Deaktivieren von Prüfungen und transparente Auslassungen im kopierten Diagnosebericht.
+- **Neu:** Optionaler Website-Überblick im Dashboard mit gespeicherten Website-Zustandsergebnissen sowie Vorschau anstehender Übersetzungsupdates.
+- **Neu:** Mitgelieferter Wartungshinweis, Zugriff für ausgewählte Rollen, zeitlich begrenzte widerrufbare Privatlinks und separate optionale Einschränkung anonymer REST-Anfragen.
+- **Neu:** Drei rein lesende WordPress-Abilities erklären Einstellungen, vergleichen Konfigurationen und zeigen Preset-Änderungen, ohne sie anzuwenden.
+- **Behoben:** Umbenannte Beiträge berücksichtigen jetzt alle Beitragsbild-Aktionen und behalten die aktuelle Admin-Sprache als Grundlage.
+- **Behoben:** Das lokale Zurücksetzen meldet jetzt eine unvollständige Entfernung von Wartungszugriffen, Website-Zustandsoptionen und anderen lokalen Daten.
+- **Behoben:** Geschützte Konfigurationsänderungen werden bei Verlust der MySQL-Sitzungssperre abgebrochen; veraltete Zustandsannahmen werden nicht weiterverwendet.
+- **Sonstiges:** Mit deckerweb Updater 2.4.0 und Library 1.3.0; WordPress- und PHP-Mindestversionen bleiben unverändert.
+
 ### 1.1.1 · 2026-10-29
 
 - **Verbessert:** Gegliederte Übersicht zu Systeminformationen und Speicher mit Sprungnavigation, verständlichen Beschriftungen und Hinweis bei deaktivierter Upload-Diagnose.

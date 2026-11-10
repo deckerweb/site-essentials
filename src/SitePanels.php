@@ -20,6 +20,7 @@ final class SitePanels {
   if ( is_network_admin() || ! current_user_can( 'manage_options' ) ) { wp_die( esc_html__( 'You cannot manage these site settings.', 'site-essentials' ), '', array( 'response' => 403 ) ); }
   if ( 'POST' !== sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ?? '' ) ) ) { wp_die( esc_html__( 'Use the settings form to perform this action.', 'site-essentials' ), '', array( 'response' => 405 ) ); }
   check_admin_referer( $action . '_' . get_current_blog_id() );
+  WriteLock::require_lock();
   $revision = self::input( 'panel_revision' );
   if ( ! hash_equals( self::revision( $option ), $revision ) ) { wp_die( esc_html__( 'These settings changed elsewhere. Reload before saving.', 'site-essentials' ), '', array( 'response' => 409 ) ); }
  }

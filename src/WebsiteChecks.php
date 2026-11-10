@@ -87,7 +87,8 @@ final class WebsiteChecks {
  /** Derive current administrator checks without external requests or content execution. @return array */
  public function status(): array {
   $state = self::state();
-  return array( 'indexing' => '0' === (string) get_option( 'blog_public' ) ? ( ! empty( $state['index_ack'] ) && $state['index_ack'] === ( $state['epoch'] ?? '' ) ? 'confirmed' : 'discouraged' ) : 'allowed', 'privacy' => $this->page_status( 'privacy' ), 'imprint' => $this->page_status( 'imprint' ) );
+  $result = array( 'indexing' => '0' === (string) get_option( 'blog_public' ) ? ( ! empty( $state['index_ack'] ) && $state['index_ack'] === ( $state['epoch'] ?? '' ) ? 'confirmed' : 'discouraged' ) : 'allowed', 'privacy' => $this->page_status( 'privacy' ), 'imprint' => $this->page_status( 'imprint' ) );
+  Health120::remember_pages( $result ); return $result;
  }
  /** Bind actions to the actual current local state and content fingerprint.
   * @param array $status Current checks.

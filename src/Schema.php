@@ -28,6 +28,7 @@ final class Schema {
 'comments' => self::text( 'Comments and pingbacks' ),
 'core' => self::text( 'WordPress features' ),
 'maintenance' => self::text( 'Maintenance mode' ),
+'health' => self::text( 'Site Health' ),
 'checks' => self::text( 'Website checks' ),
 'reports' => self::text( 'Reports and handover' ),
 'data' => self::text( 'Own plugin data' ),
@@ -105,6 +106,9 @@ final class Schema {
 'classic_widgets' => array( 'group' => 'admin', 'label' => self::text( 'Use the classic widget editor' ), 'help' => self::text( 'Replace the block widget interface where the theme provides widget areas. Existing widgets and their content remain stored.' ), 'type' => 'bool', 'default' => false ),
 'auto_embeds' => array( 'group' => 'embeds', 'label' => self::text( 'Disable automatic URL embeddings in classic content' ), 'help' => self::text( 'Standalone URLs stay as text or links in content and text widgets without block markup. Content containing blocks, explicit embed shortcodes and custom iframes retain their existing behavior.' ), 'type' => 'bool', 'default' => false ),
 'embed_provider' => array( 'group' => 'embeds', 'label' => self::text( 'Disable WordPress embedding of this site’s posts' ), 'help' => self::text( 'Own WordPress embed pages and public oEmbed responses return HTTP 404, including for embeds within this site. Normal post links and other REST routes remain available; previously cached embeds may persist.' ), 'type' => 'bool', 'default' => false ),
+'health_origins' => array( 'group' => 'health', 'label' => self::text( 'Identify known Site Health sources' ), 'help' => self::text( 'Show an origin only when the registered callback or information section can be attributed reliably. Unknown origins remain unlabeled.' ), 'type' => 'bool', 'default' => false ),
+'health_widget' => array( 'group' => 'dashboard', 'label' => self::text( 'Use the Site Essentials Site Health widget' ), 'help' => self::text( 'Replace the native Site Health widget with a compact administrator overview. Uses cached results; does not run checks on the Dashboard.' ), 'type' => 'bool', 'default' => false ),
+'translation_preview' => array( 'group' => 'admin', 'label' => self::text( 'Preview pending translation updates' ), 'help' => self::text( 'List the translations offered by WordPress on the Updates screen, without individual selection or changes to updating.' ), 'type' => 'bool', 'default' => false ),
 'dashboard' => array( 'group' => 'dashboard', 'label' => self::text( 'Hide selected dashboard widgets' ), 'help' => self::text( 'Only the selected WordPress core widgets are removed.' ), 'type' => 'list', 'default' => array(  ), 'choices' => array( 'dashboard_activity', 'dashboard_right_now', 'dashboard_quick_press', 'dashboard_primary', 'dashboard_site_health', 'welcome_panel' ) ),
 'writing_sections' => array( 'group' => 'admin', 'label' => self::text( 'Hide selected Writing settings sections' ), 'help' => self::text( 'Hide post-by-email configuration or update-service settings. Existing values are retained when saving other Writing settings. Publication by email and outgoing update pings are not disabled.' ), 'type' => 'list', 'default' => array(), 'choices' => array( 'post_by_email', 'update_services' ) ),
 'tools_menu' => array( 'group' => 'admin', 'label' => self::text( 'Hide selected WordPress Tools menu entries' ), 'help' => self::text( 'Hide Available tools, Import or Export from this site’s menu. Direct access and permissions remain unchanged; Site Health, privacy tools and plugin pages remain available.' ), 'type' => 'list', 'default' => array(), 'choices' => array( 'available_tools', 'core_import', 'core_export' ) ),
@@ -166,6 +170,7 @@ final class Schema {
  /** Short orientation only where it clarifies the scope. @return array<string,string> */
  public static function introductions(): array { return array(
   'login' => self::text( 'Adjust the WordPress login screen and its built-in prompts.' ),
+  'health' => self::text( 'Manage the native WordPress checks and copied diagnostic report. Disabling a check does not fix its underlying cause.' ),
   'dashboard' => self::text( 'These settings affect only the Dashboard home screen in the WordPress administration.' ),
   'admin' => self::text( 'Keep the administration clear and adapt selected tools to everyday work.' ),
   'head' => self::text( 'Control additional information and automatic links in the page source, plus the RSS/Atom feeds of your website.' ),

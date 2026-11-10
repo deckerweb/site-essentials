@@ -8,7 +8,7 @@
 
 Dein WordPress. Deine Einstellungen. Site Essentials bündelt gezielte Einstellungen und praktische Werkzeuge für eine passend eingerichtete WordPress-Website. Vereinfache die Verwaltung, steuere WordPress-Funktionen und übertrage bewährte Konfigurationen auf weitere Websites. Entwickelt für die tägliche Betreuung und die Übergabe an Kunden, mit Unterstützung für Einzelinstallationen und einzelne Websites einer Multisite.
 
-**1.1.1 · WordPress 7.1+ · PHP 8.2+**
+**1.2.0 · WordPress 7.1+ · PHP 8.2+**
 
 [Plugin-Website](https://deckerwebplugins.com/de/plugins/site-essentials/) · [Dokumentation](https://deckerweb.github.io/site-essentials/de.html) · [Fragen nach Themen](FAQ-de.md)
 
@@ -24,6 +24,7 @@ Dein WordPress. Deine Einstellungen. Site Essentials bündelt gezielte Einstellu
 - [Vorkonfigurierte Installation](#vorkonfigurierte-installation)
 - [Gespeicherte Daten](#gespeicherte-daten)
 - [Komponenten und Verbindungen](#komponenten-und-verbindungen)
+- [Website-Zustand und Wartung](#website-zustand-und-wartung)
 - [Verwaltungshilfen](#verwaltungshilfen)
 - [Screenshots](#screenshots)
 - [FAQ](#faq)
@@ -41,10 +42,14 @@ Dein WordPress. Deine Einstellungen. Site Essentials bündelt gezielte Einstellu
 - Gezielte Design-Zugriffe nach Rolle mit lokalen persönlichen Ausnahmen.
 - Alternative Beitragsziele und ausgewählte Page-Links-To-Übernahme.
 - Presets, Entwurfsprüfung, Import/Export und Konfigurationswiederherstellung.
-- Website-Hinweise für Administratoren, PHP-Informationen und Site-Health-Angaben.
+- Website-Prüfungen, Systeminformationen und ein optionaler Dashboard-Überblick.
+- Herkunft im Website-Zustand, Prüfauswahl und transparente Berichtsauslassungen.
+- Vorschau anstehender Übersetzungen und drei rein lesende WordPress-Abilities.
 - Single-Site und Multisite; Englisch und beide deutschen Sprachfassungen.
 
-[Alle 68 Featurepunkte nach Aufgaben ansehen](https://github.com/deckerweb/site-essentials/wiki/Funktionen) – mit Voraussetzungen und Funktionsgrenzen.
+[Alle Featurepunkte nach Aufgaben ansehen](https://github.com/deckerweb/site-essentials/wiki/Funktionen) – mit Voraussetzungen und Funktionsgrenzen.
+
+![Presets prüfen und Einstellungen bewusst speichern](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/release120-overview-de.jpg)
 
 ## Installation
 
@@ -64,9 +69,15 @@ Du nutzt bereits Unbloater, Falcon oder beide zusammen? Die einmalige geführte 
 
 Blende selten benötigte Bereiche aus und mache wichtige Einstellungen verständlicher. Steuere den Zugang zu Menüs, Widgets und Customizer nach Benutzerrolle, mit lokalen Ausnahmen für einzelne Benutzer. Diese persönlichen Ausnahmen bleiben auf der Website und sind von Exporten ausgeschlossen.
 
-### Wartung mit deiner eigenen WordPress-Seite.
+### Wartung mit Hinweis oder eigener WordPress-Seite.
 
-Gestalte deine Wartungsseite im eingerichteten Block- oder Classic Editor. Besucher erhalten die Wartungsseite mit HTTP 503, Administratoren behalten Zugriff. Prüfe die Seite vor der Aktivierung in der Vorschau; ein orangefarbener Toolbar-Hinweis erinnert Administratoren an den aktiven Modus. Aktive Wartungsmodi von Bricks, Elementor und Breakdance haben Vorrang. Seiten-Caches müssen gegebenenfalls geleert oder umgangen werden.
+Wähle den mitgelieferten Hinweis oder gestalte eine eigene Wartungsseite im Block- oder Classic Editor. Rollen und zeitlich begrenzte, widerrufbare Besucherlinks erlauben gezielten Einblick. Besucher erhalten die Wartungsseite mit HTTP 503, Administratoren behalten Zugriff. Prüfe die Seite vor der Aktivierung in der Vorschau; ein orangefarbener Toolbar-Hinweis erinnert Administratoren an den aktiven Modus. Aktive Wartungsmodi von Bricks, Elementor und Breakdance haben Vorrang. Seiten-Caches müssen gegebenenfalls geleert oder umgangen werden.
+
+### Website-Zustand mit nachvollziehbaren Ergebnissen.
+
+Erkenne eindeutig zuordenbare Quellen, wähle einzelne Prüfungen und begrenze den kopierten Diagnosebericht. Das optionale Dashboard-Widget zeigt gespeicherte Ergebnisse mit Zeitstempel und Links zu beiden Zustandsansichten. Eine deaktivierte Prüfung behebt ihre Ursache nicht.
+
+![Website-Zustand auf einen Blick](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/release120-health-widget-de.jpg)
 
 ### Lokale Avatare statt externer Gravatar-Aufrufe.
 
@@ -85,7 +96,7 @@ Site Essentials kann – abhängig von den benötigten Funktionen – zusätzlic
 | Disable Comments oder ähnliche Plugins | Kommentare vollständig deaktivieren oder gezielt einschränken |
 | One User Avatar oder ähnliche Plugins | Lokale Benutzerbilder verwenden und Gravatar-Aufrufe unterbinden |
 | Page Links To | Alternative Beitragsziele festlegen; vorhandene Page-Links-To-Ziele kontrolliert übernehmen |
-| Einfache Maintenance-Mode-Plugins | Eine eigene WordPress-Seite als Wartungsseite verwenden |
+| Einfache Maintenance-Mode-Plugins | Mitgelieferten Hinweis oder eine eigene WordPress-Seite verwenden |
 
 Das verspricht keine vollständige Funktionsgleichheit. Die geführte Einstellungsübernahme gilt ausdrücklich für Falcon und Unbloater. Die Übernahme von Page-Links-To-Zielen ist davon getrennt; Daten anderer Plugins werden nicht automatisch migriert.
 
@@ -135,6 +146,8 @@ Presets und Konfigurationsdatei-Importe verändern den Entwurf, nicht die Websit
 
 ## Verhalten und Grenzen
 
+[Bewusste Entscheidungen und gezieltes Weglassen](https://github.com/deckerweb/site-essentials/wiki/Bewusste-Entscheidungen)
+
 Template-Bearbeitung wird gesperrt; vorhandene Templates werden weiter ausgegeben. jQuery Migrate wird nur für abgemeldete Frontend-Besucher entfernt. Heartbeat-Intervalle gelten als anfängliche Abrufeinstellung; WordPress oder andere Scripts können sie später verändern. Revisionsgrenzen führen keine sofortige Bereinigung aus; Core kann beim späteren Speichern ältere Revisionen entfernen. Vorhandene Kommentare werden in gewöhnlichen Frontend-Kommentar-Templates ausgeblendet, nicht in beliebigen eigenen Datenbankabfragen. XML-RPC wird nach dem Laden von WordPress gesperrt; das ersetzt keine Webserver-Firewall.
 
 ## Multisite
@@ -149,9 +162,23 @@ Für eine bewusst vorkonfigurierte Installation startup-preset.json vorab auf {"
 
 Lokale Optionen: site_essentials_settings, site_essentials_previous und site_essentials_presets. Benutzer-Metadaten je Website: `site_essentials_avatar_SITE_ID` mit lokalen Attachment-IDs. Avatar-Medien bleiben normale WordPress-Uploads. Netzwerkoption: site_essentials_network. Deaktivierung und Deinstallation erhalten diese Werte. Die eingebettete Library entfernt eigene temporäre Daten nur gemäß ihrer Letzt-Host-Bereinigung; gemeinsame Einstellungen bleiben standardmäßig erhalten. Inhalte und Daten anderer Plugins werden nicht gelöscht. Die lokale Option site_essentials_checks erhält Impressumszuordnung und Inhalts-/Indexierungsbestätigungen. Sie wird nicht mit Konfigurationen exportiert; lokales RESET entfernt sie ohne Änderung nativer Sichtbarkeit oder Datenschutzzuordnung. Der optionale Mediensortierungs-Index speichert nur abgeleitete Byte-Zahlen (oder eine Nicht-verfügbar-Markierung) in Website-lokalen Medien-Metadaten _site_essentials_file_size. Lokale Plugin-Datenbereinigung entfernt den Index, ohne Medien oder Dateien anzutasten. Website-lokale Option site_essentials_access_users enthält persönliche Design-Ausnahmen. Sie ist aus allen Exporten, Preset-Snapshots und Diagnose-Ausgaben ausgeschlossen. Beitragsmetadaten _site_essentials_target speichern ausdrücklich gewählte Zieladressen und Neuer-Tab-/nofollow-Vorgaben. Konfigurationsbereinigung und Deinstallation erhalten sie; Konfigurations-/Preset-Exporte enthalten sie nicht. Die lokale Option site_essentials_maintenance speichert Aktivierung, Pause und ausgewählte Seite. Sie ist von allen Konfigurationstransfers und der Wiederherstellung ausgeschlossen, bleibt bei Deinstallation erhalten und wird durch ausdrückliches lokales RESET entfernt. Die Seite selbst bleibt als Inhalt erhalten.
 
+Website-Zustandsauswahl, optionale Begründung, gespeicherte Prüfergebnisse und Wartungszugriffe bleiben in getrennten lokalen Optionen. Persönliche Widget-Zusatzzeilen sind benutzerbezogen. Diese Angaben und Besucherlinks sind keine Preset-Inhalte. Ein lokales Zurücksetzen prüft die Entfernung eigener Daten; bei Teilfehlern benennt es verbleibende Bereiche statt Erfolg zu melden.
+
 ## Komponenten und Verbindungen
 
-Enthält deckerweb Library 1.1.0 und deckerweb GitHub Release Updater 2.2.1, GPL-2.0-or-later, von David Decker. Der Online-Katalog der Library ist optional und zunächst ausgeschaltet. Der Updater fragt das konfigurierte GitHub-Repository im normalen WordPress-Updateprozess ab; dabei werden Anfragedaten wie die Server-IP an GitHub übertragen. Keine Analysefunktionen oder externen Schriften. Dieses Direktvertriebspaket ist kein WordPress.org-Build.
+Enthält deckerweb Library 1.3.0 und deckerweb GitHub Release Updater 2.4.0, GPL-2.0-or-later, von David Decker. Der Online-Katalog der Library ist optional und zunächst ausgeschaltet. Der Updater fragt das konfigurierte GitHub-Repository im normalen WordPress-Updateprozess ab; dabei werden Anfragedaten wie die Server-IP an GitHub übertragen. Keine Analysefunktionen oder externen Schriften. Dieses Direktvertriebspaket ist kein WordPress.org-Build.
+
+## Website-Zustand und Wartung
+
+![Herkunft der WordPress-Prüfungen](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/release120-health-status-de.jpg)
+
+- **Website-Zustand:** Eindeutige Herkunft kennzeichnen, Prüfungen gezielt deaktivieren und ausgewählte Informationen nur im kopierten Bericht auslassen. Alles optional und transparent.
+- **Website-Überblick im Dashboard:** Gespeicherte WordPress-Ergebnisse, Update-Hinweise, Wartungszustand und Indexierungseinstellung sehen – mit Zeitstempel, ohne Live-Überwachung.
+- **Wartung:** Mitgelieferten Hinweis oder eigene Seite verwenden. Rollen und zeitlich begrenzte Privatlinks optional freigeben; anonyme REST-Anfragen nur nach ausdrücklicher Auswahl einschränken. HTTP 503 bleibt erhalten.
+- **Übersetzungsupdates:** Vorher sehen, welche Übersetzungen WordPress aktualisieren möchte; keine Einzelauswahl.
+- **WordPress-Abilities:** Einstellungen erklären, Konfigurationen vergleichen und Preset-Änderungen vorab prüfen. Rein lesend, nur für angemeldete Administratoren.
+
+[Website-Zustand erklärt](https://github.com/deckerweb/site-essentials/wiki/Website-Zustand) · [Wartungsmodus](https://github.com/deckerweb/site-essentials/wiki/Wartungsmodus)
 
 ## Verwaltungshilfen
 
@@ -163,8 +190,6 @@ Unter Dashboard lässt sich ein optionales Dashboard-Widget mit Titel, einfach f
 
 Zuerst lokale Avatare aktivieren. Darunter erscheinen dann die optionale Benutzerlisten-Spalte und ein eigener Container für das Standardbild. Er zeigt das aktuelle Standardbild und bietet lokale Medienauswahl, Bild-Upload oder die Rückkehr zum mitgelieferten SE-Bild. Das Bild separat speichern. Bei fehlender, gelöschter, privater oder extern bereitgestellter Auswahl erscheint das SE-Bild. Beim Zurücksetzen der Auswahl werden keine Mediendateien kopiert, gesperrt oder gelöscht. Persönliche Profilbilder haben weiterhin Vorrang. Bild-IDs gelten je Website und fehlen in Einstellungs-, Preset- und Supportexporten.
 
-
-
 ### Medien- und Listenhilfen.
 
 Erzeugte Bildgrößen optional im Medieneditor ansehen, ohne Dateien zu verändern. Neue Upload-Dateinamen lassen sich in Kleinbuchstaben umwandeln; bestehende Dateien bleiben unverändert. Inhaltslisten können eine sichtbare Auswahl für die Suche nur im Titel anbieten; Standard bleibt die vollständige Suche. Spalten für Beitragsbild, Änderungsdatum und das nur für Administratoren sichtbare Registrierungsdatum lassen sich einzeln aktivieren. Alle vier Hilfen sind zunächst ausgeschaltet.
@@ -172,8 +197,6 @@ Erzeugte Bildgrößen optional im Medieneditor ansehen, ohne Dateien zu verände
 ### Klarer Status, datensparsame Diagnose.
 
 Bekannte Gründe für pausierte Einstellungen werden in Regelübersicht, Übergabe und Website-Zustand einheitlich erklärt. Support-Diagnosen verwenden eine geprüfte Positivliste: Freitext, persönliche Zuordnungen sowie eigene Rollen- und Inhaltstypnamen fehlen; Listen zeigen nur Anzahlen. Die Speicherdiagnose unterscheidet noch nicht gemessen, unvollständig gemessen und nicht verfügbar.
-
-
 
 ### Menüs weiterverwenden statt neu aufbauen.
 
@@ -199,25 +222,7 @@ Site Essentials zeigt die WordPress-Umgebung rechts in der Toolbar ausschließli
 
 ## Screenshots
 
-### Presets und Einstellungen
-
-![Presets und Einstellungen](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/settings-de.png)
-
-Presets prüfen, Einstellungen filtern und die Konfiguration bewusst speichern.
-
-### Wartung mit eigener Seite
-
-![Wartung mit eigener Seite](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/maintenance-de.png)
-
-Eine veröffentlichte WordPress-Seite auswählen. Wartung verwendet HTTP 503 und wird separat gespeichert.
-
-### Website-Hinweise
-
-![Website-Hinweise](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/checks-de.png)
-
-Administrator-Hinweise prüfen Sichtbarkeit und erkennbare Seiteninhalte; sie bewerten keine Rechtskonformität.
-
-Bebilderte Anleitungen: [Dashboard](https://github.com/deckerweb/site-essentials/wiki/Dashboard-de), [Website-Icon und Datumsformate](https://github.com/deckerweb/site-essentials/wiki/Allgemeine-Einstellungen), [Listenspalten](https://github.com/deckerweb/site-essentials/wiki/Verwaltungshilfen) und [Diagnose](https://github.com/deckerweb/site-essentials/wiki/Diagnose).
+Die wichtigsten Ansichten stehen bereits oben bei den Funktionen. Weitere bebilderte Anleitungen: [Website-Zustand](https://github.com/deckerweb/site-essentials/wiki/Website-Zustand), [Dashboard](https://github.com/deckerweb/site-essentials/wiki/Dashboard-de), [Wartung](https://github.com/deckerweb/site-essentials/wiki/Wartungsmodus), [Übersetzungsupdates](https://github.com/deckerweb/site-essentials/wiki/Uebersetzungsupdates), [Website-Icon und Datumsformate](https://github.com/deckerweb/site-essentials/wiki/Allgemeine-Einstellungen) und [Listenspalten](https://github.com/deckerweb/site-essentials/wiki/Verwaltungshilfen).
 
 ## FAQ
 
@@ -252,6 +257,17 @@ Eigene Einstellungen, benannte lokale Presets, vorherige Konfiguration und Netzw
 [Fragen nach Themen](FAQ-de.md)
 
 ## Änderungsverlauf
+
+### 1.2.0 · 2026-11-10
+
+- **Neu:** Optionale Herkunftskennzeichnung im Website-Zustand, gezieltes Deaktivieren von Prüfungen und transparente Auslassungen im kopierten Diagnosebericht.
+- **Neu:** Optionaler Website-Überblick im Dashboard mit gespeicherten Website-Zustandsergebnissen sowie Vorschau anstehender Übersetzungsupdates.
+- **Neu:** Mitgelieferter Wartungshinweis, Zugriff für ausgewählte Rollen, zeitlich begrenzte widerrufbare Privatlinks und separate optionale Einschränkung anonymer REST-Anfragen.
+- **Neu:** Drei rein lesende WordPress-Abilities erklären Einstellungen, vergleichen Konfigurationen und zeigen Preset-Änderungen, ohne sie anzuwenden.
+- **Behoben:** Umbenannte Beiträge berücksichtigen jetzt alle Beitragsbild-Aktionen und behalten die aktuelle Admin-Sprache als Grundlage.
+- **Behoben:** Das lokale Zurücksetzen meldet jetzt eine unvollständige Entfernung von Wartungszugriffen, Website-Zustandsoptionen und anderen lokalen Daten.
+- **Behoben:** Geschützte Konfigurationsänderungen werden bei Verlust der MySQL-Sitzungssperre abgebrochen; veraltete Zustandsannahmen werden nicht weiterverwendet.
+- **Sonstiges:** Mit deckerweb Updater 2.4.0 und Library 1.3.0; WordPress- und PHP-Mindestversionen bleiben unverändert.
 
 ### 1.1.1 · 2026-10-29
 
@@ -299,8 +315,6 @@ Eigene Einstellungen, benannte lokale Presets, vorherige Konfiguration und Netzw
 ### 0.1.0–0.8.0 · 2026-10-09–2026-10-12
 
 - **Sonstiges:** Core-Einstellungen, Admin-Oberfläche, Berechtigungen und Multisite-Unterstützung aufgebaut und verfeinert.
-
-
 
 ## Projekt
 

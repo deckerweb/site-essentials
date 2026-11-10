@@ -14,7 +14,7 @@ final class DefaultAvatar {
   */
  public static function image( int $id, int $size = 96 ): string {
   $post = $id > 0 ? get_post( $id ) : null;
-  if ( ! $post || ! in_array( $post->post_status, array( 'inherit', 'publish' ), true ) ) { return ''; } $file = get_attached_file( $id );
+  if ( ! $post || 'attachment' !== $post->post_type ) { return ''; } $file = get_attached_file( $id );
   if ( ! is_string( $file ) || wp_is_stream( $file ) || ! is_file( $file ) ) { return ''; }
   return ( new Avatars() )->image( $id, PHP_INT_MAX );
  }

@@ -2,7 +2,7 @@
 
 [Deutsch](Funktionen) · [User guide](User-guide) · [Home](Home)
 
-For **Site Essentials 1.1.1**. 68 feature points in twelve groups.
+For **Site Essentials 1.2.0**. Features and boundaries, grouped by task.
 
 All features at a glance, grouped by task. You decide what to enable for your website. Three administrator checks are enabled by default; other optional modules are activated deliberately. Individual features have the limitations explained below.
 
@@ -115,3 +115,11 @@ All features at a glance, grouped by task. You decide what to enable for your we
 Menu visibility is not access control; maintenance is not a permanent coming-soon mode. Media remain ordinary WordPress files. Revision limits may take effect on later saves. Some features depend on permissions, theme, WordPress version or other plugins. The guide explains the details and exceptions.
 
 The [user guide](User-guide), [illustrated administration guide](Administration-conveniences) and [FAQ by topic](FAQ) explain setup, requirements and exceptions. Separate guides cover the [Dashboard](Dashboard), [maintenance](Maintenance), [website checks](Website-checks) and [diagnostics](Diagnostics).
+
+## New in 1.2.0
+
+- [Site Health](Site-Health): reliable source labels, selected checks and transparent copied-report omissions.
+- [Dashboard](Dashboard): saved results with a timestamp and shortcuts, without live monitoring.
+- [Maintenance](Maintenance): built-in notice or custom page, allowed roles, revocable temporary visitor links and separate optional REST restrictions.
+- [Translation updates](Translation-updates): inspect pending language packs before combined updating.
+- [Abilities](Abilities): explain, compare and preview configurations; read-only.

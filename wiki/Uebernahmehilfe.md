@@ -2,6 +2,8 @@
 
 [English](Takeover) · [Startseite](Home-de)
 
+![Konflikte ausdrücklich entscheiden](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/takeover-conflict-de.png)
+
 **Einstellungen → Site Essentials → Import und Export → Einstellungen von Falcon und Unbloater prüfen** öffnen. Die Hilfe liest installierte unterstützte Quellen einmalig, auch gespeicherte Einstellungen inaktiver installierter Plugins. Sie führt deren Code nicht aus und richtet keine dauerhafte Synchronisierung ein.
 
 1. Eine normale Sicherung bereithalten und bisher benötigte Quellfunktionen festhalten.
@@ -10,7 +12,7 @@
 4. Die vollständig geprüfte Auswahl bestätigen.
 5. Site Essentials testen und die bisherigen Plugins anschließend selbst deaktivieren und entfernen.
 
-![Konflikte ausdrücklich entscheiden](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/takeover-conflict-de.png)
+
 
 Den aktuellen Wert behalten oder bewusst eine Quelle wählen. Bisherige Plugins und deren Einstellungen bleiben unangetastet.
 

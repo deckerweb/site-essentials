@@ -2,6 +2,8 @@
 
 [English](Administration-conveniences) · [Startseite](Home-de)
 
+![Benutzer-IDs kopieren und letzte Anmeldung anzeigen](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/110-users-de.png)
+
 ### Menüs weiterverwenden statt neu aufbauen.
 
 Das Duplizieren unter Admin-Oberfläche aktivieren. Die Kopie behält native Linkeigenschaften, Hierarchie und SE-Sichtbarkeit, erhält aber keine Menüposition. Metadaten anderer Plugins werden nicht kopiert. Die Sichtbarkeit gilt nur für klassische Menüs und schützt keine Zielseiten. Ausgeblendete Elterneinträge verbergen auch ihre Untereinträge; Seiten-Caches müssen den Anmeldestatus unterscheiden.
@@ -26,7 +28,7 @@ Site Essentials zeigt die WordPress-Umgebung rechts in der Toolbar ausschließli
 ## Beispiele aus der Verwaltung
 
 
-![Benutzer-IDs kopieren und letzte Anmeldung anzeigen](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/110-users-de.png)
+
 
 
 
@@ -105,3 +107,6 @@ Die optionale Titelsuche ergänzt neben den Listenfiltern „Nur Titel“. Einen
 Beispiel einer gefilterten Seitenliste; Sortierung über die jeweiligen Spaltenüberschriften.
 
 Schrittweise Anleitungen: [Dashboard](Dashboard-de), [Website-Icon und Datumsformate](Allgemeine-Einstellungen), [Diagnose und Befehlspalette](Diagnose).
+
+
+Konten ohne Mediathek-Uploadberechtigung können ihr eigenes Avatarbild weiterhin hochladen. Dieser begrenzte Profil-Upload erlaubt höchstens drei Verarbeitungsversuche pro Stunde und 20 aufbewahrte SE-Avatar-Uploads je ausführendem Konto und Website, einschließlich Papierkorb. Es werden nur kleine Avatar-Vorschaubilder erzeugt. Beim Ersetzen bleiben alte Bilder erhalten; ein Administrator kann ungenutzte Medien prüfen und entfernen. Native Mediathek-Uploadrechte und Netzwerkquoten bleiben unverändert. Bilder mit unzulässigem Veröffentlichungsstatus oder nicht öffentlichen Elterninhalten werden nicht als Avatar ausgegeben.

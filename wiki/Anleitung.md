@@ -2,9 +2,11 @@
 
 [English](User-guide) · [Startseite](Home-de)
 
+![Einstellungen und Presets](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/release120-overview-de.jpg)
+
 ## Vollständiger Funktionsüberblick
 
-Die [vollständige Feature-Liste](Funktionen) bündelt alle 68 Featurepunkte von Site Essentials 1.1.0 in zwölf Aufgabengruppen. Sie enthält die Vorgaben zur ersten Aktivierung und die wichtigsten Funktionsgrenzen. Die folgenden Abschnitte und die bebilderten Spezialanleitungen erklären die Bedienung.
+Die [vollständige Feature-Liste](Funktionen) bündelt die Funktionen von Site Essentials nach Aufgaben. Sie enthält die Vorgaben zur ersten Aktivierung und die wichtigsten Funktionsgrenzen. Die folgenden Abschnitte und die bebilderten Spezialanleitungen erklären die Bedienung.
 
 ## Die passende Einstellung finden
 
@@ -39,3 +41,16 @@ Weiter zu [Wartung](Wartungsmodus), [Website-Prüfungen](Website-Pruefungen), [E
 - [Website-Icon, Datum und Uhrzeit verstehen](Allgemeine-Einstellungen)
 - [Konfiguration und Befehlspalette prüfen](Diagnose)
 - [Inhaltslisten und Titelsuche](Verwaltungshilfen)
+
+
+[Website-Zustand und neue Verwaltungsfunktionen](Website-Zustand)
+
+
+## Neu in 1.2.0
+
+- [Website-Zustand: Herkunft, Prüfungen und kopierter Bericht](Website-Zustand)
+- [Dashboard-Überblick mit Zeitstempel](Dashboard-de)
+- [Wartungsanzeige und Zugriffsausnahmen](Wartungsmodus)
+- [Vorschau anstehender Übersetzungsupdates](Uebersetzungsupdates)
+- [Rein lesende WordPress-Abilities](Abilities-de)
+- [Bewusste Entscheidungen und Grenzen](Bewusste-Entscheidungen)

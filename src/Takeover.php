@@ -170,6 +170,7 @@ final class Takeover {
   */
  public static function apply( array $choices, string $revision ) {
   if ( ! current_user_can( 'manage_options' ) || is_network_admin() ) { return new \WP_Error( 'permission', __( 'You do not have permission to change these settings.', 'site-essentials' ), array( 'status' => 403 ) ); }
+  if ( ! WriteLock::acquire() ) { return new \WP_Error( 'se_busy', __( 'This change could not be reserved safely. Another Site Essentials request may be saving. Reload and try again.', 'site-essentials' ), array( 'status' => 409 ) ); }
   $review = self::review();
   if ( ! hash_equals( $review['revision'], $revision ) ) { return new \WP_Error( 'stale', __( 'Source settings, plugin status or Site Essentials settings changed. Review them again before taking over.', 'site-essentials' ), array( 'status' => 409 ) ); }
   if ( count( $choices ) > count( Schema::fields() ) ) { return new \WP_Error( 'choices', __( 'Use only the choices offered in the takeover preview.', 'site-essentials' ) ); }

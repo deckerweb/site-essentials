@@ -108,6 +108,7 @@ final class Collections {
   * @return int|\WP_Error Imported count.
   */
  public static function import( string $json, array $selected, array $names, string $revision ) {
+  if ( ! WriteLock::acquire() ) { return new \WP_Error( 'se_busy', __( 'This change could not be reserved safely. Another Site Essentials request may be saving. Reload and try again.', 'site-essentials' ) ); }
   $profiles = self::decode( $json ); if ( is_wp_error( $profiles ) ) { return $profiles; }
   $items = self::store(); if ( is_wp_error( $items ) ) { return $items; }
   if ( ! hash_equals( hash( 'sha256', wp_json_encode( $items ) ), $revision ) ) { return new \WP_Error( 'collection_stale', __( 'Presets changed after the collection review. Review the collection again before importing.', 'site-essentials' ) ); }

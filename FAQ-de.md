@@ -168,9 +168,7 @@ Eigene Einstellungen, benannte lokale Presets, vorherige Konfiguration und Netzw
 
 ### Wie funktioniert der Wartungsmodus?
 
-Der Wartungsmodus verwendet eine veröffentlichte WordPress-Seite ohne Passwort mit dem eingerichteten Classic- oder Block-Editor. Wartung separat speichern; Aktivierung und Seitenwahl werden nie mit Presets oder der Konfigurationswiederherstellung übertragen. Aktive Bricks-, Elementor- oder Breakdance-Modi pausieren die eigene Ausgabe bis zur ausdrücklichen erneuten Aktivierung. Schnittstellen und Webhooks bleiben erreichbar. Seiten-Caches leeren oder umgehen und abgemeldet prüfen.
-
-Site Essentials ist für kurze Wartungsarbeiten an einer bestehenden Website gedacht. Die Wartungsantwort verwendet HTTP 503 (vorübergehend nicht verfügbar) mit Retry-After. Das ist kein Coming-Soon-Modus für eine Ankündigungsseite, die längerfristig öffentlich erreichbar bleiben soll. Eine öffentliche Ankündigungsseite verwendet in der Regel HTTP 200; Indexierung und Zugriff sind dabei gesondert festzulegen. Site Essentials bietet weder einen Coming-Soon-Modus noch einen Schalter für den Statuscode. Für eine Ankündigungsseite ist ein geeignetes Theme, ein Builder oder ein spezialisiertes Plugin die passende Wahl. Ein solcher Veröffentlichungsablauf gehört nicht zum Umfang dieses gezielten Wartungswerkzeugs.
+Mitgelieferten Hinweis oder eine veröffentlichte WordPress-Seite ohne Passwort wählen. Wartung separat speichern und die gespeicherte Auswahl vor Aktivierung ansehen. Besucher erhalten HTTP 503 mit Retry-After; Administratoren behalten Zugriff. Optional ausgewählte angemeldete Rollen zulassen. Ein privater Besucherlink gilt 1, 24 oder 72 Stunden; die Browserfreigabe höchstens 24 Stunden oder bis zum Ablauf des Links. Ersetzen oder Widerrufen macht bestehende Freigaben ungültig. Der Link ist keine Anmeldung. Er kann in Serverprotokollen oder im Browserverlauf stehen; nur über HTTPS an vertrauenswürdige Prüfer weitergeben. Er wird dem erstellenden Administrator kurz angezeigt. Zugriffsauswahl und Links bleiben lokal und werden nicht exportiert. Aktive Bricks-, Elementor- oder Breakdance-Wartung hat Vorrang. Seiten-Caches einschließlich Hosting/CDN leeren oder umgehen; abgemeldete und freigegebene Besucher getrennt testen. Die Einschränkung anonymer REST-Anfragen ist separat und standardmäßig aus; sie kann Formulare, Shops, Webhooks und Headless-Anwendungen unterbrechen. Authentifizierte REST-Anfragen und Besucher mit gültigem Privatlink behalten ihre nativen API-Rechte. AJAX und XML-RPC bleiben unverändert. Dies ist kein vollständiger Zugriffsschutz und kein Coming-Soon-Modus.
 
 Der Wartungsmodus zeigt den erfassten Aktivierungszeitpunkt in der Zeitzone der Website. Bestehende Aktivierungen ohne erfassten Zeitpunkt sind ausdrücklich gekennzeichnet. Normales Speichern erhält den Zeitpunkt; Abschalten entfernt ihn, ausdrückliches Fortsetzen nach einer Anbieter-Pause beginnt einen neuen Zeitraum. Öffentliche Prüfungen zeigen ihren Zeitpunkt und unterscheiden fehlgeschlagene Abrufe von fehlenden Angaben oder nicht ausgewertetem HTML. Ihre kompakte kopierbare Zusammenfassung enthält keine fremden Inhalte oder URL-Abfrageparameter. Vor separaten Wartungs- oder öffentlichen Prüfaktionen sind ungespeicherte Konfigurationsänderungen zu speichern oder zu verwerfen.
 
@@ -197,3 +195,43 @@ Nein. Falcon-Einstellungen werden von der aktuellen Website eingelesen. Netzwerk
 ## Was ändern die optionalen Komfortfunktionen von 1.1.0?
 
 Sie bleiben standardmäßig ausgeschaltet. Die Anleitung zu den Verwaltungshilfen erklärt klassische Menüs, Datenschutz bei der letzten Anmeldung, Profilfelder, Vorrang bei Umgebungsanzeigen, Video-Sperre, Medien-Papierkorb und begrenzte Speichermessung.
+
+## Website-Zustand und Updates
+
+### Was bedeuten die Herkunftskennzeichnungen?
+
+Sie nennen die Quelle der Prüfung oder Information, nicht den Gegenstand der Prüfung. Ein nativer Abschnitt über Plugins stammt von WordPress Core. Zusätzliche eindeutig passende Plugin-Bereiche werden als Plugin gekennzeichnet. Unklare Zuordnungen bleiben frei; dies ist keine Sicherheitsbewertung.
+
+### Warum fehlen im Dashboard noch Ergebnisse?
+
+Nach Aktivierung des Widgets Werkzeuge → Website-Zustand öffnen und alle nativen Prüfungen abschließen lassen. Das Widget verwendet gespeicherte Zahlen mit Zeitstempel; es führt selbst keine Prüfungen aus. Fehlende, veraltete oder durch geänderte Prüfauswahl ungültige Ergebnisse werden gekennzeichnet. Ein Nullwert ersetzt keinen abgeschlossenen Prüflauf.
+
+### Ist eine deaktivierte Prüfung erledigt?
+
+Nein. Sie wird nicht mehr ausgeführt und zählt nicht mehr zur Bewertung. Ihre Ursache bleibt bestehen. Zum Wiederaktivieren die Auswahl aufheben, Website-Zustandsauswahl speichern und die Prüfungen neu ausführen.
+
+### Verstecken Berichtsauslassungen die Informationen im Admin?
+
+Nein. Die Auswahl betrifft ausschließlich das Kopieren des Diagnoseberichts. Alle Informationen bleiben sichtbar. Der Text weist auf Auslassungen hin; vor dem Weitergeben prüfen. Es handelt sich nicht um vollständige Anonymisierung.
+
+### Wann erscheint die Übersetzungsvorschau?
+
+Wenn die Option unter Admin-Oberfläche aktiviert ist, WordPress anstehende Sprachpakete meldet und die Person Updates ausführen darf. Unter Dashboard → Aktualisierungen bei Übersetzungen die Liste aufklappen. Ohne anstehende Pakete erscheint sie nicht; automatische Updates können diese bereits installiert haben. Die native gemeinsame Aktualisierung bleibt erhalten, ohne Einzelauswahl.
+
+## Wartungszugriff und Abilities
+
+### Was erlauben Rollenfreigaben und private Links?
+
+Ausgewählte angemeldete Rollen sowie zeitlich begrenzte private Besucherlinks dürfen die Website während der Wartung ansehen. Sie erhalten keine zusätzlichen Bearbeitungsrechte. Links gelten 1, 24 oder 72 Stunden; Browserfreigaben höchstens 24 Stunden und nie länger als der Link. Ersetzen oder Widerrufen entzieht auch bestehende Browserfreigaben. Nur über HTTPS an vertrauenswürdige Prüfer weitergeben; URLs können in Protokollen stehen.
+
+### Ist während der Wartung auch REST gesperrt?
+
+Standardmäßig nicht. Die separate Option für anonyme REST-Anfragen kann Formulare, Shops, Webhooks und Headless-Anwendungen unterbrechen. Authentifizierte Anfragen und gültige Privatlink-Besucher behalten ihre nativen Rechte. AJAX und XML-RPC bleiben unverändert. Wartung ist kein vollständiger Zugriffsschutz und kein Coming Soon.
+
+### Können Abilities Einstellungen verändern?
+
+Nein. Version 1.2.0 bietet nur Erklärungen, Konfigurationsvergleiche und Preset-Vorschauen. Erforderlich ist eine angemeldete Person mit manage_options für die aktuelle Website. Freitext, persönliche Zugriffsausnahmen, Wartungslinks und Geheimnisse fehlen. Es wird weder ein MCP-Adapter noch ein externer KI-Dienst installiert.
+
+### Was passiert, wenn Zurücksetzen nicht vollständig gelingt?
+
+Site Essentials meldet einen Fehler statt vollständigen Erfolg und benennt verbleibende Datenbereiche. Bereits entfernte Bereiche werden nicht automatisch wiederhergestellt. Den Fehler prüfen und das Zurücksetzen gegebenenfalls erneut durchführen; vorab exportieren. Medien und WordPress-Inhalte bleiben erhalten.

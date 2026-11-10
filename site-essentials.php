@@ -3,7 +3,7 @@
  * Plugin Name: Site Essentials
  * Plugin URI: https://deckerwebplugins.com/en/plugins/site-essentials/
  * Description: Configure WordPress core behavior with focused controls, reusable presets and site-specific settings.
- * Version: 1.1.1
+ * Version: 1.2.0
  * Requires at least: 7.1
  * Requires PHP: 8.2
  * Author: David Decker – DECKERWEB
@@ -20,9 +20,9 @@
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 define( 'SITE_ESSENTIALS_FILE', __FILE__ );
-define( 'SITE_ESSENTIALS_VERSION', '1.1.1' );
-define( 'SITE_ESSENTIALS_ASSET_VERSION', '1.1.1' );
-foreach ( array( 'Schema', 'Settings', 'Presets', 'Collections', 'Runtime', 'Media', 'AlternativeTargets', 'MenuInterface', 'Access', 'Appearance', 'CoreExtras', 'Comfort', 'RuleStatus', 'SitePanels', 'DashboardInfo', 'DefaultAvatar', 'MediaComfort', 'Essentials110', 'Menus110', 'Storage110', 'Maintenance', 'Blog', 'PhpInfo', 'WebsiteChecks', 'PublicChecks', 'EditorEmbeds', 'SiteIdentity', 'CommentsOff', 'Avatars', 'Reports', 'Integrations', 'Updates', 'Admin' ) as $site_essentials_class ) {
+define( 'SITE_ESSENTIALS_VERSION', '1.2.0' );
+define( 'SITE_ESSENTIALS_ASSET_VERSION', '1.2.0' );
+foreach ( array( 'Schema', 'WriteLock', 'Settings', 'Presets', 'Collections', 'Runtime', 'Media', 'AlternativeTargets', 'MenuInterface', 'Access', 'Appearance', 'CoreExtras', 'Comfort', 'RuleStatus', 'SitePanels', 'DashboardInfo', 'DefaultAvatar', 'MediaComfort', 'Essentials110', 'Menus110', 'Storage110', 'Maintenance', 'MaintenanceAccess', 'Health120', 'Abilities120', 'Blog', 'PhpInfo', 'WebsiteChecks', 'PublicChecks', 'EditorEmbeds', 'SiteIdentity', 'CommentsOff', 'Avatars', 'Reports', 'Integrations', 'Updates', 'Admin' ) as $site_essentials_class ) {
  require_once __DIR__ . '/src/' . $site_essentials_class . '.php';
 }
 require_once __DIR__ . '/includes/deckerweb-plugin-library/bootstrap.php';
@@ -45,6 +45,9 @@ add_action( 'plugins_loaded', static function (): void {
  ( new \Deckerweb\SiteEssentials\Menus110() )->boot();
  ( new \Deckerweb\SiteEssentials\Storage110() )->boot();
  ( new \Deckerweb\SiteEssentials\Maintenance() )->boot();
+ ( new \Deckerweb\SiteEssentials\MaintenanceAccess() )->boot();
+ ( new \Deckerweb\SiteEssentials\Health120() )->boot();
+ ( new \Deckerweb\SiteEssentials\Abilities120() )->boot();
  ( new \Deckerweb\SiteEssentials\Blog() )->boot();
  ( new \Deckerweb\SiteEssentials\PhpInfo() )->boot();
  ( new \Deckerweb\SiteEssentials\WebsiteChecks() )->boot();

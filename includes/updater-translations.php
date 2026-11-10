@@ -1,5 +1,5 @@
 <?php
-/** Copy into the host adapter and replace the site-essentials textdomain with its literal domain. */
+/** Host translations for deckerweb Updater 2.4.0 (GPL-2.0-or-later). */
 defined( 'ABSPATH' ) || exit;
 /**
  * Resolve an updater source string in the host textdomain.
@@ -45,6 +45,46 @@ return static function ( string $message ): string {
             return __( 'The approved release could not be verified.', 'site-essentials' );
         case 'The approved release changed. Refresh updates first.':
             return __( 'The approved release changed. Refresh updates first.', 'site-essentials' );
+        case 'Catalog diagnostics require a public catalog provider.':
+            return __( 'Catalog diagnostics require a public catalog provider.', 'site-essentials' );
+        case 'Catalog approval':
+            return __( 'Catalog approval', 'site-essentials' );
+        case 'Package download':
+            return __( 'Package download', 'site-essentials' );
+        case 'Checksum verification':
+            return __( 'Checksum verification', 'site-essentials' );
+        case 'Archive verification':
+            return __( 'Archive verification', 'site-essentials' );
+        case 'The update server could not be reached. Try again later.':
+            return __( 'The update server could not be reached. Try again later.', 'site-essentials' );
+        case 'The update request timed out. Try again later.':
+            return __( 'The update request timed out. Try again later.', 'site-essentials' );
+        case 'The update server address could not be resolved.':
+            return __( 'The update server address could not be resolved.', 'site-essentials' );
+        case 'The secure connection to the update server failed.':
+            return __( 'The secure connection to the update server failed.', 'site-essentials' );
+        case 'The update server returned an unsuccessful HTTP response.':
+            return __( 'The update server returned an unsuccessful HTTP response.', 'site-essentials' );
+        case 'The update provider did not return valid update data.':
+            return __( 'The update provider did not return valid update data.', 'site-essentials' );
+        case 'The package does not match the approved checksum. Installation was stopped.':
+            return __( 'The package does not match the approved checksum. Installation was stopped.', 'site-essentials' );
+        case 'The archive or plugin identity could not be verified. Installation was stopped.':
+            return __( 'The archive or plugin identity could not be verified. Installation was stopped.', 'site-essentials' );
+        case 'Update stopped at %1$s: %2$s':
+            /* translators: 1: update stage, 2: fixed explanation. */
+            return __( 'Update stopped at %1$s: %2$s', 'site-essentials' );
+        case 'HTTP status: %d.':
+            /* translators: %d: HTTP error status. */
+            return __( 'HTTP status: %d.', 'site-essentials' );
+        case 'Invalid private download limits.':
+            return __( 'Invalid private download limits.', 'site-essentials' );
+        case 'Invalid package cleanup provider.':
+            return __( 'Invalid package cleanup provider.', 'site-essentials' );
+        case 'Safe package cleanup is unavailable for this update provider.':
+            return __( 'Safe package cleanup is unavailable for this update provider.', 'site-essentials' );
+        case 'The update package identity, version or requirements could not be verified.':
+            return __( 'The update package identity, version or requirements could not be verified.', 'site-essentials' );
         default:
             return $message;
     }

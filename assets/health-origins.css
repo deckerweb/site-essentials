@@ -1,0 +1,25 @@
+/* Origin remains readable independently of native Security/Performance badges. */
+.health-check-accordion-trigger .se-health-source-badge {
+ display: inline-block;
+ margin-inline-start: .75em;
+ padding: .12em .55em;
+ border: 1px solid #8c8f94;
+ border-radius: 3px;
+ background: #f0f0f1;
+ color: #2c3338;
+ font-size: 12px;
+ font-weight: 400;
+ line-height: 1.5;
+ vertical-align: middle;
+ white-space: nowrap;
+}
+
+/* Keep the complete source badge together; a long heading may wrap before it. */
+.health-check-accordion-trigger .title { min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+ .health-check-accordion-trigger .se-health-source-badge {
+  display: table;
+  margin-inline-start: 0;
+  margin-block-start: .35em;
+ }
+}

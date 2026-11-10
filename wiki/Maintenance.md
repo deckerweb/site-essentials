@@ -2,26 +2,36 @@
 
 [Deutsch](Wartungsmodus) · [Home](Home)
 
-1. Open **Settings → Site Essentials → Maintenance mode**.
-2. Create a maintenance page, or choose an existing published page without a password.
-3. Design it with the configured Block Editor or Classic Editor.
-4. Preview the saved page as an administrator.
-5. Enable maintenance and use **Save maintenance mode**. Test anonymously in a private browser window.
+Explain a short interruption and selectively allow the people maintaining the website to view it.
 
-![Maintenance with your own page](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/maintenance-en.png)
+![Maintenance display, allowed roles and temporary visitor links](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/release120-maintenance-en.jpg)
 
-Select a published WordPress page. Maintenance uses HTTP 503 and has its own save action.
+## 1. Choose and preview the display
 
-Visitors receive **HTTP 503**, `Retry-After` and no-cache/noindex headers. Administrators retain normal access; the orange toolbar entry identifies active own maintenance. Login, APIs, webhooks and background tasks remain available. This is not an access-control or privacy barrier.
+Under **Settings → Site Essentials → Maintenance mode**, choose the **built-in maintenance notice** or your **own WordPress page**. The built-in notice needs no page. A custom page must be published and have no password; use the Block Editor or Classic Editor to design it.
 
-## Maintenance is not Coming Soon
+Use **Save maintenance mode** separately, then **Preview saved maintenance page**. Preview does not activate maintenance. After previewing, select **Enable maintenance** and save separately again.
 
-This mode is for temporary work on an existing website. A long-running public launch page normally needs HTTP 200 and separate indexing/access choices. Site Essentials has no Coming Soon mode or status-code switch. Use an appropriate theme, builder or specialist plugin for that workflow.
+Visitors receive HTTP **503 Service Unavailable** with `Retry-After`. Administrators retain access. A subtle orange Toolbar indicator highlights active maintenance. Active Bricks, Elementor and Breakdance maintenance modes take precedence.
 
-## Other providers and caches
+## 2. Allow access deliberately
 
-Active maintenance in Bricks, Elementor or Breakdance takes precedence. Site Essentials pauses its own response without changing foreign settings. After a conflict, resume it deliberately rather than expecting automatic reactivation.
+Administrators remain allowed. Select additional logged-in staff under **Additional staff roles** and **Save maintenance access** separately. This grants no additional editing permissions.
 
-A hosting/CDN page cache can serve a previously saved page before WordPress runs, even without a cache plugin. Clear or bypass it manually where necessary, and check the public response after enabling and disabling maintenance. The plugin does not reconfigure foreign caches.
+A **private visitor link** allows temporary viewing without signing in. It lasts 1, 24 or 72 hours; the browser grant lasts at most 24 hours and never beyond the link expiry. A new link is shown briefly only to the creating administrator. Replacing or revoking it invalidates existing browser grants too.
 
-Maintenance activation, page assignment and recorded start time are operational data for this website. They are excluded from presets, imports, exports and configuration recovery.
+Share only over HTTPS with trusted reviewers. The URL can appear in server logs or browser history. Maintenance status, page assignment, roles and visitor links stay local and are excluded from presets and configuration transfers.
+
+## 3. Restrict REST only when appropriate
+
+**Restrict anonymous REST requests during maintenance** is separate and off by default. It can interrupt forms, shops, webhooks and headless clients. Authenticated requests and valid private-link visitors retain their native WordPress permissions. AJAX and XML-RPC remain unchanged.
+
+## 4. Check visitors and caches
+
+After enabling or disabling maintenance, use a private browser window. Test signed-out visitors, allowed roles and any visitor link separately. Hosting or CDN page caches may require clearing or bypassing even without a cache plugin. Caches must respect the maintenance cookie for allowed visitors.
+
+## Deliberate boundaries
+
+Maintenance is not complete access protection or a Coming Soon mode. HTTP 503 is intended for a temporary interruption. A long-term announcement page has different availability and search-engine requirements. [Why we keep these workflows separate](Deliberate-choices).
+
+[Site Health](Site-Health) · [Website checks](Website-checks) · [FAQ](FAQ)

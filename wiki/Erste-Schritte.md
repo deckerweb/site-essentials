@@ -2,6 +2,8 @@
 
 [English](Getting-started) · [Startseite](Home-de)
 
+![Presets und Einstellungen](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/settings-de.png)
+
 Erfordert WordPress **7.1 oder höher** und PHP **8.2 oder höher**. Das Release-ZIP unter **Plugins → Neues Plugin hinzufügen → Plugin hochladen** installieren und aktivieren. Das installierbare ZIP aus dem Release verwenden.
 
 1. **Einstellungen → Site Essentials** öffnen.
@@ -12,7 +14,7 @@ Erfordert WordPress **7.1 oder höher** und PHP **8.2 oder höher**. Das Release
 
 Die Aktivierung schaltet drei Website-Hinweise für Administratoren ein. Bereinigung und Verhaltensänderungen bleiben aus, bis sie bewusst gewählt oder durch ein ausdrücklich vorbereitetes Startpreset angewendet werden. Die Auswahl eines Presets allein wendet noch nichts an.
 
-![Presets und Einstellungen](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/settings-de.png)
+
 
 Presets prüfen, Einstellungen filtern und die Konfiguration bewusst speichern.
 

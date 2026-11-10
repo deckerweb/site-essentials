@@ -109,7 +109,7 @@ final class Avatars {
   */
  public function image( int $id, int $size = 96 ): string {
   $post = get_post( $id );
-  if ( ! $post || 'attachment' !== $post->post_type || ! in_array( get_post_mime_type( $post ), array( 'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/avif' ), true ) ) { return ''; }
+  if ( ! $post || 'attachment' !== $post->post_type || ! in_array( $post->post_status, array( 'inherit', 'publish' ), true ) || ! in_array( get_post_mime_type( $post ), array( 'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/avif' ), true ) ) { return ''; }
   if ( $post->post_parent && ! is_post_publicly_viewable( $post->post_parent ) ) { return ''; }
   $url = wp_get_attachment_image_url( $id, array( $size, $size ) ); return is_string( $url ) && $this->local( $url ) ? $url : '';
  }
@@ -218,6 +218,7 @@ final class Avatars {
   $this->profile_user = $user->ID; $id = (int) get_user_meta( $user->ID, self::key(), true ); $url = $this->image( $id ) ?: $this->fallback();
   echo '<h2>' . esc_html__( 'Local avatar for this site', 'site-essentials' ) . '</h2><div id="se-avatar-profile"><p><img id="se-avatar-preview" src="' . ( str_starts_with( $url, 'data:image/svg+xml;base64,' ) ? esc_attr( $url ) : esc_url( $url ) ) . '" width="96" height="96" alt=""></p><input type="hidden" id="se-avatar-id" name="avatar_attachment" value="' . esc_attr( $id ) . '" form="se-avatar-form"><input type="hidden" id="se-avatar-mode" name="avatar_mode" value="select" form="se-avatar-form">';
   if ( current_user_can( 'upload_files' ) ) { echo '<p><button type="button" class="button" id="se-avatar-select">' . esc_html__( 'Choose a local image', 'site-essentials' ) . '</button></p>'; }
+  if ( ! current_user_can( 'upload_files' ) ) { echo '<p class="description">' . esc_html__( 'Self-service uploads: up to three per hour and 20 retained images per account on this site. Existing images are not automatically deleted.', 'site-essentials' ) . '</p>'; }
   echo '<p><label for="se-avatar-file">' . esc_html__( 'Upload an avatar image', 'site-essentials' ) . '</label> <input id="se-avatar-file" type="file" name="se_avatar_file" accept="image/jpeg,image/png,image/gif,image/webp,image/avif" form="se-avatar-form"></p><p>' . esc_html__( 'JPEG, PNG, GIF, WebP or AVIF; up to 4 MiB and 4096 × 4096 pixels. Images remain normal public WordPress media. This assignment belongs only to this site and is not included in preset exports.', 'site-essentials' ) . '</p><p><button type="button" class="button" id="se-avatar-remove">' . esc_html__( 'Use the site default image', 'site-essentials' ) . '</button> <button type="button" class="button" id="se-avatar-discard">' . esc_html__( 'Discard avatar selection', 'site-essentials' ) . '</button> <button type="submit" class="button button-primary" form="se-avatar-form">' . esc_html__( 'Save local avatar', 'site-essentials' ) . '</button></p><p id="se-avatar-message" role="alert" tabindex="-1"></p></div>';
  }
  /** Emit one own form after the native user form has closed. @return void */
@@ -251,6 +252,32 @@ final class Avatars {
   }
   return $result;
  }
+ /** Bound self-service uploads while retaining ordinary media and native quota checks.
+  * Caller must hold WriteLock; limits apply to the acting account on this site.
+  * Failed processing consumes a rate slot to bound repeated expensive attempts.
+  * @return true|\WP_Error True after reserving a slot, otherwise an actionable error.
+  */
+ public static function reserve_upload() {
+  WriteLock::require_lock();
+  $actor = get_current_user_id();
+  if ( ! $actor ) { return new \WP_Error( 'avatar_permission', __( 'You cannot select this image.', 'site-essentials' ) ); }
+  if ( current_user_can( 'upload_files' ) ) { return true; }
+  $uploads = get_posts( array( 'post_type' => 'attachment', 'post_status' => array_values( get_post_stati() ), 'posts_per_page' => 20, 'fields' => 'ids', 'meta_key' => '_site_essentials_avatar_uploader', 'meta_value' => $actor, 'no_found_rows' => true ) );
+  if ( count( $uploads ) >= 20 ) { return new \WP_Error( 'avatar_quota', __( 'The limit of 20 self-service avatar uploads on this site has been reached. Ask an administrator to review unused avatar images.', 'site-essentials' ) ); }
+  $key = '_site_essentials_avatar_uploads_' . get_current_blog_id();
+  $saved = get_user_meta( $actor, $key, true );
+  $times = is_array( $saved ) ? array_values( array_filter( $saved, static fn( $time ) => is_int( $time ) && $time > time() - HOUR_IN_SECONDS ) ) : array();
+  if ( count( $times ) >= 3 ) { return new \WP_Error( 'avatar_rate', __( 'Up to three avatar uploads per hour are allowed for accounts without media upload permission. Try again later.', 'site-essentials' ) ); }
+  $times[] = time(); update_user_meta( $actor, $key, $times );
+  return get_user_meta( $actor, $key, true ) === $times ? true : new \WP_Error( 'avatar_write', __( 'The local avatar could not be saved.', 'site-essentials' ) );
+ }
+ /** Generate only bounded avatar thumbnails for self-service uploads.
+  * @param array $sizes Registered native intermediate sizes.
+  * @return array Native sizes for media uploaders, small avatar sizes otherwise.
+  */
+ public static function upload_sizes( array $sizes ): array {
+  return current_user_can( 'upload_files' ) ? $sizes : array( 'se-avatar-small' => array( 'width' => 96, 'height' => 96, 'crop' => true ), 'se-avatar-large' => array( 'width' => 192, 'height' => 192, 'crop' => true ) );
+ }
  /** Save an authorized assignment or a tightly limited profile-only upload. @return void */
  public function save(): void {
   $raw = $_POST['avatar_user'] ?? ''; $user_id = is_string( $raw ) && preg_match( '/^[1-9][0-9]{0,9}$/D', $raw ) ? (int) $raw : 0;
@@ -258,6 +285,7 @@ final class Avatars {
   if ( 'POST' !== ( $_SERVER['REQUEST_METHOD'] ?? '' ) ) { wp_die( esc_html__( 'Use the avatar form to perform this action.', 'site-essentials' ), '', array( 'response' => 405 ) ); }
   if ( ! is_string( $_REQUEST['_wpnonce'] ?? null ) ) { wp_die( esc_html__( 'The request could not be verified. Reload the page and try again.', 'site-essentials' ), '', array( 'response' => 403 ) ); }
   check_admin_referer( 'site_essentials_avatar_' . get_current_blog_id() . '_' . $user_id );
+  WriteLock::require_lock(); wp_cache_delete( $user_id, 'user_meta' );
   $revision = $_POST['avatar_revision'] ?? '';
   if ( ! is_string( $revision ) || ! hash_equals( hash( 'sha256', wp_json_encode( get_user_meta( $user_id, self::key(), true ) ) ), wp_unslash( $revision ) ) ) { wp_die( esc_html__( 'This avatar changed elsewhere. Reload before saving.', 'site-essentials' ), '', array( 'response' => 409 ) ); }
   $mode = $_POST['avatar_mode'] ?? ''; $id = 0; $uploaded = false;
@@ -268,7 +296,11 @@ final class Avatars {
    $check = wp_check_filetype_and_ext( $file['tmp_name'], $file['name'], $mimes ); $dimensions = wp_getimagesize( $file['tmp_name'] );
    if ( ! $check['ext'] || ! in_array( $check['type'], array_values( $mimes ), true ) || ! $dimensions || $dimensions[0] > 4096 || $dimensions[1] > 4096 || $dimensions[0] < 1 || $dimensions[1] < 1 ) { $this->upload_error(); }
    require_once ABSPATH . 'wp-admin/includes/file.php'; require_once ABSPATH . 'wp-admin/includes/media.php'; require_once ABSPATH . 'wp-admin/includes/image.php';
-   $id = media_handle_upload( 'se_avatar_file', 0, array(), array( 'test_form' => false, 'mimes' => $mimes ) );
+   $limit = self::reserve_upload();
+   if ( is_wp_error( $limit ) ) { wp_die( esc_html( $limit->get_error_message() ), '', array( 'response' => 429 ) ); }
+   add_filter( 'intermediate_image_sizes_advanced', array( self::class, 'upload_sizes' ), PHP_INT_MAX );
+   try { $id = media_handle_upload( 'se_avatar_file', 0, array( 'meta_input' => array( '_site_essentials_avatar_uploader' => get_current_user_id() ) ), array( 'test_form' => false, 'mimes' => $mimes ) ); }
+   finally { remove_filter( 'intermediate_image_sizes_advanced', array( self::class, 'upload_sizes' ), PHP_INT_MAX ); }
    if ( is_wp_error( $id ) ) { $this->upload_error(); } $uploaded = true;
   } elseif ( 'select' === $mode ) {
    $raw_id = $_POST['avatar_attachment'] ?? ''; if ( ! is_string( $raw_id ) || ! preg_match( '/^(0|[1-9][0-9]{0,9})$/D', $raw_id ) ) { $this->upload_error(); } $id = (int) $raw_id;

@@ -2,7 +2,7 @@
 
 [English](Features) · [Anleitung](Anleitung) · [Startseite](Home-de)
 
-Stand: **Site Essentials 1.1.1**. 68 Featurepunkte in zwölf Gruppen.
+Stand: **Site Essentials 1.2.0**. Nach Aufgaben gegliederte Funktionen und ihre Grenzen.
 
 Alle Funktionen im Überblick – nach Aufgaben sortiert. Du entscheidest, was für deine Website aktiv wird. Die drei Administrator-Prüfhinweise sind ab Werk eingeschaltet; andere optionale Module aktivierst du bewusst. Einzelne Funktionen haben die unten genannten Grenzen.
 
@@ -115,3 +115,11 @@ Alle Funktionen im Überblick – nach Aufgaben sortiert. Du entscheidest, was f
 Menüsichtbarkeit ist kein Zugriffsschutz; Wartung ist kein dauerhafter Coming-soon-Modus. Medien bleiben normale WordPress-Dateien. Revisionsgrenzen können beim späteren Speichern wirken. Manche Funktionen hängen von Berechtigungen, Theme, WordPress-Version oder anderen Plugins ab. Alle Details und Ausnahmen stehen in der Anleitung.
 
 Die [Anleitung](Anleitung), die [bebilderten Verwaltungshilfen](Verwaltungshilfen) und die [Fragen nach Themen](FAQ-de) erklären Einrichtung, Voraussetzungen und Ausnahmen. Separate Anleitungen gibt es für [Dashboard](Dashboard-de), [Wartung](Wartungsmodus), [Website-Prüfungen](Website-Pruefungen) und [Diagnose](Diagnose).
+
+## Neu in 1.2.0
+
+- [Website-Zustand](Website-Zustand): eindeutige Herkunft, gezielte Prüfauswahl und transparente Auslassungen im kopierten Bericht.
+- [Dashboard](Dashboard-de): gespeicherte Ergebnisse mit Zeitstempel und Sprunglinks statt Live-Überwachung.
+- [Wartung](Wartungsmodus): mitgelieferter Hinweis oder eigene Seite, zugelassene Rollen, widerrufbare befristete Besucherlinks und separate optionale REST-Einschränkung.
+- [Übersetzungsupdates](Uebersetzungsupdates): anstehende Sprachpakete vor der gemeinsamen Aktualisierung sehen.
+- [Abilities](Abilities-de): Konfigurationen erklären, vergleichen und vorab prüfen; ausschließlich lesend.

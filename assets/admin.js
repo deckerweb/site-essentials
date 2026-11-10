@@ -474,7 +474,7 @@
  });
  const maintenancePage = document.getElementById('se-maintenance-page');
  const maintenanceEnabled = document.querySelector('[form="se-maintenance-form"][name="maintenance_enabled"]');
- const maintenanceSnapshot = () => JSON.stringify([maintenancePage?.value, maintenanceEnabled?.checked]);
+ const maintenanceSnapshot = () => JSON.stringify([maintenancePage?.value, maintenanceEnabled?.checked, document.getElementById('se-maintenance-mode')?.value]);
  const maintenanceInitial = maintenanceSnapshot();
  let maintenanceSubmitting = false;
  const maintenanceDirty = () => maintenancePage && maintenanceSnapshot() !== maintenanceInitial;
@@ -488,12 +488,31 @@
   }
  }, true);
  // Detached operations must not silently navigate away from an unsaved configuration.
- ['se-maintenance-form', 'se-public-check-form'].forEach(id => {
+ ['se-maintenance-form', 'se-maintenance-access', 'se-health-form', 'se-public-check-form'].forEach(id => {
   document.getElementById(id)?.addEventListener('submit', event => {
    if (window.siteEssentialsDraft.has()) {
     event.preventDefault();
     window.alert(config.strings.saveBeforeOperation);
    } else if (id === 'se-maintenance-form' && event.submitter?.value === 'save') { maintenanceSubmitting = true; }
   });
+ });
+ // Keep independent operational forms from discarding one another's pending choices.
+ const operational = ['se-maintenance-access', 'se-health-form'].map(id => {
+  const snapshot = () => JSON.stringify(Array.from(document.querySelectorAll('[form="'+id+'"]')).filter(el => ['roles[]','rest','disabled[]','private[]','reason'].includes(el.name)).map(el => [el.name,el.value,el.checked]));
+  return {id,snapshot,initial:snapshot(),saving:false};
+ });
+ window.addEventListener('beforeunload',event=>{if(operational.some(o=>!o.saving&&o.snapshot()!==o.initial)){event.preventDefault();event.returnValue='';}});
+ document.addEventListener('submit',event=>{
+  for(const o of operational){
+   const own=event.target.id===o.id && (o.id==='se-health-form'||event.submitter?.value==='save');
+   if(o.snapshot()!==o.initial&&!own){event.preventDefault();event.stopImmediatePropagation();window.alert(config.strings.saveBeforeOperation);return;}
+   if(own && !event.defaultPrevented)o.saving=true;
+  }
+ },true);
+ document.querySelector('[data-se-copy-private]')?.addEventListener('click',async()=>{
+  const field=document.getElementById('se-private-link'),message=document.getElementById('se-private-copy-status');
+  if(!field||!message)return;
+  try{await navigator.clipboard.writeText(field.value);message.textContent=config.strings.addressCopied;}
+  catch(_){field.focus();field.select();message.textContent=config.strings.addressCopyFallback;}
  });
 })();

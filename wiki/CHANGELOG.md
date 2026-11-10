@@ -2,6 +2,17 @@
 
 [Deutsch](CHANGELOG-de) · [Home](Home)
 
+### 1.2.0 · 2026-11-10
+
+- **New:** Optional Site Health source labels, selected test exclusions and transparent omissions from copied diagnostic reports.
+- **New:** Optional administrator dashboard overview using saved Site Health results and pending translation update preview.
+- **New:** Built-in maintenance notice, selected staff access, expiring revocable private links and a separate optional anonymous REST restriction.
+- **New:** Three read-only WordPress abilities explain settings, compare configurations and preview preset changes without applying them.
+- **Fixed:** Renamed post types now include all featured-image actions and retain the current admin-language baseline.
+- **Fixed:** Local reset now reports incomplete removal of maintenance access, Site Health choices and other local data.
+- **Fixed:** Protected configuration writes stop after a lost MySQL session lock instead of continuing under stale state.
+- **Misc:** Includes deckerweb Updater 2.4.0 and Library 1.3.0; minimum WordPress and PHP versions remain unchanged.
+
 ### 1.1.1 · 2026-10-29
 
 - **Improved:** Grouped system information and storage overview with section shortcuts, clear labels and upload diagnosis guidance when disabled.

@@ -2,6 +2,8 @@
 
 [Deutsch](Verwaltungshilfen) · [Home](Home)
 
+![Copy user IDs and see the last login](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/110-users-en.png)
+
 ### Menus, without rebuilding them.
 
 Enable menu duplication under Admin interface. The copy keeps native link properties, hierarchy and Site Essentials visibility, but receives no menu location. Third-party metadata is not copied. Visibility choices apply only to classic menus and do not protect target pages. Hidden parents also hide their descendants; page caches must distinguish login status.
@@ -26,7 +28,7 @@ Site Essentials shows the WordPress environment on the right of the toolbar for 
 ## Administration examples
 
 
-![Copy user IDs and see the last login](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/110-users-en.png)
+
 
 
 

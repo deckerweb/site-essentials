@@ -2,26 +2,36 @@
 
 [English](Maintenance) · [Startseite](Home-de)
 
-1. **Einstellungen → Site Essentials → Wartungsmodus** öffnen.
-2. Eine Wartungsseite erstellen oder eine veröffentlichte Seite ohne Passwort auswählen.
-3. Mit dem eingerichteten Block-Editor oder Classic Editor gestalten.
-4. Die gespeicherte Seite als Administrator ansehen.
-5. Wartung aktivieren und **Wartungsmodus speichern** verwenden. Anschließend anonym in einem privaten Browserfenster testen.
+Eine kurze Unterbrechung verständlich anzeigen und den Zugriff für die Betreuung gezielt freigeben.
 
-![Wartung mit eigener Seite](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/maintenance-de.png)
+![Wartungsanzeige, zugelassene Rollen und zeitlich begrenzte Besucherlinks](https://raw.githubusercontent.com/deckerweb/site-essentials/main/assets-github/screenshots/release120-maintenance-de.jpg)
 
-Eine veröffentlichte WordPress-Seite auswählen. Wartung verwendet HTTP 503 und wird separat gespeichert.
+## 1. Anzeige wählen und vorab ansehen
 
-Besucher erhalten **HTTP 503**, `Retry-After` sowie No-Cache-/Noindex-Header. Administratoren behalten normalen Zugriff; der orange Toolbar-Eintrag kennzeichnet die aktive eigene Wartung. Login, Schnittstellen, Webhooks und Hintergrundaufgaben bleiben erreichbar. Dies ist keine Zugriffs- oder Datenschutzsperre.
+Unter **Einstellungen → Site Essentials → Wartungsmodus** den **mitgelieferten Wartungshinweis** oder eine **eigene WordPress-Seite** wählen. Für den mitgelieferten Hinweis ist keine Seite erforderlich. Eine eigene Seite muss veröffentlicht und ohne Passwort sein; sie kann mit Block Editor oder Classic Editor gestaltet werden.
 
-## Wartung ist kein Coming Soon
+Mit **Wartungsmodus speichern** separat speichern und anschließend **Gespeicherte Wartungsseite ansehen** verwenden. Die Vorschau aktiviert den Modus nicht. Erst nach der Vorschau **Wartungsmodus einschalten** auswählen und erneut separat speichern.
 
-Dieser Modus dient zeitweiligen Arbeiten an einer bestehenden Website. Eine längerfristig öffentliche Ankündigungsseite benötigt normalerweise HTTP 200 und eigene Entscheidungen zu Indexierung und Zugriff. Site Essentials bietet keinen Coming-Soon-Modus und keinen Statuscode-Schalter. Für diesen Ablauf ein geeignetes Theme, einen Builder oder ein spezialisiertes Plugin verwenden.
+Besucher erhalten HTTP **503 Service Unavailable** mit `Retry-After`. Administratoren behalten Zugriff. Ein dezenter orangefarbener Toolbar-Hinweis erinnert an die aktive Wartung. Aktive Wartungsmodi von Bricks, Elementor und Breakdance haben Vorrang.
 
-## Andere Anbieter und Caches
+## 2. Zugriff bewusst erlauben
 
-Aktive Wartung in Bricks, Elementor oder Breakdance erhält Vorrang. Site Essentials pausiert die eigene Antwort und verändert keine fremden Einstellungen. Nach einem Konflikt die eigene Wartung bewusst wieder aktivieren; sie startet nicht automatisch erneut.
+Administratoren bleiben zugelassen. Unter **Zusätzlich zugelassene Rollen** können angemeldete Benutzer weiterer Rollen zugelassen werden. **Wartungszugriff speichern** übernimmt diese Auswahl separat. Sie erteilt keine zusätzlichen Bearbeitungsrechte.
 
-Ein Seiten-Cache beim Hoster oder CDN kann eine gespeicherte Seite ausgeben, bevor WordPress ausgeführt wird – auch ohne Cache-Plugin. Bei Bedarf manuell leeren oder umgehen und die öffentliche Antwort nach dem Ein- und Ausschalten prüfen. Das Plugin konfiguriert keine fremden Caches um.
+Ein **privater Besucherlink** erlaubt zeitweiliges Ansehen ohne Anmeldung. Seine Gültigkeit beträgt 1, 24 oder 72 Stunden; die Browserfreigabe höchstens 24 Stunden und nie länger als der Link. Der neue Link wird kurz nur dem erstellenden Administrator angezeigt. Ersetzen oder Widerrufen entzieht auch bestehenden Browserfreigaben den Zugriff.
 
-Wartungsaktivierung, Seitenzuordnung und erfasster Beginn sind Betriebsdaten dieser Website. Sie sind nicht in Presets, Importen, Exporten oder der Konfigurationswiederherstellung enthalten.
+Den Link nur über HTTPS an vertrauenswürdige Prüfer geben. Er kann in Serverprotokollen oder im Browserverlauf stehen. Wartungszustand, Seitenzuordnung, Rollen und Besucherlinks bleiben lokal und werden nicht mit Presets oder Konfigurationen übertragen.
+
+## 3. REST nur bei passendem Anwendungsfall einschränken
+
+**Anonyme REST-Anfragen während der Wartung einschränken** ist eine separate Option und standardmäßig aus. Sie kann Formulare, Shops, Webhooks und Headless-Anwendungen unterbrechen. Authentifizierte Anfragen und Besucher mit gültigem Privatlink bleiben unter ihren nativen WordPress-Berechtigungen zugelassen. AJAX und XML-RPC bleiben unverändert.
+
+## 4. Besucheransicht und Cache prüfen
+
+Nach dem Ein- und Ausschalten ein privates Browserfenster verwenden. Abgemeldete Besucher, zugelassene Rollen und einen gegebenenfalls erzeugten Besucherlink getrennt testen. Seiten-Caches beim Hoster oder CDN müssen gegebenenfalls geleert oder umgangen werden – auch ohne Cache-Plugin. Für freigegebene Besucher muss der Cache das Wartungs-Cookie berücksichtigen.
+
+## Bewusste Grenzen
+
+Wartung ist kein vollständiger Zugriffsschutz und kein Coming-Soon-Modus. HTTP 503 ist für eine vorübergehende Unterbrechung vorgesehen. Eine längerfristige Ankündigungsseite hat andere Anforderungen an Erreichbarkeit und Suchmaschinen. [Warum wir das bewusst trennen](Bewusste-Entscheidungen).
+
+[Website-Zustand](Website-Zustand) · [Website-Prüfungen](Website-Pruefungen) · [FAQ](FAQ-de)
